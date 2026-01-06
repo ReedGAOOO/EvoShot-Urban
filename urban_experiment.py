@@ -131,6 +131,18 @@ class MockVault:
         else:
             logger.info(f"{Fore.YELLOW}[Vault] Cleanup skipped, no low-usage Tier>0 examples found{Style.RESET_ALL}")
 
+    def summarize(self):
+        """输出当前 Vault 状态，便于观察各 tier 的占比和使用频次"""
+        if not self.storage:
+            logger.info(f"{Fore.MAGENTA}[Vault] Empty vault{Style.RESET_ALL}")
+            return
+
+        logger.info(f"{Fore.MAGENTA}[Vault] Summary — total={len(self.storage)}{Style.RESET_ALL}")
+        for ex in sorted(self.storage, key=lambda x: (x.tier, -x.usage_count)):
+            logger.info(
+                f"  id={ex.id} | tier={ex.tier} | usage_count={ex.usage_count} | scores={ex.scores}"
+            )
+
     def retrieve(self, query: Sample, k: int = 3) -> List[UrbanExample]:
         """
         核心防坑点：检索策略
@@ -303,5 +315,8 @@ if __name__ == "__main__":
 
     # 演示：定期清洗低频使用的 Tier>0 样本，保持专家锚点纯净
     pipeline.vault.cleanup_low_usage(min_usage=5)
+
+    # 输出清洗后的 Vault 状态，确保 Tier 结构可观察
+    pipeline.vault.summarize()
 
     logger.info(f"\nFinal Vault Size: {len(pipeline.vault.storage)}")
