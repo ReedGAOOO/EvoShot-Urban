@@ -139,6 +139,7 @@ class MockVault:
 
         logger.info(f"{Fore.MAGENTA}[Vault] Summary — total={len(self.storage)}{Style.RESET_ALL}")
         for ex in sorted(self.storage, key=lambda x: (x.tier, -x.usage_count)):
+            # 将 tier/usage 与分数并排输出，便于人工检查是否需要清洗
             logger.info(
                 f"  id={ex.id} | tier={ex.tier} | usage_count={ex.usage_count} | scores={ex.scores}"
             )
@@ -151,7 +152,7 @@ class MockVault:
         if not self.storage:
             return []
 
-        # 简单模拟：按 Tier 排序，然后随机取
+        # 简单模拟：按 Tier 排序，然后取前 k 条
         # 实际项目中是 Vector Similarity Search
         sorted_ex = sorted(self.storage, key=lambda x: x.tier)
         selected = sorted_ex[:k]
@@ -177,6 +178,7 @@ class MockStudentModel:
         gt = sample.ground_truth_sim
         pred_scores = {}
         for dim in ScoreConfig.dims:
+            # 噪声代表学生的不确定性
             noise = random.uniform(-1.0, 1.0)
             pred_scores[dim] = round(max(1, min(5, gt[dim] + noise)), 1)
 
