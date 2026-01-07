@@ -1,0 +1,322 @@
+import json
+import random
+import logging
+import time
+from typing import List, Dict, Optional, Literal
+
+import numpy as np
+from pydantic import BaseModel, Field, ValidationError
+from colorama import Fore, Style, init
+
+# 初始化
+init(autoreset=True)
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger("UrbanExp")
+
+# ==========================================
+# 1. 配置与定义 (configs & types)
+# ==========================================
+
+
+class ScoreConfig:
+    """这里定义你的评分维度，避免硬编码"""
+
+    dims = {
+        "safety": {"weight": 1.0, "desc": "Perceived safety"},
+        "vibrancy": {"weight": 0.8, "desc": "Activity level"},
+        "cleanliness": {"weight": 0.6, "desc": "Physical maintenance"},
+    }
+    min_val = 1.0
+    max_val = 5.0
+
+    @staticmethod
+    def compute_overall(scores: Dict[str, float]) -> float:
+        """核心防坑点：Overall 必须是计算出来的，不能让模型预测"""
+        total_w = sum(d["weight"] for d in ScoreConfig.dims.values())
+        weighted_sum = sum(scores.get(k, 1.0) * v["weight"] for k, v in ScoreConfig.dims.items())
+        return round(weighted_sum / total_w, 2)
+
+
+class UrbanExample(BaseModel):
+    """存储在 Vault 中的单一知识点"""
+
+    id: str
+    image_desc: str  # 关键：只存描述，不把图片塞进 Context
+    post_text: str
+    rationale: str
+    scores: Dict[str, float]
+    # 分层管理：tier 0 = 专家/锚点, tier 1 = Teacher生成, tier 2 = 临时
+    tier: Literal[0, 1, 2] = 1
+    embedding: Optional[List[float]] = Field(default=None, exclude=True)  # 运行时向量
+    usage_count: int = 0
+
+    def to_prompt_str(self) -> str:
+        """生成 Few-shot 文本"""
+        return (
+            f"Example (Tier {self.tier}):\n"
+            f"Input: [IMG: {self.image_desc}] + Text: '{self.post_text}'\n"
+            f"Rationale: {self.rationale}\n"
+            f"Scores: {json.dumps(self.scores)}\n"
+            f"---\n"
+        )
+
+
+class StudentOutput(BaseModel):
+    """学生模型的原始输出"""
+
+    rationale: str
+    scores: Dict[str, float]
+    model_confidence: float  # 模型自报的置信度
+
+
+class TeacherFeedback(BaseModel):
+    """老师的判卷结果"""
+
+    teacher_scores: Dict[str, float]
+    teacher_rationale: str
+    reward: float  # 0.0 - 1.0, 评价学生答得怎么样
+    critique: str
+    should_add_to_vault: bool
+
+
+class Sample(BaseModel):
+    """输入样本"""
+
+    id: str
+    image_path: str
+    post_text: str
+    # 模拟真实标签（仅用于 Mock 系统中生成 Teacher 的正确答案）
+    ground_truth_sim: Dict[str, float]
+
+
+# ==========================================
+# 2. 模拟核心组件 (Mock Implementations)
+# ==========================================
+
+
+class MockEmbedder:
+    """模拟 CLIP/Text Embedding"""
+
+    def encode(self, text: str) -> List[float]:
+        # 实际项目中这里调用 CLIP/BERT
+        # 这里返回随机向量用于演示
+        return np.random.rand(128).tolist()
+
+
+class MockVault:
+    """模拟向量数据库 (ChromaDB/Milvus)"""
+
+    def __init__(self):
+        self.storage: List[UrbanExample] = []
+        self.embedder = MockEmbedder()
+
+    def add(self, example: UrbanExample):
+        # 实际项目中这里会有 hash 去重
+        example.embedding = self.embedder.encode(example.image_desc)
+        self.storage.append(example)
+        logger.info(f"{Fore.GREEN}[Vault] Added new example: {example.id} (Tier {example.tier}){Style.RESET_ALL}")
+
+    def cleanup_low_usage(self, min_usage: int = 5):
+        """
+        定期清洗接口：删除低使用频率的非专家样本
+        逻辑等价于 SQL: DELETE FROM vault WHERE tier > 0 AND usage_count < min_usage
+        """
+        before = len(self.storage)
+        self.storage = [ex for ex in self.storage if not (ex.tier > 0 and ex.usage_count < min_usage)]
+        removed = before - len(self.storage)
+        if removed:
+            logger.info(
+                f"{Fore.YELLOW}[Vault] Cleaned {removed} low-usage Tier>0 examples (min_usage={min_usage}){Style.RESET_ALL}"
+            )
+        else:
+            logger.info(f"{Fore.YELLOW}[Vault] Cleanup skipped, no low-usage Tier>0 examples found{Style.RESET_ALL}")
+
+    def summarize(self):
+        """输出当前 Vault 状态，便于观察各 tier 的占比和使用频次"""
+        if not self.storage:
+            logger.info(f"{Fore.MAGENTA}[Vault] Empty vault{Style.RESET_ALL}")
+            return
+
+        logger.info(f"{Fore.MAGENTA}[Vault] Summary — total={len(self.storage)}{Style.RESET_ALL}")
+        for ex in sorted(self.storage, key=lambda x: (x.tier, -x.usage_count)):
+            logger.info(
+                f"  id={ex.id} | tier={ex.tier} | usage_count={ex.usage_count} | scores={ex.scores}"
+            )
+
+    def retrieve(self, query: Sample, k: int = 3) -> List[UrbanExample]:
+        """
+        核心防坑点：检索策略
+        这里模拟：优先返回 Tier 0 (专家)，然后是 Tier 1
+        """
+        if not self.storage:
+            return []
+
+        # 简单模拟：按 Tier 排序，然后随机取
+        # 实际项目中是 Vector Similarity Search
+        sorted_ex = sorted(self.storage, key=lambda x: x.tier)
+        selected = sorted_ex[:k]
+
+        # 记录使用频次，便于后续清洗
+        for ex in selected:
+            ex.usage_count += 1
+
+        return selected
+
+
+class MockStudentModel:
+    """模拟本地小模型 (Ollama/LLaVA)"""
+
+    def predict(self, sample: Sample, shots: List[UrbanExample]) -> StudentOutput:
+        # 模拟：如果 shots 足够多，表现会变好 (这里用随机模拟)
+        # 实际项目中：调用 HTTP API 传入 Prompt
+
+        time.sleep(0.5)  # 模拟推理耗时
+
+        # 模拟“学习”：如果检索到的 shots 和样本真值接近，学生就能答对
+        # 这里简化为：产生一个在真值附近波动的分数
+        gt = sample.ground_truth_sim
+        pred_scores = {}
+        for dim in ScoreConfig.dims:
+            noise = random.uniform(-1.0, 1.0)
+            pred_scores[dim] = round(max(1, min(5, gt[dim] + noise)), 1)
+
+        return StudentOutput(
+            rationale=f"Based on the visual cues of {sample.image_path}...",
+            scores=pred_scores,
+            model_confidence=random.uniform(0.6, 0.95),
+        )
+
+
+class MockTeacherModel:
+    """模拟云端大模型 (GPT-4o)"""
+
+    def judge(self, sample: Sample, student_out: StudentOutput) -> TeacherFeedback:
+        # 模拟 Teacher 拥有“上帝视角” (读取 hidden ground truth)
+        gt = sample.ground_truth_sim
+
+        # 计算学生和真值的误差 (MSE)
+        mse = sum((student_out.scores[k] - gt[k]) ** 2 for k in gt) / len(gt)
+        reward = max(0, 1 - (mse / 4.0))  # 简单的 reward 函数
+
+        # 决定是否入库：提高门槛以让 Teacher 更频繁介入
+        should_add = reward < 0.99
+
+        return TeacherFeedback(
+            teacher_scores=gt,
+            teacher_rationale="Correct rationale provided by Teacher.",
+            reward=reward,
+            critique="Scores deviated significantly." if mse > 1 else "Good job.",
+            should_add_to_vault=should_add,
+        )
+
+    def generate_caption(self, image_path: str) -> str:
+        return f"A description of {image_path}"
+
+
+# ==========================================
+# 3. 核心流水线 (The Pipeline)
+# ==========================================
+
+
+class UrbanPipeline:
+    def __init__(self):
+        self.vault = MockVault()
+        self.student = MockStudentModel()
+        self.teacher = MockTeacherModel()
+        self.cfg = ScoreConfig()
+
+        # --- 核心防坑：预热（冷启动）---
+        # 系统启动时必须装载一些 Tier 0 的专家样本，否则一开始就是瞎猜
+        self._seed_vault()
+
+    def _seed_vault(self):
+        logger.info("Seeding vault with Expert Examples...")
+        expert_ex = UrbanExample(
+            id="seed_001",
+            image_desc="A well-lit park at night with people walking.",
+            post_text="Safe night walk.",
+            rationale="High visibility and human presence indicate safety.",
+            scores={"safety": 4.5, "vibrancy": 4.0, "cleanliness": 4.0},
+            tier=0,  # 专家级
+        )
+        self.vault.add(expert_ex)
+
+    def process_sample(self, sample: Sample):
+        logger.info(f"\n{Fore.CYAN}=== Processing Sample: {sample.id} ==={Style.RESET_ALL}")
+
+        # 1. 检索 (Retrieval)
+        shots = self.vault.retrieve(sample, k=2)
+        logger.info(f"Retrieved {len(shots)} few-shot examples.")
+
+        # 2. 学生推理 (Student Inference)
+        # 实际 Prompt 组装在这里发生
+        try:
+            student_out = self.student.predict(sample, shots)
+
+            # 核心防坑：计算 Overall，而不是信模型的
+            overall = self.cfg.compute_overall(student_out.scores)
+
+            logger.info(
+                f"Student Pred: {student_out.scores} (Overall: {overall}) | Conf: {student_out.model_confidence:.2f}"
+            )
+
+        except ValidationError as e:
+            logger.error(f"JSON Parsing Failed: {e}")
+            return  # 实际项目中这里要 retry
+
+        # 3. 门控机制 (Gating / Active Learning)
+        # 策略：如果置信度低，或者随机抽检，则呼叫 Teacher
+        # 这里模拟：总是呼叫 Teacher 以便演示 Flow
+        call_teacher = True
+
+        if call_teacher:
+            feedback = self.teacher.judge(sample, student_out)
+            logger.info(f"Teacher Reward: {feedback.reward:.2f} | Critique: {feedback.critique}")
+
+            # 4. 动态更新 (Dynamic Update)
+            if feedback.should_add_to_vault:
+                # 核心防坑：入库的是 Teacher 的修正版，不是学生版
+                new_ex = UrbanExample(
+                    id=sample.id,
+                    image_desc=self.teacher.generate_caption(sample.image_path),
+                    post_text=sample.post_text,
+                    rationale=feedback.teacher_rationale,
+                    scores=feedback.teacher_scores,
+                    tier=1,  # Teacher 生成级
+                )
+                self.vault.add(new_ex)
+            else:
+                logger.info("Sample skipped (Student did well enough or Teacher unsure).")
+
+
+# ==========================================
+# 4. 运行实验
+# ==========================================
+
+
+if __name__ == "__main__":
+    pipeline = UrbanPipeline()
+
+    # 模拟数据流：随着数据进来，Vault 应该会变大，理论上 Student 也会变准
+    # 这里生成 5 个测试样本
+    test_samples = [
+        Sample(
+            id=f"test_{i}",
+            image_path=f"img_{i}.jpg",
+            post_text=f"This is place {i}",
+            ground_truth_sim={"safety": random.randint(1, 5), "vibrancy": 3, "cleanliness": 4},
+        )
+        for i in range(1, 6)
+    ]
+
+    for s in test_samples:
+        pipeline.process_sample(s)
+        time.sleep(0.5)
+
+    # 演示：定期清洗低频使用的 Tier>0 样本，保持专家锚点纯净
+    pipeline.vault.cleanup_low_usage(min_usage=5)
+
+    # 输出清洗后的 Vault 状态，确保 Tier 结构可观察
+    pipeline.vault.summarize()
+
+    logger.info(f"\nFinal Vault Size: {len(pipeline.vault.storage)}")
