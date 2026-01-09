@@ -2,11 +2,14 @@ import json
 import random
 import logging
 import time
+import os
 from typing import List, Dict, Optional, Literal
 
 import numpy as np
 from pydantic import BaseModel, Field, ValidationError
 from colorama import Fore, Style, init
+
+from models.student import HTTPStudentModel
 
 # 初始化
 init(autoreset=True)
@@ -223,7 +226,15 @@ class MockTeacherModel:
 class UrbanPipeline:
     def __init__(self):
         self.vault = MockVault()
-        self.student = MockStudentModel()
+
+        student_backend = (os.getenv("EVOSHOT_STUDENT_BACKEND") or "mock").strip().lower()
+        if student_backend == "real":
+            self.student = HTTPStudentModel(
+                output_model=StudentOutput,
+                score_dims=list(ScoreConfig.dims.keys()),
+            )
+        else:
+            self.student = MockStudentModel()
         self.teacher = MockTeacherModel()
         self.cfg = ScoreConfig()
 
