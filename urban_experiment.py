@@ -10,6 +10,7 @@ from pydantic import BaseModel, Field, ValidationError
 from colorama import Fore, Style, init
 
 from models.student import HTTPStudentModel
+from embedding.embedder import EmbeddingTestHTTPEmbedder
 
 # 初始化
 init(autoreset=True)
@@ -109,13 +110,14 @@ class MockEmbedder:
 class MockVault:
     """模拟向量数据库 (ChromaDB/Milvus)"""
 
-    def __init__(self):
+    def __init__(self, *, use_real_embedder: bool = False):
         self.storage: List[UrbanExample] = []
-        self.embedder = MockEmbedder()
+        self.embedder = EmbeddingTestHTTPEmbedder() if use_real_embedder else MockEmbedder()
 
     def add(self, example: UrbanExample):
         # 实际项目中这里会有 hash 去重
-        example.embedding = self.embedder.encode(example.image_desc)
+        embed_text = f"[IMG] {example.image_desc}\nText: {example.post_text}"
+        example.embedding = self.embedder.encode(embed_text)
         self.storage.append(example)
         logger.info(f"{Fore.GREEN}[Vault] Added new example: {example.id} (Tier {example.tier}){Style.RESET_ALL}")
 
@@ -155,10 +157,30 @@ class MockVault:
         if not self.storage:
             return []
 
-        # 简单模拟：按 Tier 排序，然后取前 k 条
-        # 实际项目中是 Vector Similarity Search
-        sorted_ex = sorted(self.storage, key=lambda x: x.tier)
-        selected = sorted_ex[:k]
+        if isinstance(self.embedder, EmbeddingTestHTTPEmbedder):
+            query_text = f"Text: {query.post_text}"
+            q = np.array(self.embedder.encode(query_text), dtype=np.float32)
+
+            vecs = []
+            for ex in self.storage:
+                if ex.embedding is None:
+                    embed_text = f"[IMG] {ex.image_desc}\nText: {ex.post_text}"
+                    ex.embedding = self.embedder.encode(embed_text)
+                vecs.append(ex.embedding)
+
+            mat = np.array(vecs, dtype=np.float32)
+            qn = float(np.linalg.norm(q)) or 1e-9
+            vn = np.linalg.norm(mat, axis=1)
+            vn[vn == 0] = 1e-9
+            sims = mat.dot(q) / (vn * qn)
+
+            idxs = np.argsort(sims)[::-1][:k]
+            selected = [self.storage[int(i)] for i in idxs]
+        else:
+            # 简单模拟：按 Tier 排序，然后取前 k 条
+            # 实际项目中是 Vector Similarity Search
+            sorted_ex = sorted(self.storage, key=lambda x: x.tier)
+            selected = sorted_ex[:k]
 
         # 记录使用频次，便于后续清洗
         for ex in selected:
@@ -225,7 +247,8 @@ class MockTeacherModel:
 
 class UrbanPipeline:
     def __init__(self):
-        self.vault = MockVault()
+        use_real_embedder = (os.getenv("EVOSHOT_EMBED_BACKEND") or "mock").strip().lower() == "real"
+        self.vault = MockVault(use_real_embedder=use_real_embedder)
 
         student_backend = (os.getenv("EVOSHOT_STUDENT_BACKEND") or "mock").strip().lower()
         if student_backend == "real":
@@ -244,22 +267,41 @@ class UrbanPipeline:
 
     def _seed_vault(self):
         logger.info("Seeding vault with Expert Examples...")
-        expert_ex = UrbanExample(
-            id="seed_001",
-            image_desc="A well-lit park at night with people walking.",
-            post_text="Safe night walk.",
-            rationale="High visibility and human presence indicate safety.",
-            scores={"safety": 4.5, "vibrancy": 4.0, "cleanliness": 4.0},
-            tier=0,  # 专家级
-        )
-        self.vault.add(expert_ex)
+        seeds = [
+            UrbanExample(
+                id="seed_001",
+                image_desc="A well-lit park at night with people walking.",
+                post_text="Quiet park walk at night, well lit and populated.",
+                rationale="High visibility and human presence indicate safety.",
+                scores={"safety": 4.5, "vibrancy": 4.0, "cleanliness": 4.0},
+                tier=0,  # 专家级
+            ),
+            UrbanExample(
+                id="seed_002",
+                image_desc="A crowded night market street with neon signs and dense foot traffic.",
+                post_text="Crowded night market with neon lights and street food stalls.",
+                rationale="High activity suggests vibrancy; crowds may reduce perceived safety; cleanliness varies.",
+                scores={"safety": 3.0, "vibrancy": 5.0, "cleanliness": 3.0},
+                tier=0,  # 专家级
+            ),
+            UrbanExample(
+                id="seed_003",
+                image_desc="An empty alley at night with poor lighting and graffiti.",
+                post_text="Dark empty alley with graffiti and broken pavement.",
+                rationale="Low lighting and isolation reduce safety; low activity; poor maintenance.",
+                scores={"safety": 1.5, "vibrancy": 1.5, "cleanliness": 2.0},
+                tier=0,  # 专家级
+            ),
+        ]
+        for ex in seeds:
+            self.vault.add(ex)
 
     def process_sample(self, sample: Sample):
         logger.info(f"\n{Fore.CYAN}=== Processing Sample: {sample.id} ==={Style.RESET_ALL}")
 
         # 1. 检索 (Retrieval)
         shots = self.vault.retrieve(sample, k=2)
-        logger.info(f"Retrieved {len(shots)} few-shot examples.")
+        logger.info(f"Retrieved {len(shots)} few-shot examples: {[f'{ex.id}(t{ex.tier})' for ex in shots]}")
 
         # 2. 学生推理 (Student Inference)
         # 实际 Prompt 组装在这里发生
@@ -314,12 +356,35 @@ if __name__ == "__main__":
     # 这里生成 5 个测试样本
     test_samples = [
         Sample(
-            id=f"test_{i}",
-            image_path=f"img_{i}.jpg",
-            post_text=f"This is place {i}",
+            id="test_1",
+            image_path="img_1.jpg",
+            post_text="Quiet park walk at night under bright streetlights.",
             ground_truth_sim={"safety": random.randint(1, 5), "vibrancy": 3, "cleanliness": 4},
-        )
-        for i in range(1, 6)
+        ),
+        Sample(
+            id="test_2",
+            image_path="img_2.jpg",
+            post_text="Crowded night market with neon lights and street food stalls.",
+            ground_truth_sim={"safety": random.randint(1, 5), "vibrancy": 3, "cleanliness": 4},
+        ),
+        Sample(
+            id="test_3",
+            image_path="img_3.jpg",
+            post_text="Dark empty alley with graffiti and broken pavement.",
+            ground_truth_sim={"safety": random.randint(1, 5), "vibrancy": 3, "cleanliness": 4},
+        ),
+        Sample(
+            id="test_4",
+            image_path="img_4.jpg",
+            post_text="Clean modern shopping street during the day with pedestrians.",
+            ground_truth_sim={"safety": random.randint(1, 5), "vibrancy": 3, "cleanliness": 4},
+        ),
+        Sample(
+            id="test_5",
+            image_path="img_5.jpg",
+            post_text="Residential street with moderate foot traffic and tidy sidewalks.",
+            ground_truth_sim={"safety": random.randint(1, 5), "vibrancy": 3, "cleanliness": 4},
+        ),
     ]
 
     for s in test_samples:
