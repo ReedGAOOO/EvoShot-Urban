@@ -11,6 +11,7 @@ from colorama import Fore, Style, init
 
 from models.student import HTTPStudentModel
 from embedding.embedder import EmbeddingTestHTTPEmbedder
+from models.teacher import OpenAITeacher, TeacherFeedback
 
 # 初始化
 init(autoreset=True)
@@ -71,16 +72,6 @@ class StudentOutput(BaseModel):
     rationale: str
     scores: Dict[str, float]
     model_confidence: float  # 模型自报的置信度
-
-
-class TeacherFeedback(BaseModel):
-    """老师的判卷结果"""
-
-    teacher_scores: Dict[str, float]
-    teacher_rationale: str
-    reward: float  # 0.0 - 1.0, 评价学生答得怎么样
-    critique: str
-    should_add_to_vault: bool
 
 
 class Sample(BaseModel):
@@ -158,24 +149,72 @@ class MockVault:
             return []
 
         if isinstance(self.embedder, EmbeddingTestHTTPEmbedder):
+            retrieval_strategy = (os.getenv("EVOSHOT_RETRIEVAL_STRATEGY") or "mmr").strip().lower()
+            mmr_lambda = float(os.getenv("EVOSHOT_MMR_LAMBDA", "0.6"))
+            mmr_lambda = max(0.0, min(1.0, mmr_lambda))
+            mmr_candidates = int(os.getenv("EVOSHOT_MMR_CANDIDATES", str(max(20, k * 5))))
+
             query_text = f"Text: {query.post_text}"
             q = np.array(self.embedder.encode(query_text), dtype=np.float32)
 
+            missing_texts = []
+            missing_examples: List[UrbanExample] = []
             vecs = []
             for ex in self.storage:
                 if ex.embedding is None:
-                    embed_text = f"[IMG] {ex.image_desc}\nText: {ex.post_text}"
-                    ex.embedding = self.embedder.encode(embed_text)
-                vecs.append(ex.embedding)
+                    missing_examples.append(ex)
+                    missing_texts.append(f"[IMG] {ex.image_desc}\nText: {ex.post_text}")
+                else:
+                    vecs.append(ex.embedding)
+
+            if missing_examples:
+                new_vecs = self.embedder.encode_many(missing_texts)
+                for ex, vec in zip(missing_examples, new_vecs):
+                    ex.embedding = vec
+                vecs = [ex.embedding for ex in self.storage]
 
             mat = np.array(vecs, dtype=np.float32)
             qn = float(np.linalg.norm(q)) or 1e-9
             vn = np.linalg.norm(mat, axis=1)
             vn[vn == 0] = 1e-9
-            sims = mat.dot(q) / (vn * qn)
+            mat_norm = mat / vn[:, None]
+            q_norm = q / qn
+            sims_to_query = mat_norm.dot(q_norm)
 
-            idxs = np.argsort(sims)[::-1][:k]
-            selected = [self.storage[int(i)] for i in idxs]
+            if len(self.storage) <= k:
+                idxs = np.argsort(sims_to_query)[::-1]
+                selected = [self.storage[int(i)] for i in idxs]
+            elif retrieval_strategy == "topk":
+                idxs = np.argsort(sims_to_query)[::-1][:k]
+                selected = [self.storage[int(i)] for i in idxs]
+            else:
+                selected_indices: List[int] = []
+                ranked = np.argsort(sims_to_query)[::-1]
+                candidate_indices = [int(i) for i in ranked[: min(len(ranked), mmr_candidates)]]
+
+                for _ in range(k):
+                    best_idx = -1
+                    best_score = -1e9
+
+                    for idx in candidate_indices:
+                        score_rel = float(sims_to_query[idx])
+                        if not selected_indices:
+                            score_div = 0.0
+                        else:
+                            div_sims = mat_norm[selected_indices].dot(mat_norm[idx])
+                            score_div = float(np.max(div_sims))
+
+                        mmr = mmr_lambda * score_rel - (1.0 - mmr_lambda) * score_div
+                        if mmr > best_score:
+                            best_score = mmr
+                            best_idx = idx
+
+                    if best_idx == -1:
+                        break
+                    selected_indices.append(best_idx)
+                    candidate_indices.remove(best_idx)
+
+                selected = [self.storage[i] for i in selected_indices]
         else:
             # 简单模拟：按 Tier 排序，然后取前 k 条
             # 实际项目中是 Vector Similarity Search
@@ -223,20 +262,23 @@ class MockTeacherModel:
 
         # 计算学生和真值的误差 (MSE)
         mse = sum((student_out.scores[k] - gt[k]) ** 2 for k in gt) / len(gt)
-        reward = max(0, 1 - (mse / 4.0))  # 简单的 reward 函数
+        score = max(0.0, 1.0 - (mse / 4.0))  # 简单的 score 函数
 
         # 决定是否入库：提高门槛以让 Teacher 更频繁介入
-        should_add = reward < 0.99
+        should_add = score < 0.8
 
         return TeacherFeedback(
-            teacher_scores=gt,
-            teacher_rationale="Correct rationale provided by Teacher.",
-            reward=reward,
+            score=score,
             critique="Scores deviated significantly." if mse > 1 else "Good job.",
+            better_rationale="Correct rationale provided by Teacher.",
+            better_scores=gt,
             should_add_to_vault=should_add,
         )
 
-    def generate_caption(self, image_path: str) -> str:
+    def generate_caption(self, sample_or_image_path: object) -> str:
+        image_path = getattr(sample_or_image_path, "image_path", None)
+        if not image_path:
+            image_path = str(sample_or_image_path)
         return f"A description of {image_path}"
 
 
@@ -258,7 +300,17 @@ class UrbanPipeline:
             )
         else:
             self.student = MockStudentModel()
-        self.teacher = MockTeacherModel()
+
+        teacher_backend = (os.getenv("EVOSHOT_TEACHER_BACKEND") or "mock").strip().lower()
+        if teacher_backend == "real":
+            logger.info("Loading Real Teacher (OpenAI)... costs money.")
+            try:
+                self.teacher = OpenAITeacher()
+            except ImportError as e:
+                logger.error(f"Failed to load real teacher, falling back to mock: {e}")
+                self.teacher = MockTeacherModel()
+        else:
+            self.teacher = MockTeacherModel()
         self.cfg = ScoreConfig()
 
         # --- 核心防坑：预热（冷启动）---
@@ -326,17 +378,18 @@ class UrbanPipeline:
 
         if call_teacher:
             feedback = self.teacher.judge(sample, student_out)
-            logger.info(f"Teacher Reward: {feedback.reward:.2f} | Critique: {feedback.critique}")
+            logger.info(f"Teacher Score: {feedback.score:.2f} | Critique: {feedback.critique}")
 
             # 4. 动态更新 (Dynamic Update)
             if feedback.should_add_to_vault:
                 # 核心防坑：入库的是 Teacher 的修正版，不是学生版
+                caption = self.teacher.generate_caption(sample)
                 new_ex = UrbanExample(
                     id=sample.id,
-                    image_desc=self.teacher.generate_caption(sample.image_path),
+                    image_desc=caption,
                     post_text=sample.post_text,
-                    rationale=feedback.teacher_rationale,
-                    scores=feedback.teacher_scores,
+                    rationale=feedback.better_rationale,
+                    scores=feedback.better_scores,
                     tier=1,  # Teacher 生成级
                 )
                 self.vault.add(new_ex)
