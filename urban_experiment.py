@@ -273,8 +273,8 @@ class UrbanPipeline:
                 f"Student Pred: {student_out.scores} (Overall: {overall}) | Conf: {student_out.model_confidence:.2f}"
             )
 
-        except ValidationError as e:
-            logger.error(f"JSON Parsing Failed: {e}")
+        except (ValidationError, ValueError, RuntimeError, FileNotFoundError) as e:
+            logger.error(f"Student Inference/Parsing Failed: {e}")
             return  # 实际项目中这里要 retry
 
         # 3. 门控机制 (Gating / Active Learning)
