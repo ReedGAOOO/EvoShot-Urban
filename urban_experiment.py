@@ -14,6 +14,7 @@ from evoshot_env import EvoShotEnv
 from models.student import HTTPStudentModel
 from embedding.embedder import EmbeddingTestHTTPEmbedder
 from models.teacher import OpenAITeacher, TeacherFeedback
+from models.captioner import LocalVisionCaptioner
 
 # 初始化
 init(autoreset=True)
@@ -82,6 +83,7 @@ class Sample(BaseModel):
     id: str
     image_path: str
     post_text: str
+    retrieval_text: Optional[str] = None
     # 模拟真实标签（仅用于 Mock 系统中生成 Teacher 的正确答案）
     ground_truth_sim: Dict[str, float]
 
@@ -156,7 +158,8 @@ class MockVault:
             mmr_lambda = max(0.0, min(1.0, mmr_lambda))
             mmr_candidates = int(os.getenv("EVOSHOT_MMR_CANDIDATES", str(max(20, k * 5))))
 
-            query_text = f"Text: {query.post_text}"
+            query_text_base = query.retrieval_text if getattr(query, "retrieval_text", None) else query.post_text
+            query_text = f"Text: {query_text_base}"
             q = np.array(self.embedder.encode(query_text), dtype=np.float32)
 
             missing_texts = []
@@ -317,6 +320,11 @@ class UrbanPipeline:
             self.teacher = MockTeacherModel()
         self.cfg = ScoreConfig()
 
+        self._captioner = None
+        retrieval_query_mode = (os.getenv("EVOSHOT_QUERY_EMBED_MODE") or "text").strip().lower()
+        if retrieval_query_mode in {"caption", "caption+text"}:
+            self._captioner = LocalVisionCaptioner()
+
         # --- 核心防坑：预热（冷启动）---
         # 系统启动时必须装载一些 Tier 0 的专家样本，否则一开始就是瞎猜
         self._seed_vault()
@@ -352,12 +360,30 @@ class UrbanPipeline:
         for ex in seeds:
             self.vault.add(ex)
 
-    def process_sample(self, sample: Sample):
+    def process_sample(self, sample: Sample) -> dict:
         logger.info(f"\n{Fore.CYAN}=== Processing Sample: {sample.id} ==={Style.RESET_ALL}")
+
+        trace: dict = {"sample_id": sample.id}
+
+        retrieval_query_mode = (os.getenv("EVOSHOT_QUERY_EMBED_MODE") or "text").strip().lower()
+        if retrieval_query_mode in {"caption", "caption+text"} and self._captioner is not None:
+            try:
+                caption = self._captioner.caption(sample.image_path)
+                if retrieval_query_mode == "caption":
+                    sample.retrieval_text = caption
+                else:
+                    sample.retrieval_text = f"{caption}\n{sample.post_text}"
+                trace["query_caption"] = caption
+            except Exception as e:
+                trace["query_caption_error"] = str(e)
+                sample.retrieval_text = sample.post_text
+        else:
+            sample.retrieval_text = sample.post_text
 
         # 1. 检索 (Retrieval)
         shots = self.vault.retrieve(sample, k=2)
         logger.info(f"Retrieved {len(shots)} few-shot examples: {[f'{ex.id}(t{ex.tier})' for ex in shots]}")
+        trace["retrieved_ids"] = [ex.id for ex in shots]
 
         # 2. 学生推理 (Student Inference)
         # 实际 Prompt 组装在这里发生
@@ -370,10 +396,13 @@ class UrbanPipeline:
             logger.info(
                 f"Student Pred: {student_out.scores} (Overall: {overall}) | Conf: {student_out.model_confidence:.2f}"
             )
+            trace["student_scores"] = dict(student_out.scores)
+            trace["student_confidence"] = float(student_out.model_confidence)
 
         except (ValidationError, ValueError, RuntimeError, FileNotFoundError) as e:
             logger.error(f"Student Inference/Parsing Failed: {e}")
-            return  # 实际项目中这里要 retry
+            trace["error"] = f"student_failed: {e}"
+            return trace  # 实际项目中这里要 retry
 
         # 3. 门控机制 (Gating / Active Learning)
         # 策略：如果置信度低，或者随机抽检，则呼叫 Teacher
@@ -383,6 +412,9 @@ class UrbanPipeline:
         if call_teacher:
             feedback = self.teacher.judge(sample, student_out)
             logger.info(f"Teacher Score: {feedback.score:.2f} | Critique: {feedback.critique}")
+            trace["teacher_score"] = float(feedback.score)
+            trace["teacher_should_add"] = bool(feedback.should_add_to_vault)
+            trace["teacher_critique"] = str(feedback.critique)
 
             # 4. 动态更新 (Dynamic Update)
             if feedback.should_add_to_vault:
@@ -397,8 +429,12 @@ class UrbanPipeline:
                     tier=1,  # Teacher 生成级
                 )
                 self.vault.add(new_ex)
+                trace["vault_added_id"] = new_ex.id
             else:
                 logger.info("Sample skipped (Student did well enough or Teacher unsure).")
+                trace["vault_added_id"] = None
+
+        return trace
 
 
 # ==========================================
