@@ -3,6 +3,7 @@ import json
 import logging
 import mimetypes
 import os
+import urllib.request
 from typing import Any, Dict, Optional, Tuple
 
 from pydantic import BaseModel, Field
@@ -35,19 +36,78 @@ class OpenAITeacher:
         model_name: str = "gpt-4o-2024-08-06",
         caption_model_name: Optional[str] = None,
     ):
-        self.model = (os.getenv("EVOSHOT_TEACHER_MODEL") or model_name).strip()
+        openrouter_key = (os.getenv("OPENROUTER_API_KEY") or "").strip()
+        openai_key = (os.getenv("OPENAI_API_KEY") or "").strip()
+
+        self._provider = "openrouter" if openrouter_key else "openai"
+        self._api_key = openrouter_key or openai_key
+        if not self._api_key:
+            raise ValueError(
+                "Missing API key for real teacher. Set OPENROUTER_API_KEY (recommended) or OPENAI_API_KEY, "
+                "or keep EVOSHOT_TEACHER_BACKEND=mock."
+            )
+
+        if self._provider == "openrouter":
+            default_model = "x-ai/grok-4.1-fast"
+        else:
+            default_model = model_name
+
+        self.model = (os.getenv("EVOSHOT_TEACHER_MODEL") or default_model).strip()
         self.caption_model = (os.getenv("EVOSHOT_TEACHER_CAPTION_MODEL") or caption_model_name or self.model).strip()
         self.temperature = float(os.getenv("EVOSHOT_TEACHER_TEMPERATURE", "0.2"))
         self.timeout_s = float(os.getenv("EVOSHOT_TEACHER_TIMEOUT_S", "120"))
 
-        try:
-            from openai import OpenAI  # type: ignore
-        except Exception as exc:
-            raise ImportError(
-                "Missing dependency `openai`. Install it (e.g., `pip install openai`) or keep EVOSHOT_TEACHER_BACKEND=mock."
-            ) from exc
+        self._api_url = (os.getenv("EVOSHOT_TEACHER_API_URL") or "").strip()
+        if not self._api_url:
+            if self._provider == "openrouter":
+                self._api_url = "https://openrouter.ai/api/v1/chat/completions"
+            else:
+                self._api_url = "https://api.openai.com/v1/chat/completions"
 
-        self.client = OpenAI()
+        self._openrouter_site_url = (os.getenv("OPENROUTER_SITE_URL") or "").strip()
+        self._openrouter_title = (os.getenv("OPENROUTER_SITE_NAME") or os.getenv("OPENROUTER_APP_NAME") or "").strip()
+
+    def _call_chat_completions(self, payload: Dict[str, Any]) -> Dict[str, Any]:
+        headers = {
+            "Authorization": f"Bearer {self._api_key}",
+            "Content-Type": "application/json",
+        }
+        if self._provider == "openrouter":
+            if self._openrouter_site_url:
+                headers["HTTP-Referer"] = self._openrouter_site_url
+            if self._openrouter_title:
+                headers["X-Title"] = self._openrouter_title
+
+        req = urllib.request.Request(
+            self._api_url,
+            data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),
+            headers=headers,
+            method="POST",
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=self.timeout_s) as resp:
+                raw = resp.read().decode("utf-8", errors="replace")
+        except Exception as exc:
+            raise RuntimeError(f"Teacher HTTP call failed: {exc}") from exc
+
+        try:
+            data = json.loads(raw)
+        except Exception as exc:
+            snippet = raw[:200].replace("\n", "\\n")
+            raise RuntimeError(f"Teacher returned non-JSON: {snippet}...") from exc
+
+        if isinstance(data, dict) and data.get("error"):
+            raise RuntimeError(f"Teacher API error: {data['error']}")
+        return data
+
+    @staticmethod
+    def _extract_content(response_json: Dict[str, Any]) -> str:
+        try:
+            choices = response_json.get("choices") or []
+            message = (choices[0] or {}).get("message") or {}
+            return (message.get("content") or "").strip()
+        except Exception:
+            return ""
 
     def _judge_messages(self, sample: Any, student_out: Any) -> list[dict]:
         image_path = getattr(sample, "image_path", None)
@@ -95,14 +155,14 @@ Output JSON:
 
     def judge(self, sample: Any, student_out: Any) -> TeacherFeedback:
         try:
-            resp = self.client.chat.completions.create(
-                model=self.model,
-                messages=self._judge_messages(sample, student_out),
-                response_format={"type": "json_object"},
-                temperature=self.temperature,
-                timeout=self.timeout_s,
-            )
-            raw = resp.choices[0].message.content or ""
+            payload: Dict[str, Any] = {
+                "model": self.model,
+                "messages": self._judge_messages(sample, student_out),
+                "temperature": self.temperature,
+                "stream": False,
+            }
+            response_json = self._call_chat_completions(payload)
+            raw = self._extract_content(response_json)
             try:
                 data = json.loads(raw)
             except Exception:
@@ -142,9 +202,9 @@ Output JSON:
         try:
             data_url, _mime = _encode_image_data_url(str(image_path))
             prompt = "Describe this urban scene in 30 words. Focus on safety, vibrancy, and cleanliness features."
-            resp = self.client.chat.completions.create(
-                model=self.caption_model,
-                messages=[
+            payload: Dict[str, Any] = {
+                "model": self.caption_model,
+                "messages": [
                     {"role": "system", "content": "Return a single short sentence. No markdown."},
                     {
                         "role": "user",
@@ -154,12 +214,12 @@ Output JSON:
                         ],
                     },
                 ],
-                temperature=0.2,
-                timeout=self.timeout_s,
-            )
-            caption = (resp.choices[0].message.content or "").strip()
+                "temperature": 0.2,
+                "stream": False,
+            }
+            response_json = self._call_chat_completions(payload)
+            caption = self._extract_content(response_json)
             return caption or "Urban scene description unavailable."
         except Exception as exc:
             logger.error(f"Teacher Caption Failed: {exc}")
             return "Urban scene description unavailable."
-

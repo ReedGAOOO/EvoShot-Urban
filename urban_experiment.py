@@ -4,11 +4,13 @@ import logging
 import time
 import os
 from typing import List, Dict, Optional, Literal
+from pathlib import Path
 
 import numpy as np
 from pydantic import BaseModel, Field, ValidationError
 from colorama import Fore, Style, init
 
+from evoshot_env import EvoShotEnv
 from models.student import HTTPStudentModel
 from embedding.embedder import EmbeddingTestHTTPEmbedder
 from models.teacher import OpenAITeacher, TeacherFeedback
@@ -289,6 +291,8 @@ class MockTeacherModel:
 
 class UrbanPipeline:
     def __init__(self):
+        EvoShotEnv.load().ensure_dirs()
+
         use_real_embedder = (os.getenv("EVOSHOT_EMBED_BACKEND") or "mock").strip().lower() == "real"
         self.vault = MockVault(use_real_embedder=use_real_embedder)
 
@@ -407,34 +411,40 @@ if __name__ == "__main__":
 
     # 模拟数据流：随着数据进来，Vault 应该会变大，理论上 Student 也会变准
     # 这里生成 5 个测试样本
+    pic_dir = Path(__file__).resolve().parent / "PIC_DATA"
+    exts = {".jpg", ".jpeg", ".png", ".webp"}
+    image_files = sorted([p for p in pic_dir.glob("*") if p.is_file() and p.suffix.lower() in exts])
+    if not image_files:
+        raise FileNotFoundError(f"No image files found in {pic_dir}. Expected one of: {sorted(exts)}")
+
     test_samples = [
         Sample(
             id="test_1",
-            image_path="img_1.jpg",
+            image_path=str(image_files[0 % len(image_files)]),
             post_text="Quiet park walk at night under bright streetlights.",
             ground_truth_sim={"safety": random.randint(1, 5), "vibrancy": 3, "cleanliness": 4},
         ),
         Sample(
             id="test_2",
-            image_path="img_2.jpg",
+            image_path=str(image_files[1 % len(image_files)]),
             post_text="Crowded night market with neon lights and street food stalls.",
             ground_truth_sim={"safety": random.randint(1, 5), "vibrancy": 3, "cleanliness": 4},
         ),
         Sample(
             id="test_3",
-            image_path="img_3.jpg",
+            image_path=str(image_files[2 % len(image_files)]),
             post_text="Dark empty alley with graffiti and broken pavement.",
             ground_truth_sim={"safety": random.randint(1, 5), "vibrancy": 3, "cleanliness": 4},
         ),
         Sample(
             id="test_4",
-            image_path="img_4.jpg",
+            image_path=str(image_files[3 % len(image_files)]),
             post_text="Clean modern shopping street during the day with pedestrians.",
             ground_truth_sim={"safety": random.randint(1, 5), "vibrancy": 3, "cleanliness": 4},
         ),
         Sample(
             id="test_5",
-            image_path="img_5.jpg",
+            image_path=str(image_files[4 % len(image_files)]),
             post_text="Residential street with moderate foot traffic and tidy sidewalks.",
             ground_truth_sim={"safety": random.randint(1, 5), "vibrancy": 3, "cleanliness": 4},
         ),

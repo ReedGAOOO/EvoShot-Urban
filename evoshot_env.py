@@ -61,6 +61,10 @@ class EvoShotEnv:
     teacher_model: str
     teacher_caption_model: str
     openai_api_key: Optional[str]
+    openrouter_api_key: Optional[str]
+    teacher_api_url: str
+    openrouter_site_url: Optional[str]
+    openrouter_site_name: Optional[str]
 
     # Local storage
     data_dir: Path
@@ -79,6 +83,21 @@ class EvoShotEnv:
         vault_dir = Path(os.getenv("EVOSHOT_VAULT_DIR", str(data_dir / "vault"))).resolve()
         logs_dir = Path(os.getenv("EVOSHOT_LOGS_DIR", str(data_dir / "logs"))).resolve()
 
+        openai_api_key = (os.getenv("OPENAI_API_KEY") or "").strip() or None
+        openrouter_api_key = (os.getenv("OPENROUTER_API_KEY") or "").strip() or None
+
+        teacher_model_default = "gpt-4o-2024-08-06"
+        if openrouter_api_key:
+            teacher_model_default = "x-ai/grok-4.1-fast"
+
+        teacher_api_url = (os.getenv("EVOSHOT_TEACHER_API_URL") or "").strip()
+        if not teacher_api_url:
+            teacher_api_url = (
+                "https://openrouter.ai/api/v1/chat/completions"
+                if openrouter_api_key
+                else "https://api.openai.com/v1/chat/completions"
+            )
+
         return EvoShotEnv(
             project_root=root,
             student_backend=(os.getenv("EVOSHOT_STUDENT_BACKEND") or "mock").strip(),
@@ -93,9 +112,14 @@ class EvoShotEnv:
             embed_instruction=(
                 os.getenv("EVOSHOT_EMBED_INSTRUCTION") or "Retrieve images or text relevant to the user query."
             ),
-            teacher_model=(os.getenv("EVOSHOT_TEACHER_MODEL") or "gpt-4o-2024-08-06").strip(),
+            teacher_model=(os.getenv("EVOSHOT_TEACHER_MODEL") or teacher_model_default).strip(),
             teacher_caption_model=(os.getenv("EVOSHOT_TEACHER_CAPTION_MODEL") or "gpt-4o-mini").strip(),
-            openai_api_key=(os.getenv("OPENAI_API_KEY") or None),
+            openai_api_key=openai_api_key,
+            openrouter_api_key=openrouter_api_key,
+            teacher_api_url=teacher_api_url,
+            openrouter_site_url=(os.getenv("OPENROUTER_SITE_URL") or "").strip() or None,
+            openrouter_site_name=(os.getenv("OPENROUTER_SITE_NAME") or os.getenv("OPENROUTER_APP_NAME") or "").strip()
+            or None,
             data_dir=data_dir,
             images_dir=images_dir,
             texts_dir=texts_dir,
@@ -122,6 +146,10 @@ class EvoShotEnv:
             "teacher_model": self.teacher_model,
             "teacher_caption_model": self.teacher_caption_model,
             "openai_api_key_present": bool(self.openai_api_key),
+            "openrouter_api_key_present": bool(self.openrouter_api_key),
+            "teacher_api_url": self.teacher_api_url,
+            "openrouter_site_url": self.openrouter_site_url,
+            "openrouter_site_name": self.openrouter_site_name,
             "data_dir": str(self.data_dir),
             "images_dir": str(self.images_dir),
             "texts_dir": str(self.texts_dir),
