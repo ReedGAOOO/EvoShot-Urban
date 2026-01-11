@@ -10,6 +10,32 @@ def _bool_env(name: str, default: bool = False) -> bool:
         return default
     return val in {"1", "true", "yes", "on"}
 
+def _load_dotenv(dotenv_path: Path, override: bool = False) -> None:
+    try:
+        raw = dotenv_path.read_text(encoding="utf-8")
+    except FileNotFoundError:
+        return
+
+    for line in raw.splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        if line.startswith("export "):
+            line = line[len("export ") :].lstrip()
+        if "=" not in line:
+            continue
+
+        key, value = line.split("=", 1)
+        key = key.strip()
+        value = value.strip()
+        if not key:
+            continue
+        if not override and os.getenv(key) is not None:
+            continue
+        if (value.startswith('"') and value.endswith('"')) or (value.startswith("'") and value.endswith("'")):
+            value = value[1:-1]
+        os.environ[key] = value
+
 
 @dataclass(frozen=True)
 class EvoShotEnv:
@@ -46,6 +72,7 @@ class EvoShotEnv:
     @staticmethod
     def load(project_root: Optional[Path] = None) -> "EvoShotEnv":
         root = (project_root or Path(__file__).resolve().parent).resolve()
+        _load_dotenv(root / ".env", override=False)
         data_dir = Path(os.getenv("EVOSHOT_DATA_DIR", str(root / "data"))).resolve()
         images_dir = Path(os.getenv("EVOSHOT_IMAGES_DIR", str(data_dir / "images"))).resolve()
         texts_dir = Path(os.getenv("EVOSHOT_TEXTS_DIR", str(data_dir / "texts"))).resolve()
@@ -101,4 +128,3 @@ class EvoShotEnv:
             "vault_dir": str(self.vault_dir),
             "logs_dir": str(self.logs_dir),
         }
-
