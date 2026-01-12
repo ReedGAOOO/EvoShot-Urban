@@ -18,8 +18,25 @@ def _encode_image_data_url(image_path: str) -> Tuple[str, str]:
 
 
 def _strip_think(text: str) -> str:
-    text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL)
-    return text.strip()
+    if not text:
+        return ""
+
+    cleaned = text.strip()
+
+    # 1) Remove well-formed <think>...</think> blocks.
+    cleaned = re.sub(r"<think>.*?</think>\\s*", "", cleaned, flags=re.DOTALL | re.IGNORECASE).strip()
+
+    # 2) Handle unclosed <think> (common for "thinking" models): drop the tag itself.
+    cleaned = re.sub(r"<think>\\s*", "", cleaned, flags=re.IGNORECASE).strip()
+
+    # 3) Heuristic: strip common preamble and keep the actual observation part if present.
+    m = re.search(r"first,?\\s*observe\\s*the\\s*image\\s*:?", cleaned, flags=re.IGNORECASE)
+    if m:
+        cleaned = cleaned[m.end() :].strip()
+
+    # 4) Normalize whitespace.
+    cleaned = re.sub(r"\\s+", " ", cleaned).strip()
+    return cleaned
 
 
 class LocalVisionCaptioner:
@@ -74,4 +91,3 @@ class LocalVisionCaptioner:
         resp_json = json.loads(raw)
         content = resp_json["choices"][0]["message"].get("content") or ""
         return _strip_think(content)
-

@@ -149,6 +149,8 @@ class MockVault:
         核心防坑点：检索策略
         这里模拟：优先返回 Tier 0 (专家)，然后是 Tier 1
         """
+        if k <= 0:
+            return []
         if not self.storage:
             return []
 
@@ -381,7 +383,9 @@ class UrbanPipeline:
             sample.retrieval_text = sample.post_text
 
         # 1. 检索 (Retrieval)
-        shots = self.vault.retrieve(sample, k=2)
+        retrieval_k = int(os.getenv("EVOSHOT_RETRIEVAL_K", "2"))
+        retrieval_k = max(0, retrieval_k)
+        shots = self.vault.retrieve(sample, k=retrieval_k)
         logger.info(f"Retrieved {len(shots)} few-shot examples: {[f'{ex.id}(t{ex.tier})' for ex in shots]}")
         trace["retrieved_ids"] = [ex.id for ex in shots]
 

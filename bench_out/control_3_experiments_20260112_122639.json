@@ -1,0 +1,3573 @@
+{
+  "experiments": [
+    {
+      "config": {
+        "experiment": "E1_original_text_topk",
+        "query_mode": "text",
+        "retrieval_strategy": "topk"
+      },
+      "vault_tier_counts_after_round1": {
+        "0": 3,
+        "1": 15
+      },
+      "summaries": [
+        {
+          "n": 10,
+          "avg_teacher_score": 0.6900000000000001,
+          "pass_rate_ge_0_8": 0.2,
+          "add_rate_should_add": 0.8,
+          "critique_tags": [
+            [
+              "safety",
+              6
+            ],
+            [
+              "vibrancy",
+              5
+            ],
+            [
+              "grounding/hallucination",
+              4
+            ],
+            [
+              "cleanliness",
+              3
+            ],
+            [
+              "other",
+              2
+            ],
+            [
+              "non_urban/domain_mismatch",
+              1
+            ]
+          ],
+          "top_retrieved_ids": [
+            [
+              "dataset1_mixed_4",
+              6
+            ],
+            [
+              "dataset1_mixed_2",
+              4
+            ],
+            [
+              "dataset1_mixed_6",
+              4
+            ],
+            [
+              "seed_003",
+              2
+            ],
+            [
+              "dataset1_mixed_1",
+              2
+            ],
+            [
+              "seed_001",
+              1
+            ],
+            [
+              "dataset1_mixed_3",
+              1
+            ]
+          ],
+          "experiment": "E1_original_text_topk",
+          "query_mode": "text",
+          "retrieval_strategy": "topk",
+          "round": 1,
+          "dataset": "dataset1_mixed"
+        },
+        {
+          "n": 10,
+          "avg_teacher_score": 0.72,
+          "pass_rate_ge_0_8": 0.3,
+          "add_rate_should_add": 0.7,
+          "critique_tags": [
+            [
+              "grounding/hallucination",
+              8
+            ],
+            [
+              "safety",
+              5
+            ],
+            [
+              "cleanliness",
+              4
+            ],
+            [
+              "vibrancy",
+              3
+            ],
+            [
+              "non_urban/domain_mismatch",
+              2
+            ]
+          ],
+          "top_retrieved_ids": [
+            [
+              "dataset2_street_1",
+              9
+            ],
+            [
+              "dataset1_mixed_6",
+              5
+            ],
+            [
+              "dataset2_street_7",
+              3
+            ],
+            [
+              "dataset2_street_5",
+              2
+            ],
+            [
+              "dataset1_mixed_10",
+              1
+            ]
+          ],
+          "experiment": "E1_original_text_topk",
+          "query_mode": "text",
+          "retrieval_strategy": "topk",
+          "round": 1,
+          "dataset": "dataset2_street"
+        },
+        {
+          "n": 10,
+          "avg_teacher_score": 0.826,
+          "pass_rate_ge_0_8": 0.6,
+          "add_rate_should_add": 0.4,
+          "critique_tags": [
+            [
+              "safety",
+              6
+            ],
+            [
+              "vibrancy",
+              4
+            ],
+            [
+              "cleanliness",
+              2
+            ],
+            [
+              "grounding/hallucination",
+              2
+            ],
+            [
+              "other",
+              1
+            ],
+            [
+              "non_urban/domain_mismatch",
+              1
+            ]
+          ],
+          "top_retrieved_ids": [
+            [
+              "dataset2_street_7",
+              10
+            ],
+            [
+              "dataset2_street_1",
+              10
+            ]
+          ],
+          "experiment": "E1_original_text_topk",
+          "query_mode": "text",
+          "retrieval_strategy": "topk",
+          "round": 2,
+          "dataset": "dataset1_mixed"
+        },
+        {
+          "n": 10,
+          "avg_teacher_score": 0.8390000000000001,
+          "pass_rate_ge_0_8": 0.7,
+          "add_rate_should_add": 0.3,
+          "critique_tags": [
+            [
+              "safety",
+              5
+            ],
+            [
+              "grounding/hallucination",
+              4
+            ],
+            [
+              "vibrancy",
+              3
+            ],
+            [
+              "cleanliness",
+              3
+            ],
+            [
+              "other",
+              2
+            ],
+            [
+              "non_urban/domain_mismatch",
+              1
+            ]
+          ],
+          "top_retrieved_ids": [
+            [
+              "dataset2_street_7",
+              10
+            ],
+            [
+              "dataset2_street_1",
+              10
+            ]
+          ],
+          "experiment": "E1_original_text_topk",
+          "query_mode": "text",
+          "retrieval_strategy": "topk",
+          "round": 2,
+          "dataset": "dataset2_street"
+        }
+      ],
+      "results": [
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_1",
+          "image_path": "H:\\微博数据 - 副本\\images\\005yZqAwgy1hzy469wev4j34eo3b04qr.jpg",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_1",
+          "retrieved_ids": [
+            "seed_003",
+            "seed_001"
+          ],
+          "critique": "Adequate grounding but overrates safety (ignores nighttime crowd density/evacuation risks on soft seating); underrates cleanliness mess from scattered cushions/litter; lacks urban planning nuance on hazards.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 4.0,
+            "vibrancy": 4.5,
+            "cleanliness": 3.0
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_2",
+          "image_path": "H:\\微博数据 - 副本\\images\\0061E71Ggy1hzy7md27g1j316o1kwnbs.jpg",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_2",
+          "retrieved_ids": [
+            "dataset1_mixed_1",
+            "seed_003"
+          ],
+          "critique": "Hallucinated 'exposed ceiling ducts' and 'recessed lighting' not clearly visible; generic description ignores prominent purple furry hat, colorful braids, and leather jacket adding quirky vibrancy.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 4.0,
+            "vibrancy": 1.8,
+            "cleanliness": 4.5
+          },
+          "student_confidence": 0.9,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_3",
+          "image_path": "H:\\微博数据 - 副本\\images\\0068MLPggy1h0c388kb62j32c0340hdu.jpg",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_3",
+          "retrieved_ids": [
+            "dataset1_mixed_2",
+            "dataset1_mixed_1"
+          ],
+          "critique": "Good grounding in visuals, but illogical safety score: penalizes absent railings/lighting irrelevant to a static flower bed with zero visible hazards; misses nuance of perfect safety/cleanliness.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.8,
+            "vibrancy": 4.9,
+            "cleanliness": 4.7
+          },
+          "student_confidence": 0.95,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_4",
+          "image_path": "H:\\微博数据 - 副本\\images\\007bkGddgy1hf7cgl7choj32io1w04qp.jpg",
+          "teacher_score": 0.4,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_4",
+          "retrieved_ids": [
+            "dataset1_mixed_2",
+            "dataset1_mixed_3"
+          ],
+          "critique": "Strong grounding in visuals, but logic fails: 1.0 scores (assuming high=good) contradict rationale admitting no positive urban features or assessability.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 1.0,
+            "vibrancy": 1.0,
+            "cleanliness": 1.0
+          },
+          "student_confidence": 0.2,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_5",
+          "image_path": "H:\\微博数据 - 副本\\images\\007Izbtigy1hzuq0fvynfj30wi0wik0a.jpg",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_4",
+            "dataset1_mixed_2"
+          ],
+          "critique": "Solid grounding and logic, but underrated vibrancy from bright panda glow and pink blossoms; cleanliness perfect, not just 'clear'; safety risk assumed without hazards.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 2.0,
+            "vibrancy": 2.5,
+            "cleanliness": 4.0
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_6",
+          "image_path": "H:\\微博数据 - 副本\\images\\008rsxeGgy1hz1s2lb3udj32c0340hdw.jpg",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_6",
+          "retrieved_ids": [
+            "dataset1_mixed_4",
+            "dataset1_mixed_2"
+          ],
+          "critique": "Hallucinated 'visible surveillance cameras' (not discernible); illogical vibrancy (one pedestrian ≠ moderate activity); missed safety nuance: vehicles parked directly at crosswalk edge obstruct visibility.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 4.2,
+            "vibrancy": 3.0,
+            "cleanliness": 4.5
+          },
+          "student_confidence": 0.9,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_7",
+          "image_path": "H:\\微博数据 - 副本\\images\\6a223a1aly1g1q9xnl7yqj20u00u0afv.jpg",
+          "teacher_score": 1.0,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_6",
+            "dataset1_mixed_4"
+          ],
+          "critique": "Perfect grounding in specific details (bed, bedding, pillows, wall); flawless logic tying absence of urban elements to low scores; no missed issues as none exist.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 1.0,
+            "vibrancy": 1.0,
+            "cleanliness": 1.0
+          },
+          "student_confidence": 0.9,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_8",
+          "image_path": "H:\\微博数据 - 副本\\images\\6cd0e4cfgy1hzqwlbxco8j237k2eohdu.jpg",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_8",
+          "retrieved_ids": [
+            "dataset1_mixed_6",
+            "dataset1_mixed_4"
+          ],
+          "critique": "Good grounding but hallucinates 'heritage site' and 'people walking on pathways' (figures are distant specks); vibrancy inflated for desolate scene; speculates unmaintained risks without rust evidence emphasis.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.0,
+            "vibrancy": 2.0,
+            "cleanliness": 3.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_9",
+          "image_path": "H:\\微博数据 - 副本\\images\\6f41dea2gy1hzoe8zp16gj20u0140n71.jpg",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_9",
+          "retrieved_ids": [
+            "dataset1_mixed_6",
+            "dataset1_mixed_4"
+          ],
+          "critique": "Hallucinated 'taking photos' and 'photographers'—not visible. Overstated safety risks; dirt paths and minor water flow are typical for managed urban field, not major hazards. Good grounding otherwise, but lacks nuance.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 2.8,
+            "vibrancy": 4.2,
+            "cleanliness": 3.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_10",
+          "image_path": "H:\\微博数据 - 副本\\images\\877777a9gy1h1t0vr2oq1j20u0140an2.jpg",
+          "teacher_score": 0.6,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_10",
+          "retrieved_ids": [
+            "dataset1_mixed_6",
+            "dataset1_mixed_4"
+          ],
+          "critique": "Good grounding in visuals, but illogical safety score: low risk from isolation means HIGH safety, not 2.0. Vibrancy underrates vivid colors/human presence.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 2.0,
+            "vibrancy": 1.5,
+            "cleanliness": 4.8
+          },
+          "student_confidence": 0.9,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_1",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034560_leftImg8bit.png",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_1",
+          "retrieved_ids": [
+            "dataset1_mixed_6",
+            "dataset1_mixed_10"
+          ],
+          "critique": "Hallucinated 'SoVD' signage (not discernible); overlooked wet road surface (safety slip risk, cleanliness nuance); pedestrian count overstated (only 2 distant figures); vibrancy score too generous for deserted scene.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.2,
+            "vibrancy": 2.0,
+            "cleanliness": 4.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_2",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034935_leftImg8bit.png",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_2",
+          "retrieved_ids": [
+            "dataset2_street_1",
+            "dataset1_mixed_6"
+          ],
+          "critique": "Hallucinated 'Mercedes dashboard' - no brand logo or identifier visible; punish ungrounded detail. Otherwise logical but lacks nuance on cyclist hazard.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.7,
+            "vibrancy": 3.2,
+            "cleanliness": 4.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_3",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_037298_leftImg8bit.png",
+          "teacher_score": 0.72,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_3",
+          "retrieved_ids": [
+            "dataset2_street_1",
+            "dataset1_mixed_6"
+          ],
+          "critique": "Well-grounded details but illogical cleanliness deduction for rain-dampness (not filth); missed wet road slip risk for safety; 'Mercedes' likely hallucinated (dash generic); vibrancy overstated storefront activity.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.2,
+            "vibrancy": 2.8,
+            "cleanliness": 3.9
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_4",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_053437_leftImg8bit.png",
+          "teacher_score": 0.6,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_4",
+          "retrieved_ids": [
+            "dataset2_street_1",
+            "dataset1_mixed_6"
+          ],
+          "critique": "Poor grounding: hallucinated 'market area with tents' (none visible), 'pedestrians crossing mid-block' (none evident; activity at intersection), and unconfirmed 'clock tower'; rationale not fully image-based.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.9,
+            "vibrancy": 4.3,
+            "cleanliness": 4.1
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_5",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_056800_leftImg8bit.png",
+          "teacher_score": 0.6,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_5",
+          "retrieved_ids": [
+            "dataset2_street_1",
+            "dataset1_mixed_6"
+          ],
+          "critique": "Major hallucination: no pedestrians visible (claimed 2-3); misidentified storefront as 'café'; overlooked hazard signs (no-entry, yield, bollards/cones) indicating restrictions/pinch points; vibrancy overstated without people/activity.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.7,
+            "vibrancy": 3.2,
+            "cleanliness": 4.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_6",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000035_000019_leftImg8bit.png",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_1",
+            "dataset2_street_5"
+          ],
+          "critique": "Strong grounding in specifics (e.g., Mercedes logo, delivery box, leaves), logical scoring, but overstated minor leaves as 'debris hazards/litter' and 'grime'; missed nuance that leaves are seasonal, not trash, and no real safety risks evident.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.0,
+            "vibrancy": 2.0,
+            "cleanliness": 2.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_7",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000055_000019_leftImg8bit.png",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_7",
+          "retrieved_ids": [
+            "dataset2_street_1",
+            "dataset2_street_5"
+          ],
+          "critique": "Hallucinated 3 pedestrians (only 1 clear, distant blobs don't show 2 together); traffic is light, not moderate; wet windshield ungrounded (road wet, glass clear); safety score illogical given sparse traffic boosting safety.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.5,
+            "vibrancy": 2.0,
+            "cleanliness": 3.8
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_8",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000062_000019_leftImg8bit.png",
+          "teacher_score": 0.88,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_1"
+          ],
+          "critique": "Strong grounding and logic, but underrates prominent construction barriers' immediate merge hazard from driver's POV and mislabels nearby pedestrian as 'distant'; cleanliness generous despite potential construction dust.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.2,
+            "vibrancy": 2.0,
+            "cleanliness": 4.0
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_9",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000077_000019_leftImg8bit.png",
+          "teacher_score": 0.75,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_9",
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_1"
+          ],
+          "critique": "Strong visual grounding but hallucinates 'storefronts' and 'closed shops' (buildings are mostly residential apartments); logic holds but misses dooring risk from tight parking and underrates graffiti prominence for cleanliness.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.0,
+            "vibrancy": 1.5,
+            "cleanliness": 3.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_10",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000113_000019_leftImg8bit.png",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_1"
+          ],
+          "critique": "Strong grounding in specifics like Mercedes POV, parked cars, banner; minor hallucination (orange hi-vis vest as 'yellow jacket'); safety overlooks wet road slip risk and extreme narrowness.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.0,
+            "vibrancy": 2.0,
+            "cleanliness": 3.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_1",
+          "image_path": "H:\\微博数据 - 副本\\images\\005yZqAwgy1hzy469wev4j34eo3b04qr.jpg",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_1"
+          ],
+          "critique": "Strong grounding but missed key safety nuances like extreme crowd density, trip hazards from beanbags/blankets in dim areas, and no visible aisles/exits; underrated cleanliness by conflating organized personal items with mess.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.5,
+            "vibrancy": 4.5,
+            "cleanliness": 3.0
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_2",
+          "image_path": "H:\\微博数据 - 副本\\images\\0061E71Ggy1hzy7md27g1j316o1kwnbs.jpg",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_1"
+          ],
+          "critique": "Hallucinates 'POV from person standing'—image is a third-person portrait of the woman; overlooks her vibrant outfit for vibrancy; vague on counters/windows.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.0,
+            "vibrancy": 1.5,
+            "cleanliness": 4.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_3",
+          "image_path": "H:\\微博数据 - 副本\\images\\0068MLPggy1h0c388kb62j32c0340hdu.jpg",
+          "teacher_score": 0.95,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_1"
+          ],
+          "critique": "Excellent grounding in tulips, pansies, and foliage; logic sound, but unexplained 4.8 vibrancy despite maximal color and density.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 5.0,
+            "vibrancy": 4.8,
+            "cleanliness": 5.0
+          },
+          "student_confidence": 0.95,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_4",
+          "image_path": "H:\\微博数据 - 副本\\images\\007bkGddgy1hf7cgl7choj32io1w04qp.jpg",
+          "teacher_score": 0.95,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_1"
+          ],
+          "critique": "Excellent grounding in visible details (blurriness, selfie-style, lack of urban elements); logic sound as low scores match absence of scorable features; no missed issues, minor deduction for unspecified score scale.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 1.0,
+            "vibrancy": 1.0,
+            "cleanliness": 1.0
+          },
+          "student_confidence": 0.9,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_5",
+          "image_path": "H:\\微博数据 - 副本\\images\\007Izbtigy1hzuq0fvynfj30wi0wik0a.jpg",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_1"
+          ],
+          "critique": "Hallucinated 'child's POV' (low-angle ride shot, adult rider); exaggerated 'no streetlights/clear pathways' (paved ground, ambient/distant lights visible); missed nuance in safety (isolated adult alone at night) and cleanliness (clearly pristine surfaces).",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 2.0,
+            "vibrancy": 2.5,
+            "cleanliness": 3.5
+          },
+          "student_confidence": 0.75,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_6",
+          "image_path": "H:\\微博数据 - 副本\\images\\008rsxeGgy1hz1s2lb3udj32c0340hdw.jpg",
+          "teacher_score": 0.92,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_1"
+          ],
+          "critique": "Strong grounding in specifics, logical scores, but overlooks minor vibrancy deficit from near-empty sidewalks and slightly inflates safety ignoring countdown risk.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 4.5,
+            "vibrancy": 3.5,
+            "cleanliness": 4.8
+          },
+          "student_confidence": 0.9,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_7",
+          "image_path": "H:\\微博数据 - 副本\\images\\6a223a1aly1g1q9xnl7yqj20u00u0afv.jpg",
+          "teacher_score": 0.95,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_1"
+          ],
+          "critique": "Strong grounding in specific details (bed, bedding, wall) and logical refusal to score urban metrics on non-urban image. Minor deduct: 1.0 scores imply minimal viability rather than true unassessability (prefer 0.0); lacks ultra-precise image descriptors like subject's makeup or hand position.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 1.0,
+            "vibrancy": 1.0,
+            "cleanliness": 1.0
+          },
+          "student_confidence": 0.9,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_8",
+          "image_path": "H:\\微博数据 - 副本\\images\\6cd0e4cfgy1hzqwlbxco8j237k2eohdu.jpg",
+          "teacher_score": 0.92,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_1"
+          ],
+          "critique": "Strong grounding in visuals, logical scoring, but minor overstatement of 'overgrown grass' (patchy, not overgrown) and 'falling debris' risk (fenced off, no active hazards visible); lacks nuance on fence as safety barrier.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.0,
+            "vibrancy": 1.5,
+            "cleanliness": 3.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_9",
+          "image_path": "H:\\微博数据 - 副本\\images\\6f41dea2gy1hzoe8zp16gj20u0140n71.jpg",
+          "teacher_score": 0.82,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_1"
+          ],
+          "critique": "Excellent grounding in specifics like rapeseed, inflatable, mud/puddles; logic holds, but safety overstated (ignores drainage ditch slip/fall risk) and misses nuance in maintenance neglect eroding paths.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.8,
+            "vibrancy": 4.2,
+            "cleanliness": 2.8
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_10",
+          "image_path": "H:\\微博数据 - 副本\\images\\877777a9gy1h1t0vr2oq1j20u0140an2.jpg",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_1"
+          ],
+          "critique": "Safety score illogical—zero hazards visible, no ambiguity; vibrancy understated for profuse pink roses and greenery.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.0,
+            "vibrancy": 3.5,
+            "cleanliness": 4.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_1",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034560_leftImg8bit.png",
+          "teacher_score": 0.88,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_1"
+          ],
+          "critique": "Strong grounding in visuals, logical scores, but speculates on 'oncoming traffic' visibility without visible oncoming vehicles; minor ped count inflation (left: ~2, not 3-4).",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.5,
+            "vibrancy": 2.0,
+            "cleanliness": 4.0
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_2",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034935_leftImg8bit.png",
+          "teacher_score": 0.75,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_1"
+          ],
+          "critique": "Good grounding but hallucinates 'urban grime' (none visible); underrates safety despite two prominent police vehicles and orderly flow; vague on cyclist risk.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.0,
+            "vibrancy": 3.5,
+            "cleanliness": 3.8
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_3",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_037298_leftImg8bit.png",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_1"
+          ],
+          "critique": "Strong grounding in specifics like checkered building, TAXI sign, cyclist, and van, but hallucinates 'tram track' (shelter only) and 'traffic lights' (pole visible but no signals clear); underrates vibrancy from commercial/taxi activity and overstates road wear/stains.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.5,
+            "vibrancy": 2.5,
+            "cleanliness": 3.8
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_4",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_053437_leftImg8bit.png",
+          "teacher_score": 0.88,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_1"
+          ],
+          "critique": "Strong grounding in visuals, logical scores, but overlooks multi-modal hazards (tram tracks amid bikes/cars) for safety nuance; vibrancy overstated with vague 'market stalls'.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.8,
+            "vibrancy": 3.5,
+            "cleanliness": 3.7
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_5",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_056800_leftImg8bit.png",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_1"
+          ],
+          "critique": "Strong grounding overall but hallucinations ('brick buildings' actually plaster/stucco, 'fallen leaves' not visible, 'Fliessen' likely 'Fliesen'); minor overemphasis on bike pinch points vs. managed construction; logic holds but flawed details undermine nuance.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.5,
+            "vibrancy": 1.0,
+            "cleanliness": 4.0
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_6",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000035_000019_leftImg8bit.png",
+          "teacher_score": 0.88,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_1"
+          ],
+          "critique": "Strong grounding in specifics like Mercedes hood, delivery box, pizzeria sign, leaves/debris. Logic holds, but lacks nuance on motorcycle illegally blocking pedestrian crosswalk (safety hazard) and underrates leaf clutter impact on cleanliness.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.5,
+            "vibrancy": 3.0,
+            "cleanliness": 3.2
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_7",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000055_000019_leftImg8bit.png",
+          "teacher_score": 0.95,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_1"
+          ],
+          "critique": "Excellent grounding in specifics like vehicles, pedestrians, leaves, and damp road; logic sound; minor overemphasis on weather hazard and leaf deduction lacks nuance for natural/autumnal debris.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.5,
+            "vibrancy": 1.8,
+            "cleanliness": 3.7
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_8",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000062_000019_leftImg8bit.png",
+          "teacher_score": 0.92,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_1"
+          ],
+          "critique": "Strong grounding in specifics (barriers, bus, sheen, pedestrian), logical scoring, but slightly overrates safety ignoring how barriers funnel traffic into narrower space; vibrancy underrates subtle building colors.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.2,
+            "vibrancy": 2.0,
+            "cleanliness": 4.0
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_9",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000077_000019_leftImg8bit.png",
+          "teacher_score": 0.88,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_1"
+          ],
+          "critique": "Excellent grounding in specifics like pedestrian counts and graffiti, logical rationale, but safety score too generous for severe narrowness/parking obstruction; cleanliness overlooks graffiti prominence.",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.0,
+            "vibrancy": 1.5,
+            "cleanliness": 3.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E1_original_text_topk",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_10",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000113_000019_leftImg8bit.png",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_1"
+          ],
+          "critique": "Strong grounding in visuals, but hallucinates 'child in blue' (no clear child visible; adults only) and conflates cleanliness with muted aesthetics/faded facades (logic flaw; cleanliness is litter/hygiene, not vibe).",
+          "query_caption": null,
+          "student_scores": {
+            "safety": 3.0,
+            "vibrancy": 2.0,
+            "cleanliness": 3.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        }
+      ]
+    },
+    {
+      "config": {
+        "experiment": "E2_caption_topk",
+        "query_mode": "caption+text",
+        "retrieval_strategy": "topk"
+      },
+      "vault_tier_counts_after_round1": {
+        "0": 3,
+        "1": 19
+      },
+      "summaries": [
+        {
+          "n": 10,
+          "avg_teacher_score": 0.605,
+          "pass_rate_ge_0_8": 0.0,
+          "add_rate_should_add": 1.0,
+          "critique_tags": [
+            [
+              "grounding/hallucination",
+              5
+            ],
+            [
+              "cleanliness",
+              5
+            ],
+            [
+              "vibrancy",
+              4
+            ],
+            [
+              "safety",
+              4
+            ],
+            [
+              "non_urban/domain_mismatch",
+              2
+            ],
+            [
+              "other",
+              1
+            ]
+          ],
+          "top_retrieved_ids": [
+            [
+              "dataset1_mixed_2",
+              5
+            ],
+            [
+              "dataset1_mixed_4",
+              4
+            ],
+            [
+              "seed_001",
+              3
+            ],
+            [
+              "dataset1_mixed_1",
+              3
+            ],
+            [
+              "dataset1_mixed_3",
+              3
+            ],
+            [
+              "seed_002",
+              1
+            ],
+            [
+              "dataset1_mixed_9",
+              1
+            ]
+          ],
+          "experiment": "E2_caption_topk",
+          "query_mode": "caption+text",
+          "retrieval_strategy": "topk",
+          "round": 1,
+          "dataset": "dataset1_mixed"
+        },
+        {
+          "n": 10,
+          "avg_teacher_score": 0.7150000000000001,
+          "pass_rate_ge_0_8": 0.1,
+          "add_rate_should_add": 0.9,
+          "critique_tags": [
+            [
+              "grounding/hallucination",
+              8
+            ],
+            [
+              "safety",
+              5
+            ],
+            [
+              "vibrancy",
+              4
+            ],
+            [
+              "non_urban/domain_mismatch",
+              2
+            ],
+            [
+              "cleanliness",
+              1
+            ]
+          ],
+          "top_retrieved_ids": [
+            [
+              "dataset2_street_1",
+              8
+            ],
+            [
+              "dataset1_mixed_4",
+              4
+            ],
+            [
+              "dataset2_street_3",
+              2
+            ],
+            [
+              "dataset2_street_2",
+              2
+            ],
+            [
+              "dataset1_mixed_6",
+              1
+            ],
+            [
+              "dataset2_street_4",
+              1
+            ],
+            [
+              "dataset2_street_5",
+              1
+            ],
+            [
+              "dataset2_street_9",
+              1
+            ]
+          ],
+          "experiment": "E2_caption_topk",
+          "query_mode": "caption+text",
+          "retrieval_strategy": "topk",
+          "round": 1,
+          "dataset": "dataset2_street"
+        },
+        {
+          "n": 10,
+          "avg_teacher_score": 0.6950000000000001,
+          "pass_rate_ge_0_8": 0.5,
+          "add_rate_should_add": 0.5,
+          "critique_tags": [
+            [
+              "safety",
+              6
+            ],
+            [
+              "vibrancy",
+              5
+            ],
+            [
+              "grounding/hallucination",
+              3
+            ],
+            [
+              "cleanliness",
+              2
+            ],
+            [
+              "non_urban/domain_mismatch",
+              2
+            ]
+          ],
+          "top_retrieved_ids": [
+            [
+              "dataset1_mixed_4",
+              4
+            ],
+            [
+              "dataset1_mixed_2",
+              3
+            ],
+            [
+              "dataset1_mixed_3",
+              3
+            ],
+            [
+              "dataset2_street_1",
+              2
+            ],
+            [
+              "dataset1_mixed_1",
+              1
+            ],
+            [
+              "dataset2_street_7",
+              1
+            ],
+            [
+              "dataset1_mixed_5",
+              1
+            ],
+            [
+              "dataset1_mixed_6",
+              1
+            ],
+            [
+              "dataset1_mixed_7",
+              1
+            ],
+            [
+              "dataset1_mixed_8",
+              1
+            ]
+          ],
+          "experiment": "E2_caption_topk",
+          "query_mode": "caption+text",
+          "retrieval_strategy": "topk",
+          "round": 2,
+          "dataset": "dataset1_mixed"
+        },
+        {
+          "n": 10,
+          "avg_teacher_score": 0.772,
+          "pass_rate_ge_0_8": 0.6,
+          "add_rate_should_add": 0.4,
+          "critique_tags": [
+            [
+              "grounding/hallucination",
+              5
+            ],
+            [
+              "safety",
+              5
+            ],
+            [
+              "vibrancy",
+              4
+            ],
+            [
+              "cleanliness",
+              2
+            ]
+          ],
+          "top_retrieved_ids": [
+            [
+              "dataset2_street_9",
+              6
+            ],
+            [
+              "dataset2_street_10",
+              4
+            ],
+            [
+              "dataset2_street_4",
+              2
+            ],
+            [
+              "dataset2_street_3",
+              2
+            ],
+            [
+              "dataset2_street_7",
+              2
+            ],
+            [
+              "dataset2_street_1",
+              2
+            ],
+            [
+              "dataset2_street_2",
+              1
+            ],
+            [
+              "dataset2_street_8",
+              1
+            ]
+          ],
+          "experiment": "E2_caption_topk",
+          "query_mode": "caption+text",
+          "retrieval_strategy": "topk",
+          "round": 2,
+          "dataset": "dataset2_street"
+        }
+      ],
+      "results": [
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_1",
+          "image_path": "H:\\微博数据 - 副本\\images\\005yZqAwgy1hzy469wev4j34eo3b04qr.jpg",
+          "teacher_score": 0.55,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_1",
+          "retrieved_ids": [
+            "seed_002",
+            "seed_001"
+          ],
+          "critique": "Hallucinated 'high foot traffic' (crowd seated); generic rationale lacks image specifics like bean bags/stage screens; overstated minor items as cleanliness issues.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, analyze the image: it's a nighttime event, so lighting is stage lights (bright, colorful). Crowd is large, people are gathered for a live show. Traffic level—since it's a concert, probably no traffic, just pedestrians. Cleanliness—there are some items on the ground, but maybe not super clean. Notable objects",
+          "student_scores": {
+            "safety": 3.5,
+            "vibrancy": 4.5,
+            "cleanliness": 3.0
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_2",
+          "image_path": "H:\\微博数据 - 副本\\images\\0061E71Ggy1hzy7md27g1j316o1kwnbs.jpg",
+          "teacher_score": 0.5,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_2",
+          "retrieved_ids": [
+            "dataset1_mixed_1",
+            "seed_001"
+          ],
+          "critique": "Poor grounding: vague generic terms like 'colorful hat' and 'modern design' ignore specifics like fuzzy monster ears, multicolored braids, leather jacket, wooden counter, metal railings, glass doors, and exposed beams.",
+          "query_caption": "<think>\nGot it, let's see. The user wants a 40-word max description of an urban street scene, but wait, the image is indoors? Wait, no, the problem says \"urban street scene\" but the image shows an indoor area. Wait, maybe it's a mistake, but I need to describe what's there. Let's check the elements: lighting is artificial, maybe from ceiling lights. Crowd/traffic level: only one person, so low. Cleanliness: the area looks clean, concrete floor, modern. Notable objects: the person with a purple",
+          "student_scores": {
+            "safety": 4.0,
+            "vibrancy": 3.5,
+            "cleanliness": 4.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_3",
+          "image_path": "H:\\微博数据 - 副本\\images\\0068MLPggy1h0c388kb62j32c0340hdu.jpg",
+          "teacher_score": 0.6,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_3",
+          "retrieved_ids": [
+            "dataset1_mixed_2",
+            "dataset1_mixed_1"
+          ],
+          "critique": "Strong visual grounding but flawed logic for urban context: vibrancy overstated—urban vibrancy requires human activity/street life, not just flowers; ignores absence of paths/buildings for safety nuance.",
+          "query_caption": "<think>\nGot it, let's see. The user wants a description of an urban street scene, but the image is of flowers. Wait, the problem says \"urban street scene\" but the image is flowers. Maybe it's a mistake, but I need to describe based on the image. Wait, the image is a flower bed, so maybe it's a street with flower beds. Let's check the requirements: lighting, crowd/traffic level, cleanliness, notable objects. The image has bright sunlight (lighting), no crowd or traffic (since it's flowers), clean (flowers are",
+          "student_scores": {
+            "safety": 4.8,
+            "vibrancy": 4.9,
+            "cleanliness": 5.0
+          },
+          "student_confidence": 0.95,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_4",
+          "image_path": "H:\\微博数据 - 副本\\images\\007bkGddgy1hf7cgl7choj32io1w04qp.jpg",
+          "teacher_score": 0.6,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_4",
+          "retrieved_ids": [
+            "dataset1_mixed_2",
+            "dataset1_mixed_3"
+          ],
+          "critique": "Good grounding in visuals but illogical scoring of urban metrics on a non-urban portrait; hallucinated 'low resolution' (it's motion blur); missed nuance that lack of urban context demands minimal scores across board.",
+          "query_caption": "<think>\nGot it, let's see. The user wants a description of an urban street scene, but the image provided is a close-up of a person, not a street scene. Wait, maybe there's a mistake? But the task says to describe the urban street scene. Wait, the image might be mislabeled, but I have to work with what's given. Wait, no—the image shows a person, but the task is about an urban street scene. Hmm, maybe the user made an error, but I need to check. Wait, the problem says \"Describe this urban",
+          "student_scores": {
+            "safety": 2.0,
+            "vibrancy": 1.5,
+            "cleanliness": 3.0
+          },
+          "student_confidence": 0.6,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_5",
+          "image_path": "H:\\微博数据 - 副本\\images\\007Izbtigy1hzuq0fvynfj30wi0wik0a.jpg",
+          "teacher_score": 0.75,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_5",
+          "retrieved_ids": [
+            "dataset1_mixed_4",
+            "seed_001"
+          ],
+          "critique": "Grounded in key details but lacks nuance: underrates safety from ride's strong glow and public path setting; vibrancy ignores festive multi-ride lights; assumes 'cherry blossoms' without noting sparse bloom.",
+          "query_caption": "<think>\nGot it, let's see. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. First, check the image: it's a nighttime scene. Lighting is from streetlights and the glowing panda ride. Crowd/traffic: there's one person, so low traffic. Cleanliness: the area looks clean, paved path. Notable objects: the glowing panda-shaped ride, cherry blossom trees. Let's structure the sentence.\n\nStart with lighting: \"Nighttime urban scene lit by soft street",
+          "student_scores": {
+            "safety": 2.5,
+            "vibrancy": 3.5,
+            "cleanliness": 4.0
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_6",
+          "image_path": "H:\\微博数据 - 副本\\images\\008rsxeGgy1hz1s2lb3udj32c0340hdw.jpg",
+          "teacher_score": 0.6,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_6",
+          "retrieved_ids": [
+            "dataset1_mixed_4",
+            "dataset1_mixed_2"
+          ],
+          "critique": "Hallucinated surveillance cameras (none visible) and 'visible pedestrians' (only one person); overstated storefronts and trash bins (debatable, not prominent). Grounding weak despite some accurate details.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: it's a crosswalk. Lighting—looks like daytime, maybe late afternoon? The green pedestrian signal is on, so it's bright. Crowd/traffic: the street seems calm, not too many people or cars. Cleanliness: the area looks tidy, trees, clean crosswalk. Notable objects: crosswalk",
+          "student_scores": {
+            "safety": 4.0,
+            "vibrancy": 3.0,
+            "cleanliness": 4.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_7",
+          "image_path": "H:\\微博数据 - 副本\\images\\6a223a1aly1g1q9xnl7yqj20u00u0afv.jpg",
+          "teacher_score": 0.4,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_7",
+          "retrieved_ids": [
+            "dataset1_mixed_4",
+            "dataset1_mixed_2"
+          ],
+          "critique": "Strong grounding in image details, but illogical scores: vibrancy rationale admits 'no urban energy' yet scores 1.0 (best); cleanliness admits 'cannot infer urban hygiene' yet scores high.",
+          "query_caption": "<think>\nGot it, let's see. The user provided an image of a person in bed, but the task is to describe an urban street scene. Wait, the image given is not a street scene—it's a person in bed. But the instruction says to describe the urban street scene. Wait, maybe there's a mistake? But the user's message says \"Describe this urban street scene\" but the image is not a street scene. Hmm. Wait, maybe the user made a mistake, but I have to follow the task. Wait, no—the image provided is of a person in",
+          "student_scores": {
+            "safety": 1.0,
+            "vibrancy": 1.0,
+            "cleanliness": 1.0
+          },
+          "student_confidence": 0.9,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_8",
+          "image_path": "H:\\微博数据 - 副本\\images\\6cd0e4cfgy1hzqwlbxco8j237k2eohdu.jpg",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_8",
+          "retrieved_ids": [
+            "dataset1_mixed_2",
+            "dataset1_mixed_4"
+          ],
+          "critique": "Hallucinated 'debris on the ground'—none visible; overstated poor cleanliness despite tidy concrete/gravel surfaces; minor rust/weeds don't justify 2.5.",
+          "query_caption": "<think>\nGot it, let's see. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. First, check the image: it's an industrial area, maybe a former factory turned museum. Lighting: bright sunlight, clear blue sky. Crowd: few people, so low traffic. Cleanliness: the area looks maintained, paved, but industrial structures. Notable objects: large steel structures, yellow railings, smokestacks.\n\nNow, structure the sentence. Start with lighting: \"Sunny",
+          "student_scores": {
+            "safety": 3.0,
+            "vibrancy": 2.0,
+            "cleanliness": 2.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_9",
+          "image_path": "H:\\微博数据 - 副本\\images\\6f41dea2gy1hzoe8zp16gj20u0140n71.jpg",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_9",
+          "retrieved_ids": [
+            "dataset1_mixed_3",
+            "dataset1_mixed_1"
+          ],
+          "critique": "Hallucinated 'people taking photos' and 'scattered debris' (not visible); overstated minor mud as uncleanliness issues; undervalue safety/cleanliness.",
+          "query_caption": "<think>\nGot it, let's see. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. Wait, first, check the image. The image shows a field of yellow flowers (maybe rapeseed) with tall skyscrapers in the background. There are a few people, a big pink inflatable object. But the question says \"urban street scene\"—but the image is more like a field near skyscrapers. Wait, maybe it's a city area with a park or field. Let",
+          "student_scores": {
+            "safety": 3.2,
+            "vibrancy": 4.5,
+            "cleanliness": 3.0
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_10",
+          "image_path": "H:\\微博数据 - 副本\\images\\877777a9gy1h1t0vr2oq1j20u0140an2.jpg",
+          "teacher_score": 0.75,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_10",
+          "retrieved_ids": [
+            "dataset1_mixed_3",
+            "dataset1_mixed_9"
+          ],
+          "critique": "Strong grounding in visuals, logical consistency, but vibrancy overstated (3.2 too high for zero urban dynamism); safety/cleanliness not maxed at 5.0 despite perfection; fails to stress non-urban nature harshly enough for urban evaluation.",
+          "query_caption": "<think>\nGot it, let's see. The user wants a description of an urban street scene, but wait, the image shows a person in front of pink roses. Wait, maybe it's a garden or a park area in an urban setting? Let's check the requirements: lighting, crowd/traffic level, cleanliness, notable objects. The image has bright natural light (since it's outdoors, sunny), no crowd (only one person), clean (flowers are vibrant, no litter), notable objects are pink roses and greenery. So need to fit into 40 words max, one",
+          "student_scores": {
+            "safety": 4.8,
+            "vibrancy": 3.2,
+            "cleanliness": 4.9
+          },
+          "student_confidence": 0.9,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_1",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034560_leftImg8bit.png",
+          "teacher_score": 0.75,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_1",
+          "retrieved_ids": [
+            "dataset1_mixed_4",
+            "dataset1_mixed_6"
+          ],
+          "critique": "Strong grounding but missed critical wet road surface (visible gloss/reflections), a key safety hazard; vibrancy rationale vague on exact pedestrian/bike count.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: it's a city street. Lighting—looks overcast, so maybe \"overcast daylight\". Crowd/traffic: there are a few pedestrians on the sidewalk, some cars on the road, so \"light traffic and sparse pedestrians\". Cleanliness: the street and sidewalks seem clean. Notable objects: parked cars, bicycles",
+          "student_scores": {
+            "safety": 3.2,
+            "vibrancy": 2.0,
+            "cleanliness": 4.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_2",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034935_leftImg8bit.png",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_2",
+          "retrieved_ids": [
+            "dataset2_street_1",
+            "dataset1_mixed_4"
+          ],
+          "critique": "Hallucinated 'minor litter' (none visible); overstated safety despite cyclist in traffic path; good grounding otherwise.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: it's a busy city intersection. Lighting—looks like daytime, maybe overcast? Crowd/traffic: several cars, police vehicles, a cyclist, pedestrians. So traffic is moderate to heavy. Cleanliness—streets seem clean, buildings are maintained. Notable objects: police cars (POLIZEI), a cyclist",
+          "student_scores": {
+            "safety": 3.7,
+            "vibrancy": 4.2,
+            "cleanliness": 3.2
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_3",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_037298_leftImg8bit.png",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_3",
+          "retrieved_ids": [
+            "dataset2_street_1",
+            "dataset1_mixed_4"
+          ],
+          "critique": "Hallucinated traffic lights and clear lane markings (neither visible); overstated vibrancy (sparse activity, subdued street); invented 'historic facade' and unevident debris/stains; weak nuance on wet road dominance.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, check the image: it's a city street. Lighting—looks overcast, so diffused light. Crowd/traffic: there are a few cars (taxis), a cyclist, some pedestrians in the distance, so moderate traffic. Cleanliness—street seems clean, buildings are maintained. Notable objects: checkered building, taxis,",
+          "student_scores": {
+            "safety": 3.2,
+            "vibrancy": 3.8,
+            "cleanliness": 3.0
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_4",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_053437_leftImg8bit.png",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_4",
+          "retrieved_ids": [
+            "dataset2_street_3",
+            "dataset2_street_2"
+          ],
+          "critique": "Hallucinated traffic lights and litter (neither visible); overstated 'sharing the road' risks ignoring clear bike lane/tram separations; underrated safety and cleanliness.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: bright daylight (lighting), moderate traffic with cars and cyclists, clean streets, notable objects like trams, bicycles, historic buildings, parked cars, and a clock tower.\n\nNow, structure the sentence: Start with lighting, then traffic/crowd, cleanliness, notable objects.\n\nCheck word count. Let's draft:",
+          "student_scores": {
+            "safety": 3.2,
+            "vibrancy": 4.1,
+            "cleanliness": 3.8
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_5",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_056800_leftImg8bit.png",
+          "teacher_score": 0.72,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_5",
+          "retrieved_ids": [
+            "dataset2_street_1",
+            "dataset2_street_4"
+          ],
+          "critique": "Hallucinated 'pedestrians near storefronts' (none visible); overstated traffic (4 cars, not 5-6); underrated safety (minor off-road hazards don't warrant moderate score).",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: it's a sunny day (lighting), traffic has several cars but not heavy (traffic level), the street looks clean (cleanliness), notable objects include trees, buildings, bicycles, traffic signs.\n\nLet's structure the sentence. Start with lighting: \"Sunny daylight illuminates a moderately busy urban street with clean asphalt",
+          "student_scores": {
+            "safety": 3.2,
+            "vibrancy": 3.8,
+            "cleanliness": 4.3
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_6",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000035_000019_leftImg8bit.png",
+          "teacher_score": 0.88,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_1",
+            "dataset2_street_2"
+          ],
+          "critique": "Strong grounding in specifics like POLIZEI van, wet asphalt, and delivery scooter, with logical score-rationale match; minor miss on elevated safety risk from scooter crossing directly ahead in wet conditions and over-relies on police presence without noting low enforcement visibility.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, one sentence, no markdown. Need to mention lighting, crowd/traffic level, cleanliness, and notable objects.\n\nFirst, check the image: it's a city street with buildings, traffic lights (red), a motorcyclist with a delivery box, cars, some leaves on the road. Lighting seems overcast or late afternoon, maybe dim. Traffic level: moderate (a few cars, motorcyclist, cyclist in background). Cleanliness: some leaves",
+          "student_scores": {
+            "safety": 3.2,
+            "vibrancy": 3.0,
+            "cleanliness": 3.1
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_7",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000055_000019_leftImg8bit.png",
+          "teacher_score": 0.75,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_7",
+          "retrieved_ids": [
+            "dataset2_street_1",
+            "dataset2_street_5"
+          ],
+          "critique": "Hallucinated '3 pedestrians' (only 1 clearly visible, maybe 1-2 indistinct); overstated traffic risks without noting light flow and good visibility; vibrancy score too generous for near-deserted scene.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, analyze the image: it's a street with cars, pedestrians on the sidewalk. Lighting: overcast, so dim. Traffic level: moderate (a few cars). Crowd: two people walking, so low. Cleanliness: sidewalk has some leaves, maybe not super clean. Notable objects: street signs, trees, Mercedes logo on the",
+          "student_scores": {
+            "safety": 3.2,
+            "vibrancy": 2.1,
+            "cleanliness": 3.0
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_8",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000062_000019_leftImg8bit.png",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_8",
+          "retrieved_ids": [
+            "dataset2_street_1",
+            "dataset2_street_3"
+          ],
+          "critique": "Hallucinated 'red-and-white' barriers (image shows orange-and-white cones/barrels); pedestrian not clearly visible; overstated vibrancy factors like 'storefronts' (mostly residential). Grounding flawed despite details.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, one sentence, no markdown. Need to mention lighting, crowd/traffic level, cleanliness, and notable objects.\n\nFirst, check the image: overcast sky (lighting), street has a bus, some cars, construction barriers (notable objects), traffic seems moderate (not too busy), buildings on both sides. Cleanliness: the street looks clean, no visible litter. Crowd: few pedestrians, maybe one or two. Let's count words.\n\nLet",
+          "student_scores": {
+            "safety": 3.2,
+            "vibrancy": 2.7,
+            "cleanliness": 3.8
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_9",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000077_000019_leftImg8bit.png",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_9",
+          "retrieved_ids": [
+            "dataset1_mixed_4",
+            "dataset2_street_1"
+          ],
+          "critique": "Hallucinated 'distant traffic light' (none visible) and 'quiet storefronts' (residential apartments, no commercial facades); undercounted parked cars (5-6 visible); ped count slightly overstated.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: it's a street with buildings on both sides. Lighting: overcast, so maybe \"overcast sky\" or \"dim lighting\". Crowd/traffic: looks like few people, not much traffic. Cleanliness: the street seems clean, buildings are maintained. Notable objects: parked cars (like the red one),",
+          "student_scores": {
+            "safety": 2.7,
+            "vibrancy": 1.9,
+            "cleanliness": 3.4
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_10",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000113_000019_leftImg8bit.png",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_10",
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_1"
+          ],
+          "critique": "Hallucinated 'clear lane markings' absent from image; overstates pedestrian count slightly; rationale otherwise grounded but lacks nuance on narrowness and parking encroachment.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: it's a street with buildings on both sides. Lighting: looks overcast, maybe dim. Crowd/traffic: there are a few pedestrians, cars parked, so not too busy. Cleanliness: the street and sidewalks seem clean. Notable objects: parked cars, a no-parking sign, a red flag,",
+          "student_scores": {
+            "safety": 2.9,
+            "vibrancy": 2.3,
+            "cleanliness": 3.2
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_1",
+          "image_path": "H:\\微博数据 - 副本\\images\\005yZqAwgy1hzy469wev4j34eo3b04qr.jpg",
+          "teacher_score": 0.4,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_1",
+            "dataset1_mixed_4"
+          ],
+          "critique": "Hallucinates 'visible security personnel' and 'well-lit pathways' (none present); assumes litter not evident in image; weak grounding overall.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, analyze the image: it's a nighttime event, so lighting is stage lights (bright, colorful). Crowd is large, people are gathered for a live show. Traffic level—since it's a concert, probably no traffic, just pedestrians. Cleanliness—there are some items on the ground, but maybe not super clean. Notable objects",
+          "student_scores": {
+            "safety": 4.0,
+            "vibrancy": 4.8,
+            "cleanliness": 3.0
+          },
+          "student_confidence": 0.9,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_2",
+          "image_path": "H:\\微博数据 - 副本\\images\\0061E71Ggy1hzy7md27g1j316o1kwnbs.jpg",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_4",
+            "dataset1_mixed_2"
+          ],
+          "critique": "Strong grounding in visuals, logical scores, but misses nuance on exposed industrial edges and empty mezzanine as minor safety risks; vibrancy underrates person's bold outfit slightly.",
+          "query_caption": "<think>\nGot it, let's see. The user wants a 40-word max description of an urban street scene, but wait, the image is indoors? Wait, no, the problem says \"urban street scene\" but the image shows an indoor area. Wait, maybe it's a mistake, but I need to describe what's there. Let's check the elements: lighting is artificial, maybe from ceiling lights. Crowd/traffic level: only one person, so low. Cleanliness: the area looks clean, concrete floor, modern. Notable objects: the person with a purple",
+          "student_scores": {
+            "safety": 4.0,
+            "vibrancy": 2.5,
+            "cleanliness": 4.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_3",
+          "image_path": "H:\\微博数据 - 副本\\images\\0068MLPggy1h0c388kb62j32c0340hdu.jpg",
+          "teacher_score": 0.92,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_3",
+            "dataset2_street_7"
+          ],
+          "critique": "Strong grounding and logic, but vibrancy score undervalues vivid colors; safety not quite 5.0 due to absent urban context.",
+          "query_caption": "<think>\nGot it, let's see. The user wants a description of an urban street scene, but the image is of flowers. Wait, the problem says \"urban street scene\" but the image is flowers. Maybe it's a mistake, but I need to describe based on the image. Wait, the image is a flower bed, so maybe it's a street with flower beds. Let's check the requirements: lighting, crowd/traffic level, cleanliness, notable objects. The image has bright sunlight (lighting), no crowd or traffic (since it's flowers), clean (flowers are",
+          "student_scores": {
+            "safety": 4.9,
+            "vibrancy": 2.8,
+            "cleanliness": 5.0
+          },
+          "student_confidence": 0.9,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_4",
+          "image_path": "H:\\微博数据 - 副本\\images\\007bkGddgy1hf7cgl7choj32io1w04qp.jpg",
+          "teacher_score": 0.4,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_2",
+            "dataset2_street_1"
+          ],
+          "critique": "Poor grounding—ignored watermark text '©️无锡北塘街道整治行动' framing urban remediation; hallucinated urban safety risks (poor lighting, no railings) in a non-urban portrait; illogical 2.0 cleanliness score despite admitting cannot assess.",
+          "query_caption": "<think>\nGot it, let's see. The user wants a description of an urban street scene, but the image provided is a close-up of a person, not a street scene. Wait, maybe there's a mistake? But the task says to describe the urban street scene. Wait, the image might be mislabeled, but I have to work with what's given. Wait, no—the image shows a person, but the task is about an urban street scene. Hmm, maybe the user made an error, but I need to check. Wait, the problem says \"Describe this urban",
+          "student_scores": {
+            "safety": 1.5,
+            "vibrancy": 1.0,
+            "cleanliness": 2.0
+          },
+          "student_confidence": 0.7,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_5",
+          "image_path": "H:\\微博数据 - 副本\\images\\007Izbtigy1hzuq0fvynfj30wi0wik0a.jpg",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_5",
+            "dataset1_mixed_4"
+          ],
+          "critique": "Good grounding in visuals, logical scores, but missed key safety nuance: woman alone at night in dimly lit park increases isolation risk; safety score too generous.",
+          "query_caption": "<think>\nGot it, let's see. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. First, check the image: it's a nighttime scene. Lighting is from streetlights and the glowing panda ride. Crowd/traffic: there's one person, so low traffic. Cleanliness: the area looks clean, paved path. Notable objects: the glowing panda-shaped ride, cherry blossom trees. Let's structure the sentence.\n\nStart with lighting: \"Nighttime urban scene lit by soft street",
+          "student_scores": {
+            "safety": 3.5,
+            "vibrancy": 4.0,
+            "cleanliness": 4.0
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_6",
+          "image_path": "H:\\微博数据 - 副本\\images\\008rsxeGgy1hz1s2lb3udj32c0340hdw.jpg",
+          "teacher_score": 0.88,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_6",
+            "dataset2_street_1"
+          ],
+          "critique": "Strong grounding in specifics like signal timer and signage, logical scores, but vibrancy rationale underplays commercial sterility and misses zero crowd dynamism; safety slightly generous given proximate van.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: it's a crosswalk. Lighting—looks like daytime, maybe late afternoon? The green pedestrian signal is on, so it's bright. Crowd/traffic: the street seems calm, not too many people or cars. Cleanliness: the area looks tidy, trees, clean crosswalk. Notable objects: crosswalk",
+          "student_scores": {
+            "safety": 4.3,
+            "vibrancy": 3.2,
+            "cleanliness": 4.6
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_7",
+          "image_path": "H:\\微博数据 - 副本\\images\\6a223a1aly1g1q9xnl7yqj20u00u0afv.jpg",
+          "teacher_score": 0.4,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_4",
+            "dataset1_mixed_7"
+          ],
+          "critique": "Logic failure: vibrancy rationale describes 'no activity or urban energy' (low) but scores 1.0 (high). Not truly grounded in urban context—image lacks any urban elements.",
+          "query_caption": "<think>\nGot it, let's see. The user provided an image of a person in bed, but the task is to describe an urban street scene. Wait, the image given is not a street scene—it's a person in bed. But the instruction says to describe the urban street scene. Wait, maybe there's a mistake? But the user's message says \"Describe this urban street scene\" but the image is not a street scene. Hmm. Wait, maybe the user made a mistake, but I have to follow the task. Wait, no—the image provided is of a person in",
+          "student_scores": {
+            "safety": 1.0,
+            "vibrancy": 1.0,
+            "cleanliness": 1.0
+          },
+          "student_confidence": 0.95,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_8",
+          "image_path": "H:\\微博数据 - 副本\\images\\6cd0e4cfgy1hzqwlbxco8j237k2eohdu.jpg",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_8",
+            "dataset1_mixed_2"
+          ],
+          "critique": "Good grounding but hallucinates 'scattered debris' (none visible); 'overgrown grass' and 'monochromatic tones' ignore patchy natural grass, prominent yellow railings, blue sky, and distant green hills.",
+          "query_caption": "<think>\nGot it, let's see. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. First, check the image: it's an industrial area, maybe a former factory turned museum. Lighting: bright sunlight, clear blue sky. Crowd: few people, so low traffic. Cleanliness: the area looks maintained, paved, but industrial structures. Notable objects: large steel structures, yellow railings, smokestacks.\n\nNow, structure the sentence. Start with lighting: \"Sunny",
+          "student_scores": {
+            "safety": 3.0,
+            "vibrancy": 2.0,
+            "cleanliness": 3.0
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_9",
+          "image_path": "H:\\微博数据 - 副本\\images\\6f41dea2gy1hzoe8zp16gj20u0140n71.jpg",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_9",
+            "dataset1_mixed_3"
+          ],
+          "critique": "Strong grounding in visuals, logical scores, but lacks nuance: overstates safety/cleanliness by calling erosion/puddles 'negligible'—urban paths need maintenance to prevent slips/hazards.",
+          "query_caption": "<think>\nGot it, let's see. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. Wait, first, check the image. The image shows a field of yellow flowers (maybe rapeseed) with tall skyscrapers in the background. There are a few people, a big pink inflatable object. But the question says \"urban street scene\"—but the image is more like a field near skyscrapers. Wait, maybe it's a city area with a park or field. Let",
+          "student_scores": {
+            "safety": 4.7,
+            "vibrancy": 5.0,
+            "cleanliness": 4.3
+          },
+          "student_confidence": 0.8,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_10",
+          "image_path": "H:\\微博数据 - 副本\\images\\877777a9gy1h1t0vr2oq1j20u0140an2.jpg",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_10",
+            "dataset1_mixed_3"
+          ],
+          "critique": "Good grounding in specifics like roses and foliage, logical alignment. Lacks nuance on zero urban context; vibrancy score slightly generous given total absence of activity.",
+          "query_caption": "<think>\nGot it, let's see. The user wants a description of an urban street scene, but wait, the image shows a person in front of pink roses. Wait, maybe it's a garden or a park area in an urban setting? Let's check the requirements: lighting, crowd/traffic level, cleanliness, notable objects. The image has bright natural light (since it's outdoors, sunny), no crowd (only one person), clean (flowers are vibrant, no litter), notable objects are pink roses and greenery. So need to fit into 40 words max, one",
+          "student_scores": {
+            "safety": 5.0,
+            "vibrancy": 1.5,
+            "cleanliness": 5.0
+          },
+          "student_confidence": 0.9,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_1",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034560_leftImg8bit.png",
+          "teacher_score": 0.92,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_10",
+            "dataset2_street_9"
+          ],
+          "critique": "Strong grounding in specifics like 'SoVD' sign and bicycle; logic holds, but slightly overstates pedestrian-road proximity risk (wide sidewalks present) and under-nuances empty street's low vibrancy.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: it's a city street. Lighting—looks overcast, so maybe \"overcast daylight\". Crowd/traffic: there are a few pedestrians on the sidewalk, some cars on the road, so \"light traffic and sparse pedestrians\". Cleanliness: the street and sidewalks seem clean. Notable objects: parked cars, bicycles",
+          "student_scores": {
+            "safety": 3.8,
+            "vibrancy": 3.2,
+            "cleanliness": 4.1
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_2",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034935_leftImg8bit.png",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_2",
+            "dataset2_street_4"
+          ],
+          "critique": "Hallucinated 'minor stains' (none visible); denied obvious bike lane markings (white bike symbol on road); misidentified standard bus as 'tram-like'; overstated 'tight lanes' (standard widths); missed police clustering possibly signaling incident.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: it's a busy city intersection. Lighting—looks like daytime, maybe overcast? Crowd/traffic: several cars, police vehicles, a cyclist, pedestrians. So traffic is moderate to heavy. Cleanliness—streets seem clean, buildings are maintained. Notable objects: police cars (POLIZEI), a cyclist",
+          "student_scores": {
+            "safety": 3.2,
+            "vibrancy": 4.1,
+            "cleanliness": 3.8
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_3",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_037298_leftImg8bit.png",
+          "teacher_score": 0.88,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_3",
+            "dataset2_street_10"
+          ],
+          "critique": "Strong grounding in visuals, logical scores, but overstates vibrancy (low activity density), calls checkered b&w 'colorful', and speculates on 'mid-century architecture' without clear evidence.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, check the image: it's a city street. Lighting—looks overcast, so diffused light. Crowd/traffic: there are a few cars (taxis), a cyclist, some pedestrians in the distance, so moderate traffic. Cleanliness—street seems clean, buildings are maintained. Notable objects: checkered building, taxis,",
+          "student_scores": {
+            "safety": 3.2,
+            "vibrancy": 3.7,
+            "cleanliness": 3.9
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_4",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_053437_leftImg8bit.png",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_4",
+            "dataset2_street_3"
+          ],
+          "critique": "Strong grounding in specifics like Mercedes emblem, tram tracks, market tents, and traffic mix. Logic sound but safety overstated (ignores tram track slip hazards, dense cyclists in shared paths, queued vehicles); cleanliness score underrates visibly spotless surfaces despite 'pristine' claim.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: bright daylight (lighting), moderate traffic with cars and cyclists, clean streets, notable objects like trams, bicycles, historic buildings, parked cars, and a clock tower.\n\nNow, structure the sentence: Start with lighting, then traffic/crowd, cleanliness, notable objects.\n\nCheck word count. Let's draft:",
+          "student_scores": {
+            "safety": 4.2,
+            "vibrancy": 4.0,
+            "cleanliness": 3.8
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_5",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_056800_leftImg8bit.png",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_7"
+          ],
+          "critique": "Hallucinated 'Mercedes' (no logo visible), 'pedestrians' (none discernible), overstated vibrancy (zero human activity); missed orange construction cones/barriers and warning signs dinging safety.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: it's a sunny day (lighting), traffic has several cars but not heavy (traffic level), the street looks clean (cleanliness), notable objects include trees, buildings, bicycles, traffic signs.\n\nLet's structure the sentence. Start with lighting: \"Sunny daylight illuminates a moderately busy urban street with clean asphalt",
+          "student_scores": {
+            "safety": 3.6,
+            "vibrancy": 2.8,
+            "cleanliness": 4.2
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_6",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000035_000019_leftImg8bit.png",
+          "teacher_score": 0.4,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_1"
+          ],
+          "critique": "Hallucinated 'cyclist' (none visible, only motorcyclist); mislabeled motorcyclist/cyclist as 'pedestrians'; weak grounding overall.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, one sentence, no markdown. Need to mention lighting, crowd/traffic level, cleanliness, and notable objects.\n\nFirst, check the image: it's a city street with buildings, traffic lights (red), a motorcyclist with a delivery box, cars, some leaves on the road. Lighting seems overcast or late afternoon, maybe dim. Traffic level: moderate (a few cars, motorcyclist, cyclist in background). Cleanliness: some leaves",
+          "student_scores": {
+            "safety": 3.2,
+            "vibrancy": 2.8,
+            "cleanliness": 3.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_7",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000055_000019_leftImg8bit.png",
+          "teacher_score": 0.92,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_7"
+          ],
+          "critique": "Excellent grounding in specifics; minor hallucination calling 'Gewerbegebiet' an warning sign (it's informational); trees lined, not sparse.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, analyze the image: it's a street with cars, pedestrians on the sidewalk. Lighting: overcast, so dim. Traffic level: moderate (a few cars). Crowd: two people walking, so low. Cleanliness: sidewalk has some leaves, maybe not super clean. Notable objects: street signs, trees, Mercedes logo on the",
+          "student_scores": {
+            "safety": 3.2,
+            "vibrancy": 2.1,
+            "cleanliness": 3.9
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_8",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000062_000019_leftImg8bit.png",
+          "teacher_score": 0.88,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_8",
+            "dataset2_street_1"
+          ],
+          "critique": "Strong grounding in specifics like cones, wet asphalt, and pedestrian; logic holds, but underrates construction hazard impact on safety and overpenalizes rain-wet road for cleanliness.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, one sentence, no markdown. Need to mention lighting, crowd/traffic level, cleanliness, and notable objects.\n\nFirst, check the image: overcast sky (lighting), street has a bus, some cars, construction barriers (notable objects), traffic seems moderate (not too busy), buildings on both sides. Cleanliness: the street looks clean, no visible litter. Crowd: few pedestrians, maybe one or two. Let's count words.\n\nLet",
+          "student_scores": {
+            "safety": 3.2,
+            "vibrancy": 2.8,
+            "cleanliness": 3.8
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_9",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000077_000019_leftImg8bit.png",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_10"
+          ],
+          "critique": "Hallucinates 'moderate traffic flow' (street empty) and 'scattered debris' (none visible); misjudges visibility (straight open road) and underrates safety.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: it's a street with buildings on both sides. Lighting: overcast, so maybe \"overcast sky\" or \"dim lighting\". Crowd/traffic: looks like few people, not much traffic. Cleanliness: the street seems clean, buildings are maintained. Notable objects: parked cars (like the red one),",
+          "student_scores": {
+            "safety": 2.8,
+            "vibrancy": 2.1,
+            "cleanliness": 3.2
+          },
+          "student_confidence": 0.75,
+          "error": null
+        },
+        {
+          "experiment": "E2_caption_topk",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_10",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000113_000019_leftImg8bit.png",
+          "teacher_score": 0.92,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_10",
+            "dataset2_street_9"
+          ],
+          "critique": "Excellent grounding in specifics like dashboard, cars, pedestrians, and wet road; logic holds, but minor overcount (cars ~4, peds ~3-4) and missed dim lighting nuance for vibrancy/safety.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: it's a street with buildings on both sides. Lighting: looks overcast, maybe dim. Crowd/traffic: there are a few pedestrians, cars parked, so not too busy. Cleanliness: the street and sidewalks seem clean. Notable objects: parked cars, a no-parking sign, a red flag,",
+          "student_scores": {
+            "safety": 2.8,
+            "vibrancy": 2.5,
+            "cleanliness": 3.2
+          },
+          "student_confidence": 0.85,
+          "error": null
+        }
+      ]
+    },
+    {
+      "config": {
+        "experiment": "E3_caption_mmr",
+        "query_mode": "caption+text",
+        "retrieval_strategy": "mmr"
+      },
+      "vault_tier_counts_after_round1": {
+        "0": 3,
+        "1": 17
+      },
+      "summaries": [
+        {
+          "n": 10,
+          "avg_teacher_score": 0.62,
+          "pass_rate_ge_0_8": 0.1,
+          "add_rate_should_add": 0.9,
+          "critique_tags": [
+            [
+              "grounding/hallucination",
+              6
+            ],
+            [
+              "safety",
+              5
+            ],
+            [
+              "cleanliness",
+              3
+            ],
+            [
+              "vibrancy",
+              2
+            ],
+            [
+              "other",
+              1
+            ]
+          ],
+          "top_retrieved_ids": [
+            [
+              "seed_001",
+              4
+            ],
+            [
+              "seed_002",
+              3
+            ],
+            [
+              "seed_003",
+              3
+            ],
+            [
+              "dataset1_mixed_2",
+              3
+            ],
+            [
+              "dataset1_mixed_4",
+              3
+            ],
+            [
+              "dataset1_mixed_1",
+              2
+            ],
+            [
+              "dataset1_mixed_3",
+              2
+            ]
+          ],
+          "experiment": "E3_caption_mmr",
+          "query_mode": "caption+text",
+          "retrieval_strategy": "mmr",
+          "round": 1,
+          "dataset": "dataset1_mixed"
+        },
+        {
+          "n": 10,
+          "avg_teacher_score": 0.675,
+          "pass_rate_ge_0_8": 0.2,
+          "add_rate_should_add": 0.8,
+          "critique_tags": [
+            [
+              "safety",
+              7
+            ],
+            [
+              "grounding/hallucination",
+              5
+            ],
+            [
+              "vibrancy",
+              4
+            ],
+            [
+              "cleanliness",
+              2
+            ]
+          ],
+          "top_retrieved_ids": [
+            [
+              "dataset2_street_1",
+              6
+            ],
+            [
+              "seed_002",
+              5
+            ],
+            [
+              "seed_001",
+              5
+            ],
+            [
+              "dataset1_mixed_4",
+              1
+            ],
+            [
+              "dataset2_street_5",
+              1
+            ],
+            [
+              "dataset2_street_3",
+              1
+            ],
+            [
+              "dataset2_street_9",
+              1
+            ]
+          ],
+          "experiment": "E3_caption_mmr",
+          "query_mode": "caption+text",
+          "retrieval_strategy": "mmr",
+          "round": 1,
+          "dataset": "dataset2_street"
+        },
+        {
+          "n": 10,
+          "avg_teacher_score": 0.784,
+          "pass_rate_ge_0_8": 0.6,
+          "add_rate_should_add": 0.5,
+          "critique_tags": [
+            [
+              "safety",
+              5
+            ],
+            [
+              "vibrancy",
+              4
+            ],
+            [
+              "other",
+              2
+            ],
+            [
+              "grounding/hallucination",
+              1
+            ],
+            [
+              "cleanliness",
+              1
+            ],
+            [
+              "non_urban/domain_mismatch",
+              1
+            ]
+          ],
+          "top_retrieved_ids": [
+            [
+              "seed_002",
+              3
+            ],
+            [
+              "seed_001",
+              3
+            ],
+            [
+              "dataset1_mixed_1",
+              2
+            ],
+            [
+              "dataset1_mixed_3",
+              2
+            ],
+            [
+              "dataset2_street_4",
+              2
+            ],
+            [
+              "dataset2_street_3",
+              2
+            ],
+            [
+              "dataset1_mixed_2",
+              1
+            ],
+            [
+              "dataset1_mixed_5",
+              1
+            ],
+            [
+              "dataset1_mixed_6",
+              1
+            ],
+            [
+              "dataset1_mixed_7",
+              1
+            ]
+          ],
+          "experiment": "E3_caption_mmr",
+          "query_mode": "caption+text",
+          "retrieval_strategy": "mmr",
+          "round": 2,
+          "dataset": "dataset1_mixed"
+        },
+        {
+          "n": 10,
+          "avg_teacher_score": 0.744,
+          "pass_rate_ge_0_8": 0.3,
+          "add_rate_should_add": 0.7,
+          "critique_tags": [
+            [
+              "grounding/hallucination",
+              7
+            ],
+            [
+              "safety",
+              6
+            ],
+            [
+              "vibrancy",
+              4
+            ],
+            [
+              "cleanliness",
+              3
+            ],
+            [
+              "non_urban/domain_mismatch",
+              1
+            ]
+          ],
+          "top_retrieved_ids": [
+            [
+              "seed_001",
+              6
+            ],
+            [
+              "dataset2_street_4",
+              2
+            ],
+            [
+              "seed_002",
+              2
+            ],
+            [
+              "dataset2_street_5",
+              2
+            ],
+            [
+              "seed_003",
+              2
+            ],
+            [
+              "dataset2_street_9",
+              2
+            ],
+            [
+              "dataset2_street_1",
+              1
+            ],
+            [
+              "dataset2_street_3",
+              1
+            ],
+            [
+              "dataset2_street_6",
+              1
+            ],
+            [
+              "dataset2_street_8",
+              1
+            ]
+          ],
+          "experiment": "E3_caption_mmr",
+          "query_mode": "caption+text",
+          "retrieval_strategy": "mmr",
+          "round": 2,
+          "dataset": "dataset2_street"
+        }
+      ],
+      "results": [
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_1",
+          "image_path": "H:\\微博数据 - 副本\\images\\005yZqAwgy1hzy469wev4j34eo3b04qr.jpg",
+          "teacher_score": 0.5,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_1",
+          "retrieved_ids": [
+            "seed_002",
+            "seed_001"
+          ],
+          "critique": "Poor grounding: hallucinated 'high foot traffic' (crowd is seated on blankets/bean bags); generic rationale ignores organized picnics, no litter.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, analyze the image: it's a nighttime event, so lighting is stage lights (bright, colorful). Crowd is large, people are gathered for a live show. Traffic level—since it's a concert, probably no traffic, just pedestrians. Cleanliness—there are some items on the ground, but maybe not super clean. Notable objects",
+          "student_scores": {
+            "safety": 3.5,
+            "vibrancy": 4.5,
+            "cleanliness": 3.0
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_2",
+          "image_path": "H:\\微博数据 - 副本\\images\\0061E71Ggy1hzy7md27g1j316o1kwnbs.jpg",
+          "teacher_score": 0.3,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_2",
+          "retrieved_ids": [
+            "dataset1_mixed_1",
+            "seed_003"
+          ],
+          "critique": "Poor grounding: generic rationale ignores specifics like quirky furry hat, braids, leather jacket, metal railings, tiled floor, empty atrium, and door; hallucinates 'commercial area' vaguely.",
+          "query_caption": "<think>\nGot it, let's see. The user wants a 40-word max description of an urban street scene, but wait, the image is indoors? Wait, no, the problem says \"urban street scene\" but the image shows an indoor area. Wait, maybe it's a mistake, but I need to describe what's there. Let's check the elements: lighting is artificial, maybe from ceiling lights. Crowd/traffic level: only one person, so low. Cleanliness: the area looks clean, concrete floor, modern. Notable objects: the person with a purple",
+          "student_scores": {
+            "safety": 4.0,
+            "vibrancy": 2.0,
+            "cleanliness": 4.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_3",
+          "image_path": "H:\\微博数据 - 副本\\images\\0068MLPggy1h0c388kb62j32c0340hdu.jpg",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_3",
+          "retrieved_ids": [
+            "dataset1_mixed_1",
+            "dataset1_mixed_2"
+          ],
+          "critique": "Strong grounding in visuals, but safety score illogical—absence of hazards in a pristine flower bed warrants high safety, not neutral; missed nuance of low-risk passive urban green space.",
+          "query_caption": "<think>\nGot it, let's see. The user wants a description of an urban street scene, but the image is of flowers. Wait, the problem says \"urban street scene\" but the image is flowers. Maybe it's a mistake, but I need to describe based on the image. Wait, the image is a flower bed, so maybe it's a street with flower beds. Let's check the requirements: lighting, crowd/traffic level, cleanliness, notable objects. The image has bright sunlight (lighting), no crowd or traffic (since it's flowers), clean (flowers are",
+          "student_scores": {
+            "safety": 2.5,
+            "vibrancy": 4.5,
+            "cleanliness": 4.8
+          },
+          "student_confidence": 0.9,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_4",
+          "image_path": "H:\\微博数据 - 副本\\images\\007bkGddgy1hf7cgl7choj32io1w04qp.jpg",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_4",
+          "retrieved_ids": [
+            "dataset1_mixed_2",
+            "seed_002"
+          ],
+          "critique": "Weak grounding: vague 'blurry close-up of a person' ignores specifics like glasses, smile, hair, low light, and watermark; no hallucination but lacks precision.",
+          "query_caption": "<think>\nGot it, let's see. The user wants a description of an urban street scene, but the image provided is a close-up of a person, not a street scene. Wait, maybe there's a mistake? But the task says to describe the urban street scene. Wait, the image might be mislabeled, but I have to work with what's given. Wait, no—the image shows a person, but the task is about an urban street scene. Hmm, maybe the user made an error, but I need to check. Wait, the problem says \"Describe this urban",
+          "student_scores": {
+            "safety": 2.0,
+            "vibrancy": 2.0,
+            "cleanliness": 2.0
+          },
+          "student_confidence": 0.3,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_5",
+          "image_path": "H:\\微博数据 - 副本\\images\\007Izbtigy1hzuq0fvynfj30wi0wik0a.jpg",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_5",
+          "retrieved_ids": [
+            "dataset1_mixed_4",
+            "seed_001"
+          ],
+          "critique": "Good grounding on panda ride but overstated dim lighting despite bright cyan panda glow, pink tree lights, and nearby red elements; underrated safety/vibrancy, moderate cleanliness score unjustified by pristine pavement.",
+          "query_caption": "<think>\nGot it, let's see. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. First, check the image: it's a nighttime scene. Lighting is from streetlights and the glowing panda ride. Crowd/traffic: there's one person, so low traffic. Cleanliness: the area looks clean, paved path. Notable objects: the glowing panda-shaped ride, cherry blossom trees. Let's structure the sentence.\n\nStart with lighting: \"Nighttime urban scene lit by soft street",
+          "student_scores": {
+            "safety": 2.0,
+            "vibrancy": 2.5,
+            "cleanliness": 3.5
+          },
+          "student_confidence": 0.75,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_6",
+          "image_path": "H:\\微博数据 - 副本\\images\\008rsxeGgy1hz1s2lb3udj32c0340hdw.jpg",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_6",
+          "retrieved_ids": [
+            "dataset1_mixed_4",
+            "seed_001"
+          ],
+          "critique": "Rationale generic; hallucinates 'some activity' when only one pedestrian visible; vibrancy overstated for static, empty scene.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: it's a crosswalk. Lighting—looks like daytime, maybe late afternoon? The green pedestrian signal is on, so it's bright. Crowd/traffic: the street seems calm, not too many people or cars. Cleanliness: the area looks tidy, trees, clean crosswalk. Notable objects: crosswalk",
+          "student_scores": {
+            "safety": 4.5,
+            "vibrancy": 3.5,
+            "cleanliness": 4.5
+          },
+          "student_confidence": 0.9,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_7",
+          "image_path": "H:\\微博数据 - 副本\\images\\6a223a1aly1g1q9xnl7yqj20u00u0afv.jpg",
+          "teacher_score": 0.4,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_7",
+          "retrieved_ids": [
+            "dataset1_mixed_4",
+            "seed_003"
+          ],
+          "critique": "Strong visual grounding, but illogical perfect scores (1.0) directly contradict rationale admitting 'no urban context for meaningful scoring.'",
+          "query_caption": "<think>\nGot it, let's see. The user provided an image of a person in bed, but the task is to describe an urban street scene. Wait, the image given is not a street scene—it's a person in bed. But the instruction says to describe the urban street scene. Wait, maybe there's a mistake? But the user's message says \"Describe this urban street scene\" but the image is not a street scene. Hmm. Wait, maybe the user made a mistake, but I have to follow the task. Wait, no—the image provided is of a person in",
+          "student_scores": {
+            "safety": 1.0,
+            "vibrancy": 1.0,
+            "cleanliness": 1.0
+          },
+          "student_confidence": 0.8,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_8",
+          "image_path": "H:\\微博数据 - 副本\\images\\6cd0e4cfgy1hzqwlbxco8j237k2eohdu.jpg",
+          "teacher_score": 0.75,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_8",
+          "retrieved_ids": [
+            "dataset1_mixed_2",
+            "seed_003"
+          ],
+          "critique": "Strong grounding in visuals like rust, railings, fences, and grass, with logical score-rationale match. However, overlooks construction hazards (exposed heights, rust indicating decay) for safety; minor overrate on cleanliness ignores gravel/dirt patches.",
+          "query_caption": "<think>\nGot it, let's see. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. First, check the image: it's an industrial area, maybe a former factory turned museum. Lighting: bright sunlight, clear blue sky. Crowd: few people, so low traffic. Cleanliness: the area looks maintained, paved, but industrial structures. Notable objects: large steel structures, yellow railings, smokestacks.\n\nNow, structure the sentence. Start with lighting: \"Sunny",
+          "student_scores": {
+            "safety": 3.0,
+            "vibrancy": 2.0,
+            "cleanliness": 4.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_9",
+          "image_path": "H:\\微博数据 - 副本\\images\\6f41dea2gy1hzoe8zp16gj20u0140n71.jpg",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_9",
+          "retrieved_ids": [
+            "dataset1_mixed_3",
+            "seed_002"
+          ],
+          "critique": "Hallucinated 'scattered debris' (none visible); overstated natural mud/stream as cleanliness/safety failures, ignoring pristine flowers and safe paths.",
+          "query_caption": "<think>\nGot it, let's see. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. Wait, first, check the image. The image shows a field of yellow flowers (maybe rapeseed) with tall skyscrapers in the background. There are a few people, a big pink inflatable object. But the question says \"urban street scene\"—but the image is more like a field near skyscrapers. Wait, maybe it's a city area with a park or field. Let",
+          "student_scores": {
+            "safety": 3.5,
+            "vibrancy": 4.7,
+            "cleanliness": 2.8
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_10",
+          "image_path": "H:\\微博数据 - 副本\\images\\877777a9gy1h1t0vr2oq1j20u0140an2.jpg",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_3",
+            "seed_001"
+          ],
+          "critique": "Well-grounded in flowers and greenery, but rationale hallucinates 'no visible dangers' without noting thorny rose stems near person; scores illogical as safety can't be 4.8 if pristine; minimal urban elements (just trellis enclosure) unaddressed.",
+          "query_caption": "<think>\nGot it, let's see. The user wants a description of an urban street scene, but wait, the image shows a person in front of pink roses. Wait, maybe it's a garden or a park area in an urban setting? Let's check the requirements: lighting, crowd/traffic level, cleanliness, notable objects. The image has bright natural light (since it's outdoors, sunny), no crowd (only one person), clean (flowers are vibrant, no litter), notable objects are pink roses and greenery. So need to fit into 40 words max, one",
+          "student_scores": {
+            "safety": 4.8,
+            "vibrancy": 4.9,
+            "cleanliness": 5.0
+          },
+          "student_confidence": 0.95,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_1",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034560_leftImg8bit.png",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_1",
+          "retrieved_ids": [
+            "dataset1_mixed_4",
+            "seed_002"
+          ],
+          "critique": "Grounded but lacks precision: overstated 'moderate traffic/foot traffic' (actually light/sparse); understated safety ignoring low volume and markings; no mention of car POV, bike, or bin.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: it's a city street. Lighting—looks overcast, so maybe \"overcast daylight\". Crowd/traffic: there are a few pedestrians on the sidewalk, some cars on the road, so \"light traffic and sparse pedestrians\". Cleanliness: the street and sidewalks seem clean. Notable objects: parked cars, bicycles",
+          "student_scores": {
+            "safety": 3.5,
+            "vibrancy": 3.0,
+            "cleanliness": 4.0
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_2",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034935_leftImg8bit.png",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_1",
+            "seed_002"
+          ],
+          "critique": "Strong grounding in specifics like police cars, cyclist, and signals, but underrates safety (police and controls boost it); minor overstatement of 'vendors/stalls' as they are distant market umbrellas; logic sound but lacks nuance on cyclist position amid stopped traffic.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: it's a busy city intersection. Lighting—looks like daytime, maybe overcast? Crowd/traffic: several cars, police vehicles, a cyclist, pedestrians. So traffic is moderate to heavy. Cleanliness—streets seem clean, buildings are maintained. Notable objects: police cars (POLIZEI), a cyclist",
+          "student_scores": {
+            "safety": 3.5,
+            "vibrancy": 4.0,
+            "cleanliness": 4.0
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_3",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_037298_leftImg8bit.png",
+          "teacher_score": 0.6,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_3",
+          "retrieved_ids": [
+            "dataset2_street_1",
+            "seed_002"
+          ],
+          "critique": "Major logic flaw: low activity *enhances* safety, doesn't reduce it. Weak grounding on 'traffic lights' (not prominent). Overstated vibrancy from sparse elements.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, check the image: it's a city street. Lighting—looks overcast, so diffused light. Crowd/traffic: there are a few cars (taxis), a cyclist, some pedestrians in the distance, so moderate traffic. Cleanliness—street seems clean, buildings are maintained. Notable objects: checkered building, taxis,",
+          "student_scores": {
+            "safety": 3.5,
+            "vibrancy": 3.0,
+            "cleanliness": 4.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_4",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_053437_leftImg8bit.png",
+          "teacher_score": 0.6,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_4",
+          "retrieved_ids": [
+            "dataset2_street_1",
+            "seed_002"
+          ],
+          "critique": "Hallucinates pedestrians (none visible); ignores prominent tram tracks, a major safety hazard in bike lanes.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: bright daylight (lighting), moderate traffic with cars and cyclists, clean streets, notable objects like trams, bicycles, historic buildings, parked cars, and a clock tower.\n\nNow, structure the sentence: Start with lighting, then traffic/crowd, cleanliness, notable objects.\n\nCheck word count. Let's draft:",
+          "student_scores": {
+            "safety": 3.5,
+            "vibrancy": 4.5,
+            "cleanliness": 4.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_5",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_056800_leftImg8bit.png",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_5",
+          "retrieved_ids": [
+            "dataset2_street_1",
+            "seed_001"
+          ],
+          "critique": "Hallucinated 1-2 pedestrians (none visible); overlooked construction cones and signs impacting safety nuance.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: it's a sunny day (lighting), traffic has several cars but not heavy (traffic level), the street looks clean (cleanliness), notable objects include trees, buildings, bicycles, traffic signs.\n\nLet's structure the sentence. Start with lighting: \"Sunny daylight illuminates a moderately busy urban street with clean asphalt",
+          "student_scores": {
+            "safety": 3.5,
+            "vibrancy": 2.5,
+            "cleanliness": 4.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_6",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000035_000019_leftImg8bit.png",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_6",
+          "retrieved_ids": [
+            "dataset2_street_1",
+            "seed_002"
+          ],
+          "critique": "Hallucinated 'Pizzeria' sign (absent); misidentified 'dark sedan' (it's light gray); overstated vibrancy despite zero pedestrians; weak nuance on natural leaves vs. litter.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, one sentence, no markdown. Need to mention lighting, crowd/traffic level, cleanliness, and notable objects.\n\nFirst, check the image: it's a city street with buildings, traffic lights (red), a motorcyclist with a delivery box, cars, some leaves on the road. Lighting seems overcast or late afternoon, maybe dim. Traffic level: moderate (a few cars, motorcyclist, cyclist in background). Cleanliness: some leaves",
+          "student_scores": {
+            "safety": 3.5,
+            "vibrancy": 3.0,
+            "cleanliness": 2.5
+          },
+          "student_confidence": 0.75,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_7",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000055_000019_leftImg8bit.png",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_7",
+          "retrieved_ids": [
+            "dataset2_street_5",
+            "seed_001"
+          ],
+          "critique": "Minor hallucinations: only 1 clear pedestrian (not 3), car ahead is dark grey SUV (not black sedan), no visible crosswalk; underrates cleanliness (road pristine, leaves natural); overstates road wear.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, analyze the image: it's a street with cars, pedestrians on the sidewalk. Lighting: overcast, so dim. Traffic level: moderate (a few cars). Crowd: two people walking, so low. Cleanliness: sidewalk has some leaves, maybe not super clean. Notable objects: street signs, trees, Mercedes logo on the",
+          "student_scores": {
+            "safety": 4.0,
+            "vibrancy": 2.5,
+            "cleanliness": 3.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_8",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000062_000019_leftImg8bit.png",
+          "teacher_score": 0.75,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_8",
+          "retrieved_ids": [
+            "dataset2_street_3",
+            "seed_001"
+          ],
+          "critique": "Strong grounding in details, but conflates cleanliness with weather aesthetics; underrates roadwork hazards for safety; vibrancy score slightly high.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, one sentence, no markdown. Need to mention lighting, crowd/traffic level, cleanliness, and notable objects.\n\nFirst, check the image: overcast sky (lighting), street has a bus, some cars, construction barriers (notable objects), traffic seems moderate (not too busy), buildings on both sides. Cleanliness: the street looks clean, no visible litter. Crowd: few pedestrians, maybe one or two. Let's count words.\n\nLet",
+          "student_scores": {
+            "safety": 3.5,
+            "vibrancy": 2.5,
+            "cleanliness": 3.0
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_9",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000077_000019_leftImg8bit.png",
+          "teacher_score": 0.4,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_9",
+          "retrieved_ids": [
+            "dataset2_street_1",
+            "seed_001"
+          ],
+          "critique": "Hallucinated non-existent debris, graffiti, worn infrastructure, narrow street, and empty storefronts; poor grounding with invented details.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: it's a street with buildings on both sides. Lighting: overcast, so maybe \"overcast sky\" or \"dim lighting\". Crowd/traffic: looks like few people, not much traffic. Cleanliness: the street seems clean, buildings are maintained. Notable objects: parked cars (like the red one),",
+          "student_scores": {
+            "safety": 3.0,
+            "vibrancy": 2.5,
+            "cleanliness": 2.5
+          },
+          "student_confidence": 0.75,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_10",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000113_000019_leftImg8bit.png",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "seed_001"
+          ],
+          "critique": "Strong grounding and logic, but underrated safety—no visible hazards like potholes, crowds, or poor sidewalks; vibrancy slightly overstated as scene is nearly lifeless.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: it's a street with buildings on both sides. Lighting: looks overcast, maybe dim. Crowd/traffic: there are a few pedestrians, cars parked, so not too busy. Cleanliness: the street and sidewalks seem clean. Notable objects: parked cars, a no-parking sign, a red flag,",
+          "student_scores": {
+            "safety": 3.0,
+            "vibrancy": 2.5,
+            "cleanliness": 4.0
+          },
+          "student_confidence": 0.75,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_1",
+          "image_path": "H:\\微博数据 - 副本\\images\\005yZqAwgy1hzy469wev4j34eo3b04qr.jpg",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_1",
+            "seed_002"
+          ],
+          "critique": "Good grounding but hallucinates 'scattered debris'—minimal contained items only; overstated cleanliness risks; lacks nuance on orderly crowd and industrial backdrop.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, analyze the image: it's a nighttime event, so lighting is stage lights (bright, colorful). Crowd is large, people are gathered for a live show. Traffic level—since it's a concert, probably no traffic, just pedestrians. Cleanliness—there are some items on the ground, but maybe not super clean. Notable objects",
+          "student_scores": {
+            "safety": 3.5,
+            "vibrancy": 4.5,
+            "cleanliness": 3.0
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_2",
+          "image_path": "H:\\微博数据 - 副本\\images\\0061E71Ggy1hzy7md27g1j316o1kwnbs.jpg",
+          "teacher_score": 0.88,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_2",
+            "seed_002"
+          ],
+          "critique": "Strong grounding in specifics like hat, clothing, handrail, and flooring; logic holds, but misses nuance in exposed high-level steel beams potentially implying minor fall risks, and overstates vibrancy underrating total emptiness.",
+          "query_caption": "<think>\nGot it, let's see. The user wants a 40-word max description of an urban street scene, but wait, the image is indoors? Wait, no, the problem says \"urban street scene\" but the image shows an indoor area. Wait, maybe it's a mistake, but I need to describe what's there. Let's check the elements: lighting is artificial, maybe from ceiling lights. Crowd/traffic level: only one person, so low. Cleanliness: the area looks clean, concrete floor, modern. Notable objects: the person with a purple",
+          "student_scores": {
+            "safety": 4.0,
+            "vibrancy": 2.0,
+            "cleanliness": 4.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_3",
+          "image_path": "H:\\微博数据 - 副本\\images\\0068MLPggy1h0c388kb62j32c0340hdu.jpg",
+          "teacher_score": 0.88,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_3",
+            "dataset2_street_4"
+          ],
+          "critique": "Well-grounded details and logical scoring, but unnecessarily docked safety for absent paths in a static flower bed close-up with zero pedestrian context or hazards.",
+          "query_caption": "<think>\nGot it, let's see. The user wants a description of an urban street scene, but the image is of flowers. Wait, the problem says \"urban street scene\" but the image is flowers. Maybe it's a mistake, but I need to describe based on the image. Wait, the image is a flower bed, so maybe it's a street with flower beds. Let's check the requirements: lighting, crowd/traffic level, cleanliness, notable objects. The image has bright sunlight (lighting), no crowd or traffic (since it's flowers), clean (flowers are",
+          "student_scores": {
+            "safety": 4.2,
+            "vibrancy": 4.9,
+            "cleanliness": 5.0
+          },
+          "student_confidence": 0.95,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_4",
+          "image_path": "H:\\微博数据 - 副本\\images\\007bkGddgy1hf7cgl7choj32io1w04qp.jpg",
+          "teacher_score": 0.95,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_3",
+            "seed_002"
+          ],
+          "critique": "Strong grounding and logic, correctly identifies non-urban content. Minor ding: scores slightly arbitrary (why 2.0 vs. 1.0/N/A?); lacks ultra-specific details like glasses, motion blur, govt text.",
+          "query_caption": "<think>\nGot it, let's see. The user wants a description of an urban street scene, but the image provided is a close-up of a person, not a street scene. Wait, maybe there's a mistake? But the task says to describe the urban street scene. Wait, the image might be mislabeled, but I have to work with what's given. Wait, no—the image shows a person, but the task is about an urban street scene. Hmm, maybe the user made an error, but I need to check. Wait, the problem says \"Describe this urban",
+          "student_scores": {
+            "safety": 2.0,
+            "vibrancy": 2.0,
+            "cleanliness": 2.0
+          },
+          "student_confidence": 0.9,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_5",
+          "image_path": "H:\\微博数据 - 副本\\images\\007Izbtigy1hzuq0fvynfj30wi0wik0a.jpg",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_5",
+            "seed_001"
+          ],
+          "critique": "Good grounding in visuals, but overrated safety ignores nighttime isolation on dark path; vibrancy understated despite festive elements.",
+          "query_caption": "<think>\nGot it, let's see. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. First, check the image: it's a nighttime scene. Lighting is from streetlights and the glowing panda ride. Crowd/traffic: there's one person, so low traffic. Cleanliness: the area looks clean, paved path. Notable objects: the glowing panda-shaped ride, cherry blossom trees. Let's structure the sentence.\n\nStart with lighting: \"Nighttime urban scene lit by soft street",
+          "student_scores": {
+            "safety": 4.0,
+            "vibrancy": 3.0,
+            "cleanliness": 4.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_6",
+          "image_path": "H:\\微博数据 - 副本\\images\\008rsxeGgy1hz1s2lb3udj32c0340hdw.jpg",
+          "teacher_score": 0.85,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_6",
+            "dataset2_street_4"
+          ],
+          "critique": "Well-grounded in visuals but safety score (4.2) contradicts 'strong' rationale with no deduction explained; vibrancy slightly overstated for total emptiness.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: it's a crosswalk. Lighting—looks like daytime, maybe late afternoon? The green pedestrian signal is on, so it's bright. Crowd/traffic: the street seems calm, not too many people or cars. Cleanliness: the area looks tidy, trees, clean crosswalk. Notable objects: crosswalk",
+          "student_scores": {
+            "safety": 4.2,
+            "vibrancy": 2.5,
+            "cleanliness": 4.8
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_7",
+          "image_path": "H:\\微博数据 - 副本\\images\\6a223a1aly1g1q9xnl7yqj20u00u0afv.jpg",
+          "teacher_score": 0.5,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_7",
+            "dataset2_street_3"
+          ],
+          "critique": "Logic failure: rationale demands 'minimal scores' for inapplicable urban metrics but assigns maximum 1.0 values. Grounded description but self-contradictory.",
+          "query_caption": "<think>\nGot it, let's see. The user provided an image of a person in bed, but the task is to describe an urban street scene. Wait, the image given is not a street scene—it's a person in bed. But the instruction says to describe the urban street scene. Wait, maybe there's a mistake? But the user's message says \"Describe this urban street scene\" but the image is not a street scene. Hmm. Wait, maybe the user made a mistake, but I have to follow the task. Wait, no—the image provided is of a person in",
+          "student_scores": {
+            "safety": 1.0,
+            "vibrancy": 1.0,
+            "cleanliness": 1.0
+          },
+          "student_confidence": 0.95,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_8",
+          "image_path": "H:\\微博数据 - 副本\\images\\6cd0e4cfgy1hzqwlbxco8j237k2eohdu.jpg",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_8",
+            "seed_001"
+          ],
+          "critique": "Good visual grounding, but underrates safety by conflating fenced-off industrial hazards with public walkway risks; overstated minor gravel/grass as 'neglect'; vibrancy rationale ignores sparse foreground greenery.",
+          "query_caption": "<think>\nGot it, let's see. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. First, check the image: it's an industrial area, maybe a former factory turned museum. Lighting: bright sunlight, clear blue sky. Crowd: few people, so low traffic. Cleanliness: the area looks maintained, paved, but industrial structures. Notable objects: large steel structures, yellow railings, smokestacks.\n\nNow, structure the sentence. Start with lighting: \"Sunny",
+          "student_scores": {
+            "safety": 3.5,
+            "vibrancy": 2.0,
+            "cleanliness": 4.0
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_9",
+          "image_path": "H:\\微博数据 - 副本\\images\\6f41dea2gy1hzoe8zp16gj20u0140n71.jpg",
+          "teacher_score": 0.88,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_9",
+            "dataset1_mixed_1"
+          ],
+          "critique": "Strong grounding and logic, but overstated minor slip risks for safety and mislabeled stream as 'puddle'; lacks nuance on natural terrain vs. urban maintenance.",
+          "query_caption": "<think>\nGot it, let's see. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. Wait, first, check the image. The image shows a field of yellow flowers (maybe rapeseed) with tall skyscrapers in the background. There are a few people, a big pink inflatable object. But the question says \"urban street scene\"—but the image is more like a field near skyscrapers. Wait, maybe it's a city area with a park or field. Let",
+          "student_scores": {
+            "safety": 3.5,
+            "vibrancy": 4.2,
+            "cleanliness": 3.0
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_10",
+          "image_path": "H:\\微博数据 - 副本\\images\\877777a9gy1h1t0vr2oq1j20u0140an2.jpg",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_3",
+            "seed_001"
+          ],
+          "critique": "Solid grounding in flowers and greenery, but rationale is vague on urban elements like the metal trellis/arbor; lacks nuance on minor overcrowding risks in dense planting; scores logically consistent but decimals unsubstantiated.",
+          "query_caption": "<think>\nGot it, let's see. The user wants a description of an urban street scene, but wait, the image shows a person in front of pink roses. Wait, maybe it's a garden or a park area in an urban setting? Let's check the requirements: lighting, crowd/traffic level, cleanliness, notable objects. The image has bright natural light (since it's outdoors, sunny), no crowd (only one person), clean (flowers are vibrant, no litter), notable objects are pink roses and greenery. So need to fit into 40 words max, one",
+          "student_scores": {
+            "safety": 4.8,
+            "vibrancy": 4.9,
+            "cleanliness": 5.0
+          },
+          "student_confidence": 0.95,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_1",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034560_leftImg8bit.png",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_1",
+            "seed_001"
+          ],
+          "critique": "Hallucinated pedestrian count (only 2 visible, not 3-4); mislabeled light traffic as 'moderate'; overlooked car-interior view with streaky windshield slightly impairing visibility; vibrancy score inflated for deserted scene.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: it's a city street. Lighting—looks overcast, so maybe \"overcast daylight\". Crowd/traffic: there are a few pedestrians on the sidewalk, some cars on the road, so \"light traffic and sparse pedestrians\". Cleanliness: the street and sidewalks seem clean. Notable objects: parked cars, bicycles",
+          "student_scores": {
+            "safety": 4.0,
+            "vibrancy": 2.5,
+            "cleanliness": 4.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_2",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034935_leftImg8bit.png",
+          "teacher_score": 0.72,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_4",
+            "seed_002"
+          ],
+          "critique": "Good grounding but underrated safety (police presence boosts it, not risks it); overstated vibrancy (sparse pedestrians, routine traffic); minor hallucination on 'orderly flow' amid cyclist maneuver risks.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: it's a busy city intersection. Lighting—looks like daytime, maybe overcast? Crowd/traffic: several cars, police vehicles, a cyclist, pedestrians. So traffic is moderate to heavy. Cleanliness—streets seem clean, buildings are maintained. Notable objects: police cars (POLIZEI), a cyclist",
+          "student_scores": {
+            "safety": 3.2,
+            "vibrancy": 4.3,
+            "cleanliness": 4.7
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_3",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_037298_leftImg8bit.png",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_3",
+            "seed_001"
+          ],
+          "critique": "Mislabels minimal activity as 'moderate traffic'; hallucinates 'minor stains' not visible; underrates safety from empty road/low hazards.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, check the image: it's a city street. Lighting—looks overcast, so diffused light. Crowd/traffic: there are a few cars (taxis), a cyclist, some pedestrians in the distance, so moderate traffic. Cleanliness—street seems clean, buildings are maintained. Notable objects: checkered building, taxis,",
+          "student_scores": {
+            "safety": 3.5,
+            "vibrancy": 3.0,
+            "cleanliness": 3.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_4",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_053437_leftImg8bit.png",
+          "teacher_score": 0.72,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_4",
+            "seed_001"
+          ],
+          "critique": "Minor hallucinations (pedestrians crossing not prominent; no open public space); rationale overlooks tram track hazards for cyclists; scores slightly inflated.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: bright daylight (lighting), moderate traffic with cars and cyclists, clean streets, notable objects like trams, bicycles, historic buildings, parked cars, and a clock tower.\n\nNow, structure the sentence: Start with lighting, then traffic/crowd, cleanliness, notable objects.\n\nCheck word count. Let's draft:",
+          "student_scores": {
+            "safety": 3.2,
+            "vibrancy": 4.3,
+            "cleanliness": 4.7
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_5",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_056800_leftImg8bit.png",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_5",
+            "seed_001"
+          ],
+          "critique": "Strong grounding in specifics (hatchback, signs, 'Fleischer'), logical scores, but overlooks construction sign as safety risk and calls vibrancy 'moderate' despite zero pedestrians.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: it's a sunny day (lighting), traffic has several cars but not heavy (traffic level), the street looks clean (cleanliness), notable objects include trees, buildings, bicycles, traffic signs.\n\nLet's structure the sentence. Start with lighting: \"Sunny daylight illuminates a moderately busy urban street with clean asphalt",
+          "student_scores": {
+            "safety": 4.3,
+            "vibrancy": 2.5,
+            "cleanliness": 4.8
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_6",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000035_000019_leftImg8bit.png",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_6",
+            "seed_003"
+          ],
+          "critique": "Well-grounded in key details, but missed damp road (safety risk), right-side scaffolding (potential hazard), and overstated 'pedestrian activity' (none visible, only cyclist).",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, one sentence, no markdown. Need to mention lighting, crowd/traffic level, cleanliness, and notable objects.\n\nFirst, check the image: it's a city street with buildings, traffic lights (red), a motorcyclist with a delivery box, cars, some leaves on the road. Lighting seems overcast or late afternoon, maybe dim. Traffic level: moderate (a few cars, motorcyclist, cyclist in background). Cleanliness: some leaves",
+          "student_scores": {
+            "safety": 3.0,
+            "vibrancy": 3.5,
+            "cleanliness": 3.0
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_7",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000055_000019_leftImg8bit.png",
+          "teacher_score": 0.75,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_5",
+            "seed_001"
+          ],
+          "critique": "Strong grounding in specifics (cars, peds, markings, leaves), logical internally, but hallucinates 'slightly worn' road (looks pristine/wet); misses obvious wet road surface (safety risk: slippery, poor traction) and over-docks cleanliness for natural autumn leaves.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, analyze the image: it's a street with cars, pedestrians on the sidewalk. Lighting: overcast, so dim. Traffic level: moderate (a few cars). Crowd: two people walking, so low. Cleanliness: sidewalk has some leaves, maybe not super clean. Notable objects: street signs, trees, Mercedes logo on the",
+          "student_scores": {
+            "safety": 4.0,
+            "vibrancy": 2.5,
+            "cleanliness": 3.5
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_8",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000062_000019_leftImg8bit.png",
+          "teacher_score": 0.75,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_8",
+            "seed_003"
+          ],
+          "critique": "Strong grounding in specifics like bus and barriers, but hallucinates 'minor debris' not visible; logic holds but nuance misses pristine cleanliness.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, one sentence, no markdown. Need to mention lighting, crowd/traffic level, cleanliness, and notable objects.\n\nFirst, check the image: overcast sky (lighting), street has a bus, some cars, construction barriers (notable objects), traffic seems moderate (not too busy), buildings on both sides. Cleanliness: the street looks clean, no visible litter. Crowd: few pedestrians, maybe one or two. Let's count words.\n\nLet",
+          "student_scores": {
+            "safety": 3.5,
+            "vibrancy": 2.0,
+            "cleanliness": 3.0
+          },
+          "student_confidence": 0.85,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_9",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000077_000019_leftImg8bit.png",
+          "teacher_score": 0.6,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "seed_002"
+          ],
+          "critique": "Hallucinates 'faded storefronts' (mostly residential, no prominent shops), 'debris/litter' (none clearly visible), and 'limited lighting' (daytime); weak grounding despite some accurate details.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: it's a street with buildings on both sides. Lighting: overcast, so maybe \"overcast sky\" or \"dim lighting\". Crowd/traffic: looks like few people, not much traffic. Cleanliness: the street seems clean, buildings are maintained. Notable objects: parked cars (like the red one),",
+          "student_scores": {
+            "safety": 3.2,
+            "vibrancy": 2.5,
+            "cleanliness": 3.0
+          },
+          "student_confidence": 0.75,
+          "error": null
+        },
+        {
+          "experiment": "E3_caption_mmr",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_10",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000113_000019_leftImg8bit.png",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "seed_001"
+          ],
+          "critique": "Strong grounding in visible details like narrow street, parked cars, pedestrians, and overcast light; logic holds, but misses nuance in safety (bike lane marker aids cyclists/peds) and underrates cleanliness (pristine, no stains). Vibrancy accurate but could note closed shopfronts.",
+          "query_caption": "<think>\nGot it, let's break down the requirements. The task is to describe the urban street scene in 40 words max, mentioning lighting, crowd/traffic level, cleanliness, and notable objects. One sentence only, no markdown.\n\nFirst, observe the image: it's a street with buildings on both sides. Lighting: looks overcast, maybe dim. Crowd/traffic: there are a few pedestrians, cars parked, so not too busy. Cleanliness: the street and sidewalks seem clean. Notable objects: parked cars, a no-parking sign, a red flag,",
+          "student_scores": {
+            "safety": 3.0,
+            "vibrancy": 2.5,
+            "cleanliness": 4.0
+          },
+          "student_confidence": 0.75,
+          "error": null
+        }
+      ]
+    }
+  ]
+}
