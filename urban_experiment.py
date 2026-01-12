@@ -418,6 +418,16 @@ class UrbanPipeline:
 
             # 4. 动态更新 (Dynamic Update)
             if feedback.should_add_to_vault:
+                disable_update = (os.getenv("EVOSHOT_DISABLE_VAULT_UPDATE") or "").strip().lower() in {
+                    "1",
+                    "true",
+                    "yes",
+                    "on",
+                }
+                if disable_update:
+                    logger.info("Vault update disabled; skipping add.")
+                    trace["vault_added_id"] = None
+                    return trace
                 # 核心防坑：入库的是 Teacher 的修正版，不是学生版
                 caption = self.teacher.generate_caption(sample)
                 new_ex = UrbanExample(

@@ -113,7 +113,7 @@ class EvoShotEnv:
                 os.getenv("EVOSHOT_EMBED_INSTRUCTION") or "Retrieve images or text relevant to the user query."
             ),
             teacher_model=(os.getenv("EVOSHOT_TEACHER_MODEL") or teacher_model_default).strip(),
-            teacher_caption_model=(os.getenv("EVOSHOT_TEACHER_CAPTION_MODEL") or "gpt-4o-mini").strip(),
+            teacher_caption_model=(os.getenv("EVOSHOT_TEACHER_CAPTION_MODEL") or teacher_model_default).strip(),
             openai_api_key=openai_api_key,
             openrouter_api_key=openrouter_api_key,
             teacher_api_url=teacher_api_url,

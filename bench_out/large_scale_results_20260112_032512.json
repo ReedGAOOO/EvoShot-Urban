@@ -1,0 +1,2786 @@
+{
+  "summaries": [
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "n": 50,
+      "avg_teacher_score": 0.631,
+      "pass_rate_ge_0_8": 0.12,
+      "top_retrieved_ids": [
+        [
+          "seed_003",
+          50
+        ],
+        [
+          "seed_001",
+          50
+        ]
+      ],
+      "critique_tags": [
+        [
+          "vibrancy",
+          24
+        ],
+        [
+          "safety",
+          21
+        ],
+        [
+          "grounding/hallucination",
+          20
+        ],
+        [
+          "cleanliness",
+          8
+        ],
+        [
+          "non_urban/domain_mismatch",
+          8
+        ],
+        [
+          "other",
+          7
+        ]
+      ]
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "n": 50,
+      "avg_teacher_score": 0.568,
+      "pass_rate_ge_0_8": 0.08,
+      "top_retrieved_ids": [
+        [
+          "seed_003",
+          50
+        ],
+        [
+          "seed_001",
+          50
+        ]
+      ],
+      "critique_tags": [
+        [
+          "vibrancy",
+          26
+        ],
+        [
+          "safety",
+          25
+        ],
+        [
+          "grounding/hallucination",
+          23
+        ],
+        [
+          "cleanliness",
+          12
+        ],
+        [
+          "non_urban/domain_mismatch",
+          5
+        ],
+        [
+          "other",
+          2
+        ]
+      ]
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "n": 50,
+      "avg_teacher_score": 0.6164000000000001,
+      "pass_rate_ge_0_8": 0.14,
+      "top_retrieved_ids": [
+        [
+          "seed_001",
+          37
+        ],
+        [
+          "seed_003",
+          32
+        ],
+        [
+          "seed_002",
+          31
+        ]
+      ],
+      "critique_tags": [
+        [
+          "grounding/hallucination",
+          23
+        ],
+        [
+          "safety",
+          17
+        ],
+        [
+          "vibrancy",
+          17
+        ],
+        [
+          "other",
+          8
+        ],
+        [
+          "non_urban/domain_mismatch",
+          7
+        ],
+        [
+          "cleanliness",
+          7
+        ]
+      ]
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "n": 50,
+      "avg_teacher_score": 0.569,
+      "pass_rate_ge_0_8": 0.06,
+      "top_retrieved_ids": [
+        [
+          "seed_001",
+          47
+        ],
+        [
+          "seed_003",
+          27
+        ],
+        [
+          "seed_002",
+          26
+        ]
+      ],
+      "critique_tags": [
+        [
+          "grounding/hallucination",
+          30
+        ],
+        [
+          "vibrancy",
+          18
+        ],
+        [
+          "safety",
+          16
+        ],
+        [
+          "cleanliness",
+          12
+        ],
+        [
+          "non_urban/domain_mismatch",
+          9
+        ],
+        [
+          "other",
+          4
+        ]
+      ]
+    }
+  ],
+  "results": [
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\003TpcCZgy1gv2dm0709sj62c0340nph02.jpg",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Inconsistent: claims safety 'cannot be assessed' yet scores it 3.0 arbitrarily. Good grounding but underrates perfect cleanliness; vibrancy slightly overstated.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\005GvL8agy1hct2jtafylj31400u0dvh.jpg",
+      "teacher_score": 0.5,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Poor grounding—vague generics, no mention of lightsticks, ring stage, lasers, or tower; illogical safety score ignores dense crush-risk crowd; hallucinates unseen litter for low cleanliness.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\005yEiQJgy1h1d49rsg3kj32e622ox6q.jpg",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Poor grounding: generic description lacks specific details like woman's white floral-embroidered top, hand position, foreground leaves; overrates safety/vibrancy ignoring deep isolation in wild, non-urban forest.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\005z55Mogy1hx1xc60bnfj335s2dcqv6.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Overrated safety despite heavy multi-lane traffic adjacent to bus stop and zero pedestrians visible; weak vibrancy justification with no human activity; adequate grounding but misses key risks like isolation at night.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\005zGTW8gy1hz2myugvmmj33b03b0e85.jpg",
+      "teacher_score": 0.5,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Hallucinated non-existent cracks and 'partially dry' vegetation; poor grounding, overstates unkemptness.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\0061Lvm5ly1hbw78g527fj30u0140dx9.jpg",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Good grounding in visuals, but overrates vibrancy for a static private photoshoot; fails to penalize lack of urban elements like streets/crowds; safety rationale assumes public access.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\0063tsj3ly1hy0lsbj8qaj33402c04qr.jpg",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Grounded but lacks depth on natural features like reed overgrowth (minor cleanliness ding) and tree wraps (maintenance positive); safety score underrates stable infrastructure and twilight visibility.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\0064y8lIgy1hjc7y6v5zwj30kd0m8dgm.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Poor grounding: generic rationale ignores key visuals like military uniforms, visible handgun, and mahjong table; hallucinates 'cozy social event' without evidence.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\0068uwJbgy1hc2si8lwt6j30u0140tf8.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Poor grounding: vague generics ('well-lit indoor space', 'colorful decor') ignore specifics like giant pink furry '?' prop, Rabanne sign, wooden table/chairs, parquet floor. Vibrancy underrated despite bold pinks/reds. Not an 'urban scene' but commercial interior.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\0069RDwlgy1hztijpmmhhj30zu1bpaiu.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Poor grounding: ignored prominent foreground construction crane impacting safety; ungrounded speculation on 'reduced visibility' safety risks despite vibrant sunset lighting; vague on specifics like silhouetted skyline and distant mountains.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\006chYhTgy1hnsll9g2byj32d035ckjo.jpg",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Hallucinated 'moderate pedestrian activity (a few people in the distance)'—no people visible. Minor grounding issues with 'primroses' (visible as red/yellow flowers) and uneven soil (not obvious).",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\006fozayly1gn3ca3wit9j32c02c0b2a.jpg",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Good grounding in image details, but illogical: rationale admits no urban elements for scoring, yet assigns maximal 1.0 scores.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\006iiaiUgy1hdzcjjxnnuj321b2prhdv.jpg",
+      "teacher_score": 0.55,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Poor grounding: generic description ignores specific details like 'Ria Cakesis' signage, motivational banner, woman's pose/crop top, and empty sidewalk/street; assumes unverified 'well-lit' without evidence.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\006oSAtMgy1hb901zws2fj32b332s4qr.jpg",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Rationale vague; lacks specific details like 'RIA CAKES' signage, red letters, seated woman outside, or interior patrons. Assumes 'multiple people outside' (only one prominent). Overstates vibrancy for sparse evening crowd.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\0070kKdTly1gojffo814uj33341e0hdt.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Hallucinated 'lack of lighting' in a clearly sunlit daytime scene; generic rationale ignores near-total absence of urban elements like paths or structures.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\007BoIRkly1gonto08mxvj33282aoqve.jpg",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Vague grounding ('blooming trees') lacks specifics like white blossoms or willow shapes; illogical high safety score despite admitting no info on hazards; ignores absent urban elements like paths or ground for true assessment.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\007cGQLEgy1hicntq4z4vj30to13kwh5.jpg",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Poor grounding: generic 'sports facility' and 'court' with no mention of table tennis table, red China uniforms, glossy red flooring, or China Telecom banners.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\007jm6L0gy1hd3x6ts2c1j31sc2dse82.jpg",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Adequate grounding in details, but illogical to assign neutral 3.0 scores when rationale admits no urban context for assessment; lacks consistency.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\007Zzwywgy1hclj40n4ifj31w02io1ky.jpg",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Adequate grounding but neutral scores ignore assessable elements; lacks nuance in evaluating visible conditions.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\00819cJVgy1hztc6i8cb5j32c0340x6p.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Major hallucination: no person visible; overstates vibrancy and safety due to emptiness.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\008fHCOSgy1hvl1r2xkzsj34n4334x6r.jpg",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Good grounding in visuals, but logic flawed: vibrancy rationale supports 4.5 not 4.0; safety overrated—ignores tight crowd density (20+ people packed shoulder-to-shoulder on floor/stage, no visible exits/spacing); no real safety features noted.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\008freRugy1hf5jxsvipsj33402c0qv6.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Major hallucination: no people or human activity visible anywhere, undermining grounding and vibrancy rationale. Vague on specifics like prominent '安全体验馆' signage.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\008svG6Hgy1hq7t97zho7j31hc0u0ahn.jpg",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Grounded in details like table and dishes, but safety logic weak (lighting != safety); vibrancy overstated for blurred, minimal background activity; missed nuance of static food focus.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\44e3dd65ly1g25scx8ax5j22c03404qp.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Poor grounding in urban context—this is a non-urban botanical close-up, not a scene for urban metrics. Illogical safety score penalizes 'missing active measures' despite zero visible hazards; hallucinates urban applicability.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\4a2d6f97ly1hx4ey7eevcj20u014011v.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Hallucinated 'urban' context from a non-urban food photo; applied irrelevant metrics to private restaurant table, ignoring total lack of public space elements.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\559c9a5fgy1hbmbbm0f8vj20u0140dzl.jpg",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Generic rationale lacks precise details like blooming cherry blossoms, brick-paved path, trimmed grass edges, and safety lamps; vibrancy score too low given floral display despite emptiness.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\570c5c7dgy1hrukejevllj21400u0441.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Overstated vibrancy (4.0) despite only one isolated hand visible—no crowds, events, or diverse activity; lacks nuance on serene, low-energy park path.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\574e3219gy1hzpf27j7vbj21400u0wk7.jpg",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Generic descriptions fail crucial grounding; ignores distinctive curved white blobitecture, bare winter trees, distant white vehicle/camper, pristine reflections. Vibrancy underrates total emptiness; logic sound but lacks nuance on seasonal bareness.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\618b24cbgy1hde9m1r8c9j20u01hc48x.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Hallucinated unsubstantiated 'crowd density' safety issue—crowd is spaced on blankets; generic rationale ignores specifics like red-shirted picnickers, plastic drink cup, stage screen, hillside.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6942a2ccgy1h47mdrpsl4j213y0tyqcv.jpg",
+      "teacher_score": 0.85,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Good grounding in windows/lighting/people, logic holds, but lacks nuance on heavy crowding (safety risk) and masks (health context); cleanliness overstated as tables show food trays/cups.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6a49d279gy1h2m5imzux4j22c03404qr.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Adequate grounding but illogical scores—arbitrarily moderate despite admitting no urban context; missed pristine car interior and no visible issues.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6b7bb65bgy1gyl63r1fo6j21400u0q9s.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Strong grounding in visuals like model building and resting student, but hallucinates 'supervised' environment—no adult visible; overlooks safety risks from small parts, bags, and tools; vibrancy understated despite widespread engagement.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6bcca1cagy1hp1zn92nj6j20u014018l.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Good grounding in visuals but overrates safety ignoring unguarded water edge and slip-prone foliage; underrates vibrancy's lifelessness; logic sound but lacks urban nuance.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6d2216ccly1hcsbpfhrzij21pq31rqv5.jpg",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Hallucinates 'likely audience' not visible anywhere; weak grounding beyond generic performer/mic; ignores stage clutter like barrels.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6d370107ly1gg0b122zftj23402c0b2a.jpg",
+      "teacher_score": 0.85,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Grounded but lacks precise visual details like stone stele inscription, brass door rings, pebble ground, and flanking plants; vibrancy 'cultural energy' is inferred, not visual.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6f8a0240ly1ftbu12c8gxj20fa0a6753.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Adequate grounding but misses key details like roof collapse, barred windows, and rocky terrain; conflates disrepair with cleanliness; low nuance on structural hazards.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\70cedaa6gy1h7vew3qbfbj22c0340kjn.jpg",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Insufficient specific details (e.g., rose petals, champagne flutes, herb sprigs, glass enclosure); vibrancy overstated for solitary, non-urban intimate dining lacking street activity; assumes urban applicability.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\737411d1gy1hjiaolv11aj22c03404qu.jpg",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Poor grounding: hallucinates 'children playing' (they're static/posing at tree base); misses obvious blue shoe litter under tree; overstates vibrancy/social interaction in sparse scene.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\74406798ly1gn7be7oy75j21u32g4b2a.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Adequate grounding but vague ('person', no labels/floor/dress details); logic holds but ignores pristine cleanliness; lacks nuance on high cleanliness and zero urban elements.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\78f76a5fgy1hcmwp5mpmnj20u0140tja.jpg",
+      "teacher_score": 1.0,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Perfectly grounded; correctly rejects non-urban image with logical low scores.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\7a8d5161ly1g8jw008ax5j27zw2ssx6w.jpg",
+      "teacher_score": 0.85,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Strong grounding in specifics like lake, greenery, pavilion, high-rises, and no people; logic holds, but safety/cleanliness scores conservatively low despite pristine visuals—no hazards, litter, or disorder evident.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\7f546c6fgy1h48wzjgos4j23402c0nph.jpg",
+      "teacher_score": 0.2,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Severe hallucination: treats food table as 'urban scene' with inferred social vibrancy despite zero people, streets, buildings, or activity; vague rationale ignores specific details like uni, sushi, pottery; safety irrelevant to urban metrics.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\87e5e02egy1hzz2l2p95kj20ri0ritwq.jpg",
+      "teacher_score": 0.85,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Solid grounding in arches, grass, and event setup, but overstated vibrancy and activity—scene is sparsely peopled and pre-event empty; generic rationale misses signage details like 'Run Shanghai' and pink/white stripes.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\9f80618dly1gp0yncrgkyj22c02c0kjl.jpg",
+      "teacher_score": 0.95,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Excellent grounding in specific details (dish, meat strips, plate); logical neutral scores for irrelevance; no urban issues missed, but neutral slightly soft vs. minimal for total absence.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\a191d3d4gy1gsi45sfdvkj21es1w0b29.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Not an urban scene—staged indoor restaurant photo with no streets, crowds, or public space. Overstated vibrancy (static pose, one person); lacks urban grounding.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\aea30242gy1hz2xyfq1uxj24eo3b0u11.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Weak grounding: generic mentions of 'hot pot' and 'dishes' without specifics like electric burner, skewers, red broth, or partial arm; hallucinates 'people present' (only one arm visible); misses nuance in cleanliness from visible sauce stains and remnants.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\b0c935e0gy1gpq5t598dnj22c0340qo3.jpg",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Good grounding in artifact details, but logic flawed: claims safety 'cannot be assessed' yet assigns 5.0; ignores urban irrelevance by scoring as if applicable.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\b52ca091gy1h41uba5tixj22c0340e82.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Rationale generic; lacks specific details like school-uniformed kids touching interactive screens, framed architecture photos, or background adult's passive stance—not true 'supervision.' Vibrancy understated for engaged children.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\c42ded49gy1hzqt5ya27qj22c0340npd.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Hallucinates 'person on a scooter' (actually pushing/walking it); generic rationale lacks precise details like road barriers, bare trees, empty downhill path; vibrancy score inflated for sparse activity.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\d7be47ffly1gky53uv9gdj230j29f7wo.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Overrates vibrancy by counting a parked scooter as 'human presence'; ignores narrow alley's potential confinement and sparse actual activity (only 2-3 distant figures). Rationale generic on lighting/safety without specifics like bright daylight or pavement condition.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_000712_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Hallucinates 'cracks and minor debris' not evident; vague on traffic; misses pristine street condition and total lifelessness.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_005970_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Poor grounding: inaccurately claims 'people walking' (they're standing at curb); generic rationale ignores specifics like red light, cyclists in car lane, wet pavement; overrates safety in mixed traffic.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_006922_leftImg8bit.png",
+      "teacher_score": 0.85,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Solid grounding in key details like markings, lights, and pedestrians, with logical scores. However, overlooked prominent trees, manicured grass verges, and total absence of vehicles, understating vibrancy's lowness and cleanliness's perfection.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_013094_leftImg8bit.png",
+      "teacher_score": 0.5,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Weak grounding—vague generics like 'cars and bicycles' without specifics (e.g., no pedestrians, organized bike racks, tree-lined avenue); illogical vibrancy score ignores pedestrian absence; misses high safety from wide lanes/orderly flow.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_016558_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Partial grounding with vague 'moderate traffic/litter'; misses puddles, narrow constricted roadway, and construction hazards; overrates safety despite barriers narrowing path amid vehicles.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_023276_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Strong grounding in some details but missed prominent road puddles (with soap bubble Mercedes logo), a key visual impacting safety (slip risk) and cleanliness (standing water); vibrancy rationale overlooks sparse, subdued activity.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_027007_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Hallucinated 'pedestrian signals' (none clearly visible); underplayed severe parking encroachment on visibility; vibrancy overstated for near-empty street.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_027282_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Overstated 'moderate' vibrancy—only 5-6 sparse pedestrians visible, not moderate. 'Minor stains' hallucinated; sidewalks show even wear/shadows, no distinct stains. Lacks precise counts/details for grounding.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_028202_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Poor grounding: vague generics like 'storefronts' and 'pedestrians' without specifics (e.g., Kölle supermarket, 7 pedestrians, chained bikes, wet pavement). Overrates vibrancy.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_032351_leftImg8bit.png",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Hallucinated 'pedestrian activity'—zero people visible. Fails grounding crucially.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034720_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Hallucinated 'moderate pedestrian activity'—no people visible anywhere. Weak grounding on vibrancy.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_036051_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Fair grounding with specifics like family and closed shops, but hallucinates 'lacks strong lighting' in bright daylight; logic holds but nuance misses low traffic boosting safety and spotless cleanliness.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_037039_leftImg8bit.png",
+      "teacher_score": 0.5,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Hallucinated 'visible pedestrians' absent from image; vague on specifics like tram tracks, cones, and car queue; ignores construction hazards lowering safety.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_037516_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Inconsistent lighting description (well-lit yet 'slightly dim'); hallucinates dimness not visible in bright daylight image; misses key hazards like construction scaffolding and wet/slippery pavement; vibrancy score low despite clear pedestrian/cyclist activity but lacks justification.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_039021_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Poor grounding: missed prominent bike wheel debris (safety/cleanliness hazard), mislocated litter to sidewalk (it's on crosswalk), ignored overcast gray lighting reducing visibility; rationale generic, not image-specific.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_041232_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Overstated vibrancy and 'commercial signage' (buildings are residential apartments); sparse activity (only 2 pedestrians) not moderate; safety underrated despite zero hazards.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_041610_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Hallucinated 'minor litter' (none visible); vague on specifics like deserted street, chain-link fence weeds, single pedestrian; overrated vibrancy/safety.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_042770_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Poor grounding: generic claims like 'several people walking' ignore actual low count (2-3 pedestrians); overrates vibrancy on sparse parked vehicles; ignores vehicle POV and motorcycles/bikes cluttering curb.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_044344_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Overstated 'moderate' pedestrian activity (only one person visible); vibrancy inflated despite deserted street; downplayed construction hazards/debris impacting safety/cleanliness.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_044622_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Hallucinated 'pedestrians visible' (none present); overstated vibrancy as 'moderate activity' (only one cyclist); graffiti barely discernible, not a notable cleanliness ding.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_045004_leftImg8bit.png",
+      "teacher_score": 0.5,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Poor grounding: generic terms like 'storefronts' and 'people/vehicles' ignore specifics like single pedestrian with dog, lone cyclist, parked bikes, bakery sign, and sparse traffic; crucial criterion failed.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_049005_leftImg8bit.png",
+      "teacher_score": 0.8,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Good grounding in lane markings, buildings, and pedestrians, but overstated 'moderate traffic/pedestrian activity'—scene is sparse and quiet; vibrancy score too high.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_052729_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Overstated 'moderate pedestrian activity'—only 2-3 sparse pedestrians and one cyclist visible; ignored tram tracks as safety risk; vibrancy score too high for quiet scene.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_052887_leftImg8bit.png",
+      "teacher_score": 0.5,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Poor grounding: generic description ignores specifics like tram tracks, cyclists, parked vans, dashcam reflection, and sparse activity; overstates 'busy' and vibrancy.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_053437_leftImg8bit.png",
+      "teacher_score": 0.5,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Poor grounding: hallucinates 'pedestrians' (none prominent) and illogical cleanliness deduction for parked vehicles/bikes. Overrates safety in chaotic multi-modal intersection with trams, close bike-car proximity.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000002_000019_leftImg8bit.png",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Severe hallucinations: no litter, no pedestrians, no overgrowth; invented details undermine all grounding.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000008_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Poor grounding: hallucinated graffiti (none visible); overstated 'moderate' activity (only one motorcyclist, distant figures); missed low vibrancy and high cleanliness.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000009_000019_leftImg8bit.png",
+      "teacher_score": 0.5,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Hallucinated 'litter'; visible elements are autumn leaves, not trash. Weak grounding on safety (no real hazards).",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000023_000019_leftImg8bit.png",
+      "teacher_score": 0.85,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Well-grounded in key visuals like cobblestones, car, and people, with logical score-rationale match, but vibrancy overstated (only 4-5 sparse pedestrians, quiet shops); missed pristine cleanliness and high safety from absent traffic.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000027_000019_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Hallucinated 'person walking on sidewalk'—no pedestrian visible. Overstated vibrancy based on fiction; weak grounding.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000030_000019_leftImg8bit.png",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Major hallucination: no pedestrians visible; vague 'wear on road' ungrounded; ignores empty sidewalks and static scene.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000031_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Hallucinates 'minor litter' not visible; confuses natural autumn leaves with trash; weak grounding on safety dings from weather/lighting.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000039_000019_leftImg8bit.png",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Good grounding in basics (cobblestones, vehicles, person, leaves), but logic flawed: 'limited lighting' contradicts 'overcast but not dark, moderate visibility'; ignores open van rear doors as hazard and zero traffic boosting safety. Vibrancy score too high for deserted scene. Missed nuance in clean but gritty cobblestones.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000053_000019_leftImg8bit.png",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Adequate grounding but lacks nuance on low pedestrian absence dragging vibrancy lower; safety underrated despite bike infrastructure and light traffic; generic phrasing.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000059_000019_leftImg8bit.png",
+      "teacher_score": 0.85,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Good grounding in visible details like bike lane and markings, but safety score too conservative given light traffic density and infrastructure; vibrancy underrates sterile emptiness.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000066_000019_leftImg8bit.png",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Major hallucination: no pedestrians visible anywhere; fails grounding criterion entirely.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000075_000019_leftImg8bit.png",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Hallucinated non-existent pedestrians and litter; zero grounding in visible details like empty sidewalks and deserted street.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000079_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Poor grounding: ignores key details like abandoned bicycle wheel (debris), construction crane (hazard), extreme emptiness, narrow street, and overcast gloom. Scores illogical given visible litter and low activity.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000082_000019_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Adequate grounding but illogical: vibrancy inflated despite admitting low energy; underrated safety from empty road, missed sparse activity nuance.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000100_000019_leftImg8bit.png",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Overstated 'moderate pedestrian activity' (only 1-2 visible people); vibrancy score too high for near-empty street; understated litter prominence.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000102_000019_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Vague rationale lacks specific details like narrow alley, overcast gloom, wet-looking asphalt, and total isolation; overrates safety despite deserted, dimly lit vibe.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000120_000019_leftImg8bit.png",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Major hallucination of 'visible litter' (none present); vague on specifics like autumn trees, low traffic, dashboard view; illogical low cleanliness score.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000125_000019_leftImg8bit.png",
+      "teacher_score": 0.5,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Weak grounding with vague generics; illogical safety claim (dim lighting harms visibility/safety); misses isolation risks, road wear.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000127_000019_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Poor grounding: generic terms like 'moderate traffic' ignore specifics (4 stopped cars at red light, 6-7 pedestrians, wet pavement, distant crane); misses wet road slip risk for safety/cleanliness nuance.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000137_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Major hallucination: no pedestrians visible anywhere; claims 'a few pedestrians' despite empty street. Weak grounding overall.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000143_000019_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Rationale generic and vague; fails to cite specifics like wet reflective asphalt, overhanging trees obscuring views, single distant pedestrian, empty bike rack, or two visible cars—crucial for grounding.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000152_000019_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Poor grounding: claimed 'no clear lighting or safety features' despite prominent streetlight pole and road lane markings; conflated unkempt vegetation (maintenance) with cleanliness; logic sound but undermined by misses.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000161_000019_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Adequate grounding but lacks nuance: overestimated vibrancy (sparse activity), underestimated safety (empty wide street, no threats); generic phrasing.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000167_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Major hallucination: no pedestrians visible. Vague rationale ignores cobblestones, darkness, and total emptiness; scores illogical for deserted night street.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000173_000019_leftImg8bit.png",
+      "teacher_score": 0.5,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Poor grounding: ignored prominent orange construction barriers (safety hazard), overstated 'well-lit' daylight (overcast/gray), lowballed low vibrancy (only 2 pedestrians, empty street), minor leaf mention but missed wet puddles/dirt.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\003TpcCZgy1gv2dm0709sj62c0340nph02.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_002"
+      ],
+      "critique": "Poor grounding: assumes 'retail setting' and urban context despite zero streets, people, or public spaces; arbitrary safety score ignores non-urban nature.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\005GvL8agy1hct2jtafylj31400u0dvh.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_002",
+        "seed_001"
+      ],
+      "critique": "Poor grounding: vague generics like 'vibrant lighting' ignore specifics like pink light sticks, central blue tower, laser sweeps; hedges on cleanliness without noting invisible ground.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\005yEiQJgy1h1d49rsg3kj32e622ox6q.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Poor grounding: generic description ignores specific details like woman's embroidered blouse, pose, and foreground leaves; self-contradictory ('person' present but 'no human activity'); logic flawed as person adds minimal vibrancy.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\005z55Mogy1hx1xc60bnfj335s2dcqv6.jpg",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_002",
+        "seed_001"
+      ],
+      "critique": "Hallucinated 'moderate foot traffic'—zero pedestrians visible. Misidentified transit signage as 'public safety messaging.' Rationale otherwise grounded but lacks nuance on desolation.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\005zGTW8gy1hz2myugvmmj33b03b0e85.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Hallucinated 'visible cracks' and 'small fixture' absent from image; mischaracterized healthy hedge as 'unkempt'; weak grounding undermines all criteria.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\0061Lvm5ly1hbw78g527fj30u0140dx9.jpg",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Good grounding in visuals, but overstated vibrancy/safety by ignoring isolation (only two subjects, no crowds/activity) and lack of urban elements like paths/buildings; vibrancy too high for empty staged scene.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\0063tsj3ly1hy0lsbj8qaj33402c04qr.jpg",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Poor grounding: hallucinated 'no artificial lights' despite multiple visible lamps on right bank; overstated dry reeds as minor while ignoring pristine plant guards.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\0064y8lIgy1hjc7y6v5zwj30kd0m8dgm.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Poor grounding: ignored striking military uniforms, props, and costumed figures central to scene; vague on table's ornate yellow tiles; overemphasized 'dim' lighting subjectively.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\0068uwJbgy1hc2si8lwt6j30u0140tf8.jpg",
+      "teacher_score": 0.72,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Lacks crucial specific details like furry question mark sculpture, 'R' branding, table/chair/pouf; generic descriptions weaken grounding.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\0069RDwlgy1hztijpmmhhj30zu1bpaiu.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Poor grounding: hallucinates 'clear sky' (hazy/cloudy), assumes unseen ground litter/activity; ignores crane/construction hazard and atmospheric haze.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\006chYhTgy1hnsll9g2byj32d035ckjo.jpg",
+      "teacher_score": 0.85,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Strong grounding and logic, but safety underrated (empty street boosts safety); vibrancy overlooks bare trees dulling scene; cleanliness perfect, not just high.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\006fozayly1gn3ca3wit9j32c02c0b2a.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Adequate grounding in 'bowl of cherries' but fatally illogical: rationale admits no urban context yet assigns arbitrary, mismatched scores.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\006iiaiUgy1hdzcjjxnnuj321b2prhdv.jpg",
+      "teacher_score": 0.75,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Adequate grounding but minor hallucination on store name ('Cakesis' vs 'Cakesesis'); safety rationale speculative without evidence of lighting/time; vibrancy overstated for deserted sidewalk.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\006oSAtMgy1hb901zws2fj32b332s4qr.jpg",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Rationale is generic; fails to cite specific details like 'RIA CAKES' signage, red sidewalk letters, single outdoor patron in grey dress/black stockings/fluffy slippers, 4-5 patrons inside, pristine sidewalk, evening lighting from shop lamps/post.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\0070kKdTly1gojffo814uj33341e0hdt.jpg",
+      "teacher_score": 0.85,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Strong grounding in key details (grass, flowers, basket, no activity/litter). Logic consistent, but hedges perfection with 4.5s instead of 5.0s; ignores non-urban nature of scene.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\007BoIRkly1gonto08mxvj33282aoqve.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Poor grounding: vague 'blooming trees' and 'open space' ignores dense white-blossom canopy and no visible ground/paths; inconsistent 'vibrant' label with low vibrancy score; assumes safety/liveliness without urban context.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\007cGQLEgy1hicntq4z4vj30to13kwh5.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_002"
+      ],
+      "critique": "Poor grounding: generic 'sports venue' with no mention of table tennis table, players in red uniforms, red flooring, or China Telecom banners. Hallucinates 'controlled lighting' and 'crowd interaction' absent from image.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\007jm6L0gy1hd3x6ts2c1j31sc2dse82.jpg",
+      "teacher_score": 0.95,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Excellent grounding in specifics (mask, glasses, shirt, indoor). Logical neutral scores match unassessable urban context. No missed issues, as none exist.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\007Zzwywgy1hclj40n4ifj31w02io1ky.jpg",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Weak grounding: mentions lion and diorama but ignores specific details like savanna backdrop, acacia trees, grassy plain, and rocky pedestal. Scores illogical for urban analysis—high safety/cleanliness despite zero urban context; should reflect inapplicability.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\00819cJVgy1hztc6i8cb5j32c0340x6p.jpg",
+      "teacher_score": 0.8,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Strong grounding and logic, but missed nuance of dry/brownish grass, bare trees signaling off-season neglect, understating vibrancy/cleanliness downgrade; safety overlooks nighttime isolation.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\008fHCOSgy1hvl1r2xkzsj34n4334x6r.jpg",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_002",
+        "seed_001"
+      ],
+      "critique": "Adequate grounding but generic; misses nuance of static/ uniform poses undermining vibrancy, banner's patriotic Chinese text, and non-urban indoor context.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\008freRugy1hf5jxsvipsj33402c0qv6.jpg",
+      "teacher_score": 0.5,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_002",
+        "seed_001"
+      ],
+      "critique": "Hallucinated 'moderate foot traffic'—image shows zero people; misidentified as 'food market' without grounding in signage; weak nuance on emptiness reducing vibrancy.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\008svG6Hgy1hq7t97zho7j31hc0u0ahn.jpg",
+      "teacher_score": 0.5,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_002",
+        "seed_003"
+      ],
+      "critique": "Hallucinated 'restaurant environment' and moderate vibrancy in non-urban indoor table close-up; ignored absence of public urban elements like streets or pedestrians. Scores illogical for urban planning.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\44e3dd65ly1g25scx8ax5j22c03404qp.jpg",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Generic description lacks specifics like maple leaves/samaras; safety score illogical vs 'low risk'; misses urban overgrowth safety nuance.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\4a2d6f97ly1hx4ey7eevcj20u014011v.jpg",
+      "teacher_score": 0.85,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Excellent grounding in specifics like sashimi and ice, logical rationale, but underrates safety in hazard-free setting and mildly hallucinates 'urban' applicability despite noting irrelevance.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\559c9a5fgy1hbmbbm0f8vj20u0140dzl.jpg",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Adequate grounding but underrates safety by dismissing visible street lamps and speculating irrelevantly on nighttime/ security personnel absent in daytime image; vibrancy logic sound but lacks nuance on floral vibrancy.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\570c5c7dgy1hrukejevllj21400u0441.jpg",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Weak grounding: hallucinates 'presence of a person' when only a disembodied hand is visible; rationale generic, lacks specifics like glass pavilion or manicured grasses.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\574e3219gy1hzpf27j7vbj21400u0wk7.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Major hallucination: no people or human activity visible anywhere; rationale ungrounded and illogical for vibrancy.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\618b24cbgy1hde9m1r8c9j20u01hc48x.jpg",
+      "teacher_score": 0.55,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Poor grounding: generic 'crowd on grass/stage' ignores specifics like red uniforms, picnic blankets/chairs, and held drink; hallucinates unseen 'crowded pathways' and 'scattered litter'; logic sound but unnuanced.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6942a2ccgy1h47mdrpsl4j213y0tyqcv.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_002",
+        "seed_001"
+      ],
+      "critique": "Hallucinates 'organized seating' (image shows chaotic standing queue, no seating visible); vague on specifics like Pokémon promo, tight crowd density; safety score too optimistic despite obvious overcrowding risks.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6a49d279gy1h2m5imzux4j22c03404qr.jpg",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Good grounding in visible details, but logic flawed: inflated safety on car gadgets irrelevant to urban street safety; vibrancy/cleanliness scores illogical given zero activity/litter but conservative marks; missed red dash warning as potential safety ding.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6b7bb65bgy1gyl63r1fo6j21400u0q9s.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_002"
+      ],
+      "critique": "Poor nuance: overstated tidy desks/minimal clutter despite visible boxes, bags, scattered parts; ignored small-parts hazards and sleeping child.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6bcca1cagy1hp1zn92nj6j20u014018l.jpg",
+      "teacher_score": 0.85,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Good grounding in flowers, foliage, water; logic holds, but vibrancy too generous for zero activity, safety ignores isolation/water edge risks, no urban context noted.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6d2216ccly1hcsbpfhrzij21pq31rqv5.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Poor grounding—vague generics like 'performer on stage' ignore specifics (stylish attire, red mic, black barriers, cylindrical bins); safety logic flawed (visibility ≠ safety); misses bins for cleanliness nuance.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6d370107ly1gg0b122zftj23402c0b2a.jpg",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Generic rationale lacks crucial specific details like stone archway, brass knockers, stele inscriptions, pebble ground, and flanking plants; vibrancy score too high for deserted scene.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6f8a0240ly1ftbu12c8gxj20fa0a6753.jpg",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_002"
+      ],
+      "critique": "Incomplete grounding: omitted roof damage, broken chimney, barred windows, and hillside instability; 'peeling paint' hallucinates—it's flaking plaster; logic sound but lacks nuance on structural risks.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\70cedaa6gy1h7vew3qbfbj22c0340kjn.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_002",
+        "seed_003"
+      ],
+      "critique": "Hallucinates 'foot traffic or public activity' in a private indoor restaurant booth; misapplies urban public space metrics to intimate dining setup.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\737411d1gy1hjiaolv11aj22c03404qu.jpg",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Fair grounding but missed abandoned blue shoe (visible litter), overstated vibrancy for sparse crowd of 4 people, generic 'playing' lacks precision.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\74406798ly1gn7be7oy75j21u32g4b2a.jpg",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_002"
+      ],
+      "critique": "Grounded but lacks precise details (e.g., '灯光' lighting cases, glossy floor); vibrancy overstated for zero activity; applies urban metrics too generously to non-urban backstage.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\78f76a5fgy1hcmwp5mpmnj20u0140tja.jpg",
+      "teacher_score": 1.0,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Perfect grounding in visible details (cake, branding, packaging); logical neutral scores match total lack of urban context; no hallucinations or missed non-issues.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\7a8d5161ly1g8jw008ax5j27zw2ssx6w.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Poor grounding: omitted pavilion, docks with netting, autumn foliage, and distant high-rises; treated as purely natural, ignoring urban context.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\7f546c6fgy1h48wzjgos4j23402c0nph.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_002",
+        "seed_003"
+      ],
+      "critique": "Poor grounding: vague 'dishes/tableware' ignores specifics like sea urchins, sushi, eggs; hallucinates 'indoor' (clearly outdoor table); misapplies urban metrics to non-urban food photo.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\87e5e02egy1hzz2l2p95kj20ri0ritwq.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Hallucinates 'human presence', 'number of participants', and active event; no people or crowds visible. Weak grounding, illogical safety score.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\9f80618dly1gp0yncrgkyj22c02c0kjl.jpg",
+      "teacher_score": 0.5,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_002",
+        "seed_003"
+      ],
+      "critique": "Illogical scores contradict rationale (perfect 1.0 despite 'not applicable'); insufficient specific visual details (e.g., translucent pink strips, chili flakes, sauce drips).",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\a191d3d4gy1gsi45sfdvkj21es1w0b29.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_002",
+        "seed_003"
+      ],
+      "critique": "Poor logic linking 'limited activity' to moderate safety (emptiness boosts safety); vague grounding lacks key specifics like solo woman, skylight, exact foods; misses high safety nuance.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\aea30242gy1hz2xyfq1uxj24eo3b0u11.jpg",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_002",
+        "seed_003"
+      ],
+      "critique": "Mentions 'active dining atmosphere' hallucination—image shows only partial hands, no lively crowd; underplays mess with drips/spills; grounding decent but not precise.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\b0c935e0gy1gpq5t598dnj22c0340qo3.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_002"
+      ],
+      "critique": "Strong grounding but fatal logic flaw: perfect scores contradict 'not applicable' rationale. Hallucinates urban relevance by scoring at all.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\b52ca091gy1h41uba5tixj22c0340e82.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Weak grounding: generic terms like 'displays' and 'activity' ignore specifics like school-uniformed kids touching screens, framed landscapes, supervising adult, and tiled floors.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\c42ded49gy1hzqt5ya27qj22c0340npd.jpg",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Hallucinated 'riding scooter'—man is stationary, pushing it downhill. Weak grounding; overstated vibrancy for near-empty scene; missed low urban density.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\d7be47ffly1gky53uv9gdj230j29f7wo.jpg",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_002"
+      ],
+      "critique": "Hallucinated 'no people visible' despite clear pedestrian figure; ignored graffiti tags detracting from cleanliness; partial grounding but misses key visuals.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_000712_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Hallucinates 'potential pedestrians' (none visible); overrates vibrancy with zero human activity; vague on car density and wet road wear.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_005970_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Superficial grounding: generic terms like 'busy' and 'urban wear' without citing puddle, cyclists' positions, or wet road—key visuals missed. Logic holds but lacks nuance on slip hazards.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_006922_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Underrated safety by emphasizing distant pedestrians over empty road, green lights, and clear sightlines; lacks nuance on pristine conditions.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_013094_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Major hallucination: 'visible pedestrians' absent from image. Weak grounding overall; rationale unmoored from actual visuals.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_016558_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Major hallucination: no workers visible. Safety wrongly rated 'moderately high'—construction zone with narrow lane, barriers, vehicles, and puddle screams hazards. Vague, ungrounded litter claim; misses low vibrancy from empty scene.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_023276_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Hallucinated 'limited lighting' in bright daytime scene and 'minor graffiti' not visible anywhere. Fails grounding and nuance; rationale unmoored from image.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_027007_leftImg8bit.png",
+      "teacher_score": 0.5,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Hallucinates 'scattered objects' and 'minor littering' absent from image; vague on specifics like crosswalk use, trees, low traffic; illogical cleanliness score.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_027282_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Vague grounding with generic terms like 'moderate pedestrian activity' and 'some litter'; fails to cite specifics like sparse ~5 pedestrians, empty cafe seating, bollards, or exact debris spots. Overrates vibrancy and safety nuance.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_028202_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Poor grounding: vague generics ('storefronts', 'greenery') ignore specifics like green shops, parked bikes, prominent wet puddles on road, and Mercedes manhole; misses wet road's impact on safety/cleanliness nuance.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_032351_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Poor grounding: exaggerates 'moderate traffic' (only one distant car, parked bikes only); vibrancy score illogical for empty quiet street; misses low pedestrian activity.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034720_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Major hallucination: no pedestrians visible anywhere. Fails grounding criterion. Underrates cleanliness; overstates vibrancy slightly.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_036051_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Overstated 'moderate' pedestrian activity (only one family visible); irrelevant lighting mention in clear daytime; underestimated high cleanliness, no litter/graffiti.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_037039_leftImg8bit.png",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_002"
+      ],
+      "critique": "Major hallucination: no pedestrians visible anywhere. Fails grounding by inventing 'active pedestrian presence' and storefronts; misreads construction barriers as safety boosters rather than hazards.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_037516_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Poor grounding: vague generics like 'busy intersection' and 'minor litter/wear' without mentioning wet puddles, scaffolding, Hannover signage, or exact pedestrian count; hallucinates unsubstantiated issues.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_039021_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Partial grounding but inaccurate (bag on crosswalk, not sidewalk; no prominent storefronts or 'urban grime'); missed bike wheel hazard/litter; vague rationale.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_041232_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Weak grounding: mentions generic 'two people' and 'parked cars' but ignores prominent street puddle (affects cleanliness), Mercedes reflection, lens flare, and low car/pedestrian density. Overstates vibrancy for near-deserted street; logic inconsistent on cleanliness.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_041610_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Hallucinated second pedestrian (only one visible); overstated 'moderate' activity; vague on prominent weeds/puddle.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_042770_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Poor grounding: hallucinated 'moderate pedestrian activity' (only 1-2 people visible) and overstated vibrancy on empty street.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_044344_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Vague rationale lacks precise details like orange/white barriers, pallets, narrowed roadway, and bikes; overrates all scores ignoring construction hazards and sidewalk clutter.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_044622_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Poor grounding: hallucinates 'storefronts' and 'moderate vehicle traffic' (street mostly empty/parked cars only); ignores puddles, windshield view, low activity; vague on specifics.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_045004_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Moderate grounding with some specifics (traffic lights, motorcyclist), but hallucinates 'pedestrians' plural (only one with dog visible), 'minor clutter' (none apparent), and 'urban wear'; misses pristine cleanliness and underrates safety while overstating vibrancy in a calm scene.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_049005_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Insufficient grounding in specifics like tree-lined sidewalks, zebra crossing, parked cars, and windshield reflection; hallucinates 'commercial use' (buildings appear residential); vibrancy overstated for sparse activity.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_052729_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Poor grounding: no mention of prominent tram tracks, graffiti on walls, sparse pedestrians (only 2-3 visible), or car POV; generic rationale overstates activity and vibrancy.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_052887_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Hallucinated 'scattered items and minor litter' absent from image; vague generalities without specific details like trams, bike lane, or tidy pavements.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_053437_leftImg8bit.png",
+      "teacher_score": 0.55,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Weak grounding: vague generics, hallucinates 'pedestrians' (minimal/none visible) and ignores prominent tram tracks, bike lanes, parked vans; logic sound but ungrounded; misses multi-modal safety nuances.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000002_000019_leftImg8bit.png",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Severe hallucinations: no pedestrians or moderate traffic visible; invents litter while ignoring pervasive fallen leaves; weak safety logic.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000008_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Hallucinated non-existent graffiti and worn sidewalks; rationale ungrounded in visible details like pristine pavement, absent litter, and low activity.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000009_000019_leftImg8bit.png",
+      "teacher_score": 0.85,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Strong grounding in visible details like graffiti, leaves, and pedestrians; logic holds, but lacks nuance by overstating graffiti as major safety risk (minor urban tagging) and autumn leaves as uncleanliness (natural, no litter/trash).",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000023_000019_leftImg8bit.png",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Overstated 'moderate' pedestrian activity (only 4-5 sparse walkers visible); downplayed narrow street's constraint on movement near parked cars, slightly inflating safety.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000027_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Major hallucination: no pedestrians visible anywhere, undermining vibrancy claim and grounding. Overstated 'busy' traffic (only one moving car + distant bus). Arbitrary 'lack of strong lighting' despite clear daytime visibility.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000030_000019_leftImg8bit.png",
+      "teacher_score": 0.5,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Hallucinated 'visible pedestrians' (none present); vague rationale lacks image specifics like wet road, graffiti details, absent crowds.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000031_000019_leftImg8bit.png",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Good grounding in visible details like signs and leaves, but misses wet road surface (safety risk) and over-relies on 'order' without noting sparse traffic/pedestrians for vibrancy; logic holds but lacks nuance on seasonal leaves vs. true neglect.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000039_000019_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Hallucinated 'scattered debris and litter' not visible; poor grounding on cleanliness despite decent visuals elsewhere.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000053_000019_leftImg8bit.png",
+      "teacher_score": 0.85,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Strong grounding in visuals, logical scores, but misses wet road surface (safety risk) and empty bike racks/pedestrian absence (vibrancy nuance).",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000059_000019_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Hallucinates 'pedestrians' (none visible); logic error tying 'muted facades' to cleanliness; vague on sparse traffic.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000066_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Major hallucination: no pedestrians visible anywhere in the image. Grounding fails on key visual details; rationale ungrounded.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000075_000019_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_002"
+      ],
+      "critique": "Insufficient grounding: vague 'moderate traffic' ignores light car count (4-5 vehicles); hallucinates 'minor wear' not visible; misses wet pavement, empty sidewalks, overpass, and wires.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000079_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Poor grounding: ignored prominent abandoned bicycle wheel (debris undermining cleanliness); overstated 'moderate lighting' (image is dimly lit); cars ≠ 'human presence'. Lacks nuance on narrow street hazards and construction.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000082_000019_leftImg8bit.png",
+      "teacher_score": 0.5,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Hallucinated 'scattered debris' not visible; overstated 'moderate' pedestrian activity (only 3-4 people); weak grounding overall.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000100_000019_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_002"
+      ],
+      "critique": "Overstated vibrancy and pedestrian activity (only 1-2 distant figures visible); lacks nuance on low energy and high daytime safety.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000102_000019_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Insufficient grounding: generic descriptions ignore specifics like parked cars, bollards, pristine pavement, historic facades, and lit streetlamp; vibrancy score too high for total desertion.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000120_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Hallucinated non-existent pedestrians and storefronts; poor grounding ignores empty street and lack of activity/businesses.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000125_000019_leftImg8bit.png",
+      "teacher_score": 0.5,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Poor grounding: hallucinates 'a few pedestrians' (only one distant figure visible); vague on specifics like narrow street, dense parking, ornate facades. Overstates vibrancy and activity.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000127_000019_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "Weak grounding: generic terms like 'multiple vehicles' and 'pedestrians' ignore specifics like red traffic lights, stopped cars at intersection, distant crane, and sparse exact count (4 cars, 5 pedestrians); misses quiet, orderly scene.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000137_000019_leftImg8bit.png",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Severe hallucination: no pedestrians visible; ungrounded claims undermine all grounding and vibrancy logic.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000143_000019_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Poor grounding: overstated 'moderate traffic' (only 2 cars, sparse), 'few pedestrians' (only 1 visible); vague on specifics like bike lane, healthy trees. Logic inconsistent—cleanliness score underrates pristine roads.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000152_000019_leftImg8bit.png",
+      "teacher_score": 0.85,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Strong grounding in weeds, vegetation, and construction; logic aligns. Lacks nuance on litter absence boosting cleanliness and road proximity as safety risk.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000161_000019_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "Poor grounding: 'moderate pedestrian activity' hallucinates—only 3 distant figures visible. Safety underrated despite zero traffic/hazards; vibrancy overstated for deserted street.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000167_000019_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Poor grounding: hallucinates 'overgrown vegetation' (minor weeds only); ignores cobblestones, narrow alley, pristine condition; vague on dim night lighting.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000173_000019_leftImg8bit.png",
+      "teacher_score": 0.5,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Hallucinated 'litter on the sidewalk' (none visible); ignored prominent orange construction barriers and signs, a key safety hazard; vague and non-specific details.",
+      "error": null
+    }
+  ]
+}
