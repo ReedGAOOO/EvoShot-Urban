@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Tuple
 
 from urban_experiment import Sample, UrbanPipeline
+from evoshot_env import _load_dotenv
 
 
 IMAGE_EXTS = {".jpg", ".jpeg", ".png"}
@@ -151,6 +152,9 @@ def run_dataset(
 
 
 def main() -> int:
+    root = Path(__file__).resolve().parent
+    _load_dotenv(root / ".env", override=False)
+
     # Real backends
     os.environ.setdefault("EVOSHOT_STUDENT_BACKEND", "real")
     os.environ.setdefault("EVOSHOT_EMBED_BACKEND", "real")

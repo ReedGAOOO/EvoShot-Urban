@@ -66,6 +66,7 @@ class OpenAITeacher:
 
         self._openrouter_site_url = (os.getenv("OPENROUTER_SITE_URL") or "").strip()
         self._openrouter_title = (os.getenv("OPENROUTER_SITE_NAME") or os.getenv("OPENROUTER_APP_NAME") or "").strip()
+        logger.info(f"Teacher provider={self._provider} model={self.model} api_url={self._api_url}")
 
     def _call_chat_completions(self, payload: Dict[str, Any]) -> Dict[str, Any]:
         headers = {

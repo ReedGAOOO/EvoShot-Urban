@@ -1,0 +1,2786 @@
+{
+  "summaries": [
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "n": 50,
+      "avg_teacher_score": 0.36200000000000004,
+      "pass_rate_ge_0_8": 0.04,
+      "top_retrieved_ids": [
+        [
+          "seed_003",
+          50
+        ],
+        [
+          "seed_001",
+          50
+        ]
+      ],
+      "critique_tags": [
+        [
+          "grounding/hallucination",
+          29
+        ],
+        [
+          "safety",
+          27
+        ],
+        [
+          "vibrancy",
+          14
+        ],
+        [
+          "non_urban/domain_mismatch",
+          13
+        ],
+        [
+          "cleanliness",
+          9
+        ],
+        [
+          "other",
+          6
+        ]
+      ]
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "n": 50,
+      "avg_teacher_score": 0.393,
+      "pass_rate_ge_0_8": 0.0,
+      "top_retrieved_ids": [
+        [
+          "seed_003",
+          50
+        ],
+        [
+          "seed_001",
+          50
+        ]
+      ],
+      "critique_tags": [
+        [
+          "safety",
+          33
+        ],
+        [
+          "grounding/hallucination",
+          30
+        ],
+        [
+          "non_urban/domain_mismatch",
+          17
+        ],
+        [
+          "vibrancy",
+          16
+        ],
+        [
+          "cleanliness",
+          9
+        ],
+        [
+          "other",
+          2
+        ]
+      ]
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "n": 50,
+      "avg_teacher_score": 0.377,
+      "pass_rate_ge_0_8": 0.04,
+      "top_retrieved_ids": [
+        [
+          "seed_001",
+          38
+        ],
+        [
+          "seed_002",
+          36
+        ],
+        [
+          "seed_003",
+          26
+        ]
+      ],
+      "critique_tags": [
+        [
+          "grounding/hallucination",
+          31
+        ],
+        [
+          "safety",
+          28
+        ],
+        [
+          "cleanliness",
+          15
+        ],
+        [
+          "vibrancy",
+          12
+        ],
+        [
+          "non_urban/domain_mismatch",
+          8
+        ],
+        [
+          "other",
+          4
+        ]
+      ]
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "n": 50,
+      "avg_teacher_score": 0.401,
+      "pass_rate_ge_0_8": 0.0,
+      "top_retrieved_ids": [
+        [
+          "seed_001",
+          48
+        ],
+        [
+          "seed_003",
+          30
+        ],
+        [
+          "seed_002",
+          22
+        ]
+      ],
+      "critique_tags": [
+        [
+          "safety",
+          39
+        ],
+        [
+          "grounding/hallucination",
+          30
+        ],
+        [
+          "vibrancy",
+          14
+        ],
+        [
+          "non_urban/domain_mismatch",
+          12
+        ],
+        [
+          "cleanliness",
+          11
+        ],
+        [
+          "other",
+          2
+        ]
+      ]
+    }
+  ],
+  "results": [
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\003TpcCZgy1gv2dm0709sj62c0340nph02.jpg",
+      "teacher_score": 0.2,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed the primary directive of an Urban Planner. They correctly identified the object but failed to apply urban metrics to the scene provided, essentially giving up because it wasn't a streetscape. A professional planner must evaluate the environment as presented: this is a private, high-end interior or retail space. Assigning a 3.0 for safety while claiming it 'cannot be assessed' is logically inconsistent. The student also missed the receipt/documentation which provides data on transaction and orderliness.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\005GvL8agy1hct2jtafylj31400u0dvh.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify critical safety hazards visible in the image, specifically the high-tension guy wires cutting through the crowd at head level. The student also hallucinated 'professional stage setups' as a proxy for safety while ignoring the lack of visible crowd control barriers or egress paths in a high-density environment.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\005yEiQJgy1h1d49rsg3kj32e622ox6q.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to recognize that this is a portrait in a natural setting, not an urban scene. They applied urban planning metrics (lighting, vibrancy) to a forest backdrop where they are irrelevant. The analysis is generic and lacks specific detail regarding the subject's attire or the type of vegetation.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\005z55Mogy1hx1xc60bnfj335s2dcqv6.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific location (Hangzhou) despite clear text on the signage. They hallucinated 'pedestrians' which are obscured by glare and distance, and missed the significant light pollution/glare issue that impacts visibility and safety. The analysis is generic and lacks professional depth.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\005zGTW8gy1hz2myugvmmj33b03b0e85.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the primary subject: a retaining wall with a manicured hedge and pruned shrubs. They hallucinated 'overgrown vegetation' when the image clearly shows intentional, heavy pruning and maintenance. They also missed the structural crack in the concrete wall, which is a critical safety/maintenance detail.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\0061Lvm5ly1hbw78g527fj30u0140dx9.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific urban typology (private garden/event space) and missed critical infrastructure details. They hallucinated a lack of lighting when a decorative lamp post is clearly visible in the background. The analysis of 'vibrancy' is shallow, ignoring the high-end social indicators like the floral arrangements and cake.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\0063tsj3ly1hy0lsbj8qaj33402c04qr.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student hallucinated the absence of people; there are clearly visible silhouettes of pedestrians on the bridge. They also failed to note the lack of safety infrastructure (railings) along the water's edge and the presence of dead/unmaintained reeds in the foreground, which impacts cleanliness and maintenance scores.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\0064y8lIgy1hjc7y6v5zwj30kd0m8dgm.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific nature of the scene, missing the presence of a firearm and the theatrical/filming context. The analysis of 'safety' is dangerously superficial given the visible holstered weapon and the tense, confrontational body language of the central figures. The student also ignored the specific interior elements like the gaming table and wall art.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\0068uwJbgy1hc2si8lwt6j30u0140tf8.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific commercial nature of the space and provided a contradictory rationale for safety. Claiming safety is 'not assessable' while giving it a near-perfect 4.5 is a logical failure. Furthermore, the student ignored the 'vibrancy' inherent in the high-contrast commercial branding and interior design, confusing 'crowds' with 'visual energy'.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\0069RDwlgy1hztijpmmhhj30zu1bpaiu.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the most prominent urban feature: a massive, under-construction skyscraper with exposed scaffolding and a dark, unfinished facade. They also hallucinated a 'clear sky' when the image is dominated by heavy altocumulus and cirrus cloud cover. The analysis is generic and ignores the industrial/construction context which impacts safety and vibrancy metrics.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\006chYhTgy1hnsll9g2byj32d035ckjo.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student hallucinated 'active human presence' and 'pedestrians in the background' to justify safety and vibrancy. While there are two tiny, distant figures on the far right sidewalk, they do not constitute an 'active' presence. The student failed to notice the lack of physical safety barriers between the flower bed and the high-speed multi-lane roadway, and ignored the dead/withered foliage visible at the base of the primroses.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\006fozayly1gn3ca3wit9j32c02c0b2a.jpg",
+      "teacher_score": 0.2,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student correctly identified the subject matter but failed the primary task of urban analysis. Assigning arbitrary numerical scores to a non-urban scene while simultaneously stating they are 'not applicable' is logically inconsistent. A professional planner must identify the lack of urban infrastructure, zoning, or public space rather than attempting to score fruit on a cleanliness scale.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\006iiaiUgy1hdzcjjxnnuj321b2prhdv.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific nature of the urban scene, relying on generic platitudes. They missed the visible staining on the lower wall and the wrinkled, temporary nature of the 'Ria Cakesis' vinyl banner, which impacts the perception of maintenance and permanence.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\006oSAtMgy1hb901zws2fj32b332s4qr.jpg",
+      "teacher_score": 0.45,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student's analysis is generic and lacks professional rigor. They failed to identify specific urban design elements like the 'eyes on the street' provided by the large glazing, the tactical use of oversized 3D signage (RIA), or the quality of the street furniture. The student also ignored the uneven pavement and the presence of a watermark/social media tag which indicates a curated, potentially private commercial space rather than a public thoroughfare.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\0070kKdTly1gojffo814uj33341e0hdt.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the object correctly, calling a woven purse/bag a 'basket' and misinterpreting the strap as a 'rope'. More importantly, the student applied urban planning metrics (safety, vibrancy) to a macro-shot of a field, which is a contextual failure. The analysis lacks depth regarding the 'urban' aspect of the scene.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\007BoIRkly1gonto08mxvj33282aoqve.jpg",
+      "teacher_score": 0.2,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to recognize that this is a nature/landscape shot, not an urban scene. They hallucinated the absence of litter and pedestrian paths by looking at the sky and treetops. You cannot assess 'cleanliness' or 'safety' of a city by looking at a canopy. This is a fundamental failure of spatial grounding.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\007cGQLEgy1hicntq4z4vj30to13kwh5.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific context of the image (a professional tournament) and provided a generic rationale that lacks grounding in visible details like the branding, flooring, or equipment. The vibrancy score is too low for a high-stakes professional event, and the rationale for safety is lazy.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\007jm6L0gy1hd3x6ts2c1j31sc2dse82.jpg",
+      "teacher_score": 0.2,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to perform an urban analysis, dismissing the task because the scene is indoors. A Senior Planner evaluates the 'micro-urban' environment. The student ignored the health safety implications of the N95 mask and the maintenance of the visible interior elements.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\007Zzwywgy1hclj40n4ifj31w02io1ky.jpg",
+      "teacher_score": 0.95,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student correctly identified that this is a non-urban, indoor museum exhibit, rendering standard urban planning metrics inapplicable. However, they failed to explicitly mention the painted backdrop and the specific lighting that confirms the indoor setting.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\00819cJVgy1hztc6i8cb5j32c0340x6p.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the primary landscape feature (the water body/lake) and hallucinated 'well-lit pathways' when the foreground path is actually poorly illuminated outside the single lamp's radius. They also missed the significant light pollution and the specific urban context of high-density residential towers.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\008fHCOSgy1hvl1r2xkzsj34n4334x6r.jpg",
+      "teacher_score": 0.2,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to distinguish between the foreground physical object (a poster) and the background reality. They hallucinated 'matching red outfits' on the actual people present, who are clearly wearing black. They also failed to identify the specific setting as a cinema/theater, missing the high-contrast lighting and seating context.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\008freRugy1hf5jxsvipsj33402c0qv6.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student hallucinated 'moderate human activity' and 'people in the background'; the scene is entirely devoid of people. They also failed to note the wet, potentially slippery pavement which impacts safety. The analysis is generic and lacks specific site observation.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\008svG6Hgy1hq7t97zho7j31hc0u0ahn.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific urban context, focusing only on the food. They missed the visible background elements (seating, flooring, other patrons) that define the 'urban scene' and provided a generic rationale that ignores the actual composition of the image.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\44e3dd65ly1g25scx8ax5j22c03404qp.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to recognize the context of the task. As an urban planner, 'insufficient information' is a lazy cop-out. The student correctly identified the botanical elements but failed to apply urban planning metrics to a green space. Furthermore, the student hallucinated that cleanliness 'cannot be evaluated' despite the clear absence of litter or blight in the foliage, and assigned arbitrary scores that contradict their own claim of insufficient data.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\4a2d6f97ly1hx4ey7eevcj20u014011v.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to apply urban planning metrics to the micro-environment. While correctly identifying the setting, they dismissed the task rather than analyzing the 'indoor urbanism' of the commercial space. They missed critical cleanliness and safety indicators visible in the background.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\559c9a5fgy1hbmbbm0f8vj20u0140dzl.jpg",
+      "teacher_score": 0.45,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify critical urban infrastructure elements (lighting fixtures, ventilation shaft) and mischaracterized the path material. The analysis is generic and lacks the professional rigor required for urban planning.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\570c5c7dgy1hrukejevllj21400u0441.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific urban typology and ignored the primary subject's context. They hallucinated 'modern architectural elements' when the background shows a rustic, timber-framed trellis or bridge structure. They also missed the 'vibrancy' cues from the cultural souvenir which depicts a bustling traditional street, contrasting with the quiet park setting.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\574e3219gy1hzpf27j7vbj21400u0wk7.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student hallucinated 'moderate human activity' and 'people walking'. At this distance and resolution, no individual pedestrians are discernibly active; the scene is functionally vacant. The student failed to identify the specific architectural typology (biomorphic/organic modernism) which impacts the vibrancy score.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\618b24cbgy1hde9m1r8c9j20u01hc48x.jpg",
+      "teacher_score": 0.2,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the primary subject of the image (the beverage) and hallucinated 'scattered items' as litter. Blankets and bags at a festival are expected infrastructure, not signs of poor cleanliness. The student also missed the massive stage structure in the background, which is a key urban planning element for crowd control and safety.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6942a2ccgy1h47mdrpsl4j213y0tyqcv.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student hallucinated 'visible staff' and 'clean surfaces' which are obscured by the dense crowd. They failed to note the high-density crowding and the universal use of face masks, which are critical urban health and safety indicators for this specific scene.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6a49d279gy1h2m5imzux4j22c03404qr.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the most critical safety hazard: the driver is using a mobile phone to take a photo while in active traffic (brake lights visible on the Ford ahead). The student also hallucinated 'smudges' on the screen while missing the significant dust accumulation on the dashboard and air vents. The analysis of 'vibrancy' is weak as it ignores the high-density traffic context indicated by the license plate and proximity of vehicles.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6b7bb65bgy1gyl63r1fo6j21400u0q9s.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify that the 'tiger-themed lanterns' and 'fireworks' are digital stickers, not physical decorations. They also missed a significant safety/vibrancy indicator: a student in the background is slumped over/sleeping on their desk, which contradicts the 'high vibrancy' and 'active participation' claim. The analysis of cleanliness is lazy; the floor is visibly speckled with debris.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6bcca1cagy1hp1zn92nj6j20u014018l.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to recognize that this is a close-up macro shot of a bush, not a 'waterfront scene' in an urban planning context. They hallucinated the absence of 'lighting infrastructure' and 'people' as meaningful data points when the camera angle makes their presence impossible to determine. The analysis lacks professional spatial awareness.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6d2216ccly1hcsbpfhrzij21pq31rqv5.jpg",
+      "teacher_score": 0.2,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student hallucinated a 'nighttime' setting and 'lighting' when the image is clearly shot in broad daylight with high-key natural lighting. They failed to analyze the actual urban environment, focusing entirely on the subject while ignoring the visible stage infrastructure and background clarity.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6d370107ly1gg0b122zftj23402c0b2a.jpg",
+      "teacher_score": 0.0,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Teacher Error",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6f8a0240ly1ftbu12c8gxj20fa0a6753.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student hallucinated 'broken windows' and 'peeling paint'. There are no windows; the frames are empty apertures. The facade is crumbling stone and plaster, not painted wood or siding. The student failed to identify the structural collapse of the roof and the presence of security bars on the lower openings.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\70cedaa6gy1h7vew3qbfbj22c0340kjn.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific urban typology, mislabeling a semi-outdoor terrace as a 'booth'. They hallucinated 'flowers' (only loose petals and ferns are present) and 'clean linens' (the tablecloth is wrinkled). Most importantly, they ignored the lack of 'vibrancy' in what is clearly a static, staged portrait with zero social interaction or street-level engagement.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\737411d1gy1hjiaolv11aj22c03404qu.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student hallucinated 'scattered debris' on the ground; the visible items are fallen leaves and a specific piece of park infrastructure (a ground-mounted speaker or light). The student also failed to identify the specific urban context (hospital/institutional building) and missed the safety implication of the black metal fencing/bridge structure in the background.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\74406798ly1gn7be7oy75j21u32g4b2a.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to analyze the actual physical environment, dismissing it as 'not representative' rather than evaluating the visible conditions. They missed clear safety hazards (industrial equipment in a pedestrian path) and cleanliness issues (scuffed, worn flight cases).",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\78f76a5fgy1hcmwp5mpmnj20u0140tja.jpg",
+      "teacher_score": 0.2,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the urban elements present in the image. While the primary subject is a cake, it features a clear architectural stamp of a city skyline and a bridge, and it is placed on top of urban artifacts including a receipt with a QR code and a calendar. The student lazily dismissed the image as 'no urban environment' instead of analyzing the represented and immediate environment.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\7a8d5161ly1g8jw008ax5j27zw2ssx6w.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify key urban elements including the high-rise residential buildings, the stone bridge, the traditional pavilion, and the safety netting in the foreground. The analysis is generic and misses the 'urban' context of the park, treating it like a wilderness area rather than a managed city amenity.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\7f546c6fgy1h48wzjgos4j23402c0nph.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the scene as a non-urban environment immediately and attempted to force urban metrics onto a tabletop food photo. They hallucinated 'professional service environment' and 'high-end dining' which are inferences, not visual facts. Most importantly, they missed the obvious safety hazard: the presence of raw/exposed seafood and potential allergens in a crowded, unmonitored setting.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\87e5e02egy1hzz2l2p95kj20ri0ritwq.jpg",
+      "teacher_score": 0.2,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student hallucinated 'runners' and a 'well-organized event' that are not visible in the frame. The image shows a nearly empty field with decorative inflatable arches, not an active race. The student failed to notice the overcast, low-visibility sky and the lack of infrastructure (lighting, paved paths) which impacts safety and vibrancy scores.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\9f80618dly1gp0yncrgkyj22c02c0kjl.jpg",
+      "teacher_score": 1.0,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student correctly identified that the image is not an urban scene. They avoided the trap of hallucinating urban metrics for a plate of food (Latiao/spicy gluten). Their grounding is accurate and their logic is sound.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\a191d3d4gy1gsi45sfdvkj21es1w0b29.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific typology of the space, mislabeling a high-end sunroom/conservatory as a generic 'outdoor dining area.' They missed critical urban design elements like the retractable awning system and the biophilic integration (ferns and floral arrangements). The vibrancy score is inflated for a space containing only one subject and no visible social interaction or street-level engagement.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\aea30242gy1hz2xyfq1uxj24eo3b0u11.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific urban context (a commercial restaurant setting) and missed critical safety/cleanliness indicators. They ignored the presence of an open heating element (induction/burner) and the significant clutter of food waste (sunflower seed shells) scattered directly on the table and placemats, which impacts the cleanliness score significantly.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\b0c935e0gy1gpq5t598dnj22c0340qo3.jpg",
+      "teacher_score": 0.2,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student correctly identified the subject as a museum artifact but failed the primary task of urban analysis. A professional planner must be able to evaluate the 'micro-urban' environment of a public facility. The student provided arbitrary scores that contradicted their own rationale of 'cannot assess,' showing a lack of logical consistency.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\b52ca091gy1h41uba5tixj22c0340e82.jpg",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student correctly identified the setting and subjects but failed to notice significant safety and maintenance details. They hallucinated 'natural light from ceiling fixtures' (the lighting is entirely artificial track and panel lighting) and missed the visible scuffing/staining on the floor tiles and the exposed wiring/unbalanced AC unit in the top right corner.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\c42ded49gy1hzqt5ya27qj22c0340npd.jpg",
+      "teacher_score": 0.45,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific vehicle type (moped/scooter, not a standing electric scooter) and missed critical safety hazards. They hallucinated 'good lighting' (it is daylight, not a lighting system) and ignored the lack of protective gear beyond a helmet. Most importantly, they missed the significant safety risk of the rider being stopped at the crest of a steep grade on a narrow road with no shoulder.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "text",
+      "image_path": "H:\\微博数据 - 副本\\images\\d7be47ffly1gky53uv9gdj230j29f7wo.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "Hallucination detected. The student claims to see 'motorbikes' and 'people' in the alley; however, the alley is completely empty of pedestrians and no motorbikes are visible in the frame. The student also missed the significant wall mural and the specific architectural signage.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_000712_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific urban typology and missed critical infrastructure details. They hallucinated 'moving vehicles' when the cars in the distance are clearly parked or stationary in a queue. They also failed to note the lack of active frontage and the dominance of car storage over pedestrian space.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_005970_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student's analysis is generic and fails to identify critical infrastructure failures. They missed the lack of protected cycling lanes, the presence of heavy industrial vehicles (cement mixer) in a pedestrian-heavy zone, and the faded, confusing road markings. The 'cleanliness' score is inflated given the visible wear on the pavement and uneven brickwork.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_006922_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific infrastructure present, such as the tram tracks on the left and the public art installation. The 'vibrancy' score is inflated; three pedestrians in a large commercial/institutional zone do not constitute 'moderate activity.' The student also missed the lack of cycling infrastructure and the presence of a large blind spot created by the mature trees on the left curve.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_013094_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student hallucinated 'pedestrians near shops' and 'bicycles' in traffic flow; there are zero active pedestrians or cyclists visible in the roadway or on the immediate sidewalk. The analysis failed to identify the significant safety hazard of the narrow, unprotected advisory bike lanes (dashed lines) squeezed between moving traffic and parked cars (dooring zone).",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_016558_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the most critical urban planning element: the temporary asphalt bypass/detour. They hallucinated 'clear lane markings' when the markings are actually faded, temporary yellow lines, and uneven pavement edges. They also missed the significant safety hazard of the heavy machinery (Volvo excavator) operating in close proximity to active traffic.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_023276_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student correctly identified the stroller and graffiti but failed to notice significant infrastructure details. They missed the prominent bike lane markings, the specific 'No Stopping' traffic sign, and the institutional nature of the building. The 'well-lit' comment is a generic hallucination; the image is actually quite overcast and dim. The student also failed to recognize the high-quality pavement and lack of litter, which contradicts a '2.5' cleanliness score.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_027007_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student provided a generic, surface-level analysis that missed critical infrastructure details. They failed to mention the zebra crossing, the specific signage (pedestrian crossing, parking, bike lane), or the mixed-use commercial frontage (eZigaretten shop). The safety score is overly optimistic given the lack of physical barriers between the high-volume roadway and the sidewalk.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_027282_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student correctly identified the 'Franziskaner' branding but failed to observe significant urban decay. They hallucinated 'scattered debris' as the primary cleanliness issue while ignoring extensive graffiti/stickers on the foreground lamp post and the poor state of the pavement. The safety score is overly generous given the lack of clear pedestrian-vehicle segregation in a high-traffic taxi zone.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_028202_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify significant urban decay and safety hazards. They hallucinated 'no obvious signs of litter' while ignoring visible trash on the left sidewalk and failed to note the poor pavement quality and lack of pedestrian protection at a major intersection curve.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_032351_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific urban typology and missed critical safety hazards. They hallucinated 'pedestrians in the distance' (the figures on the right are stationary near an entrance) and ignored the significant obstruction of the sidewalk by bicycles. The analysis of 'vibrancy' is lazy, failing to note the commercial signage or the 'Herzlich Willkommen' display.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034720_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific urban context and missed critical safety hazards. They ignored the heavy police presence (multiple 'Polizei' vehicles) which suggests an active incident or high-security zone, and completely missed the dangerous obstruction of the bicycle lane by a parked van on the right. The analysis is generic and lacks professional observation.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_036051_leftImg8bit.png",
+      "teacher_score": 0.45,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify significant safety hazards and infrastructure decay. They hallucinated 'adequate lighting' when no active street lamps are visible in the overcast/dusk setting. They missed the 'Feuerwehrzufahrt' (fire access) obstruction and the poor pavement quality. The cleanliness score is overly generous given the visible staining and grime on the facade and sidewalk.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_037039_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific urban typology (tramway corridor) and missed critical safety hazards. They hallucinated 'busy pedestrians' when the sidewalks are largely empty, and ignored the significant pavement degradation and debris near the construction zone.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_037516_leftImg8bit.png",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific urban context and missed critical safety hazards. They hallucinated 'multiple cyclists' (there is only one) and 'clear road markings' while ignoring the fact that pedestrians are crossing a live traffic lane directly in front of a vehicle (indicated by the Mercedes hood ornament). The analysis of 'vibrancy' is generic and fails to note the brutalist/institutional architecture that dampens the atmosphere.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_039021_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify a critical safety violation: a pedestrian is sprinting across the road against a red light directly in front of the vehicle. The student also hallucinated 'moderate pedestrian activity' when the scene is relatively sparse, and missed significant infrastructure decay (cracked pavement, faded markings).",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_041232_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific urban context and missed critical safety hazards. They hallucinated 'moderate pedestrian activity' when only two individuals are visible. Most importantly, they ignored the significant graffiti/tagging on the building facade and the poor pavement quality, which directly impact cleanliness and safety perceptions.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_041610_leftImg8bit.png",
+      "teacher_score": 0.45,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the second pedestrian, leading to an incorrect assessment of 'moderate' activity. They missed critical infrastructure failures: the cracked, uneven pavement in the foreground and the lack of a formal crosswalk at a vehicle egress point. The 'safety' score is overly generous given the poor sightlines created by unmanaged vegetation and the haphazard parking layout.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_042770_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify specific infrastructure elements and provided a generic description that could apply to any street. They missed the significant bicycle clutter, the lack of physical separation between the roadway and pedestrians, and the specific commercial signage (Postbank, Apotheke) that defines the vibrancy level.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_044344_leftImg8bit.png",
+      "teacher_score": 0.45,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student correctly identified the 'INFINITY CLUB' but failed to notice significant urban planning hazards. They ignored the massive obstruction of the sidewalk by construction materials and a temporary shed on the right, which forces pedestrians into the street. They also missed the 'denn's Biomarkt' signage and the high density of parked bicycles, which are key indicators of local vibrancy and transit usage.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_044622_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific urban typology and missed critical infrastructure details. They hallucinated 'moderate vehicle traffic' when all visible cars except the camera vehicle are parked. They also missed the significant lack of pedestrian infrastructure (narrow/obstructed sidewalks) and the brutalist architecture which impacts vibrancy.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_045004_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify critical safety hazards and infrastructure deficiencies. They hallucinated 'clear road markings' when the intersection paint is severely faded and fragmented. They missed the cyclist riding on the wrong side of the road/sidewalk area and the lack of protected bike infrastructure. The vibrancy score is inflated for a scene with empty storefronts and minimal pedestrian density.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_049005_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific urban typology and missed critical safety infrastructure. They hallucinated 'moderate pedestrian activity' when the street is largely deserted, and failed to note the lack of physical separation between the high-speed roadway and the sidewalk. The analysis is generic and lacks professional rigor.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_052729_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific nature of the graffiti, which is a direct indicator of social friction and perceived safety. They also missed the lack of physical separation between the tram tracks and the narrow driving lane, which is a significant safety concern for cyclists and pedestrians in a high-density urban core.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_052887_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify critical infrastructure elements that impact safety and vibrancy. They missed the tram tracks dominating the roadway, the lack of physical separation for the cyclist, and the sticker-covered utility bin which detracts from cleanliness. The analysis is generic and lacks the precision required for urban planning.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_053437_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify critical infrastructure hazards and misinterpreted the 'vibrancy' of a transit hub. They missed the dangerous interaction between cyclists and tram tracks, and the presence of a major railway station (Hannover Hauptbahnhof) which dictates the area's function. The analysis is generic and lacks professional depth.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000002_000019_leftImg8bit.png",
+      "teacher_score": 0.45,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify critical urban infrastructure elements and provided a generic analysis. They missed the active construction zone (red/white barriers), the significant lack of street lighting infrastructure, and the uneven, leaf-strewn sidewalk on the left. The 'vibrancy' score is overly generous for a street with zero active storefronts or pedestrians in the immediate foreground.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000008_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify critical safety hazards and mischaracterized the 'vibrancy' of a standard residential/commercial intersection. They missed the prominent graffiti on the brick building and the lack of active street-level retail, which impacts vibrancy. Most importantly, they ignored the immediate safety risk of pedestrians crossing a multi-lane road outside of a designated crosswalk while a vehicle (the motorcyclist) is in motion.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000009_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify critical infrastructure and safety hazards. They missed the lack of a marked pedestrian crossing at a major intersection, the presence of bollards as a safety feature, and the significant 'broken window' effect of the heavy tagging on the right-hand brick facade. The vibrancy score is inflated; the scene is somber with minimal commercial activity or 'eyes on the street' from active storefronts.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000023_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific urban typology and missed critical safety hazards. They hallucinated 'well-maintained' buildings while ignoring visible peeling paint and structural grime on the right-hand facade. Most importantly, they failed to note the lack of physical separation between pedestrians and vehicles on a narrow shared-surface street, and the presence of a 'No Parking' sign being actively ignored by the silver Volkswagen.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000027_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify critical infrastructure elements and provided a generic analysis. They missed the dedicated bike lane (indicated by the blue symbol and dashed lines), the lack of pedestrian presence despite 'vibrancy' claims, and the poor lighting conditions (overcast/dusk). The claim that parked cars reduce pedestrian space is incorrect here; the cars are in designated bays, but the lack of a physical buffer for the bike lane is the real safety concern.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000030_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify critical infrastructure failures. They hallucinated 'moderate traffic movement' when the image shows a congested queue of cars with headlights on, suggesting low visibility or evening transition. Most importantly, they missed the significant asphalt degradation (cracking and potholes) in the center of the lane, which directly impacts safety and cleanliness scores.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000031_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the most critical safety element: the perspective is from a vehicle (Mercedes-Benz) actively entering a pedestrian/cyclist crossing. The student also hallucinated 'clear road markings' when the markings are actually faded and complex, and missed the construction scaffolding and temporary fencing in the background which impacts both aesthetics and perceived safety.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000039_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the primary subjects (two pedestrians) and mischaracterized the lighting as 'moderate' when the scene is heavily underexposed and overcast. The analysis of 'minimal pedestrian activity' is a hallucination of absence when people are clearly visible in the center-right. The student also missed the significant leaf litter on the cobblestones, which impacts the cleanliness score.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000053_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student hallucinated 'visible litter' on the sidewalk; the area near the bike racks is actually quite clear. They also failed to identify the specific infrastructure (bike lanes, signage, and the Sparkasse building) which are critical for an accurate urban assessment. The safety score is overly generous given the lack of physical separation between the high-speed multi-lane road and the cyclist/scooter.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000059_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify specific infrastructure elements (bike lanes, signage) and hallucinated 'a few pedestrians' where only one distant figure is visible. The analysis is generic and lacks the technical rigor of an urban planner.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000066_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify critical infrastructure elements and provided a generic analysis. They missed the dedicated bicycle lane (red pavement), the significant bicycle parking infrastructure on the left, and the lack of active pedestrians (only two stationary figures are visible). The 'moderate vibrancy' claim is a hallucination; the street is functionally a transit corridor with low foot traffic.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000075_000019_leftImg8bit.png",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific infrastructure present. They hallucinated 'cluttered' sidewalks when the right side is actually dominated by a large billboard and a retaining wall. They missed the critical safety hazard of the narrow, unprotected bike lane markings and the industrial/transit nature of the background (railway masts and station).",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000079_000019_leftImg8bit.png",
+      "teacher_score": 0.45,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the most critical urban elements: the construction crane, the specific road markings, and the presence of graffiti. The analysis of 'vibrancy' is lazy; it ignores the lack of active frontages and the hostile architecture (bollards). The student also missed the clear signs of urban decay on the left-hand facade.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000082_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the primary safety hazard: the lack of a pedestrian crossing or sidewalk on the foreground side of the road, forcing pedestrians to stand on a narrow curb. The student also hallucinated 'low lighting' as a safety detractor when the image is clearly taken during daylight, albeit overcast. The analysis of 'vibrancy' is generic and ignores the dead space of the asphalt foreground.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000100_000019_leftImg8bit.png",
+      "teacher_score": 0.45,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student correctly identified the 'Xenos' storefront but failed to observe critical safety and infrastructure details. They missed the lack of active street lighting fixtures, the poor condition of the pavement/markings, and the presence of litter beyond just 'leaves'. The analysis is superficial and lacks the rigor of a professional urban assessment.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000102_000019_leftImg8bit.png",
+      "teacher_score": 0.45,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific institutional context (Hochschule für Musik und Tanz) and missed critical safety infrastructure like the extensive bollard system. The rationale for safety is weak; parked cars in a designated lot do not inherently reduce visibility in a way that impacts safety in this specific low-speed cul-de-sac/plaza layout. The student also missed the 'eyes on the street' provided by the illuminated windows of the music academy.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000120_000019_leftImg8bit.png",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific urban context and hallucinated 'minor debris' and 'adequate lighting.' The scene is overcast with flat natural light, not artificial lighting. The student missed the significant lack of active street life (only two pedestrians visible in the distance) and the dominance of vehicular infrastructure over human-centric design.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000125_000019_leftImg8bit.png",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student hallucinated 'pedestrian activity' and 'businesses open' in a scene that is nearly deserted. They failed to identify the specific European urban context (German street signs, architecture) and missed the critical safety hazard of a pedestrian crossing a multi-lane road mid-block away from the intersection. The assessment of 'dim lighting' is a misinterpretation of an overcast day.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000127_000019_leftImg8bit.png",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify critical safety hazards and specific infrastructure details. They missed a pedestrian jaywalking/crossing against traffic in the middle of the road and failed to note the active construction cranes in the background. The analysis of 'cleanliness' is generic and ignores the actual pavement condition and lack of litter. The student used 'hallucinated' generic descriptions rather than identifying the specific German context (Aachen license plates, 'H' bus stop sign).",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000137_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to notice prominent graffiti on the left-hand structure and incorrectly stated there was no visible graffiti. They also missed the significant green space/park on the right, which is a primary urban feature. The assessment of 'moderate lighting' is vague for a daytime shot under overcast conditions.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000143_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific urban context and missed critical safety hazards. They hallucinated 'moderate traffic' when the intersection is nearly empty, and ignored the poor road surface quality and lack of pedestrian infrastructure (no marked crosswalks at a major junction). The analysis is generic and lacks professional rigor.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000152_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the primary subject: the Aachen University Hospital (UK Aachen), a completed brutalist landmark, not an 'industrial complex under construction.' The crane is for maintenance/renovation, not primary construction. The student also missed the Mercedes-Benz hood ornament in the foreground, which indicates the perspective is from a vehicle, explaining the lack of 'pedestrian presence.'",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000161_000019_leftImg8bit.png",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student's analysis is generic and lacks grounding. They failed to identify specific infrastructure (bollards, signage, bus stop) or the clear absence of litter. The rationale is a 'template' response that could apply to any street scene.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000167_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific urban typology and missed critical safety/infrastructure details. They hallucinated 'moderate vehicle presence' when the street is empty of moving traffic (the viewer is in the only moving vehicle). They also failed to note the poor lighting/underexposure and the presence of bollards and traffic signage which are key to safety analysis.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000173_000019_leftImg8bit.png",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the most critical urban planning elements in the frame: illegal parking and construction. The 'visible litter' claim is a hallucination; the debris on the curb is organic leaf litter, not trash. The student also missed the safety hazard of the van obstructing the sidewalk/bike lane transition.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\003TpcCZgy1gv2dm0709sj62c0340nph02.jpg",
+      "teacher_score": 0.2,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to perform an urban analysis, instead dismissing the task because the image is of a product. A Senior Planner must be able to infer socio-economic indicators and 'interior urbanism' from any scene. The student also hallucinated a 'handbag' (it is a Saddle bag) and failed to note the receipt/documentation which provides data on commercial safety and transaction cleanliness.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\005GvL8agy1hct2jtafylj31400u0dvh.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_002",
+        "seed_001"
+      ],
+      "critique": "The student provided a generic analysis that failed to identify specific structural hazards. They missed the high-tension guy wires cutting through the crowd at head/neck level and the lack of visible egress routes in a high-density 'mosh' environment. The rationale for cleanliness was speculative rather than observational.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\005yEiQJgy1h1d49rsg3kj32e622ox6q.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to recognize that this is not an 'urban scene' but a portrait in a natural setting. The analysis lacks specific grounding in the subject's attire or the type of vegetation (bamboo/ferns), and the safety score is logically inconsistent with the 'secluded' description which usually implies lower perceived safety in urban planning due to lack of 'eyes on the street'.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\005z55Mogy1hx1xc60bnfj335s2dcqv6.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to identify the specific location (Zhejiang Shengli Theatre) clearly visible in the foreground. They hallucinated 'low pedestrian activity' when there is a visible crowd blurred in the background near the GAP store. The rationale regarding 'glare reducing cleanliness' is illogical urban theory.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\005zGTW8gy1hz2myugvmmj33b03b0e85.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the primary subject: a retaining wall with a manicured hedge and top-pruned shrubs. They hallucinated 'overgrown and partially dead vegetation' when the plants are clearly maintained and dormant/deciduous. They also missed the vertical drainage/mounting fixture on the left. The safety score is arbitrary as the image lacks ground-level context.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\0061Lvm5ly1hbw78g527fj30u0140dx9.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to identify the specific urban-nature interface. They missed the 'vibrancy' indicators (floral arrangements, cake, high-end fashion) and ignored the lack of infrastructure (no paved paths, uneven terrain) which impacts safety scores. The analysis is generic and lacks professional observation of the site's actual condition.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\0063tsj3ly1hy0lsbj8qaj33402c04qr.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student's analysis is generic and lacks professional rigor. They failed to identify specific infrastructure elements like the stone arch bridge, the painted tree trunks (indicating active maintenance), or the lack of safety railings along the water's edge. The rationale for safety is contradictory; 'open space' does not equate to safety in a waterfront context with zero lighting or barriers.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\0064y8lIgy1hjc7y6v5zwj30kd0m8dgm.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_002",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific context of the scene, which is clearly a film set or theatrical production, not a standard 'indoor room.' They missed the presence of a person in a military uniform and the confrontational body language, which significantly impacts safety and vibrancy assessments. The analysis is generic and lacks grounding in the visible artifacts (e.g., the period costumes, the gaming table, the framed art).",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\0068uwJbgy1hc2si8lwt6j30u0140tf8.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to identify the primary visual element (a large, pink, faux-fur question mark) and hallucinated 'banners' and 'items on the table' as a cleanliness detractor. The table is actually clear of clutter, containing only a small branded bag and a receipt/menu. The student also missed the potential trip hazard of the fur installation's base.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\0069RDwlgy1hztijpmmhhj30zu1bpaiu.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to recognize the perspective of the image. This is an aerial/high-rise view, not a street-level scene. Assessing 'cleanliness' or 'pedestrian traffic' from this altitude is a hallucination of detail that isn't visible. The student also missed the significant architectural landmark (the twisted skyscraper) which defines the urban context.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\006chYhTgy1hnsll9g2byj32d035ckjo.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student correctly identified the flora and general cleanliness but failed to observe the pedestrians in the background, leading to an incorrect claim of 'absence of people.' The safety logic is flawed; a lack of people does not inherently increase safety in urban planning (Jane Jacobs' 'eyes on the street' principle). The student also missed the high-quality infrastructure (curbs, paved paths) which influences safety and cleanliness scores.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\006fozayly1gn3ca3wit9j32c02c0b2a.jpg",
+      "teacher_score": 1.0,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student correctly identified that the image is entirely devoid of urban context. Attempting to score a bowl of fruit for 'urban safety' or 'infrastructure cleanliness' would be a hallucination. The student maintained professional integrity by refusing to apply urban planning metrics to a domestic still-life.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\006iiaiUgy1hdzcjjxnnuj321b2prhdv.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to recognize the specific context of the image. They described a 'well-lit urban storefront' and 'moderate activity,' but the image is a static portrait against a closed facade/banner. The student hallucinated 'good lighting' (it is flat, natural daylight) and 'pedestrian presence' (there is only one subject posing, not a flow of people). The analysis lacks any mention of the specific branding or the physical condition of the pavement.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\006oSAtMgy1hb901zws2fj32b332s4qr.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student correctly identified the business name and general atmosphere but failed to notice significant maintenance issues. They hallucinated 'multiple businesses' when only one is clearly visible, and overlooked the poor condition of the 'RIA' signage and pavement staining.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\0070kKdTly1gojffo814uj33341e0hdt.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to recognize that this is a macro-focused lifestyle photograph, not an urban scene. While the grounding in visual elements (basket, flowers) is accurate, the application of urban planning metrics (safety, vibrancy) to a close-up of a prop in a field is logically flawed. The student also missed the watermark in the bottom right, which indicates digital/social media origin rather than a raw environmental assessment.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\007BoIRkly1gonto08mxvj33282aoqve.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the specific species present (Cherry blossoms and Weeping Willows) and provided a generic analysis. Most critically, the student claimed there is 'no urban infrastructure,' completely missing the grey building roof/structure visible in the lower-center background through the branches. This is a hallucination of 'pure nature' where urban elements clearly exist.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\007cGQLEgy1hicntq4z4vj30to13kwh5.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to identify the specific context of the image (the 19th Asian Games Hangzhou) despite clear branding on the table and barriers. The analysis is generic and lacks grounding in the specific visual evidence provided, such as the high-quality flooring and professional sponsorship banners.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\007jm6L0gy1hd3x6ts2c1j31sc2dse82.jpg",
+      "teacher_score": 0.2,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_002"
+      ],
+      "critique": "The student failed to perform an urban analysis, dismissing the task because the subject is an individual. A professional planner must infer environmental conditions from the subject's state. The student ignored critical urban indicators like the N95 mask (air quality/public health) and the interior backdrop.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\007Zzwywgy1hclj40n4ifj31w02io1ky.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student correctly identified the subject as a taxidermied lion in a diorama, but failed as an urban planner. They applied urban metrics to a non-urban interior space without acknowledging the total absence of the public realm. The 'Safety' score is arbitrary given the lack of context for egress or lighting, and 'Vibrancy' is a misapplied metric for a static museum exhibit.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\00819cJVgy1hztc6i8cb5j32c0340x6p.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student hallucinated a 'person walking' and 'distant activity near buildings'—the scene is actually devoid of visible people, creating a sense of isolation. They also failed to mention the water feature (lake/pond) which is a primary element of the urban design.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\008fHCOSgy1hvl1r2xkzsj34n4334x6r.jpg",
+      "teacher_score": 0.2,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_002",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the primary subject of the image: a printed poster held in the foreground. They hallucinated 'red uniforms' on the actual people in the background (who are wearing black) and incorrectly described the lighting as 'professional' when the foreground is poorly lit and the background is overexposed. The logic that formal settings are less safe than casual ones is nonsensical in urban planning.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\008freRugy1hf5jxsvipsj33402c0qv6.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to identify the most critical environmental factor: the ground is visibly wet/slick, which directly impacts safety. They also hallucinated 'bright lighting' (the lights are off/daylight) and 'organized layout' without noting the space is currently closed/inactive. The analysis is generic and misses the specific context of the image.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\008svG6Hgy1hq7t97zho7j31hc0u0ahn.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_002",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the specific urban context, focusing only on the food. They missed the visible background elements: the modern seating, the herringbone flooring, and the presence of other patrons, which are essential for an 'urban scene' analysis. The rationale is generic and ignores the physical infrastructure of the space.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\44e3dd65ly1g25scx8ax5j22c03404qp.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to perform an urban analysis. While they correctly identified the botanical elements (Japanese Maple samaras), they abdicated their role as an urban planner by claiming a lack of infrastructure makes the scene unrateable. A macro shot of healthy vegetation in an urban context indicates high-quality maintenance and ecological health, which are key urban metrics.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\4a2d6f97ly1hx4ey7eevcj20u014011v.jpg",
+      "teacher_score": 0.2,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed the primary directive of an Urban Planner: context. They analyzed a plate of food as a micro-environment rather than evaluating the 'urban scene' requested. Furthermore, they hallucinated a 'professional kitchen' when the presence of a personal beverage, soy sauce bottles, and a tabletop trash bin clearly indicates a customer dining area. The safety score is absurdly high given the visible waste and cluttered background.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\559c9a5fgy1hbmbbm0f8vj20u0140dzl.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to identify key infrastructure elements and mischaracterized the 'vibrancy' of a public space. They missed the utility structure (ventilation shaft) and the specific paving material. Most importantly, they failed to recognize that a lack of 'eyes on the street' and dense, unpruned vegetation creates significant blind spots, which negatively impacts perceived safety in urban design.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\570c5c7dgy1hrukejevllj21400u0441.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the primary subject (a souvenir magnet/pin) and hallucinated 'moderate human activity' when only a single hand is visible. The analysis of 'modern architectural elements' is vague and ignores the specific elevated walkway structure in the background.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\574e3219gy1hzpf27j7vbj21400u0wk7.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student provided a generic analysis that failed to identify the specific architectural typology or the lack of 'eyes on the street.' They missed the critical observation that this is a high-end corporate or institutional campus (Alibaba Xixi Park), which dictates its safety and vibrancy profile. The rationale for safety based solely on 'daytime lighting' is amateurish; it ignores the lack of physical barriers or surveillance infrastructure visible.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\618b24cbgy1hde9m1r8c9j20u01hc48x.jpg",
+      "teacher_score": 0.2,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to identify the primary subject of the image (the beverage) and hallucinated 'high foot traffic' when the crowd is clearly seated on blankets. The analysis is a generic template for a festival rather than an observation of this specific photograph.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6942a2ccgy1h47mdrpsl4j213y0tyqcv.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_002",
+        "seed_001"
+      ],
+      "critique": "The student failed to observe the most critical urban context: the scene is from the COVID-19 era. Every visible person is wearing a surgical mask. The student also hallucinated 'numerous people outside' and 'tidy counters,' neither of which are clearly visible due to the crowd density and camera angle. The student missed the 'eyes on the street' safety principle, incorrectly penalizing safety for high foot traffic.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6a49d279gy1h2m5imzux4j22c03404qr.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to identify the most critical safety hazard: the driver is using a mobile phone to take a photo while in active traffic (brake lights visible on the car ahead). The student also hallucinated 'limited visibility' when the external view is clear, and missed the dust/debris on the dashboard and screen edge which contradicts a high cleanliness score.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6b7bb65bgy1gyl63r1fo6j21400u0q9s.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_002"
+      ],
+      "critique": "The student hallucinated 'colorful decorations' and 'tiger lanterns' as physical objects; these are digital stickers overlaid on the image. They also failed to notice a student sleeping/slumped on a desk in the background, which directly impacts the 'vibrancy' and 'supervision' claims. The analysis of cleanliness is superficial, ignoring the scattered plastic sprues and open chemical adhesive/solvent on the foreground desk.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6bcca1cagy1hp1zn92nj6j20u014018l.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the specific urban context. This is not just a 'serene water scene'; the murky, stagnant quality of the water and the lack of a protective barrier between the dense vegetation and the drop-off present specific urban safety and environmental health concerns that were ignored.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6d2216ccly1hcsbpfhrzij21pq31rqv5.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to analyze the 'urban scene' and instead focused on the individual. They hallucinated an 'outdoor event' and 'high activity' that are not visible in this tight, shallow-depth-of-field shot. As a planner, you cannot judge safety or vibrancy based on a single person's outfit.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6d370107ly1gg0b122zftj23402c0b2a.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to notice significant 'visual pollution' and maintenance issues. They hallucinated that the wall has 'no visible graffiti' when there are clearly visible black ink stamps/advertisements on the stone door frame. They also missed the uneven, damp pavement and the biological growth on the stone plaque base, which contradicts a high cleanliness score.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\6f8a0240ly1ftbu12c8gxj20fa0a6753.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_002"
+      ],
+      "critique": "The student hallucinated 'broken windows' and 'peeling paint' on a structure that is clearly a roofless, windowless stone ruin. They failed to identify the structural collapse and the presence of security bars on the lower apertures, which are critical for a safety assessment.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\70cedaa6gy1h7vew3qbfbj22c0340kjn.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to identify the specific urban typology, mislabeling a semi-enclosed glass structure as a general 'outdoor dining area.' More critically, the student hallucinated 'flower petals' as a cleanliness indicator when they are actually decorative debris on the table, and ignored the safety hazard of an open-flame pillar candle placed precariously close to the edge of a table with a long cloth.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\737411d1gy1hjiaolv11aj22c03404qu.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify critical urban infrastructure and safety hazards. They missed the construction crane in the background (safety/noise) and the exposed electrical/ventilation fixture in the foreground, which is a tripping hazard for the children pictured. The analysis of 'vibrancy' is generic and ignores the juxtaposition of the park with the high-density medical/commercial buildings in the background.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\74406798ly1gn7be7oy75j21u32g4b2a.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_002"
+      ],
+      "critique": "The student correctly identified the setting as a backstage area but failed to analyze the specific urban/architectural elements present. They missed the significant scuffing on the equipment, the lack of proper lighting for a 'safe' environment, and the cultural vibrancy implied by the performer's attire. The analysis is lazy and lacks professional depth.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\78f76a5fgy1hcmwp5mpmnj20u0140tja.jpg",
+      "teacher_score": 0.2,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_002",
+        "seed_003"
+      ],
+      "critique": "The student correctly identified the subject as a cake but failed the primary task of urban analysis. A Senior Planner must be able to extrapolate environmental data from any scene. The student hallucinated 'crumbs/splatters' which are not present, and lazily defaulted to mid-range scores despite claiming the metrics couldn't be assessed.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\7a8d5161ly1g8jw008ax5j27zw2ssx6w.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify key urban elements including the high-density residential buildings, the stone bridge, and the traditional pavilion. They hallucinated 'clear skies' when the image shows significant atmospheric haze/smog. They also missed the safety infrastructure (green safety netting/fencing) in the foreground.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\7f546c6fgy1h48wzjgos4j23402c0nph.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_002",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the specific urban context, treating it as a generic 'indoor restaurant' rather than a high-density commercial dining environment. They missed critical safety hazards (sharp sea urchin spines) and failed to recognize that 'vibrancy' in an urban planning context can be expressed through culinary diversity and color palette, even in the absence of pedestrians. The grounding is superficial.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\87e5e02egy1hzz2l2p95kj20ri0ritwq.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student hallucinated 'multiple participants' and 'ropes' as safety markers. The image is nearly empty of people, showing only two distant figures on the far right. The student failed to notice the significant trip hazards (guy-wires/tension ropes) extending from the arches into the walking path, which directly contradicts their high safety score.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\9f80618dly1gp0yncrgkyj22c02c0kjl.jpg",
+      "teacher_score": 0.2,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_002",
+        "seed_003"
+      ],
+      "critique": "The student failed to recognize that the prompt asks for an urban planning analysis. While they correctly identified the subject as food, they provided a literal interpretation rather than applying the requested urban metrics to the scene's context. Furthermore, they missed the visible grime/residue on the plate's rim and the messy presentation, overscoring cleanliness.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\a191d3d4gy1gsi45sfdvkj21es1w0b29.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_002",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific architectural typology (solarium/conservatory) and missed critical maintenance issues. They hallucinated 'neatly arranged tables' when the background seating is actually cluttered and disorganized. They also ignored visible debris on the skylight panels, which contradicts a high cleanliness score.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\aea30242gy1hz2xyfq1uxj24eo3b0u11.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_002",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the specific urban context (indoor commercial dining) and missed critical safety/cleanliness details. They ignored the presence of an open heating element/flame under the central pot and the significant amount of food debris (sunflower seed shells) scattered directly on the table surface, which impacts the cleanliness score more than 'residue on plates'.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\b0c935e0gy1gpq5t598dnj22c0340qo3.jpg",
+      "teacher_score": 0.95,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student correctly identified that this is not an urban scene, avoiding the trap of hallucinating street-level data. However, as a planner, they should have noted the physical condition of the object (oxidation/patina) which informs the 'cleanliness' score of the subject itself.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\b52ca091gy1h41uba5tixj22c0340e82.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_002"
+      ],
+      "critique": "The student's analysis is generic and lacks specific visual evidence. It fails to mention the architectural details (traditional roof eaves), the specific demographic (students in red scarves), or potential safety hazards like the uneven stone flooring and exposed track lighting.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\c42ded49gy1hzqt5ya27qj22c0340npd.jpg",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the primary subject of the image: a moped rider in the foreground. They hallucinated 'one person walking' in the distance while missing the two distinct pedestrians visible on the right-hand path. The analysis of 'safety' ignores the lack of physical barriers between the elevated roadway and the steep drop-off on the left, and the 'vibrancy' score is generous for a desolate rural/suburban connector road.",
+      "error": null
+    },
+    {
+      "dataset": "dataset1_mixed",
+      "mode": "caption+text",
+      "image_path": "H:\\微博数据 - 副本\\images\\d7be47ffly1gky53uv9gdj230j29f7wo.jpg",
+      "teacher_score": 0.2,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_002"
+      ],
+      "critique": "The student hallucinated a 'scooter rider' and 'people' who are not present in the frame. They also failed to notice structural cracks and the narrow, enclosed nature of the alley which impacts safety perceptions. This is a failure of basic observation.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_000712_leftImg8bit.png",
+      "teacher_score": 0.45,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to identify the specific urban typology and missed critical safety hazards. They hallucinated 'moving vehicles' (all visible cars are parked or stationary in a queue) and failed to notice the lack of pedestrian infrastructure and the poor state of the asphalt. The vibrancy score is too high for a street with zero active storefronts or pedestrians.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_005970_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to identify critical safety hazards and provided a generic analysis. They missed the cyclist riding against traffic/crossing mid-intersection without a lane and the lack of physical barriers between heavy industrial vehicles (cement mixer, freight truck) and pedestrians. The 'vibrancy' score is inflated for a standard transit-oriented street scene.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_006922_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the specific urban typology and missed critical infrastructure details. They hallucinated 'moderate activity' when only three pedestrians are visible in the distance. They also failed to note the presence of tram tracks and the specific modern architectural style of the building on the right, which dictates the 'vibrancy' score more than generic 'walking'.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_013094_leftImg8bit.png",
+      "teacher_score": 0.35,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the specific urban typology and missed critical safety hazards. They hallucinated 'pedestrians' (none are clearly visible/active) and 'litter near bike racks' (not visible at this resolution). Most importantly, they ignored the dangerous lack of physical separation for the bike lanes in a high-traffic corridor.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_016558_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the most critical safety hazard: the abrupt termination of the bike lane/shoulder into a construction zone, forcing merging into traffic. They also hallucinated 'clear signage' when the primary signage consists of basic chevron markers and temporary fencing. The cleanliness score is overly generous given the visible dirt and uneven asphalt patching in the foreground.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_023276_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to identify specific infrastructure elements and misidentified the location of the graffiti. They missed the significant lack of active street-level retail and the presence of a bicycle lane, which are critical for urban planning analysis.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_027007_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student correctly identified the 'eZigaretten' store and the cyclist, but failed to note significant infrastructure decay. They overlooked the uneven, patched asphalt in the foreground and the 'ghosting' or faded road markings. The safety score is overly optimistic given the lack of physical separation for the cyclist and the poor condition of the road surface which impacts braking and visibility.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_027282_leftImg8bit.png",
+      "teacher_score": 0.45,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to identify the specific urban context and missed critical safety hazards. They ignored the lack of a clear pedestrian crossing despite people walking in the street, and overlooked the significant visual clutter and sticker-covered infrastructure (bollards/poles) which impacts cleanliness and perceived order.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_028202_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to observe significant cleanliness and safety indicators. They hallucinated 'no obvious litter' despite visible trash on the sidewalk. They also missed the presence of bollards and clear signage which are critical urban planning elements for safety.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_032351_leftImg8bit.png",
+      "teacher_score": 0.45,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to identify the specific urban typology and missed critical infrastructure details. The rationale regarding 'parked vehicles reducing safety in emergencies' is a generic hallucination not supported by urban planning principles for this context. They also missed the clear 'Herzlich Willkommen' signage and the specific bicycle infrastructure which dictates the vibrancy and safety scores.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034720_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the heavy police presence (at least 4-5 vehicles), which indicates a potential security incident or high-risk zone, contradicting a high safety score. They also missed the significant bicycle infrastructure and the 'Camping Schrader' storefront, which are key indicators of vibrancy and land use.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_036051_leftImg8bit.png",
+      "teacher_score": 0.45,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify critical urban design flaws and safety hazards. They missed the lack of a physical barrier between the narrow sidewalk and moving traffic, the presence of a large delivery truck obstructing the view, and the hostile architecture (large metal shutters). The 'cleanliness' score is overly generous given the visible staining on the pavement and the cluttered, aging facade of the 'Fahrschule' building.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_037039_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the primary infrastructure (tram tracks) and the significant safety hazard posed by the extensive construction zone. The analysis is generic and misses the specific urban context of a transit-oriented street under heavy renovation.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_037516_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to identify the specific location (Hannover) despite clear signage. They hallucinated 'visible litter near the pole'—the base of the poles is actually clean, with only minor weeds/grass. They missed critical safety infrastructure like the dedicated bike lane markings and the scaffolding on the left, which impacts pedestrian flow and perceived safety.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_039021_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to identify a critical safety violation: a pedestrian is sprinting across the road against a red light while a vehicle (the camera car) is positioned to move. The student also missed the significant amount of litter in the gutter and the poor state of the road markings (crossed out/faded). The analysis is generic and ignores the specific hazards present.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_041232_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student's analysis is generic and fails to identify specific urban infrastructure or hazards. They missed the significant lack of pedestrian protection at the intersection and the presence of graffiti/tagging on the utility boxes, which directly impacts cleanliness and perceived safety.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_041610_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the most critical safety and cleanliness indicators. They missed the presence of two pedestrians (not one), ignored the significant pavement degradation/cracking in the foreground, and failed to notice the chain-link barrier and bollards which indicate restricted access. The 'moderate' safety score is too high given the poor lighting, lack of clear crosswalks, and unmaintained infrastructure.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_042770_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student provided a generic, 'safe' analysis that missed critical urban infrastructure details. They failed to mention the significant bicycle parking density, the specific transit/advertising pillar, or the clear pedestrian crossing. Most importantly, they ignored the poor road surface quality (visible cracking and patching in the center lane) which directly impacts cleanliness and maintenance scores.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_044344_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to identify the specific nature of the 'construction materials' and missed the significant safety hazard of a shared-use conflict. They ignored the lack of a defined sidewalk, forcing pedestrians and cyclists into the path of oncoming vehicles (the yellow van). The analysis is generic and lacks professional urban planning rigor.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_044622_leftImg8bit.png",
+      "teacher_score": 0.45,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the specific urban typology and missed critical safety hazards. They hallucinated 'moderate traffic' when the road is actually empty of moving motor vehicles, and they failed to note the lack of dedicated cycling infrastructure for the cyclist. The analysis of 'vibrancy' is generic and ignores the specific commercial signage (e.g., 'Aquaristik') and the brutalist/modernist architecture of the central building.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_045004_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student hallucinated 'busy human activity' and 'bicycles' in motion. The scene is actually quite sparse, with only one visible pedestrian and a single cyclist in the distance. The student failed to notice the poor infrastructure for non-motorized transport at this specific junction and used generic 'urban environment' filler text rather than analyzing the actual image provided.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_049005_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to identify the specific urban typology and missed critical safety infrastructure flaws. They hallucinated 'moderate traffic' and 'visible pedestrian activity' when the street is largely empty. They ignored the lack of protected bike lanes and the hostile, wide-lane design that encourages speeding.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_052729_leftImg8bit.png",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to notice significant visual evidence of urban decay and poor infrastructure design. They hallucinated that an 'empty street' is safer than one with people, which is the opposite of 'eyes on the street' safety principles. Most importantly, they missed the prominent graffiti on the foreground pillar and the hazardous lack of physical separation between the tram tracks, car lanes, and the cyclist in the roadway.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_052887_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student's analysis is generic and lacks professional rigor. They failed to identify the specific infrastructure (tram tracks, overhead wires) which significantly impacts safety and vibrancy. They also missed the sticker-covered utility pole/trash bin in the foreground, which is a primary indicator of cleanliness and maintenance levels in urban planning.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_053437_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to identify critical infrastructure hazards and misinterpreted 'parked cars' as a cleanliness issue rather than a safety/congestion factor. They missed the dangerous interaction between cyclists and tram tracks.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000002_000019_leftImg8bit.png",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the specific urban context and hallucinated 'moderate traffic' and 'pedestrian activity' which are virtually non-existent in the frame. They missed the significant impact of the heavy tree canopy on natural lighting and failed to note the specific infrastructure (temporary construction barriers/bollards) that dictates the current safety profile.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000008_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to identify the specific urban context and missed critical safety hazards. They hallucinated 'moderate vehicle activity' when only one scooter is present. Most importantly, they ignored the pedestrian safety violation: three individuals are crossing the street against a green light for oncoming traffic, directly in the path of the scooter. The student also failed to note the poor maintenance of the building facade on the right.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000009_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific nature of the 'litter' (organic leaf fall) and missed critical infrastructure cues. The vibrancy score is inflated for a quiet residential side-street with minimal commercial frontage. The analysis of 'safety' is generic and ignores the lack of active surveillance or lighting quality.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000023_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify critical safety hazards and misinterpreted the urban context. They missed the 'No Parking' signs (Z. 283) being actively ignored by the silver VW, and failed to notice the lack of physical separation between pedestrians and vehicles on a narrow shared-surface street. The 'good visibility' claim is questionable given the overcast lighting and deep shadows in the recessed doorways.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000027_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student hallucinated 'visible pedestrian activity' and 'multiple cars' in motion; the street is actually quite empty of people, and most cars are parked. They also failed to identify the specific infrastructure (bicycle lane markings) and the aging, weathered state of the building facades which impacts the vibrancy score.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000030_000019_leftImg8bit.png",
+      "teacher_score": 0.35,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the specific lighting conditions (overcast/dusk) and hallucinated 'pedestrians' who are not visible in the frame. They missed critical infrastructure failures including significant asphalt cracking and the lack of protected cycling infrastructure despite the presence of a painted bike lane. The vibrancy score is inflated for a scene dominated by traffic and blank facades.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000031_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the specific urban context and missed critical safety hazards. They hallucinated 'natural daylight' when the scene is clearly overcast/gloomy. Most importantly, they ignored the perspective of the viewer: a vehicle (Mercedes-Benz) positioned dangerously close to pedestrians in an intersection, which significantly impacts the safety score.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000039_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify key urban decay indicators and miscounted pedestrians. They missed the graffiti on the utility door, the bars on the lower-level window, and the fact that there are two people, not one. The assessment of 'litter' is vague; those are fallen leaves, which is a maintenance distinction. The safety logic is flawed—security is not defined by 'visible measures' but by environmental design (CPTED), which is poor here due to blank facades and dead ends.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000053_000019_leftImg8bit.png",
+      "teacher_score": 0.45,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to identify the specific urban context (Germany/Aachen) despite clear signage. They missed critical safety infrastructure like the dedicated bike lane and the Sparkasse bank branch. The 'cleanliness' score is too low for a street with zero visible litter, and the 'vibrancy' rationale ignores the institutional/commercial presence on the right.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000059_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify key infrastructure elements and hallucinated 'pedestrians' where none are clearly active. They missed the dedicated red-painted bicycle lane, the Shell gas station signage, and the specific European architectural context. The analysis is generic and lacks the professional rigor required for urban planning.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000066_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the specific urban typology and missed critical safety infrastructure. They hallucinated 'moderate traffic' and 'pedestrians on the sidewalk'—the street is largely empty of moving traffic and active pedestrians. They missed the dedicated bicycle lane markings and the 'Zone W' parking signage, which are key indicators of urban management.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000075_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_002"
+      ],
+      "critique": "The student failed to identify the specific urban context (a transit hub/train station entrance) and missed critical safety hazards. They hallucinated 'industrial elements' when the structures are clearly railway catenary towers and a station canopy. They also ignored the lack of pedestrian infrastructure (narrow, obstructed sidewalks) and the poor road surface quality.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000079_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the specific urban context and missed critical infrastructure details. They hallucinated 'moderate traffic' when the road is nearly empty, and 'storefronts' which are largely shuttered or non-descript. They missed the construction crane, the bollards, and the poor lighting conditions that impact safety perception.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000082_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "critique": "The student failed to identify critical infrastructure and safety hazards. They missed the significant amount of leaf litter and debris on the road surface, and more importantly, failed to note the lack of pedestrian crossings or traffic signals at a high-speed multi-lane thoroughfare. The analysis of 'dim lighting' is a misinterpretation of a daylight photo taken under overcast conditions.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000100_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the specific urban context and missed critical safety/infrastructure details. They hallucinated 'visible litter' (the debris is clearly organic leaf fall) and failed to note the high-quality historic architecture and clear traffic markings which significantly impact safety and vibrancy scores.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000102_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the specific institutional context (Hochschule für Musik und Tanz) and missed critical infrastructure details like the bollards and the Mercedes-Benz hood ornament indicating the perspective is from a vehicle. The rationale is generic and lacks professional urban observation.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000120_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the specific urban context and missed critical safety/cleanliness indicators. They hallucinated 'moderate traffic' and 'visible storefronts' when the street is largely empty and the ground level is obscured by shadows and parked cars. They missed the leaf litter on the roadway and the lack of active street life.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000125_000019_leftImg8bit.png",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to observe the actual lighting conditions and specific infrastructure. They claimed 'natural daylight enhances visibility,' ignoring the heavy overcast, dim lighting, and active traffic signals/brake lights which indicate low-light conditions. They also hallucinated 'a few pedestrians' when only one is visible, and missed the poor road surface quality (patching/cracking).",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000127_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_002"
+      ],
+      "critique": "The student failed to identify the specific urban context (Germany/Aachen) despite clear signage. They hallucinated 'moderate traffic' when only two cars are present, and 'moderate vibrancy' despite a largely desolate sidewalk and closed-looking storefronts. Most critically, they missed a major safety hazard: a pedestrian is jaywalking/crossing against the light in the middle of the intersection.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000137_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific urban typology and missed critical safety hazards. They hallucinated 'a few pedestrians' (only one is visible in the distance) and ignored the significant lack of street lighting infrastructure and the presence of a large, unmonitored park edge which impacts perceived safety. The analysis of 'vibrancy' is generic and fails to note the lack of commercial frontage or active street life.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000143_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify the specific urban context and missed critical safety hazards. They hallucinated 'moderate traffic' when only one car is in the immediate intersection, and ignored the poor road surface quality and lack of protected pedestrian infrastructure. The analysis is generic and lacks professional rigor.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000152_000019_leftImg8bit.png",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the primary subject of the image, mischaracterizing a finished, iconic high-tech architectural structure (Aachen University Hospital) as an 'unfinished construction site.' This is a major contextual hallucination. Furthermore, the student describes the roadside as 'unkempt' and 'dirty,' failing to recognize a clearly defined, paved pedestrian/cycle path and intentional green buffering. The analysis lacks professional urban planning depth.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000161_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "critique": "The student failed to identify significant urban decay and safety hazards. They hallucinated 'well-maintained' buildings while ignoring visible graffiti on the right-hand structure and stickers/vandalism on street poles. They also missed the lack of active frontages and the poor lighting conditions of an overcast day.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000167_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify the specific urban typology and missed critical safety infrastructure. They hallucinated 'dimness' and 'street lamps' being on, when this is clearly a daylight shot with a flat, overcast exposure. They also failed to note the bollards and traffic calming measures which significantly impact safety scores.",
+      "error": null
+    },
+    {
+      "dataset": "dataset2_street",
+      "mode": "caption+text",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000173_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_001"
+      ],
+      "critique": "The student failed to identify critical urban planning hazards and infrastructure failures. They hallucinated 'litter' while missing the significant sidewalk obstruction caused by the van and the active construction zone blocking the roadway ahead. The analysis is generic and lacks professional observation of the built environment.",
+      "error": null
+    }
+  ]
+}
