@@ -479,7 +479,27 @@ class UrbanPipeline:
                     trace["vault_added_id"] = None
                     return trace
                 # 核心防坑：入库的是 Teacher 的修正版，不是学生版
-                caption = self.teacher.generate_caption(sample)
+                caption_backend = (os.getenv("EVOSHOT_VAULT_CAPTION_BACKEND") or "teacher").strip().lower()
+                caption = ""
+                if caption_backend in {"student", "local", "captioner"}:
+                    if self._captioner is None:
+                        self._captioner = LocalVisionCaptioner()
+                    try:
+                        caption = self._captioner.caption(sample.image_path)
+                    except Exception as e:
+                        trace["vault_caption_error"] = str(e)
+                        caption = ""
+                else:
+                    caption = self.teacher.generate_caption(sample)
+                    if not caption or caption.strip().lower() == "urban scene description unavailable.":
+                        if self._captioner is None:
+                            self._captioner = LocalVisionCaptioner()
+                        try:
+                            caption = self._captioner.caption(sample.image_path)
+                            trace["vault_caption_fallback"] = "student"
+                        except Exception as e:
+                            trace["vault_caption_error"] = str(e)
+                            caption = caption or "Urban scene description unavailable."
                 new_ex = UrbanExample(
                     id=sample.id,
                     image_path=sample.image_path,
