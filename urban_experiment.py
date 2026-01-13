@@ -154,6 +154,16 @@ class MockVault:
         if not self.storage:
             return []
 
+        no_self_hit = (os.getenv("EVOSHOT_RETRIEVAL_NO_SELF_HIT") or "").strip().lower() in {"1", "true", "yes", "on"}
+        candidates: List[UrbanExample]
+        if no_self_hit and getattr(query, "id", None):
+            candidates = [ex for ex in self.storage if ex.id != query.id]
+        else:
+            candidates = list(self.storage)
+
+        if not candidates:
+            return []
+
         if isinstance(self.embedder, EmbeddingTestHTTPEmbedder):
             retrieval_strategy = (os.getenv("EVOSHOT_RETRIEVAL_STRATEGY") or "mmr").strip().lower()
             mmr_lambda = float(os.getenv("EVOSHOT_MMR_LAMBDA", "0.6"))
@@ -167,7 +177,7 @@ class MockVault:
             missing_texts = []
             missing_examples: List[UrbanExample] = []
             vecs = []
-            for ex in self.storage:
+            for ex in candidates:
                 if ex.embedding is None:
                     missing_examples.append(ex)
                     missing_texts.append(f"[IMG] {ex.image_desc}\nText: {ex.post_text}")
@@ -178,7 +188,7 @@ class MockVault:
                 new_vecs = self.embedder.encode_many(missing_texts)
                 for ex, vec in zip(missing_examples, new_vecs):
                     ex.embedding = vec
-                vecs = [ex.embedding for ex in self.storage]
+                vecs = [ex.embedding for ex in candidates]
 
             mat = np.array(vecs, dtype=np.float32)
             qn = float(np.linalg.norm(q)) or 1e-9
@@ -188,12 +198,23 @@ class MockVault:
             q_norm = q / qn
             sims_to_query = mat_norm.dot(q_norm)
 
-            if len(self.storage) <= k:
+            if retrieval_strategy == "random":
+                import hashlib
+
+                global_seed = int(os.getenv("EVOSHOT_RANDOM_SEED", "0"))
+                qid = str(getattr(query, "id", "") or "")
+                h = hashlib.md5(qid.encode("utf-8")).hexdigest()[:8]
+                seed = global_seed + int(h, 16)
+                rng = random.Random(seed)
+                n_pick = min(k, len(candidates))
+                idxs = rng.sample(list(range(len(candidates))), k=n_pick)
+                selected = [candidates[i] for i in idxs]
+            elif len(candidates) <= k:
                 idxs = np.argsort(sims_to_query)[::-1]
-                selected = [self.storage[int(i)] for i in idxs]
+                selected = [candidates[int(i)] for i in idxs]
             elif retrieval_strategy == "topk":
                 idxs = np.argsort(sims_to_query)[::-1][:k]
-                selected = [self.storage[int(i)] for i in idxs]
+                selected = [candidates[int(i)] for i in idxs]
             else:
                 selected_indices: List[int] = []
                 ranked = np.argsort(sims_to_query)[::-1]
@@ -221,11 +242,11 @@ class MockVault:
                     selected_indices.append(best_idx)
                     candidate_indices.remove(best_idx)
 
-                selected = [self.storage[i] for i in selected_indices]
+                selected = [candidates[i] for i in selected_indices]
         else:
             # 简单模拟：按 Tier 排序，然后取前 k 条
             # 实际项目中是 Vector Similarity Search
-            sorted_ex = sorted(self.storage, key=lambda x: x.tier)
+            sorted_ex = sorted(candidates, key=lambda x: x.tier)
             selected = sorted_ex[:k]
 
         # 记录使用频次，便于后续清洗
@@ -368,7 +389,9 @@ class UrbanPipeline:
         trace: dict = {"sample_id": sample.id}
 
         retrieval_query_mode = (os.getenv("EVOSHOT_QUERY_EMBED_MODE") or "text").strip().lower()
-        if retrieval_query_mode in {"caption", "caption+text"} and self._captioner is not None:
+        if retrieval_query_mode in {"caption", "caption+text"}:
+            if self._captioner is None:
+                self._captioner = LocalVisionCaptioner()
             try:
                 caption = self._captioner.caption(sample.image_path)
                 if retrieval_query_mode == "caption":
