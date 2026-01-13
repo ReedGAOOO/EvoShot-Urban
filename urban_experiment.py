@@ -49,6 +49,7 @@ class UrbanExample(BaseModel):
     """存储在 Vault 中的单一知识点"""
 
     id: str
+    image_path: Optional[str] = None  # 可选：用于“图像侧”embedding / 多模态 few-shot
     image_desc: str  # 关键：只存描述，不把图片塞进 Context
     post_text: str
     rationale: str
@@ -111,8 +112,16 @@ class MockVault:
 
     def add(self, example: UrbanExample):
         # 实际项目中这里会有 hash 去重
-        embed_text = f"[IMG] {example.image_desc}\nText: {example.post_text}"
-        example.embedding = self.embedder.encode(embed_text)
+        vault_embed_mode = (os.getenv("EVOSHOT_VAULT_EMBED_MODE") or "text").strip().lower()
+        if isinstance(self.embedder, EmbeddingTestHTTPEmbedder) and vault_embed_mode in {"image", "image+text"} and example.image_path:
+            if vault_embed_mode == "image":
+                example.embedding = self.embedder.encode_image_path(str(example.image_path))
+            else:
+                mix_text = f"{example.image_desc}\n{example.post_text}".strip()
+                example.embedding = self.embedder.encode_image_text(str(example.image_path), mix_text)
+        else:
+            embed_text = f"[IMG] {example.image_desc}\nText: {example.post_text}"
+            example.embedding = self.embedder.encode(embed_text)
         self.storage.append(example)
         logger.info(f"{Fore.GREEN}[Vault] Added new example: {example.id} (Tier {example.tier}){Style.RESET_ALL}")
 
@@ -169,23 +178,37 @@ class MockVault:
             mmr_lambda = float(os.getenv("EVOSHOT_MMR_LAMBDA", "0.6"))
             mmr_lambda = max(0.0, min(1.0, mmr_lambda))
             mmr_candidates = int(os.getenv("EVOSHOT_MMR_CANDIDATES", str(max(20, k * 5))))
+            vault_embed_mode = (os.getenv("EVOSHOT_VAULT_EMBED_MODE") or "text").strip().lower()
 
             query_text_base = query.retrieval_text if getattr(query, "retrieval_text", None) else query.post_text
-            query_text = f"Text: {query_text_base}"
-            q = np.array(self.embedder.encode(query_text), dtype=np.float32)
+            query_mode = (os.getenv("EVOSHOT_QUERY_EMBED_MODE") or "text").strip().lower()
+            if query_mode == "image" and getattr(query, "image_path", None):
+                q = np.array(self.embedder.encode_image_path(str(query.image_path)), dtype=np.float32)
+            elif query_mode in {"image+text", "image_text", "image-text"} and getattr(query, "image_path", None):
+                q = np.array(self.embedder.encode_image_text(str(query.image_path), str(query_text_base)), dtype=np.float32)
+            else:
+                query_text = f"Text: {query_text_base}"
+                q = np.array(self.embedder.encode(query_text), dtype=np.float32)
 
-            missing_texts = []
+            missing_inputs: List[Dict[str, object]] = []
             missing_examples: List[UrbanExample] = []
             vecs = []
             for ex in candidates:
                 if ex.embedding is None:
                     missing_examples.append(ex)
-                    missing_texts.append(f"[IMG] {ex.image_desc}\nText: {ex.post_text}")
+                    if vault_embed_mode in {"image", "image+text"} and ex.image_path:
+                        if vault_embed_mode == "image":
+                            missing_inputs.append({"image": str(ex.image_path)})
+                        else:
+                            mix_text = f"{ex.image_desc}\n{ex.post_text}".strip()
+                            missing_inputs.append({"image": str(ex.image_path), "text": mix_text})
+                    else:
+                        missing_inputs.append({"text": f"[IMG] {ex.image_desc}\nText: {ex.post_text}"})
                 else:
                     vecs.append(ex.embedding)
 
             if missing_examples:
-                new_vecs = self.embedder.encode_many(missing_texts)
+                new_vecs = self.embedder.encode_inputs(missing_inputs)
                 for ex, vec in zip(missing_examples, new_vecs):
                     ex.embedding = vec
                 vecs = [ex.embedding for ex in candidates]
@@ -459,6 +482,7 @@ class UrbanPipeline:
                 caption = self.teacher.generate_caption(sample)
                 new_ex = UrbanExample(
                     id=sample.id,
+                    image_path=sample.image_path,
                     image_desc=caption,
                     post_text=sample.post_text,
                     rationale=feedback.better_rationale,

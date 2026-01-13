@@ -2,7 +2,7 @@ import json
 import os
 import random
 import time
-from collections import Counter, defaultdict
+from collections import Counter
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Tuple
@@ -18,7 +18,7 @@ def _is_image(path: Path) -> bool:
     return path.suffix.lower() in IMAGE_EXTS
 
 
-def reservoir_sample_images(root: Path, k: int, *, recurse: bool = True, seed: int = 42) -> List[Path]:
+def reservoir_sample_images(root: Path, k: int, *, recurse: bool, seed: int) -> List[Path]:
     rng = random.Random(seed)
     reservoir: List[Path] = []
     seen = 0
@@ -45,24 +45,6 @@ def _dummy_gt() -> dict:
     return {"safety": 3.0, "vibrancy": 3.0, "cleanliness": 3.0}
 
 
-def _categorize_critique(text: str) -> List[str]:
-    t = (text or "").lower()
-    tags = []
-    if any(x in t for x in ["hallucinat", "not grounded", "lacks specific", "lacks specificity", "misses key visual"]):
-        tags.append("grounding/hallucination")
-    if "vibrancy" in t:
-        tags.append("vibrancy")
-    if "safety" in t:
-        tags.append("safety")
-    if "cleanliness" in t:
-        tags.append("cleanliness")
-    if any(x in t for x in ["park", "nature", "landscape", "not an urban", "non-urban"]):
-        tags.append("non_urban/domain_mismatch")
-    if not tags and t.strip():
-        tags.append("other")
-    return tags
-
-
 @dataclass
 class ItemResult:
     experiment: str
@@ -74,10 +56,6 @@ class ItemResult:
     teacher_should_add: Optional[bool]
     vault_added_id: Optional[str]
     retrieved_ids: List[str]
-    critique: str
-    query_caption: Optional[str] = None
-    student_scores: Optional[Dict[str, float]] = None
-    student_confidence: Optional[float] = None
     error: Optional[str] = None
 
 
@@ -85,38 +63,19 @@ def _avg(xs: List[float]) -> Optional[float]:
     return sum(xs) / len(xs) if xs else None
 
 
-def _summarize_items(items: List[ItemResult]) -> Dict[str, object]:
-    scores: List[float] = []
-    pass_scores: List[float] = []
-    add_flags: List[bool] = []
-    tags_counter = Counter()
-    retrieved_counter = Counter()
-
-    for r in items:
-        if isinstance(r.teacher_score, (int, float)):
-            scores.append(float(r.teacher_score))
-            if float(r.teacher_score) >= 0.8:
-                pass_scores.append(float(r.teacher_score))
-        if r.teacher_should_add is not None:
-            add_flags.append(bool(r.teacher_should_add))
-        for rid in r.retrieved_ids or []:
-            retrieved_counter[rid] += 1
-        for tag in _categorize_critique(r.critique):
-            tags_counter[tag] += 1
-
-    add_rate = (sum(1 for x in add_flags if x) / len(add_flags)) if add_flags else None
-
+def summarize(items: List[ItemResult]) -> Dict[str, object]:
+    scores = [x.teacher_score for x in items if isinstance(x.teacher_score, (int, float))]
+    pass_scores = [s for s in scores if s is not None and s >= 0.8]
+    add_flags = [x.teacher_should_add for x in items if x.teacher_should_add is not None]
     return {
         "n": len(items),
-        "avg_teacher_score": _avg(scores),
+        "avg_teacher_score": _avg([float(x) for x in scores if x is not None]),
         "pass_rate_ge_0_8": (len(pass_scores) / len(scores)) if scores else None,
-        "add_rate_should_add": add_rate,
-        "critique_tags": tags_counter.most_common(),
-        "top_retrieved_ids": retrieved_counter.most_common(10),
+        "add_rate_should_add": (sum(1 for x in add_flags if x) / len(add_flags)) if add_flags else None,
     }
 
 
-def _run_round(
+def run_round(
     *,
     pipeline: UrbanPipeline,
     experiment: str,
@@ -146,10 +105,6 @@ def _run_round(
                 teacher_should_add=bool(trace["teacher_should_add"]) if trace.get("teacher_should_add") is not None else None,
                 vault_added_id=trace.get("vault_added_id"),
                 retrieved_ids=list(trace.get("retrieved_ids") or []),
-                critique=str(trace.get("teacher_critique") or ""),
-                query_caption=trace.get("query_caption"),
-                student_scores=trace.get("student_scores"),
-                student_confidence=float(trace["student_confidence"]) if isinstance(trace.get("student_confidence"), (int, float)) else None,
                 error=str(trace.get("error")) if trace.get("error") else None,
             )
         )
@@ -159,48 +114,38 @@ def _run_round(
 def run_experiment(
     *,
     name: str,
-    query_mode: str,
-    retrieval_strategy: str,
+    env_overrides: Dict[str, str],
     ds1: List[Path],
     ds2: List[Path],
     post_text: str,
 ) -> Dict[str, object]:
-    os.environ["EVOSHOT_QUERY_EMBED_MODE"] = query_mode
-    os.environ["EVOSHOT_RETRIEVAL_STRATEGY"] = retrieval_strategy
-    os.environ.setdefault("EVOSHOT_RETRIEVAL_K", "2")
-    os.environ.setdefault("EVOSHOT_MMR_LAMBDA", "0.6")
-    os.environ.setdefault("EVOSHOT_MMR_CANDIDATES", "40")
+    for k, v in env_overrides.items():
+        os.environ[k] = v
 
-    # Round 1: allow vault update (learning on)
+    # Round 1: allow updates (learning on)
     os.environ["EVOSHOT_DISABLE_VAULT_UPDATE"] = "0"
     pipeline = UrbanPipeline()
 
-    r1_ds1 = _run_round(pipeline=pipeline, experiment=name, dataset="dataset1_mixed", round_idx=1, image_paths=ds1, post_text=post_text)
-    r1_ds2 = _run_round(pipeline=pipeline, experiment=name, dataset="dataset2_street", round_idx=1, image_paths=ds2, post_text=post_text)
+    r1_ds1 = run_round(pipeline=pipeline, experiment=name, dataset="dataset1_mixed", round_idx=1, image_paths=ds1, post_text=post_text)
+    r1_ds2 = run_round(pipeline=pipeline, experiment=name, dataset="dataset2_street", round_idx=1, image_paths=ds2, post_text=post_text)
 
-    tier_counts = Counter(getattr(ex, "tier", None) for ex in getattr(pipeline.vault, "storage", []) or [])
-
-    # Round 2: freeze vault, re-evaluate same images
+    # Round 2: freeze
     os.environ["EVOSHOT_DISABLE_VAULT_UPDATE"] = "1"
-    r2_ds1 = _run_round(pipeline=pipeline, experiment=name, dataset="dataset1_mixed", round_idx=2, image_paths=ds1, post_text=post_text)
-    r2_ds2 = _run_round(pipeline=pipeline, experiment=name, dataset="dataset2_street", round_idx=2, image_paths=ds2, post_text=post_text)
+    r2_ds1 = run_round(pipeline=pipeline, experiment=name, dataset="dataset1_mixed", round_idx=2, image_paths=ds1, post_text=post_text)
+    r2_ds2 = run_round(pipeline=pipeline, experiment=name, dataset="dataset2_street", round_idx=2, image_paths=ds2, post_text=post_text)
 
     all_items = r1_ds1 + r1_ds2 + r2_ds1 + r2_ds2
-
-    def _by(round_idx: int, dataset: str) -> List[ItemResult]:
-        return [x for x in all_items if x.round == round_idx and x.dataset == dataset]
 
     summaries = []
     for round_idx in (1, 2):
         for dataset in ("dataset1_mixed", "dataset2_street"):
-            sub = _by(round_idx, dataset)
-            s = _summarize_items(sub)
-            s.update({"experiment": name, "query_mode": query_mode, "retrieval_strategy": retrieval_strategy, "round": round_idx, "dataset": dataset})
+            sub = [x for x in all_items if x.round == round_idx and x.dataset == dataset]
+            s = summarize(sub)
+            s.update({"experiment": name, "round": round_idx, "dataset": dataset})
             summaries.append(s)
 
     return {
-        "config": {"experiment": name, "query_mode": query_mode, "retrieval_strategy": retrieval_strategy},
-        "vault_tier_counts_after_round1": dict(tier_counts),
+        "config": {"experiment": name, "env": dict(env_overrides)},
         "summaries": summaries,
         "results": [asdict(x) for x in all_items],
     }
@@ -210,21 +155,21 @@ def main() -> int:
     root = Path(__file__).resolve().parent
     _load_dotenv(root / ".env", override=False)
 
-    # Real backends
+    # Real backends & stability
     os.environ.setdefault("EVOSHOT_STUDENT_BACKEND", "real")
-    os.environ.setdefault("EVOSHOT_EMBED_BACKEND", "real")
+    os.environ.setdefault("EVOSHOT_EMBED_BACKEND", "real")  # same service, now supports image inputs
     os.environ.setdefault("EVOSHOT_TEACHER_BACKEND", "real")
-
-    # Stability / determinism
     os.environ.setdefault("EVOSHOT_LLM_TEMPERATURE", "0")
     os.environ.setdefault("EVOSHOT_TEACHER_TEMPERATURE", "0")
+
     os.environ.setdefault("EVOSHOT_LLM_SEND_IMAGE", "1")
     os.environ.setdefault("EVOSHOT_LLM_USE_TOOLS", "auto")
     os.environ.setdefault("EVOSHOT_LLM_TOOL_CHOICE", "required")
     os.environ.setdefault("EVOSHOT_LLM_MAX_TOKENS", "512")
+    os.environ.setdefault("EVOSHOT_RETRIEVAL_K", "2")
 
-    n1 = int(os.getenv("EVOSHOT_N_DATASET1", "30"))
-    n2 = int(os.getenv("EVOSHOT_N_DATASET2", "30"))
+    n1 = int(os.getenv("EVOSHOT_N_DATASET1", "10"))
+    n2 = int(os.getenv("EVOSHOT_N_DATASET2", "10"))
     seed = int(os.getenv("EVOSHOT_SAMPLE_SEED", "42"))
     post_text = os.getenv("EVOSHOT_DEFAULT_POST_TEXT", "Please score this image.")
 
@@ -248,18 +193,36 @@ def main() -> int:
     ds2 = ds2_parts[:n2]
 
     experiments = [
-        {"name": "E1_original_text_topk", "query_mode": "text", "retrieval_strategy": "topk"},
-        {"name": "E2_caption_topk", "query_mode": "caption+text", "retrieval_strategy": "topk"},
-        {"name": "E3_caption_mmr", "query_mode": "caption+text", "retrieval_strategy": "mmr"},
+        {
+            "name": "baseline_E2_caption_textEmbedding_textFewshot",
+            "env": {
+                "EVOSHOT_QUERY_EMBED_MODE": "caption+text",
+                "EVOSHOT_VAULT_EMBED_MODE": "text",
+                "EVOSHOT_RETRIEVAL_STRATEGY": "topk",
+                "EVOSHOT_STUDENT_FEWSHOT_MODE": "text",
+            },
+        },
+        {
+            "name": "new_E4_imageTextEmbedding_multimodalFewshot",
+            "env": {
+                "EVOSHOT_QUERY_EMBED_MODE": "image+text",
+                "EVOSHOT_VAULT_EMBED_MODE": "image+text",
+                "EVOSHOT_RETRIEVAL_STRATEGY": "topk",
+                "EVOSHOT_STUDENT_FEWSHOT_MODE": "multimodal",
+                # When the embed server runs in WSL, it can't read Windows paths like D:\...\a.jpg.
+                # Convert to /mnt/<drive>/... before sending, and allow longer timeouts for image embeddings.
+                "EVOSHOT_EMBED_IMAGE_PATH_STYLE": os.getenv("EVOSHOT_EMBED_IMAGE_PATH_STYLE", "wsl"),
+                "EVOSHOT_EMBED_TIMEOUT_S": os.getenv("EVOSHOT_EMBED_TIMEOUT_S", "300"),
+            },
+        },
     ]
 
-    all_payloads: List[Dict[str, object]] = []
+    payloads: List[Dict[str, object]] = []
     for cfg in experiments:
-        all_payloads.append(
+        payloads.append(
             run_experiment(
                 name=cfg["name"],
-                query_mode=cfg["query_mode"],
-                retrieval_strategy=cfg["retrieval_strategy"],
+                env_overrides=cfg["env"],
                 ds1=ds1,
                 ds2=ds2,
                 post_text=post_text,
@@ -269,15 +232,14 @@ def main() -> int:
     out_dir = Path(os.getenv("EVOSHOT_BENCH_OUT_DIR", str(root / "bench_out")))
     out_dir.mkdir(parents=True, exist_ok=True)
     ts = time.strftime("%Y%m%d_%H%M%S")
-    out_json = out_dir / f"control_3_experiments_{ts}.json"
-    out_json.write_text(json.dumps({"experiments": all_payloads}, ensure_ascii=False, indent=2), encoding="utf-8")
+    out_json = out_dir / f"image_text_fewshot_comparison_{ts}.json"
+    out_json.write_text(json.dumps({"experiments": payloads}, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    # Print compact summaries
-    compact = []
-    for payload in all_payloads:
-        for s in payload.get("summaries") or []:
-            compact.append(s)
-    print(json.dumps({"summaries": compact, "results_path": str(out_json)}, ensure_ascii=False, indent=2))
+    summaries = []
+    for p in payloads:
+        summaries.extend(p.get("summaries") or [])
+
+    print(json.dumps({"summaries": summaries, "results_path": str(out_json)}, ensure_ascii=False, indent=2))
     return 0
 
 

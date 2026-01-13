@@ -1,0 +1,1306 @@
+{
+  "experiments": [
+    {
+      "config": {
+        "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+        "env": {
+          "EVOSHOT_QUERY_EMBED_MODE": "caption+text",
+          "EVOSHOT_VAULT_EMBED_MODE": "text",
+          "EVOSHOT_RETRIEVAL_STRATEGY": "topk",
+          "EVOSHOT_STUDENT_FEWSHOT_MODE": "text"
+        }
+      },
+      "summaries": [
+        {
+          "n": 10,
+          "avg_teacher_score": 0.6849999999999999,
+          "pass_rate_ge_0_8": 0.3,
+          "add_rate_should_add": 0.7,
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "round": 1,
+          "dataset": "dataset1_mixed"
+        },
+        {
+          "n": 10,
+          "avg_teacher_score": 0.768,
+          "pass_rate_ge_0_8": 0.4,
+          "add_rate_should_add": 0.7,
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "round": 1,
+          "dataset": "dataset2_street"
+        },
+        {
+          "n": 10,
+          "avg_teacher_score": 0.775,
+          "pass_rate_ge_0_8": 0.5,
+          "add_rate_should_add": 0.5,
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "round": 2,
+          "dataset": "dataset1_mixed"
+        },
+        {
+          "n": 10,
+          "avg_teacher_score": 0.7939999999999999,
+          "pass_rate_ge_0_8": 0.6,
+          "add_rate_should_add": 0.4,
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "round": 2,
+          "dataset": "dataset2_street"
+        }
+      ],
+      "results": [
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_1",
+          "image_path": "H:\\微博数据 - 副本\\images\\005yZqAwgy1hzy469wev4j34eo3b04qr.jpg",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_1",
+          "retrieved_ids": [
+            "seed_002",
+            "seed_001"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_2",
+          "image_path": "H:\\微博数据 - 副本\\images\\0061E71Ggy1hzy7md27g1j316o1kwnbs.jpg",
+          "teacher_score": 0.5,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_2",
+          "retrieved_ids": [
+            "seed_003",
+            "dataset1_mixed_1"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_3",
+          "image_path": "H:\\微博数据 - 副本\\images\\0068MLPggy1h0c388kb62j32c0340hdu.jpg",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_3",
+          "retrieved_ids": [
+            "dataset1_mixed_2",
+            "dataset1_mixed_1"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_4",
+          "image_path": "H:\\微博数据 - 副本\\images\\007bkGddgy1hf7cgl7choj32io1w04qp.jpg",
+          "teacher_score": 0.4,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_4",
+          "retrieved_ids": [
+            "dataset1_mixed_2",
+            "seed_001"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_5",
+          "image_path": "H:\\微博数据 - 副本\\images\\007Izbtigy1hzuq0fvynfj30wi0wik0a.jpg",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_5",
+          "retrieved_ids": [
+            "dataset1_mixed_4",
+            "seed_001"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_6",
+          "image_path": "H:\\微博数据 - 副本\\images\\008rsxeGgy1hz1s2lb3udj32c0340hdw.jpg",
+          "teacher_score": 0.88,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_4",
+            "dataset1_mixed_2"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_7",
+          "image_path": "H:\\微博数据 - 副本\\images\\6a223a1aly1g1q9xnl7yqj20u00u0afv.jpg",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_7",
+          "retrieved_ids": [
+            "dataset1_mixed_4",
+            "dataset1_mixed_2"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_8",
+          "image_path": "H:\\微博数据 - 副本\\images\\6cd0e4cfgy1hzqwlbxco8j237k2eohdu.jpg",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_8",
+          "retrieved_ids": [
+            "dataset1_mixed_2",
+            "dataset1_mixed_4"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_9",
+          "image_path": "H:\\微博数据 - 副本\\images\\6f41dea2gy1hzoe8zp16gj20u0140n71.jpg",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_3",
+            "dataset1_mixed_5"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_10",
+          "image_path": "H:\\微博数据 - 副本\\images\\877777a9gy1h1t0vr2oq1j20u0140an2.jpg",
+          "teacher_score": 0.92,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_5",
+            "dataset1_mixed_3"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_1",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034560_leftImg8bit.png",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_4",
+            "dataset1_mixed_2"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_2",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034935_leftImg8bit.png",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_4",
+            "dataset1_mixed_5"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_3",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_037298_leftImg8bit.png",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_3",
+          "retrieved_ids": [
+            "dataset1_mixed_4",
+            "dataset1_mixed_5"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_4",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_053437_leftImg8bit.png",
+          "teacher_score": 0.75,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_4",
+          "retrieved_ids": [
+            "dataset2_street_3",
+            "dataset1_mixed_4"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_5",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_056800_leftImg8bit.png",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_5",
+          "retrieved_ids": [
+            "dataset2_street_4",
+            "dataset2_street_3"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_6",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000035_000019_leftImg8bit.png",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_5",
+            "dataset2_street_3"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_7",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000055_000019_leftImg8bit.png",
+          "teacher_score": 0.75,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_7",
+          "retrieved_ids": [
+            "dataset2_street_5",
+            "dataset1_mixed_4"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_8",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000062_000019_leftImg8bit.png",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_8",
+          "retrieved_ids": [
+            "dataset2_street_3",
+            "dataset2_street_7"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_9",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000077_000019_leftImg8bit.png",
+          "teacher_score": 0.88,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_9",
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_5"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_10",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000113_000019_leftImg8bit.png",
+          "teacher_score": 0.75,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_10",
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset1_mixed_4"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_1",
+          "image_path": "H:\\微博数据 - 副本\\images\\005yZqAwgy1hzy469wev4j34eo3b04qr.jpg",
+          "teacher_score": 0.75,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_1",
+            "seed_002"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_2",
+          "image_path": "H:\\微博数据 - 副本\\images\\0061E71Ggy1hzy7md27g1j316o1kwnbs.jpg",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_2",
+            "dataset1_mixed_4"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_3",
+          "image_path": "H:\\微博数据 - 副本\\images\\0068MLPggy1h0c388kb62j32c0340hdu.jpg",
+          "teacher_score": 0.5,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_3",
+            "dataset2_street_7"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_4",
+          "image_path": "H:\\微博数据 - 副本\\images\\007bkGddgy1hf7cgl7choj32io1w04qp.jpg",
+          "teacher_score": 0.95,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_4",
+            "dataset2_street_9"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_5",
+          "image_path": "H:\\微博数据 - 副本\\images\\007Izbtigy1hzuq0fvynfj30wi0wik0a.jpg",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_5",
+            "dataset1_mixed_4"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_6",
+          "image_path": "H:\\微博数据 - 副本\\images\\008rsxeGgy1hz1s2lb3udj32c0340hdw.jpg",
+          "teacher_score": 0.9,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_5"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_7",
+          "image_path": "H:\\微博数据 - 副本\\images\\6a223a1aly1g1q9xnl7yqj20u00u0afv.jpg",
+          "teacher_score": 1.0,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_4",
+            "dataset1_mixed_7"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_8",
+          "image_path": "H:\\微博数据 - 副本\\images\\6cd0e4cfgy1hzqwlbxco8j237k2eohdu.jpg",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_8",
+            "dataset1_mixed_2"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_9",
+          "image_path": "H:\\微博数据 - 副本\\images\\6f41dea2gy1hzoe8zp16gj20u0140n71.jpg",
+          "teacher_score": 0.6,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_3",
+            "dataset2_street_3"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_10",
+          "image_path": "H:\\微博数据 - 副本\\images\\877777a9gy1h1t0vr2oq1j20u0140an2.jpg",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_5",
+            "dataset2_street_7"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_1",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034560_leftImg8bit.png",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_10",
+            "dataset2_street_7"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_2",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034935_leftImg8bit.png",
+          "teacher_score": 0.82,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_4",
+            "dataset2_street_3"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_3",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_037298_leftImg8bit.png",
+          "teacher_score": 0.75,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_3",
+            "dataset2_street_10"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_4",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_053437_leftImg8bit.png",
+          "teacher_score": 0.6,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_4",
+            "dataset2_street_5"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_5",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_056800_leftImg8bit.png",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_5",
+            "dataset2_street_7"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_6",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000035_000019_leftImg8bit.png",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_7"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_7",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000055_000019_leftImg8bit.png",
+          "teacher_score": 0.92,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_8"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_8",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000062_000019_leftImg8bit.png",
+          "teacher_score": 0.9,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_8",
+            "dataset2_street_3"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_9",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000077_000019_leftImg8bit.png",
+          "teacher_score": 0.75,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_10",
+            "dataset2_street_7"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "baseline_E2_caption_textEmbedding_textFewshot",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_10",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000113_000019_leftImg8bit.png",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_10",
+            "dataset2_street_9"
+          ],
+          "error": null
+        }
+      ]
+    },
+    {
+      "config": {
+        "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+        "env": {
+          "EVOSHOT_QUERY_EMBED_MODE": "image+text",
+          "EVOSHOT_VAULT_EMBED_MODE": "image+text",
+          "EVOSHOT_RETRIEVAL_STRATEGY": "topk",
+          "EVOSHOT_STUDENT_FEWSHOT_MODE": "multimodal"
+        }
+      },
+      "summaries": [
+        {
+          "n": 10,
+          "avg_teacher_score": 0.7,
+          "pass_rate_ge_0_8": 0.2,
+          "add_rate_should_add": 0.8,
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "round": 1,
+          "dataset": "dataset1_mixed"
+        },
+        {
+          "n": 10,
+          "avg_teacher_score": 0.665,
+          "pass_rate_ge_0_8": 0.1,
+          "add_rate_should_add": 0.9,
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "round": 1,
+          "dataset": "dataset2_street"
+        },
+        {
+          "n": 10,
+          "avg_teacher_score": 0.705,
+          "pass_rate_ge_0_8": 0.3,
+          "add_rate_should_add": 0.7,
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "round": 2,
+          "dataset": "dataset1_mixed"
+        },
+        {
+          "n": 10,
+          "avg_teacher_score": 0.71,
+          "pass_rate_ge_0_8": 0.2,
+          "add_rate_should_add": 0.8,
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "round": 2,
+          "dataset": "dataset2_street"
+        }
+      ],
+      "results": [
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_1",
+          "image_path": "H:\\微博数据 - 副本\\images\\005yZqAwgy1hzy469wev4j34eo3b04qr.jpg",
+          "teacher_score": 0.6,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_1",
+          "retrieved_ids": [
+            "seed_003",
+            "seed_001"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_2",
+          "image_path": "H:\\微博数据 - 副本\\images\\0061E71Ggy1hzy7md27g1j316o1kwnbs.jpg",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_2",
+          "retrieved_ids": [
+            "dataset1_mixed_1",
+            "seed_003"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_3",
+          "image_path": "H:\\微博数据 - 副本\\images\\0068MLPggy1h0c388kb62j32c0340hdu.jpg",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_3",
+          "retrieved_ids": [
+            "dataset1_mixed_1",
+            "dataset1_mixed_2"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_4",
+          "image_path": "H:\\微博数据 - 副本\\images\\007bkGddgy1hf7cgl7choj32io1w04qp.jpg",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_4",
+          "retrieved_ids": [
+            "dataset1_mixed_3",
+            "dataset1_mixed_2"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_5",
+          "image_path": "H:\\微博数据 - 副本\\images\\007Izbtigy1hzuq0fvynfj30wi0wik0a.jpg",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_5",
+          "retrieved_ids": [
+            "dataset1_mixed_3",
+            "dataset1_mixed_2"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_6",
+          "image_path": "H:\\微博数据 - 副本\\images\\008rsxeGgy1hz1s2lb3udj32c0340hdw.jpg",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_5",
+            "dataset1_mixed_4"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_7",
+          "image_path": "H:\\微博数据 - 副本\\images\\6a223a1aly1g1q9xnl7yqj20u00u0afv.jpg",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_7",
+          "retrieved_ids": [
+            "dataset1_mixed_5",
+            "dataset1_mixed_4"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_8",
+          "image_path": "H:\\微博数据 - 副本\\images\\6cd0e4cfgy1hzqwlbxco8j237k2eohdu.jpg",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_8",
+          "retrieved_ids": [
+            "dataset1_mixed_5",
+            "dataset1_mixed_1"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_9",
+          "image_path": "H:\\微博数据 - 副本\\images\\6f41dea2gy1hzoe8zp16gj20u0140n71.jpg",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset1_mixed_8",
+            "dataset1_mixed_7"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 1,
+          "sample_id": "dataset1_mixed_10",
+          "image_path": "H:\\微博数据 - 副本\\images\\877777a9gy1h1t0vr2oq1j20u0140an2.jpg",
+          "teacher_score": 0.55,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset1_mixed_10",
+          "retrieved_ids": [
+            "dataset1_mixed_8",
+            "dataset1_mixed_7"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_1",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034560_leftImg8bit.png",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_1",
+          "retrieved_ids": [
+            "dataset1_mixed_8",
+            "dataset1_mixed_7"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_2",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034935_leftImg8bit.png",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_2",
+          "retrieved_ids": [
+            "dataset2_street_1",
+            "dataset1_mixed_10"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_3",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_037298_leftImg8bit.png",
+          "teacher_score": 0.6,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_3",
+          "retrieved_ids": [
+            "dataset2_street_1",
+            "dataset1_mixed_8"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_4",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_053437_leftImg8bit.png",
+          "teacher_score": 0.55,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_4",
+          "retrieved_ids": [
+            "dataset2_street_3",
+            "dataset2_street_2"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_5",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_056800_leftImg8bit.png",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_5",
+          "retrieved_ids": [
+            "dataset2_street_3",
+            "dataset2_street_2"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_6",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000035_000019_leftImg8bit.png",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_6",
+          "retrieved_ids": [
+            "dataset2_street_5",
+            "dataset2_street_4"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_7",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000055_000019_leftImg8bit.png",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_7",
+          "retrieved_ids": [
+            "dataset2_street_5",
+            "dataset1_mixed_5"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_8",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000062_000019_leftImg8bit.png",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_8",
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_6"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_9",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000077_000019_leftImg8bit.png",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": "dataset2_street_9",
+          "retrieved_ids": [
+            "dataset2_street_7",
+            "dataset2_street_6"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset2_street",
+          "round": 1,
+          "sample_id": "dataset2_street_10",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000113_000019_leftImg8bit.png",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_8"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_1",
+          "image_path": "H:\\微博数据 - 副本\\images\\005yZqAwgy1hzy469wev4j34eo3b04qr.jpg",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_8"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_2",
+          "image_path": "H:\\微博数据 - 副本\\images\\0061E71Ggy1hzy7md27g1j316o1kwnbs.jpg",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_8"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_3",
+          "image_path": "H:\\微博数据 - 副本\\images\\0068MLPggy1h0c388kb62j32c0340hdu.jpg",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_8"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_4",
+          "image_path": "H:\\微博数据 - 副本\\images\\007bkGddgy1hf7cgl7choj32io1w04qp.jpg",
+          "teacher_score": 0.4,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_8"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_5",
+          "image_path": "H:\\微博数据 - 副本\\images\\007Izbtigy1hzuq0fvynfj30wi0wik0a.jpg",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_8"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_6",
+          "image_path": "H:\\微博数据 - 副本\\images\\008rsxeGgy1hz1s2lb3udj32c0340hdw.jpg",
+          "teacher_score": 0.75,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_8"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_7",
+          "image_path": "H:\\微博数据 - 副本\\images\\6a223a1aly1g1q9xnl7yqj20u00u0afv.jpg",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_8"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_8",
+          "image_path": "H:\\微博数据 - 副本\\images\\6cd0e4cfgy1hzqwlbxco8j237k2eohdu.jpg",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_8"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_9",
+          "image_path": "H:\\微博数据 - 副本\\images\\6f41dea2gy1hzoe8zp16gj20u0140n71.jpg",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_8"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset1_mixed",
+          "round": 2,
+          "sample_id": "dataset1_mixed_10",
+          "image_path": "H:\\微博数据 - 副本\\images\\877777a9gy1h1t0vr2oq1j20u0140an2.jpg",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_8"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_1",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034560_leftImg8bit.png",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_8"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_2",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034935_leftImg8bit.png",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_8"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_3",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_037298_leftImg8bit.png",
+          "teacher_score": 0.75,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_8"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_4",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_053437_leftImg8bit.png",
+          "teacher_score": 0.7,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_8"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_5",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_056800_leftImg8bit.png",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_8"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_6",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000035_000019_leftImg8bit.png",
+          "teacher_score": 0.65,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_8"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_7",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000055_000019_leftImg8bit.png",
+          "teacher_score": 0.5,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_8"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_8",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000062_000019_leftImg8bit.png",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_8"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_9",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000077_000019_leftImg8bit.png",
+          "teacher_score": 0.75,
+          "teacher_should_add": true,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_8"
+          ],
+          "error": null
+        },
+        {
+          "experiment": "new_E4_imageTextEmbedding_multimodalFewshot",
+          "dataset": "dataset2_street",
+          "round": 2,
+          "sample_id": "dataset2_street_10",
+          "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000113_000019_leftImg8bit.png",
+          "teacher_score": 0.85,
+          "teacher_should_add": false,
+          "vault_added_id": null,
+          "retrieved_ids": [
+            "dataset2_street_9",
+            "dataset2_street_8"
+          ],
+          "error": null
+        }
+      ]
+    }
+  ]
+}

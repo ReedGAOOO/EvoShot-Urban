@@ -112,6 +112,22 @@ class HTTPStudentModel:
         self._repair_model = (os.getenv("EVOSHOT_LLM_REPAIR_MODEL") or self._model).strip()
         self._use_tools = (os.getenv("EVOSHOT_LLM_USE_TOOLS") or "auto").strip().lower()
         self._tool_choice = (os.getenv("EVOSHOT_LLM_TOOL_CHOICE") or "required").strip().lower()
+        self._fewshot_mode = (os.getenv("EVOSHOT_STUDENT_FEWSHOT_MODE") or "text").strip().lower()
+
+    def _should_include_image(self, image_path: str) -> bool:
+        if self._send_image in {"1", "true", "yes", "on"}:
+            return True
+        if self._send_image in {"0", "false", "no", "off"}:
+            return False
+        return os.path.exists(image_path) or _looks_like_url(image_path)
+
+    def _image_part(self, image_path: str) -> Optional[Dict[str, Any]]:
+        if _looks_like_url(image_path):
+            return {"type": "image_url", "image_url": {"url": image_path}}
+        if os.path.exists(image_path):
+            data_url, _mime = _encode_image_data_url(image_path)
+            return {"type": "image_url", "image_url": {"url": data_url}}
+        return None
 
     def _system_prompt(self) -> str:
         dims = ", ".join(self._score_dims)
@@ -168,16 +184,53 @@ class HTTPStudentModel:
             f"(Reminder: scores keys = {dims}; return ONLY JSON.)\n"
         )
 
+    def _build_multimodal_messages(self, *, sample: Any, shots: Any) -> list[Dict[str, Any]]:
+        dims = ", ".join(self._score_dims)
+        messages: list[Dict[str, Any]] = [{"role": "system", "content": self._system_prompt()}]
+
+        for idx, ex in enumerate(shots or [], start=1):
+            ex_text = (
+                f"Reference Example {idx}:\n"
+                f"Scene: {getattr(ex, 'image_desc', '')}\n"
+                f"Text: {getattr(ex, 'post_text', '')}\n"
+                "Return the JSON output for this example."
+            )
+            parts: list[Dict[str, Any]] = [{"type": "text", "text": ex_text}]
+            ex_image_path = getattr(ex, "image_path", None)
+            if ex_image_path:
+                img_part = self._image_part(str(ex_image_path))
+                if img_part is not None:
+                    parts.append(img_part)
+
+            messages.append({"role": "user", "content": parts})
+
+            expected = {
+                "rationale": getattr(ex, "rationale", ""),
+                "scores": getattr(ex, "scores", {}),
+                "model_confidence": 1.0,
+            }
+            messages.append({"role": "assistant", "content": json.dumps(expected, ensure_ascii=False)})
+
+        target_text = (
+            "Now analyze this NEW target:\n"
+            f"Text: {getattr(sample, 'post_text', '')}\n"
+            "[Image Attached]\n"
+            f"(Reminder: scores keys = {dims}; return ONLY JSON.)"
+        )
+        target_parts: list[Dict[str, Any]] = [{"type": "text", "text": target_text}]
+        sample_image_path = getattr(sample, "image_path", None)
+        if sample_image_path:
+            img_part = self._image_part(str(sample_image_path))
+            if img_part is not None:
+                target_parts.append(img_part)
+
+        messages.append({"role": "user", "content": target_parts})
+        return messages
+
     def _build_payload(self, *, user_text: str, image_path: str, use_tools: bool) -> Dict[str, Any]:
         messages: list[Dict[str, Any]] = [{"role": "system", "content": self._system_prompt()}]
 
-        include_image = False
-        if self._send_image in {"1", "true", "yes", "on"}:
-            include_image = True
-        elif self._send_image in {"0", "false", "no", "off"}:
-            include_image = False
-        else:
-            include_image = os.path.exists(image_path)
+        include_image = self._should_include_image(image_path)
 
         if include_image and _looks_like_url(image_path):
             messages.append(
@@ -207,6 +260,21 @@ class HTTPStudentModel:
         else:
             messages.append({"role": "user", "content": user_text.replace("[Image Attached]", f"Image: {image_path}")})
 
+        payload: Dict[str, Any] = {
+            "model": self._model,
+            "messages": messages,
+            "temperature": self._temperature,
+            "max_tokens": self._max_tokens,
+            "stream": False,
+        }
+        if use_tools:
+            payload["tools"] = self._tools_spec()
+            payload["tool_choice"] = self._tool_choice
+        if self._response_format == "json_object":
+            payload["response_format"] = {"type": "json_object"}
+        return payload
+
+    def _build_payload_from_messages(self, *, messages: list[Dict[str, Any]], use_tools: bool) -> Dict[str, Any]:
         payload: Dict[str, Any] = {
             "model": self._model,
             "messages": messages,
@@ -323,19 +391,29 @@ class HTTPStudentModel:
         return robust_json_parser(content)
 
     def predict(self, sample: Any, shots: Any) -> Any:
-        shots_text = "".join(ex.to_prompt_str() for ex in shots) if shots else ""
-        user_text = self._build_user_text(image_path=sample.image_path, post_text=sample.post_text, shots_text=shots_text)
         use_tools = self._use_tools in {"1", "true", "yes", "on", "required"}
         if self._use_tools == "auto":
             use_tools = True
-        payload = self._build_payload(user_text=user_text, image_path=sample.image_path, use_tools=use_tools)
+
+        if self._fewshot_mode in {"multimodal", "image", "image+text"} and self._should_include_image(
+            getattr(sample, "image_path", "")
+        ):
+            messages = self._build_multimodal_messages(sample=sample, shots=shots)
+            payload = self._build_payload_from_messages(messages=messages, use_tools=use_tools)
+        else:
+            shots_text = "".join(ex.to_prompt_str() for ex in shots) if shots else ""
+            user_text = self._build_user_text(image_path=sample.image_path, post_text=sample.post_text, shots_text=shots_text)
+            payload = self._build_payload(user_text=user_text, image_path=sample.image_path, use_tools=use_tools)
 
         try:
             response_json = self._call_chat_completions(payload)
         except RuntimeError:
             if self._use_tools != "auto" or not use_tools:
                 raise
-            payload = self._build_payload(user_text=user_text, image_path=sample.image_path, use_tools=False)
+            if payload.get("messages") and self._fewshot_mode in {"multimodal", "image", "image+text"}:
+                payload = self._build_payload_from_messages(messages=payload["messages"], use_tools=False)
+            else:
+                payload = self._build_payload(user_text=user_text, image_path=sample.image_path, use_tools=False)
             response_json = self._call_chat_completions(payload)
 
         tool_args = self._extract_tool_arguments(response_json)

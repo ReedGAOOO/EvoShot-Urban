@@ -56,6 +56,8 @@ class EvoShotEnv:
     # Embedding endpoint (as in embedding_test.py)
     embed_api_url: str
     embed_instruction: str
+    embed_timeout_s: float
+    embed_image_path_style: str
 
     # Teacher (OpenAI)
     teacher_model: str
@@ -112,6 +114,8 @@ class EvoShotEnv:
             embed_instruction=(
                 os.getenv("EVOSHOT_EMBED_INSTRUCTION") or "Retrieve images or text relevant to the user query."
             ),
+            embed_timeout_s=float(os.getenv("EVOSHOT_EMBED_TIMEOUT_S", "120")),
+            embed_image_path_style=(os.getenv("EVOSHOT_EMBED_IMAGE_PATH_STYLE") or "windows").strip(),
             teacher_model=(os.getenv("EVOSHOT_TEACHER_MODEL") or teacher_model_default).strip(),
             teacher_caption_model=(os.getenv("EVOSHOT_TEACHER_CAPTION_MODEL") or teacher_model_default).strip(),
             openai_api_key=openai_api_key,
@@ -143,6 +147,8 @@ class EvoShotEnv:
             "student_llm_tool_choice": self.student_llm_tool_choice,
             "embed_api_url": self.embed_api_url,
             "embed_instruction": self.embed_instruction,
+            "embed_timeout_s": self.embed_timeout_s,
+            "embed_image_path_style": self.embed_image_path_style,
             "teacher_model": self.teacher_model,
             "teacher_caption_model": self.teacher_caption_model,
             "openai_api_key_present": bool(self.openai_api_key),

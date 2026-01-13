@@ -190,7 +190,7 @@ def main() -> int:
             raise FileNotFoundError(f"Dataset2 root not found: {r}")
 
     ds1 = reservoir_sample_images(dataset1_root, k=n1, recurse=True, seed=seed)
-    per_root = max(1, n2 // len(dataset2_roots))
+    per_root = max(1, (n2 + len(dataset2_roots) - 1) // len(dataset2_roots))
     ds2_parts = []
     for i, r in enumerate(dataset2_roots):
         ds2_parts.extend(reservoir_sample_images(r, k=per_root, recurse=False, seed=seed + i + 1))
