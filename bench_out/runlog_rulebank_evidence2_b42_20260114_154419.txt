@@ -1,0 +1,623 @@
+2026-01-14 15:44:22,336 - INFO - Loading Real Teacher (OpenAI)... costs money.
+2026-01-14 15:44:22,337 - INFO - Teacher provider=openrouter model=x-ai/grok-4.1-fast api_url=https://openrouter.ai/api/v1/chat/completions
+2026-01-14 15:44:22,338 - INFO - Seeding vault with Expert Examples...
+2026-01-14 15:44:25,068 - INFO - [Vault] Added new example: seed_001 (Tier 0)
+2026-01-14 15:44:27,656 - INFO - [Vault] Added new example: seed_002 (Tier 0)
+2026-01-14 15:44:30,072 - INFO - [Vault] Added new example: seed_003 (Tier 0)
+2026-01-14 15:44:30,072 - INFO - 
+=== Processing Sample: train_1 ===
+2026-01-14 15:44:33,150 - INFO - Retrieved 2 few-shot examples: ['seed_001(t0)', 'seed_003(t0)']
+2026-01-14 15:44:39,453 - INFO - Student Pred: {'safety': 4.5, 'vibrancy': 4.0, 'cleanliness': 4.5} (Overall: 4.33) | Conf: 0.90
+2026-01-14 15:45:13,404 - INFO - Teacher Score: 0.85 | Critique: Good grounding in plants and seating, but omits prominent overhanging tree, interior bar details, and empty scene reducing vibrancy logic.
+2026-01-14 15:45:13,405 - INFO - Sample skipped (Student did well enough or Teacher unsure).
+2026-01-14 15:45:13,405 - INFO - 
+=== Processing Sample: train_2 ===
+2026-01-14 15:45:16,569 - INFO - Retrieved 2 few-shot examples: ['seed_001(t0)', 'seed_003(t0)']
+2026-01-14 15:45:26,083 - INFO - Student Pred: {'safety': 3.0, 'vibrancy': 2.0, 'cleanliness': 4.5} (Overall: 3.04) | Conf: 0.85
+2026-01-14 15:45:41,809 - INFO - Teacher Score: 0.40 | Critique: Hallucinated 'people on walkways' and 'controlled access'—not visible. Poor grounding.
+2026-01-14 15:45:47,583 - INFO - [Vault] Added new example: train_2 (Tier 1)
+2026-01-14 15:45:47,583 - INFO - 
+=== Processing Sample: train_3 ===
+2026-01-14 15:45:50,658 - INFO - Retrieved 2 few-shot examples: ['train_2(t1)', 'seed_001(t0)']
+2026-01-14 15:46:01,311 - INFO - Student Pred: {'safety': 4.0, 'vibrancy': 3.0, 'cleanliness': 4.5} (Overall: 3.79) | Conf: 0.90
+2026-01-14 15:46:26,606 - INFO - Teacher Score: 0.75 | Critique: Overstated vibrancy for near-deserted space; mischaracterized lighting as uniformly 'warm' (seating is cool white).
+2026-01-14 15:46:32,411 - INFO - [Vault] Added new example: train_3 (Tier 1)
+2026-01-14 15:46:32,411 - INFO - 
+=== Processing Sample: train_4 ===
+2026-01-14 15:46:35,510 - INFO - Retrieved 2 few-shot examples: ['train_3(t1)', 'train_2(t1)']
+2026-01-14 15:46:46,665 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 4.5, 'cleanliness': 4.0} (Overall: 3.96) | Conf: 0.90
+2026-01-14 15:47:20,903 - INFO - Teacher Score: 0.85 | Critique: Good grounding in flowers and activity, but hallucinates 'clear road markings' (not prominent) and overrates safety ignoring dense motorbikes near pedestrians.
+2026-01-14 15:47:26,548 - INFO - [Vault] Added new example: train_4 (Tier 1)
+2026-01-14 15:47:26,548 - INFO - 
+=== Processing Sample: train_5 ===
+2026-01-14 15:47:29,891 - INFO - Retrieved 2 few-shot examples: ['train_4(t1)', 'train_3(t1)']
+2026-01-14 15:47:42,101 - INFO - Student Pred: {'safety': 4.0, 'vibrancy': 3.0, 'cleanliness': 4.5} (Overall: 3.79) | Conf: 0.90
+2026-01-14 15:48:02,780 - INFO - Teacher Score: 0.85 | Critique: Strong grounding and logic, but underrates vibrancy from stylish pedestrian, pink accents, and boutique appeal; cleanliness near-perfect but not maximal.
+2026-01-14 15:48:02,780 - INFO - Sample skipped (Student did well enough or Teacher unsure).
+2026-01-14 15:48:02,780 - INFO - 
+=== Processing Sample: train_6 ===
+2026-01-14 15:48:05,760 - INFO - Retrieved 2 few-shot examples: ['train_3(t1)', 'train_4(t1)']
+2026-01-14 15:48:16,626 - INFO - Student Pred: {'safety': 4.0, 'vibrancy': 4.5, 'cleanliness': 4.5} (Overall: 4.29) | Conf: 0.90
+2026-01-14 15:48:35,434 - INFO - Teacher Score: 0.85 | Critique: Strong grounding in visuals, logical scores, but overlooks no-entry sign and cones as potential hazard indicators, slightly inflating safety.
+2026-01-14 15:48:35,434 - INFO - Sample skipped (Student did well enough or Teacher unsure).
+2026-01-14 15:48:35,434 - INFO - 
+=== Processing Sample: train_7 ===
+2026-01-14 15:48:38,621 - INFO - Retrieved 2 few-shot examples: ['train_4(t1)', 'train_3(t1)']
+2026-01-14 15:48:49,906 - INFO - Student Pred: {'safety': 4.0, 'vibrancy': 4.5, 'cleanliness': 3.5} (Overall: 4.04) | Conf: 0.85
+2026-01-14 15:49:14,762 - INFO - Teacher Score: 0.88 | Critique: Excellent grounding and logic, but mislabels blankets/bags as 'litter'—they're tidy picnic setups, inflating a nonexistent cleanliness issue.
+2026-01-14 15:49:14,762 - INFO - Sample skipped (Student did well enough or Teacher unsure).
+2026-01-14 15:49:14,762 - INFO - 
+=== Processing Sample: train_8 ===
+2026-01-14 15:49:18,073 - INFO - Retrieved 2 few-shot examples: ['train_3(t1)', 'train_4(t1)']
+2026-01-14 15:49:28,820 - INFO - Student Pred: {'safety': 4.5, 'vibrancy': 3.5, 'cleanliness': 4.5} (Overall: 4.17) | Conf: 0.90
+2026-01-14 15:49:56,122 - INFO - Teacher Score: 0.70 | Critique: Good grounding and logic, but missed nuance: steep stone stairs pose slip risk for children despite maintenance.
+2026-01-14 15:50:01,777 - INFO - [Vault] Added new example: train_8 (Tier 1)
+2026-01-14 15:50:01,777 - INFO - 
+=== Processing Sample: train_9 ===
+2026-01-14 15:50:05,147 - INFO - Retrieved 2 few-shot examples: ['train_4(t1)', 'train_3(t1)']
+2026-01-14 15:50:17,419 - INFO - Student Pred: {'safety': 4.0, 'vibrancy': 3.5, 'cleanliness': 4.5} (Overall: 3.96) | Conf: 0.90
+2026-01-14 15:50:41,226 - INFO - Teacher Score: 0.75 | Critique: Misidentified flowers as 'white roses' despite clear '木香花' sign; hallucination erodes grounding. Vibrancy overstated for muted white blooms.
+2026-01-14 15:50:46,922 - INFO - [Vault] Added new example: train_9 (Tier 1)
+2026-01-14 15:50:46,922 - INFO - 
+=== Processing Sample: train_10 ===
+2026-01-14 15:50:50,093 - INFO - Retrieved 2 few-shot examples: ['train_3(t1)', 'train_4(t1)']
+2026-01-14 15:51:01,031 - INFO - Student Pred: {'safety': 2.5, 'vibrancy': 1.5, 'cleanliness': 4.5} (Overall: 2.67) | Conf: 0.85
+2026-01-14 15:51:27,332 - INFO - Teacher Score: 0.70 | Critique: Hallucinated golden leaves instead of koi fish; underrated safety despite ample streetlamps on paths/bridge.
+2026-01-14 15:51:33,176 - INFO - [Vault] Added new example: train_10 (Tier 1)
+2026-01-14 15:51:33,176 - INFO - 
+=== Processing Sample: k0_no_rules_no_evidence_1 ===
+2026-01-14 15:51:33,177 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 15:51:40,046 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 3.5} (Overall: 3.33) | Conf: 0.80
+2026-01-14 15:52:00,147 - INFO - Teacher Score: 0.50 | Critique: Hallucinated pedestrians and 'moderate traffic' (no moving cars); vague rationale ignores empty road and low activity.
+2026-01-14 15:52:00,147 - INFO - Vault update disabled; skipping add.
+2026-01-14 15:52:00,147 - INFO - 
+=== Processing Sample: k0_no_rules_no_evidence_2 ===
+2026-01-14 15:52:00,148 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 15:52:08,268 - INFO - Student Pred: {'safety': 3.0, 'vibrancy': 4.5, 'cleanliness': 4.0} (Overall: 3.75) | Conf: 0.85
+2026-01-14 15:52:34,212 - INFO - Teacher Score: 0.70 | Critique: Partial grounding; fixates on crowd density (not excessive) while ignoring foreground bike wheel hazard and wet pavement slip risk. Graininess no excuse for cleanliness ding.
+2026-01-14 15:52:34,213 - INFO - Vault update disabled; skipping add.
+2026-01-14 15:52:34,213 - INFO - 
+=== Processing Sample: k0_no_rules_no_evidence_3 ===
+2026-01-14 15:52:34,214 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 15:52:41,864 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 4.0, 'cleanliness': 3.0} (Overall: 3.54) | Conf: 0.85
+2026-01-14 15:53:00,944 - INFO - Teacher Score: 0.50 | Critique: Hallucinated motorcycle (absent); overstated busyness/vibrancy (light traffic); underrated cleanliness (pristine, no litter); weak grounding.
+2026-01-14 15:53:00,944 - INFO - Vault update disabled; skipping add.
+2026-01-14 15:53:00,944 - INFO - 
+=== Processing Sample: k0_no_rules_no_evidence_4 ===
+2026-01-14 15:53:00,945 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 15:53:07,267 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 3.5} (Overall: 3.33) | Conf: 0.85
+2026-01-14 15:53:27,835 - INFO - Teacher Score: 0.50 | Critique: Weak grounding: hallucinates 'clear sky' (clouds visible); ignores key debris (Mercedes emblem on asphalt); generic, misses specifics like cars, dog color, buildings.
+2026-01-14 15:53:27,835 - INFO - Vault update disabled; skipping add.
+2026-01-14 15:53:27,835 - INFO - 
+=== Processing Sample: k0_no_rules_no_evidence_5 ===
+2026-01-14 15:53:27,837 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 15:53:34,445 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 4.0, 'cleanliness': 3.0} (Overall: 3.54) | Conf: 0.85
+2026-01-14 15:53:49,841 - INFO - Teacher Score: 0.30 | Critique: Poor grounding: hallucinates multiple pedestrians, commercial activity, litter/wear not visible; generic rationale ignores car-interior view and sparse details.
+2026-01-14 15:53:49,841 - INFO - Vault update disabled; skipping add.
+2026-01-14 15:53:49,842 - INFO - 
+=== Processing Sample: k0_no_rules_no_evidence_6 ===
+2026-01-14 15:53:49,843 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 15:53:56,910 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 4.0, 'cleanliness': 3.8} (Overall: 3.74) | Conf: 0.85
+2026-01-14 15:54:15,176 - INFO - Teacher Score: 0.65 | Critique: Hallucinated 'fallen leaves' absent from image; weakens grounding and unnecessarily lowers cleanliness score.
+2026-01-14 15:54:15,176 - INFO - Vault update disabled; skipping add.
+2026-01-14 15:54:15,176 - INFO - 
+=== Processing Sample: k0_no_rules_no_evidence_7 ===
+2026-01-14 15:54:15,177 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 15:54:22,951 - INFO - Student Pred: {'safety': 3.0, 'vibrancy': 3.5, 'cleanliness': 3.5} (Overall: 3.29) | Conf: 0.75
+2026-01-14 15:54:36,217 - INFO - Teacher Score: 0.50 | Critique: Hallucinated traffic lights, pedestrians, prominent fallen leaves, and night-time risks; weak grounding in visible details like cyclist, bike lane markings, and clean asphalt.
+2026-01-14 15:54:36,217 - INFO - Vault update disabled; skipping add.
+2026-01-14 15:54:36,218 - INFO - 
+=== Processing Sample: k0_no_rules_no_evidence_8 ===
+2026-01-14 15:54:36,219 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 15:54:42,574 - INFO - Student Pred: {'safety': 3.0, 'vibrancy': 2.0, 'cleanliness': 3.0} (Overall: 2.67) | Conf: 0.75
+2026-01-14 15:54:57,456 - INFO - Teacher Score: 0.50 | Critique: Hallucinated 'scattered leaves'; overstated 'moderate' pedestrian activity (only 3-4 people); vague, non-specific grounding.
+2026-01-14 15:54:57,457 - INFO - Vault update disabled; skipping add.
+2026-01-14 15:54:57,457 - INFO - 
+=== Processing Sample: k0_no_rules_no_evidence_9 ===
+2026-01-14 15:54:57,458 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 15:55:04,005 - INFO - Student Pred: {'safety': 3.0, 'vibrancy': 3.5, 'cleanliness': 3.5} (Overall: 3.29) | Conf: 0.75
+2026-01-14 15:55:19,948 - INFO - Teacher Score: 0.60 | Critique: Hallucinated 'minor debris' not visible; vague on specifics like cobblestones, narrowness; missed high cleanliness.
+2026-01-14 15:55:19,949 - INFO - Vault update disabled; skipping add.
+2026-01-14 15:55:19,949 - INFO - 
+=== Processing Sample: k0_no_rules_no_evidence_10 ===
+2026-01-14 15:55:19,950 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 15:55:26,303 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 3.5} (Overall: 3.33) | Conf: 0.80
+2026-01-14 15:55:44,140 - INFO - Teacher Score: 0.60 | Critique: Vague rationale; mentions generic 'street/shops/leaves' but ignores cobblestones, sparse exact pedestrian count (5-6), shop signage, orderly parking.
+2026-01-14 15:55:44,140 - INFO - Vault update disabled; skipping add.
+2026-01-14 15:55:44,141 - INFO - 
+=== Processing Sample: k0_no_rules_with_evidence_1 ===
+2026-01-14 15:55:44,142 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 15:55:50,554 - INFO - Student Pred: {'safety': 3.0, 'vibrancy': 3.5, 'cleanliness': 2.5} (Overall: 3.04) | Conf: 0.85
+2026-01-14 15:56:12,776 - INFO - Teacher Score: 0.50 | Critique: Hallucinated 'litter'; weak grounding on pedestrians (only one visible); mismatched low cleanliness score.
+2026-01-14 15:56:12,777 - INFO - Vault update disabled; skipping add.
+2026-01-14 15:56:12,777 - INFO - 
+=== Processing Sample: k0_no_rules_with_evidence_2 ===
+2026-01-14 15:56:12,778 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 15:56:21,222 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 4.0, 'cleanliness': 3.0} (Overall: 3.54) | Conf: 0.85
+2026-01-14 15:56:39,822 - INFO - Teacher Score: 0.50 | Critique: Hallucinated 'evidence numbers'; missed wet puddles, street debris (bike wheel), slippery hazards, and bus stop overflow risks.
+2026-01-14 15:56:39,822 - INFO - Vault update disabled; skipping add.
+2026-01-14 15:56:39,822 - INFO - 
+=== Processing Sample: k0_no_rules_with_evidence_3 ===
+2026-01-14 15:56:39,823 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 15:56:46,331 - INFO - Student Pred: {'safety': 2.5, 'vibrancy': 3.5, 'cleanliness': 4.0} (Overall: 3.21) | Conf: 0.85
+2026-01-14 15:57:06,011 - INFO - Teacher Score: 0.65 | Critique: Overstated motorcyclist risk (lawful positioning, green light); exaggerated pedestrians (only one visible); vibrancy mildly inflated.
+2026-01-14 15:57:06,012 - INFO - Vault update disabled; skipping add.
+2026-01-14 15:57:06,012 - INFO - 
+=== Processing Sample: k0_no_rules_with_evidence_4 ===
+2026-01-14 15:57:06,013 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 15:57:12,885 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 2.5, 'cleanliness': 3.0} (Overall: 3.04) | Conf: 0.80
+2026-01-14 15:57:40,722 - INFO - Teacher Score: 0.70 | Critique: Strong grounding in visuals, but logic flawed: rationale cites 'no visible signs of litter' yet scores cleanliness only 3.0 (moderate). Vibrancy slightly overstated.
+2026-01-14 15:57:40,723 - INFO - Vault update disabled; skipping add.
+2026-01-14 15:57:40,723 - INFO - 
+=== Processing Sample: k0_no_rules_with_evidence_5 ===
+2026-01-14 15:57:40,724 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 15:57:48,402 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 4.5} (Overall: 3.58) | Conf: 0.85
+2026-01-14 15:58:05,028 - INFO - Teacher Score: 0.50 | Critique: Hallucinated 'pedestrian with stroller' absent from image; poor grounding on key vibrancy claim.
+2026-01-14 15:58:05,028 - INFO - Vault update disabled; skipping add.
+2026-01-14 15:58:05,028 - INFO - 
+=== Processing Sample: k0_no_rules_with_evidence_6 ===
+2026-01-14 15:58:05,029 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 15:58:12,186 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 4.0, 'cleanliness': 2.5} (Overall: 3.42) | Conf: 0.80
+2026-01-14 15:58:44,328 - INFO - Teacher Score: 0.70 | Critique: Grounded details good, but underrated dense mixed traffic risk for safety (beyond 'slight' wet road); minor debris doesn't warrant 2.5 cleanliness.
+2026-01-14 15:58:44,328 - INFO - Vault update disabled; skipping add.
+2026-01-14 15:58:44,329 - INFO - 
+=== Processing Sample: k0_no_rules_with_evidence_7 ===
+2026-01-14 15:58:44,330 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 15:58:52,147 - INFO - Student Pred: {'safety': 3.0, 'vibrancy': 2.5, 'cleanliness': 3.0} (Overall: 2.83) | Conf: 0.85
+2026-01-14 15:59:14,091 - INFO - Teacher Score: 0.60 | Critique: Hallucinated 'scattered debris' and 'unkempt' surroundings not visible; pedestrian is safely on distant sidewalk, not 'near road.' Cleanliness rationale illogical.
+2026-01-14 15:59:14,091 - INFO - Vault update disabled; skipping add.
+2026-01-14 15:59:14,092 - INFO - 
+=== Processing Sample: k0_no_rules_with_evidence_8 ===
+2026-01-14 15:59:14,093 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 15:59:22,211 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 3.5} (Overall: 3.33) | Conf: 0.85
+2026-01-14 15:59:39,642 - INFO - Teacher Score: 0.60 | Critique: Hallucinated 'Mercedes-Benz logo' absent from image; vague 'evidence #' references ungrounded; vibrancy overstated for sparse pedestrians.
+2026-01-14 15:59:39,642 - INFO - Vault update disabled; skipping add.
+2026-01-14 15:59:39,642 - INFO - 
+=== Processing Sample: k0_no_rules_with_evidence_9 ===
+2026-01-14 15:59:39,643 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 15:59:46,397 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 4.0} (Overall: 3.46) | Conf: 0.85
+2026-01-14 16:00:13,833 - INFO - Teacher Score: 0.75 | Critique: Strong grounding, but missed narrow width, tight parking, and uneven cobblestones undermining safety nuance; vibrancy overstated for sparse activity.
+2026-01-14 16:00:13,834 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:00:13,834 - INFO - 
+=== Processing Sample: k0_no_rules_with_evidence_10 ===
+2026-01-14 16:00:13,835 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 16:00:22,073 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 3.5} (Overall: 3.33) | Conf: 0.80
+2026-01-14 16:00:42,050 - INFO - Teacher Score: 0.65 | Critique: Hallucinated 'Carl Kaufmann' storefront (not visible). Overrated vibrancy/safety despite sparse pedestrians and dim, damp conditions.
+2026-01-14 16:00:42,050 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:00:42,051 - INFO - 
+=== Processing Sample: k0_with_rules_no_evidence_1 ===
+2026-01-14 16:00:42,052 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 16:00:54,003 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 4.0} (Overall: 3.46) | Conf: 0.85
+2026-01-14 16:01:24,902 - INFO - Teacher Score: 0.88 | Critique: Strong grounding, but vibrancy logic flawed: parked cars mislabeled as 'vehicle traffic'; safety overlooks empty roadway boosting safety.
+2026-01-14 16:01:24,903 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:01:24,903 - INFO - 
+=== Processing Sample: k0_with_rules_no_evidence_2 ===
+2026-01-14 16:01:24,904 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 16:01:36,405 - INFO - Student Pred: {'safety': 3.0, 'vibrancy': 4.0, 'cleanliness': 2.5} (Overall: 3.21) | Conf: 0.75
+2026-01-14 16:02:16,540 - INFO - Teacher Score: 0.75 | Critique: Hallucinated 'moderate traffic' (none visible, only stationary bus/parked cars); pedestrian counts/locations slightly off; logic flawed as safety rationale overstates risks.
+2026-01-14 16:02:16,540 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:02:16,540 - INFO - 
+=== Processing Sample: k0_with_rules_no_evidence_3 ===
+2026-01-14 16:02:16,541 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 16:02:27,010 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 4.0} (Overall: 3.46) | Conf: 0.85
+2026-01-14 16:02:49,410 - INFO - Teacher Score: 0.70 | Critique: Minor hallucinations: no visible motorcyclist or cyclist riders (vehicles parked, riderless); overstated activity.
+2026-01-14 16:02:49,410 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:02:49,411 - INFO - 
+=== Processing Sample: k0_with_rules_no_evidence_4 ===
+2026-01-14 16:02:49,411 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 16:02:59,786 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 2.5} (Overall: 3.08) | Conf: 0.85
+2026-01-14 16:03:21,112 - INFO - Teacher Score: 0.65 | Critique: Missed prominent Mercedes emblem debris on pavement; falsely claimed 'no litter or debris' despite it being obvious.
+2026-01-14 16:03:21,112 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:03:21,112 - INFO - 
+=== Processing Sample: k0_with_rules_no_evidence_5 ===
+2026-01-14 16:03:21,112 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 16:03:31,065 - INFO - Student Pred: {'safety': 4.0, 'vibrancy': 3.0, 'cleanliness': 4.5} (Overall: 3.79) | Conf: 0.85
+2026-01-14 16:04:01,895 - INFO - Teacher Score: 0.65 | Critique: Hallucinated stroller (blurry cart at best, not clear); overcounted pedestrians (only 3-4 visible, scooter rider not pedestrian); ignored car POV implying potential distraction.
+2026-01-14 16:04:01,895 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:04:01,895 - INFO - 
+=== Processing Sample: k0_with_rules_no_evidence_6 ===
+2026-01-14 16:04:01,895 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 16:04:11,919 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 3.0} (Overall: 3.21) | Conf: 0.85
+2026-01-14 16:04:43,558 - INFO - Teacher Score: 0.75 | Critique: Good specific details (signs, pedestrian count), but hallucinated 'fallen leaves' (none clearly visible); safety overstated for dense traffic lacking bike/ped separation.
+2026-01-14 16:04:43,558 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:04:43,558 - INFO - 
+=== Processing Sample: k0_with_rules_no_evidence_7 ===
+2026-01-14 16:04:43,559 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 16:04:54,585 - INFO - Student Pred: {'safety': 3.0, 'vibrancy': 2.5, 'cleanliness': 3.5} (Overall: 2.96) | Conf: 0.85
+2026-01-14 16:05:31,708 - INFO - Teacher Score: 0.85 | Critique: Strong grounding and logic, but hallucinates 'scattered leaves/debris' (not prominent); overstates curved lane as safety risk; under-scores safety/cleanliness.
+2026-01-14 16:05:31,709 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:05:31,709 - INFO - 
+=== Processing Sample: k0_with_rules_no_evidence_8 ===
+2026-01-14 16:05:31,709 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 16:05:42,813 - INFO - Student Pred: {'safety': 3.2, 'vibrancy': 3.5, 'cleanliness': 2.8} (Overall: 3.2) | Conf: 0.75
+2026-01-14 16:06:02,719 - INFO - Teacher Score: 0.50 | Critique: Hallucinated non-existent child and overstated pedestrian count (5 adults visible, not 6); ungrounded 'red jacket' detail.
+2026-01-14 16:06:02,719 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:06:02,719 - INFO - 
+=== Processing Sample: k0_with_rules_no_evidence_9 ===
+2026-01-14 16:06:02,720 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 16:06:13,636 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 2.5, 'cleanliness': 4.0} (Overall: 3.29) | Conf: 0.85
+2026-01-14 16:06:43,636 - INFO - Teacher Score: 0.75 | Critique: Good grounding but missed wet cobblestones as slip hazard for safety/stroller; overlooked damp grime for cleanliness; vibrancy mildly overstated.
+2026-01-14 16:06:43,636 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:06:43,636 - INFO - 
+=== Processing Sample: k0_with_rules_no_evidence_10 ===
+2026-01-14 16:06:43,637 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 16:06:54,637 - INFO - Student Pred: {'safety': 3.2, 'vibrancy': 3.8, 'cleanliness': 2.7} (Overall: 3.28) | Conf: 0.85
+2026-01-14 16:07:18,227 - INFO - Teacher Score: 0.65 | Critique: Good grounding but overly optimistic vibrancy/safety; misses wet cobblestones slip risk, vehicle proximity, heavy leaf coverage.
+2026-01-14 16:07:18,227 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:07:18,227 - INFO - 
+=== Processing Sample: k0_with_rules_with_evidence_1 ===
+2026-01-14 16:07:18,228 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 16:07:26,096 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 2.5} (Overall: 3.08) | Conf: 0.85
+2026-01-14 16:07:53,802 - INFO - Teacher Score: 0.65 | Critique: Hallucinated silver sedan driving and background pedestrian (not clearly visible); overstated safety ignoring narrow street/parked car squeeze; downplayed severe road cracks/stains as 'minor'.
+2026-01-14 16:07:53,802 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:07:53,802 - INFO - 
+=== Processing Sample: k0_with_rules_with_evidence_2 ===
+2026-01-14 16:07:53,802 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 16:08:01,815 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 4.0, 'cleanliness': 2.5} (Overall: 3.42) | Conf: 0.80
+2026-01-14 16:08:26,381 - INFO - Teacher Score: 0.70 | Critique: Minor hallucinations (bus as 'yellow car', inflated people count); missed obvious bike wheel hazard/debris on crossing for safety/cleanliness.
+2026-01-14 16:08:26,381 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:08:26,381 - INFO - 
+=== Processing Sample: k0_with_rules_with_evidence_3 ===
+2026-01-14 16:08:26,382 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 16:08:33,748 - INFO - Student Pred: {'safety': 3.0, 'vibrancy': 3.5, 'cleanliness': 4.0} (Overall: 3.42) | Conf: 0.85
+2026-01-14 16:08:59,774 - INFO - Teacher Score: 0.65 | Critique: Hallucinated 'a cyclist' not visible—only motorcyclist present; conflated them, undermining grounding.
+2026-01-14 16:08:59,775 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:08:59,775 - INFO - 
+=== Processing Sample: k0_with_rules_with_evidence_4 ===
+2026-01-14 16:08:59,775 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 16:09:06,882 - INFO - Student Pred: {'safety': 4.0, 'vibrancy': 3.0, 'cleanliness': 4.5} (Overall: 3.79) | Conf: 0.90
+2026-01-14 16:09:29,516 - INFO - Teacher Score: 0.70 | Critique: Overestimated safety (traffic proximity risk ignored) and vibrancy (sparse activity); good grounding but lacks nuance.
+2026-01-14 16:09:29,517 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:09:29,517 - INFO - 
+=== Processing Sample: k0_with_rules_with_evidence_5 ===
+2026-01-14 16:09:29,518 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 16:09:37,924 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 2.5} (Overall: 3.08) | Conf: 0.85
+2026-01-14 16:10:04,568 - INFO - Teacher Score: 0.70 | Critique: Minor hallucinations ('dark van', 'minor debris' not visible); under-scores safety despite orderly green-light traffic; good grounding otherwise.
+2026-01-14 16:10:04,568 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:10:04,568 - INFO - 
+=== Processing Sample: k0_with_rules_with_evidence_6 ===
+2026-01-14 16:10:04,569 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 16:10:12,041 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 4.0, 'cleanliness': 3.0} (Overall: 3.54) | Conf: 0.85
+2026-01-14 16:10:35,600 - INFO - Teacher Score: 0.75 | Critique: Underplayed wet road as slip hazard and traffic density risks for safety; pedestrian count approximate but unnuanced.
+2026-01-14 16:10:35,601 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:10:35,601 - INFO - 
+=== Processing Sample: k0_with_rules_with_evidence_7 ===
+2026-01-14 16:10:35,602 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 16:10:43,697 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 2.5, 'cleanliness': 3.0} (Overall: 3.04) | Conf: 0.85
+2026-01-14 16:11:21,197 - INFO - Teacher Score: 0.90 | Critique: Strong grounding and logic, but minor overcount of parked cars (4 clearly visible) and unnuanced safety (ignores bike lane markings boosting safety).
+2026-01-14 16:11:21,197 - INFO - Sample skipped (Student did well enough or Teacher unsure).
+2026-01-14 16:11:21,197 - INFO - 
+=== Processing Sample: k0_with_rules_with_evidence_8 ===
+2026-01-14 16:11:21,199 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 16:11:28,745 - INFO - Student Pred: {'safety': 4.0, 'vibrancy': 3.0, 'cleanliness': 4.5} (Overall: 3.79) | Conf: 0.85
+2026-01-14 16:11:43,021 - INFO - Teacher Score: 0.50 | Critique: Hallucinated non-existent Mercedes logo and vehicle; miscounted children (figures are adults); weak nuance on wet road slip risk.
+2026-01-14 16:11:43,021 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:11:43,021 - INFO - 
+=== Processing Sample: k0_with_rules_with_evidence_9 ===
+2026-01-14 16:11:43,022 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 16:11:50,032 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 4.0} (Overall: 3.46) | Conf: 0.85
+2026-01-14 16:12:12,422 - INFO - Teacher Score: 0.75 | Critique: Hallucinated 'black sedan' (actual silver/gray); undercounted parked cars (5+ on right); vibrancy overstated for minimal activity.
+2026-01-14 16:12:12,422 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:12:12,422 - INFO - 
+=== Processing Sample: k0_with_rules_with_evidence_10 ===
+2026-01-14 16:12:12,422 - INFO - Retrieved 0 few-shot examples: []
+2026-01-14 16:12:20,998 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 3.5} (Overall: 3.33) | Conf: 0.85
+2026-01-14 16:12:39,757 - INFO - Teacher Score: 0.92 | Critique: Well-grounded with specific details and accurate counts; minor deduction for list-heavy rationale lacking fluid integration and slightly optimistic vibrancy given sparse activity.
+2026-01-14 16:12:39,757 - INFO - Sample skipped (Student did well enough or Teacher unsure).
+2026-01-14 16:12:39,758 - INFO - 
+=== Processing Sample: sim_topk_no_rules_no_evidence_1 ===
+2026-01-14 16:12:43,107 - INFO - Retrieved 2 few-shot examples: ['train_4(t1)', 'train_9(t1)']
+2026-01-14 16:12:51,487 - INFO - Student Pred: {'safety': 3.0, 'vibrancy': 3.5, 'cleanliness': 4.5} (Overall: 3.54) | Conf: 0.85
+2026-01-14 16:13:16,111 - INFO - Teacher Score: 0.92 | Critique: Excellent grounding with specifics like license plate and colors; logic sound, but 'pedestrians' plural inaccurate (only one visible); vibrancy underrates greenery.
+2026-01-14 16:13:16,111 - INFO - Sample skipped (Student did well enough or Teacher unsure).
+2026-01-14 16:13:16,111 - INFO - 
+=== Processing Sample: sim_topk_no_rules_no_evidence_2 ===
+2026-01-14 16:13:19,259 - INFO - Retrieved 2 few-shot examples: ['train_9(t1)', 'train_4(t1)']
+2026-01-14 16:13:28,046 - INFO - Student Pred: {'safety': 3.0, 'vibrancy': 4.0, 'cleanliness': 3.5} (Overall: 3.46) | Conf: 0.85
+2026-01-14 16:13:47,128 - INFO - Teacher Score: 0.60 | Critique: Hallucinated red car (cars are silver/white) and litter (none visible); missed bicycle wheel protruding into roadway (safety hazard).
+2026-01-14 16:13:47,128 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:13:47,128 - INFO - 
+=== Processing Sample: sim_topk_no_rules_no_evidence_3 ===
+2026-01-14 16:13:50,434 - INFO - Retrieved 2 few-shot examples: ['train_4(t1)', 'train_3(t1)']
+2026-01-14 16:13:57,911 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 4.0} (Overall: 3.46) | Conf: 0.85
+2026-01-14 16:14:22,590 - INFO - Teacher Score: 0.70 | Critique: Hallucinated 'cyclist' in mixed traffic—pedestrian is walking bike safely on sidewalk. Overstated vibrancy (only 1 pedestrian, sparse activity); conservative safety despite orderly green-light flow.
+2026-01-14 16:14:22,591 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:14:22,591 - INFO - 
+=== Processing Sample: sim_topk_no_rules_no_evidence_4 ===
+2026-01-14 16:14:25,723 - INFO - Retrieved 2 few-shot examples: ['train_4(t1)', 'train_9(t1)']
+2026-01-14 16:14:34,165 - INFO - Student Pred: {'safety': 3.0, 'vibrancy': 2.5, 'cleanliness': 3.5} (Overall: 2.96) | Conf: 0.85
+2026-01-14 16:15:00,763 - INFO - Teacher Score: 0.85 | Critique: Well-grounded details, but cleanliness overstated (prominent puddles/stains); safety score ignores jaywalking risk into active traffic lane.
+2026-01-14 16:15:00,763 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:15:00,763 - INFO - 
+=== Processing Sample: sim_topk_no_rules_no_evidence_5 ===
+2026-01-14 16:15:04,042 - INFO - Retrieved 2 few-shot examples: ['train_4(t1)', 'train_9(t1)']
+2026-01-14 16:15:12,284 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.5, 'cleanliness': 4.5} (Overall: 3.75) | Conf: 0.85
+2026-01-14 16:15:29,937 - INFO - Teacher Score: 0.90 | Critique: Strong grounding and logic; minor overrating of vibrancy given sparse pedestrians and overcast dullness.
+2026-01-14 16:15:29,938 - INFO - Sample skipped (Student did well enough or Teacher unsure).
+2026-01-14 16:15:29,938 - INFO - 
+=== Processing Sample: sim_topk_no_rules_no_evidence_6 ===
+2026-01-14 16:15:33,113 - INFO - Retrieved 2 few-shot examples: ['train_4(t1)', 'train_9(t1)']
+2026-01-14 16:15:41,198 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.5, 'cleanliness': 4.5} (Overall: 3.75) | Conf: 0.85
+2026-01-14 16:16:07,812 - INFO - Teacher Score: 0.60 | Critique: Hallucinated 'cyclists' not visible; overstated traffic density and collision risks absent from orderly scene.
+2026-01-14 16:16:07,813 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:16:07,813 - INFO - 
+=== Processing Sample: sim_topk_no_rules_no_evidence_7 ===
+2026-01-14 16:16:11,039 - INFO - Retrieved 2 few-shot examples: ['train_10(t1)', 'train_9(t1)']
+2026-01-14 16:16:18,405 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 2.0, 'cleanliness': 3.0} (Overall: 2.88) | Conf: 0.85
+2026-01-14 16:16:46,524 - INFO - Teacher Score: 0.88 | Critique: Good grounding/logic, but 'moderate traffic' overstated (minimal), 'litter' hallucinated (leaves only).
+2026-01-14 16:16:46,524 - INFO - Sample skipped (Student did well enough or Teacher unsure).
+2026-01-14 16:16:46,524 - INFO - 
+=== Processing Sample: sim_topk_no_rules_no_evidence_8 ===
+2026-01-14 16:16:49,471 - INFO - Retrieved 2 few-shot examples: ['train_9(t1)', 'train_4(t1)']
+2026-01-14 16:16:58,404 - INFO - Student Pred: {'safety': 4.0, 'vibrancy': 2.5, 'cleanliness': 4.0} (Overall: 3.5) | Conf: 0.85
+2026-01-14 16:17:18,208 - INFO - Teacher Score: 0.60 | Critique: Hallucinated 'yellow lane markings' (absent) and '2 children' (all adults); grounding flawed despite other details.
+2026-01-14 16:17:18,209 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:17:18,209 - INFO - 
+=== Processing Sample: sim_topk_no_rules_no_evidence_9 ===
+2026-01-14 16:17:21,349 - INFO - Retrieved 2 few-shot examples: ['train_10(t1)', 'train_9(t1)']
+2026-01-14 16:17:28,663 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 4.0} (Overall: 3.46) | Conf: 0.85
+2026-01-14 16:17:49,978 - INFO - Teacher Score: 0.70 | Critique: Good grounding but missed nuance: pedestrians not 'distant' (one near bike rack by traffic); ignored narrow street risks.
+2026-01-14 16:17:49,978 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:17:49,978 - INFO - 
+=== Processing Sample: sim_topk_no_rules_no_evidence_10 ===
+2026-01-14 16:17:53,269 - INFO - Retrieved 2 few-shot examples: ['train_9(t1)', 'train_4(t1)']
+2026-01-14 16:18:01,577 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 3.5} (Overall: 3.33) | Conf: 0.85
+2026-01-14 16:18:37,954 - INFO - Teacher Score: 0.70 | Critique: Hallucinated 'De Soto'; invented 'crossing' pedestrians and 'illuminated' signs; underrated heavy leaf debris for cleanliness; vibrancy overstated.
+2026-01-14 16:18:37,954 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:18:37,954 - INFO - 
+=== Processing Sample: sim_topk_no_rules_with_evidence_1 ===
+2026-01-14 16:18:37,958 - INFO - Retrieved 2 few-shot examples: ['train_4(t1)', 'train_9(t1)']
+2026-01-14 16:18:47,069 - INFO - Student Pred: {'safety': 3.0, 'vibrancy': 3.5, 'cleanliness': 4.0} (Overall: 3.42) | Conf: 0.85
+2026-01-14 16:18:52,401 - ERROR - Teacher Judge Failed: Teacher HTTP call failed: HTTP Error 401: Unauthorized
+2026-01-14 16:18:52,403 - INFO - Teacher Score: 0.00 | Critique: Teacher Error
+2026-01-14 16:18:52,403 - INFO - Sample skipped (Student did well enough or Teacher unsure).
+2026-01-14 16:18:52,403 - INFO - 
+=== Processing Sample: sim_topk_no_rules_with_evidence_2 ===
+2026-01-14 16:18:52,406 - INFO - Retrieved 2 few-shot examples: ['train_9(t1)', 'train_4(t1)']
+2026-01-14 16:19:00,841 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 4.0, 'cleanliness': 3.0} (Overall: 3.54) | Conf: 0.85
+2026-01-14 16:19:35,201 - INFO - Teacher Score: 0.75 | Critique: Good grounding but missed puddles, bike wheel debris, and dense crowd's road proximity; inflated safety/cleanliness scores.
+2026-01-14 16:19:35,201 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:19:35,202 - INFO - 
+=== Processing Sample: sim_topk_no_rules_with_evidence_3 ===
+2026-01-14 16:19:35,204 - INFO - Retrieved 2 few-shot examples: ['train_4(t1)', 'train_3(t1)']
+2026-01-14 16:19:43,611 - INFO - Student Pred: {'safety': 3.0, 'vibrancy': 3.5, 'cleanliness': 4.5} (Overall: 3.54) | Conf: 0.85
+2026-01-14 16:20:08,918 - INFO - Teacher Score: 0.70 | Critique: Hallucinated 'cyclist' (only parked bike visible); underrated safety (orderly scene, no real risks); overstated vibrancy (sparse, empty sidewalks).
+2026-01-14 16:20:08,919 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:20:08,919 - INFO - 
+=== Processing Sample: sim_topk_no_rules_with_evidence_4 ===
+2026-01-14 16:20:08,921 - INFO - Retrieved 2 few-shot examples: ['train_4(t1)', 'train_9(t1)']
+2026-01-14 16:20:17,148 - INFO - Student Pred: {'safety': 3.0, 'vibrancy': 3.5, 'cleanliness': 4.5} (Overall: 3.54) | Conf: 0.85
+2026-01-14 16:20:43,793 - INFO - Teacher Score: 0.92 | Critique: Excellent grounding and logic; vibrancy overstated for sparse activity, no crosswalk noted in safety.
+2026-01-14 16:20:43,793 - INFO - Sample skipped (Student did well enough or Teacher unsure).
+2026-01-14 16:20:43,793 - INFO - 
+=== Processing Sample: sim_topk_no_rules_with_evidence_5 ===
+2026-01-14 16:20:43,795 - INFO - Retrieved 2 few-shot examples: ['train_4(t1)', 'train_9(t1)']
+2026-01-14 16:20:52,634 - INFO - Student Pred: {'safety': 4.0, 'vibrancy': 3.5, 'cleanliness': 4.5} (Overall: 3.96) | Conf: 0.85
+2026-01-14 16:21:22,668 - INFO - Teacher Score: 0.70 | Critique: Strong grounding, but inflated scores ignore road patches/wear and traffic density risks.
+2026-01-14 16:21:22,668 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:21:22,668 - INFO - 
+=== Processing Sample: sim_topk_no_rules_with_evidence_6 ===
+2026-01-14 16:21:22,671 - INFO - Retrieved 2 few-shot examples: ['train_4(t1)', 'train_9(t1)']
+2026-01-14 16:21:32,137 - INFO - Student Pred: {'safety': 3.0, 'vibrancy': 4.0, 'cleanliness': 3.0} (Overall: 3.33) | Conf: 0.85
+2026-01-14 16:21:57,328 - INFO - Teacher Score: 0.85 | Critique: Strong grounding with specifics, logical scores, but overstated 'scattered leaves'—minimal debris visible; vibrancy slightly high for overcast scene.
+2026-01-14 16:21:57,328 - INFO - Sample skipped (Student did well enough or Teacher unsure).
+2026-01-14 16:21:57,328 - INFO - 
+=== Processing Sample: sim_topk_no_rules_with_evidence_7 ===
+2026-01-14 16:21:57,329 - INFO - Retrieved 2 few-shot examples: ['train_10(t1)', 'train_9(t1)']
+2026-01-14 16:22:06,881 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 2.5, 'cleanliness': 4.0} (Overall: 3.29) | Conf: 0.85
+2026-01-14 16:22:24,772 - INFO - Teacher Score: 0.60 | Critique: Hallucinated 'few pedestrians in distance' and 'fallen leaves'; overstated 'moderate traffic'—only one moving vehicle. Otherwise grounded but not flawless.
+2026-01-14 16:22:24,772 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:22:24,772 - INFO - 
+=== Processing Sample: sim_topk_no_rules_with_evidence_8 ===
+2026-01-14 16:22:24,775 - INFO - Retrieved 2 few-shot examples: ['train_9(t1)', 'train_4(t1)']
+2026-01-14 16:22:33,551 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 4.0} (Overall: 3.46) | Conf: 0.85
+2026-01-14 16:23:19,271 - INFO - Teacher Score: 0.75 | Critique: Strong grounding with specifics, but safety rationale self-contradictory (wet slip risk yet 'no visible hazards'); missed central circular road feature (drain/manhole).
+2026-01-14 16:23:19,272 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:23:19,272 - INFO - 
+=== Processing Sample: sim_topk_no_rules_with_evidence_9 ===
+2026-01-14 16:23:19,275 - INFO - Retrieved 2 few-shot examples: ['train_10(t1)', 'train_9(t1)']
+2026-01-14 16:23:26,747 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 4.5} (Overall: 3.58) | Conf: 0.85
+2026-01-14 16:23:50,252 - INFO - Teacher Score: 0.92 | Critique: Strong grounding and logic, but vibrancy overstated—minimal foot traffic and closed storefronts warrant lower score; narrow street subtly risks safety.
+2026-01-14 16:23:50,252 - INFO - Sample skipped (Student did well enough or Teacher unsure).
+2026-01-14 16:23:50,252 - INFO - 
+=== Processing Sample: sim_topk_no_rules_with_evidence_10 ===
+2026-01-14 16:23:50,253 - INFO - Retrieved 2 few-shot examples: ['train_9(t1)', 'train_4(t1)']
+2026-01-14 16:23:59,450 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 3.5} (Overall: 3.33) | Conf: 0.85
+2026-01-14 16:24:47,933 - INFO - Teacher Score: 0.75 | Critique: Good grounding but missed pedestrians on roadway/narrow sidewalks (safety risk) and dense leaf scatter (cleanliness downgrade); scores illogical.
+2026-01-14 16:24:47,933 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:24:47,934 - INFO - 
+=== Processing Sample: sim_topk_with_rules_no_evidence_1 ===
+2026-01-14 16:24:47,936 - INFO - Retrieved 2 few-shot examples: ['train_4(t1)', 'train_9(t1)']
+2026-01-14 16:24:57,761 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 4.5} (Overall: 3.58) | Conf: 0.85
+2026-01-14 16:25:18,478 - INFO - Teacher Score: 0.92 | Critique: Strong grounding and logic, but overstated cyclist hazard (in bike lane, not traffic lane); minor nuance miss on activity level.
+2026-01-14 16:25:18,478 - INFO - Sample skipped (Student did well enough or Teacher unsure).
+2026-01-14 16:25:18,478 - INFO - 
+=== Processing Sample: sim_topk_with_rules_no_evidence_2 ===
+2026-01-14 16:25:18,482 - INFO - Retrieved 2 few-shot examples: ['train_9(t1)', 'train_4(t1)']
+2026-01-14 16:25:27,618 - INFO - Student Pred: {'safety': 4.0, 'vibrancy': 3.5, 'cleanliness': 4.5} (Overall: 3.96) | Conf: 0.85
+2026-01-14 16:25:52,572 - INFO - Teacher Score: 0.60 | Critique: Strong grounding in most details, but hallucinated 'no debris' despite prominent bike wheel; missed puddles, inflating safety/cleanliness unrealistically.
+2026-01-14 16:25:52,573 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:25:52,573 - INFO - 
+=== Processing Sample: sim_topk_with_rules_no_evidence_3 ===
+2026-01-14 16:25:52,574 - INFO - Retrieved 2 few-shot examples: ['train_4(t1)', 'train_3(t1)']
+2026-01-14 16:26:02,376 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.5, 'cleanliness': 4.5} (Overall: 3.75) | Conf: 0.85
+2026-01-14 16:26:37,393 - INFO - Teacher Score: 0.88 | Critique: Strong grounding in specifics, logical scores, but underrates safety (clear signals/markings, empty crosswalk) and misses sidewalk cyclist as minor vibrancy boost.
+2026-01-14 16:26:37,393 - INFO - Sample skipped (Student did well enough or Teacher unsure).
+2026-01-14 16:26:37,393 - INFO - 
+=== Processing Sample: sim_topk_with_rules_no_evidence_4 ===
+2026-01-14 16:26:37,396 - INFO - Retrieved 2 few-shot examples: ['train_4(t1)', 'train_9(t1)']
+2026-01-14 16:26:46,679 - INFO - Student Pred: {'safety': 3.0, 'vibrancy': 2.5, 'cleanliness': 3.5} (Overall: 2.96) | Conf: 0.85
+2026-01-14 16:27:12,949 - INFO - Teacher Score: 0.85 | Critique: Strong grounding and logic, but overlooked Mercedes emblem as litter/debris, inflating cleanliness; safety nuance ignores crosswalk absence.
+2026-01-14 16:27:12,949 - INFO - Sample skipped (Student did well enough or Teacher unsure).
+2026-01-14 16:27:12,949 - INFO - 
+=== Processing Sample: sim_topk_with_rules_no_evidence_5 ===
+2026-01-14 16:27:12,952 - INFO - Retrieved 2 few-shot examples: ['train_4(t1)', 'train_9(t1)']
+2026-01-14 16:27:21,982 - INFO - Student Pred: {'safety': 3.0, 'vibrancy': 3.5, 'cleanliness': 4.5} (Overall: 3.54) | Conf: 0.85
+2026-01-14 16:27:44,636 - INFO - Teacher Score: 0.92 | Critique: Excellent grounding in specifics like Mercedes ornament, vehicle counts, signs, and stroller; logic sound. Minor: vibrancy slightly overstated amid gray overcast dominance.
+2026-01-14 16:27:44,637 - INFO - Sample skipped (Student did well enough or Teacher unsure).
+2026-01-14 16:27:44,637 - INFO - 
+=== Processing Sample: sim_topk_with_rules_no_evidence_6 ===
+2026-01-14 16:27:44,642 - INFO - Retrieved 2 few-shot examples: ['train_4(t1)', 'train_9(t1)']
+2026-01-14 16:27:53,748 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.5, 'cleanliness': 4.5} (Overall: 3.75) | Conf: 0.85
+2026-01-14 16:28:20,009 - INFO - Teacher Score: 0.75 | Critique: Hallucinated non-existent 'orange bus'; all buses yellow. Overstated pedestrian collision risk—wide sidewalks and tree buffers separate them safely.
+2026-01-14 16:28:20,009 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:28:20,009 - INFO - 
+=== Processing Sample: sim_topk_with_rules_no_evidence_7 ===
+2026-01-14 16:28:20,012 - INFO - Retrieved 2 few-shot examples: ['train_10(t1)', 'train_9(t1)']
+2026-01-14 16:28:28,072 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 2.0, 'cleanliness': 3.0} (Overall: 2.88) | Conf: 0.85
+2026-01-14 16:28:48,100 - INFO - Teacher Score: 0.60 | Critique: Hallucinated 2 non-existent pedestrians and questionable 'stop sign'; otherwise grounded but lacks nuance on dense parking hazards.
+2026-01-14 16:28:48,100 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:28:48,100 - INFO - 
+=== Processing Sample: sim_topk_with_rules_no_evidence_8 ===
+2026-01-14 16:28:48,102 - INFO - Retrieved 2 few-shot examples: ['train_9(t1)', 'train_4(t1)']
+2026-01-14 16:28:57,926 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 3.5} (Overall: 3.33) | Conf: 0.85
+2026-01-14 16:29:29,800 - INFO - Teacher Score: 0.88 | Critique: Well-grounded but hallucinates '2 children' (blurry figures likely adults); sidewalks standard, not narrow; vibrancy understated sparsity.
+2026-01-14 16:29:29,800 - INFO - Sample skipped (Student did well enough or Teacher unsure).
+2026-01-14 16:29:29,800 - INFO - 
+=== Processing Sample: sim_topk_with_rules_no_evidence_9 ===
+2026-01-14 16:29:29,802 - INFO - Retrieved 2 few-shot examples: ['train_10(t1)', 'train_9(t1)']
+2026-01-14 16:29:38,909 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 4.0} (Overall: 3.46) | Conf: 0.85
+2026-01-14 16:30:00,335 - INFO - Teacher Score: 0.65 | Critique: Hallucinated moving car as black sedan (it's silver/gray); undercounted parked cars (~10 visible); rationale otherwise grounded but lacks nuance on narrow street safety.
+2026-01-14 16:30:00,336 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:30:00,336 - INFO - 
+=== Processing Sample: sim_topk_with_rules_no_evidence_10 ===
+2026-01-14 16:30:00,339 - INFO - Retrieved 2 few-shot examples: ['train_9(t1)', 'train_4(t1)']
+2026-01-14 16:30:09,566 - INFO - Student Pred: {'safety': 3.0, 'vibrancy': 3.5, 'cleanliness': 3.0} (Overall: 3.17) | Conf: 0.85
+2026-01-14 16:30:34,191 - INFO - Teacher Score: 0.75 | Critique: Hallucinated 'Carl Kaufmann' sign (not visible); strong grounding otherwise but lacks nuance on parking hazards blocking sightlines.
+2026-01-14 16:30:34,191 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:30:34,191 - INFO - 
+=== Processing Sample: sim_topk_with_rules_with_evidence_1 ===
+2026-01-14 16:30:34,194 - INFO - Retrieved 2 few-shot examples: ['train_4(t1)', 'train_9(t1)']
+2026-01-14 16:30:43,375 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 4.5} (Overall: 3.58) | Conf: 0.85
+2026-01-14 16:31:18,776 - INFO - Teacher Score: 0.70 | Critique: Hallucinated extra pedestrian (only one visible), inflating vibrancy; otherwise well-grounded but lacks nuance on narrow lanes.
+2026-01-14 16:31:18,776 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:31:18,776 - INFO - 
+=== Processing Sample: sim_topk_with_rules_with_evidence_2 ===
+2026-01-14 16:31:18,779 - INFO - Retrieved 2 few-shot examples: ['train_9(t1)', 'train_4(t1)']
+2026-01-14 16:31:27,636 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 4.0, 'cleanliness': 3.0} (Overall: 3.54) | Conf: 0.85
+2026-01-14 16:31:51,748 - INFO - Teacher Score: 0.65 | Critique: Excellent grounding in details, but missed obvious wet puddles/road slip risk lowering safety/cleanliness; safety overly optimistic ignoring dense peds at traffic edge.
+2026-01-14 16:31:51,748 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:31:51,749 - INFO - 
+=== Processing Sample: sim_topk_with_rules_with_evidence_3 ===
+2026-01-14 16:31:51,752 - INFO - Retrieved 2 few-shot examples: ['train_4(t1)', 'train_3(t1)']
+2026-01-14 16:31:59,900 - INFO - Student Pred: {'safety': 3.0, 'vibrancy': 3.5, 'cleanliness': 4.5} (Overall: 3.54) | Conf: 0.85
+2026-01-14 16:32:25,046 - INFO - Teacher Score: 0.70 | Critique: Hallucinated 'cyclist' (only parked bikes); undercounted bikes (2 visible); safety underrates orderly scene.
+2026-01-14 16:32:25,046 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:32:25,046 - INFO - 
+=== Processing Sample: sim_topk_with_rules_with_evidence_4 ===
+2026-01-14 16:32:25,049 - INFO - Retrieved 2 few-shot examples: ['train_4(t1)', 'train_9(t1)']
+2026-01-14 16:32:33,326 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 3.0, 'cleanliness': 4.5} (Overall: 3.58) | Conf: 0.85
+2026-01-14 16:33:07,869 - INFO - Teacher Score: 0.70 | Critique: Hallucinates 'vehicles moving slowly' and 'pedestrian crossing'—static image shows no motion or clear crossing intent.
+2026-01-14 16:33:07,869 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:33:07,870 - INFO - 
+=== Processing Sample: sim_topk_with_rules_with_evidence_5 ===
+2026-01-14 16:33:07,871 - INFO - Retrieved 2 few-shot examples: ['train_4(t1)', 'train_9(t1)']
+2026-01-14 16:33:17,651 - INFO - Student Pred: {'safety': 4.0, 'vibrancy': 3.5, 'cleanliness': 4.5} (Overall: 3.96) | Conf: 0.85
+2026-01-14 16:33:51,239 - INFO - Teacher Score: 0.85 | Critique: Good grounding but hallucinates 'red' car (none visible) and questionable stroller (blurry wheeled object). Scores logical but vibrancy underrates traffic density.
+2026-01-14 16:33:51,240 - INFO - Sample skipped (Student did well enough or Teacher unsure).
+2026-01-14 16:33:51,240 - INFO - 
+=== Processing Sample: sim_topk_with_rules_with_evidence_6 ===
+2026-01-14 16:33:51,242 - INFO - Retrieved 2 few-shot examples: ['train_4(t1)', 'train_9(t1)']
+2026-01-14 16:34:00,869 - INFO - Student Pred: {'safety': 3.0, 'vibrancy': 3.5, 'cleanliness': 4.5} (Overall: 3.54) | Conf: 0.85
+2026-01-14 16:34:40,475 - INFO - Teacher Score: 0.92 | Critique: Excellent grounding and logic; vibrancy score mismatched to 'moderate' label and sparse peds/overcast; safety misses heavy bus proximity risk.
+2026-01-14 16:34:40,475 - INFO - Sample skipped (Student did well enough or Teacher unsure).
+2026-01-14 16:34:40,475 - INFO - 
+=== Processing Sample: sim_topk_with_rules_with_evidence_7 ===
+2026-01-14 16:34:40,478 - INFO - Retrieved 2 few-shot examples: ['train_10(t1)', 'train_9(t1)']
+2026-01-14 16:34:48,421 - INFO - Student Pred: {'safety': 3.5, 'vibrancy': 2.0, 'cleanliness': 3.5} (Overall: 3.0) | Conf: 0.85
+2026-01-14 16:35:23,252 - INFO - Teacher Score: 0.65 | Critique: Good grounding in details, but hallucinated Mercedes logo (not discernible); ignored hazard of minivan approaching illuminated red light; logic inconsistent as red light undermines 'controlled flow' claim.
+2026-01-14 16:35:23,252 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:35:23,252 - INFO - 
+=== Processing Sample: sim_topk_with_rules_with_evidence_8 ===
+2026-01-14 16:35:23,254 - INFO - Retrieved 2 few-shot examples: ['train_9(t1)', 'train_4(t1)']
+2026-01-14 16:35:31,968 - INFO - Student Pred: {'safety': 3.0, 'vibrancy': 3.5, 'cleanliness': 4.5} (Overall: 3.54) | Conf: 0.85
+2026-01-14 16:35:57,115 - INFO - Teacher Score: 0.70 | Critique: Hallucinated 'children' among pedestrians (none visible); parking signs appear yellow/orange, not blue; minor overstatement of vibrancy.
+2026-01-14 16:35:57,115 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:35:57,116 - INFO - 
+=== Processing Sample: sim_topk_with_rules_with_evidence_9 ===
+2026-01-14 16:35:57,118 - INFO - Retrieved 2 few-shot examples: ['train_10(t1)', 'train_9(t1)']
+2026-01-14 16:36:05,233 - INFO - Student Pred: {'safety': 4.0, 'vibrancy': 3.0, 'cleanliness': 4.5} (Overall: 3.79) | Conf: 0.85
+2026-01-14 16:36:27,408 - INFO - Teacher Score: 0.75 | Critique: Hallucinated driving car as black (it's silver-grey); insufficient nuance on narrow street's safety risks from tight parking.
+2026-01-14 16:36:27,409 - INFO - Vault update disabled; skipping add.
+2026-01-14 16:36:27,409 - INFO - 
+=== Processing Sample: sim_topk_with_rules_with_evidence_10 ===
+2026-01-14 16:36:27,411 - INFO - Retrieved 2 few-shot examples: ['train_9(t1)', 'train_4(t1)']
+2026-01-14 16:36:36,959 - INFO - Student Pred: {'safety': 3.0, 'vibrancy': 3.5, 'cleanliness': 3.0} (Overall: 3.17) | Conf: 0.85
+2026-01-14 16:37:09,471 - INFO - Teacher Score: 0.85 | Critique: Strong grounding and logic, but vibrancy overstated (sparse activity); cars don't encroach sidewalk; missed wet cobblestones as slip hazard.
+2026-01-14 16:37:09,471 - INFO - Sample skipped (Student did well enough or Teacher unsure).
+
+[FILTER] Selecting 10 urban images from dataset1 (batch_seed=42)...
+[FILTER] Attempt 1: sampling 80 candidates (factor=8)
+[FILTER] accepted=5/10
+[FILTER] accepted=10/10
+[FILTER] Done: selected 10/10 | stats={'train_n': 10, 'selected': 10, 'pool_factor_start': 8, 'pool_factor_used': 8, 'attempts': 1, 'min_conf': 0.55}
+[DATA] Fixed test set: 10/10 images
+[TRAIN] summary: {'n': 10, 'avg_teacher_score': 0.758, 'pass_rate_ge_0_8': 0.5, 'add_rate_should_add': 0.6} | rulebank_size=6
+[EVAL] k0_no_rules_no_evidence: {'n': 10, 'avg_teacher_score': 0.5349999999999999, 'pass_rate_ge_0_8': 0.0, 'add_rate_should_add': 1.0}
+[EVAL] k0_no_rules_with_evidence: {'n': 10, 'avg_teacher_score': 0.615, 'pass_rate_ge_0_8': 0.0, 'add_rate_should_add': 1.0}
+[EVAL] k0_with_rules_no_evidence: {'n': 10, 'avg_teacher_score': 0.713, 'pass_rate_ge_0_8': 0.2, 'add_rate_should_add': 1.0}
+[EVAL] k0_with_rules_with_evidence: {'n': 10, 'avg_teacher_score': 0.722, 'pass_rate_ge_0_8': 0.2, 'add_rate_should_add': 0.8}
+[EVAL] sim_topk_no_rules_no_evidence: {'n': 10, 'avg_teacher_score': 0.745, 'pass_rate_ge_0_8': 0.4, 'add_rate_should_add': 0.7}
+[EVAL] sim_topk_no_rules_with_evidence: {'n': 10, 'avg_teacher_score': 0.694, 'pass_rate_ge_0_8': 0.3, 'add_rate_should_add': 0.6}
+[EVAL] sim_topk_with_rules_no_evidence: {'n': 10, 'avg_teacher_score': 0.78, 'pass_rate_ge_0_8': 0.5, 'add_rate_should_add': 0.5}
+[EVAL] sim_topk_with_rules_with_evidence: {'n': 10, 'avg_teacher_score': 0.747, 'pass_rate_ge_0_8': 0.3, 'add_rate_should_add': 0.7}
+{
+  "results_path": "D:\\文档\\Evo-shot Urban\\EvoShot-Urban\\bench_out\\rulebank_evidence_ablation_cross_20260114_163709.json",
+  "summaries": {
+    "train_updates_on": {
+      "n": 10,
+      "avg_teacher_score": 0.758,
+      "pass_rate_ge_0_8": 0.5,
+      "add_rate_should_add": 0.6
+    },
+    "k0_no_rules_no_evidence": {
+      "n": 10,
+      "avg_teacher_score": 0.5349999999999999,
+      "pass_rate_ge_0_8": 0.0,
+      "add_rate_should_add": 1.0
+    },
+    "k0_no_rules_with_evidence": {
+      "n": 10,
+      "avg_teacher_score": 0.615,
+      "pass_rate_ge_0_8": 0.0,
+      "add_rate_should_add": 1.0
+    },
+    "k0_with_rules_no_evidence": {
+      "n": 10,
+      "avg_teacher_score": 0.713,
+      "pass_rate_ge_0_8": 0.2,
+      "add_rate_should_add": 1.0
+    },
+    "k0_with_rules_with_evidence": {
+      "n": 10,
+      "avg_teacher_score": 0.722,
+      "pass_rate_ge_0_8": 0.2,
+      "add_rate_should_add": 0.8
+    },
+    "sim_topk_no_rules_no_evidence": {
+      "n": 10,
+      "avg_teacher_score": 0.745,
+      "pass_rate_ge_0_8": 0.4,
+      "add_rate_should_add": 0.7
+    },
+    "sim_topk_no_rules_with_evidence": {
+      "n": 10,
+      "avg_teacher_score": 0.694,
+      "pass_rate_ge_0_8": 0.3,
+      "add_rate_should_add": 0.6
+    },
+    "sim_topk_with_rules_no_evidence": {
+      "n": 10,
+      "avg_teacher_score": 0.78,
+      "pass_rate_ge_0_8": 0.5,
+      "add_rate_should_add": 0.5
+    },
+    "sim_topk_with_rules_with_evidence": {
+      "n": 10,
+      "avg_teacher_score": 0.747,
+      "pass_rate_ge_0_8": 0.3,
+      "add_rate_should_add": 0.7
+    }
+  }
+}
+

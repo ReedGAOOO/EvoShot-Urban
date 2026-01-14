@@ -16,6 +16,7 @@ from embedding.embedder import EmbeddingTestHTTPEmbedder
 from models.teacher import OpenAITeacher, TeacherFeedback
 from models.captioner import LocalVisionCaptioner
 from models.rules import RuleBank
+from models.evidence import LocalVisionEvidenceExtractor
 
 # 初始化
 init(autoreset=True)
@@ -110,6 +111,7 @@ class MockVault:
     def __init__(self, *, use_real_embedder: bool = False):
         self.storage: List[UrbanExample] = []
         self.embedder = EmbeddingTestHTTPEmbedder() if use_real_embedder else MockEmbedder()
+        self.last_retrieval_meta: Dict[str, object] = {}
 
     def add(self, example: UrbanExample):
         # 实际项目中这里会有 hash 去重
@@ -160,8 +162,10 @@ class MockVault:
         这里模拟：优先返回 Tier 0 (专家)，然后是 Tier 1
         """
         if k <= 0:
+            self.last_retrieval_meta = {"k": int(k), "returned": 0, "reason": "k<=0"}
             return []
         if not self.storage:
+            self.last_retrieval_meta = {"k": int(k), "returned": 0, "reason": "empty_vault"}
             return []
 
         no_self_hit = (os.getenv("EVOSHOT_RETRIEVAL_NO_SELF_HIT") or "").strip().lower() in {"1", "true", "yes", "on"}
@@ -172,6 +176,7 @@ class MockVault:
             candidates = list(self.storage)
 
         if not candidates:
+            self.last_retrieval_meta = {"k": int(k), "returned": 0, "reason": "no_candidates"}
             return []
 
         if isinstance(self.embedder, EmbeddingTestHTTPEmbedder):
@@ -222,6 +227,14 @@ class MockVault:
             q_norm = q / qn
             sims_to_query = mat_norm.dot(q_norm)
 
+            max_sim = float(np.max(sims_to_query)) if sims_to_query.size else None
+            self.last_retrieval_meta = {
+                "k": int(k),
+                "strategy": retrieval_strategy,
+                "n_candidates": int(len(candidates)),
+                "max_sim": max_sim,
+            }
+
             if retrieval_strategy == "random":
                 import hashlib
 
@@ -233,12 +246,15 @@ class MockVault:
                 n_pick = min(k, len(candidates))
                 idxs = rng.sample(list(range(len(candidates))), k=n_pick)
                 selected = [candidates[i] for i in idxs]
+                self.last_retrieval_meta["selected_sims"] = [float(sims_to_query[i]) for i in idxs]
             elif len(candidates) <= k:
                 idxs = np.argsort(sims_to_query)[::-1]
                 selected = [candidates[int(i)] for i in idxs]
+                self.last_retrieval_meta["selected_sims"] = [float(sims_to_query[int(i)]) for i in idxs]
             elif retrieval_strategy == "topk":
                 idxs = np.argsort(sims_to_query)[::-1][:k]
                 selected = [candidates[int(i)] for i in idxs]
+                self.last_retrieval_meta["selected_sims"] = [float(sims_to_query[int(i)]) for i in idxs]
             else:
                 selected_indices: List[int] = []
                 ranked = np.argsort(sims_to_query)[::-1]
@@ -267,23 +283,34 @@ class MockVault:
                     candidate_indices.remove(best_idx)
 
                 selected = [candidates[i] for i in selected_indices]
+                self.last_retrieval_meta["selected_sims"] = [float(sims_to_query[i]) for i in selected_indices]
         else:
             # 简单模拟：按 Tier 排序，然后取前 k 条
             # 实际项目中是 Vector Similarity Search
             sorted_ex = sorted(candidates, key=lambda x: x.tier)
             selected = sorted_ex[:k]
+            self.last_retrieval_meta = {
+                "k": int(k),
+                "strategy": "tier",
+                "n_candidates": int(len(candidates)),
+                "returned": int(len(selected)),
+            }
 
         # 记录使用频次，便于后续清洗
         for ex in selected:
             ex.usage_count += 1
 
+        if isinstance(self.last_retrieval_meta, dict):
+            self.last_retrieval_meta["returned"] = int(len(selected))
         return selected
 
 
 class MockStudentModel:
     """模拟本地小模型 (Ollama/LLaVA)"""
 
-    def predict(self, sample: Sample, shots: List[UrbanExample], *, rules_text: str = "") -> StudentOutput:
+    def predict(
+        self, sample: Sample, shots: List[UrbanExample], *, rules_text: str = "", evidence_text: str = ""
+    ) -> StudentOutput:
         # 模拟：如果 shots 足够多，表现会变好 (这里用随机模拟)
         # 实际项目中：调用 HTTP API 传入 Prompt
 
@@ -346,6 +373,7 @@ class UrbanPipeline:
         use_real_embedder = (os.getenv("EVOSHOT_EMBED_BACKEND") or "mock").strip().lower() == "real"
         self.vault = MockVault(use_real_embedder=use_real_embedder)
         self.rulebank = RuleBank(embedder=self.vault.embedder if use_real_embedder else None)
+        self._evidence_extractor: Optional[LocalVisionEvidenceExtractor] = None
 
         student_backend = (os.getenv("EVOSHOT_STUDENT_BACKEND") or "mock").strip().lower()
         if student_backend == "real":
@@ -436,6 +464,8 @@ class UrbanPipeline:
         shots = self.vault.retrieve(sample, k=retrieval_k)
         logger.info(f"Retrieved {len(shots)} few-shot examples: {[f'{ex.id}(t{ex.tier})' for ex in shots]}")
         trace["retrieved_ids"] = [ex.id for ex in shots]
+        if getattr(self.vault, "last_retrieval_meta", None) is not None:
+            trace["retrieval_meta"] = dict(getattr(self.vault, "last_retrieval_meta", {}) or {})
 
         # 1.5 规则检索 (Semantic Memory / RuleBank)
         rules_text = ""
@@ -448,10 +478,43 @@ class UrbanPipeline:
             rules_text = RuleBank.to_prompt_block(selected_rules)
             trace["rule_ids"] = [r.id for r in selected_rules]
 
+        # 1.6 证据抽取（Scaffolding，不改模型参数，仅多一次视觉观察调用）
+        evidence_text = ""
+        enable_evidence = (os.getenv("EVOSHOT_EVIDENCE_ENABLED") or "").strip().lower() in {"1", "true", "yes", "on"}
+        evidence_gate = (os.getenv("EVOSHOT_EVIDENCE_GATE") or "always").strip().lower()
+        should_extract = bool(enable_evidence)
+        if should_extract and evidence_gate in {"retrieval_fail", "on_retrieval_fail", "fail"}:
+            should_extract = retrieval_k <= 0 or len(shots) == 0
+        elif should_extract and evidence_gate in {"low_sim", "fail_or_low_sim"}:
+            meta = getattr(self.vault, "last_retrieval_meta", {}) or {}
+            max_sim = meta.get("max_sim")
+            try:
+                max_sim_f = float(max_sim) if max_sim is not None else None
+            except Exception:
+                max_sim_f = None
+            min_sim = float(os.getenv("EVOSHOT_EVIDENCE_MIN_SIM", "0.35"))
+            low_sim = (max_sim_f is None) or (max_sim_f < min_sim)
+            if evidence_gate == "low_sim":
+                should_extract = low_sim
+            else:
+                should_extract = (retrieval_k <= 0 or len(shots) == 0) or low_sim
+
+        if should_extract:
+            if self._evidence_extractor is None:
+                self._evidence_extractor = LocalVisionEvidenceExtractor()
+            try:
+                ev = self._evidence_extractor.extract(sample.image_path)
+                evidence_text = ev.to_prompt_block()
+                trace["evidence_facts"] = list(ev.facts)
+                trace["evidence_uncertainties"] = list(ev.uncertainties)
+            except Exception as e:
+                trace["evidence_error"] = str(e)
+                evidence_text = ""
+
         # 2. 学生推理 (Student Inference)
         # 实际 Prompt 组装在这里发生
         try:
-            student_out = self.student.predict(sample, shots, rules_text=rules_text)
+            student_out = self.student.predict(sample, shots, rules_text=rules_text, evidence_text=evidence_text)
 
             # 核心防坑：计算 Overall，而不是信模型的
             overall = self.cfg.compute_overall(student_out.scores)
