@@ -167,6 +167,13 @@ def main() -> int:
     retrieval_k = max(0, retrieval_k)
 
     seeds = _parse_seeds(os.getenv("EVOSHOT_EVAL_SEEDS", "0,1,2"))
+    eval_deterministic_once = (os.getenv("EVOSHOT_EVAL_DETERMINISTIC_ONCE", "0") or "").strip().lower() in {
+        "1",
+        "true",
+        "yes",
+        "y",
+        "on",
+    }
 
     pool_factor = int(os.getenv("EVOSHOT_FILTER_POOL_FACTOR", "8"))
     min_conf = float(os.getenv("EVOSHOT_FILTER_MIN_CONF", "0.55"))
@@ -280,37 +287,107 @@ def main() -> int:
     os.environ["EVOSHOT_DISABLE_VAULT_UPDATE"] = "1"
 
     # For each eval seed: compare sim-topk vs random vs k=0 on the same trained vault
+    base_seed = seeds[0] if seeds else 0
+    rows_sim_once: Optional[List[Row]] = None
+    rows_k0_once: Optional[List[Row]] = None
+    sim_summary_once: Optional[dict] = None
+    k0_summary_once: Optional[dict] = None
+
+    if eval_deterministic_once and test_imgs:
+        print("[EVAL] Deterministic strategies (sim-topk, k=0) will run once to save time/cost.")
+        os.environ["EVOSHOT_RANDOM_SEED"] = str(base_seed)
+
+        os.environ["EVOSHOT_RETRIEVAL_STRATEGY"] = "topk"
+        os.environ["EVOSHOT_RETRIEVAL_K"] = str(retrieval_k)
+        rows_sim_once = run_images(
+            seed=base_seed,
+            pipeline=trained,
+            phase="test_after_train_sim_topk",
+            prefix="test",
+            image_paths=test_imgs,
+            post_text=post_text,
+        )
+        sim_summary_once = summarize(rows_sim_once)
+        all_rows.extend(rows_sim_once)
+
+        os.environ["EVOSHOT_RETRIEVAL_STRATEGY"] = "topk"
+        os.environ["EVOSHOT_RETRIEVAL_K"] = "0"
+        rows_k0_once = run_images(
+            seed=base_seed,
+            pipeline=trained,
+            phase="test_after_train_k0",
+            prefix="test",
+            image_paths=test_imgs,
+            post_text=post_text,
+        )
+        k0_summary_once = summarize(rows_k0_once)
+        all_rows.extend(rows_k0_once)
+
     for s in seeds:
         print(f"\n[SEED {s}] Evaluating on fixed test set...")
 
         os.environ["EVOSHOT_RANDOM_SEED"] = str(s)
 
-        os.environ["EVOSHOT_RETRIEVAL_STRATEGY"] = "topk"
-        os.environ["EVOSHOT_RETRIEVAL_K"] = str(retrieval_k)
-        rows_test_sim = run_images(seed=s, pipeline=trained, phase="test_after_train_sim_topk", prefix="test", image_paths=test_imgs, post_text=post_text)
+        if eval_deterministic_once and rows_sim_once is not None and sim_summary_once is not None:
+            rows_test_sim = None
+            sim_summary = sim_summary_once
+        else:
+            os.environ["EVOSHOT_RETRIEVAL_STRATEGY"] = "topk"
+            os.environ["EVOSHOT_RETRIEVAL_K"] = str(retrieval_k)
+            rows_test_sim = run_images(
+                seed=s,
+                pipeline=trained,
+                phase="test_after_train_sim_topk",
+                prefix="test",
+                image_paths=test_imgs,
+                post_text=post_text,
+            )
+            sim_summary = summarize(rows_test_sim)
 
         os.environ["EVOSHOT_RETRIEVAL_STRATEGY"] = "random"
         os.environ["EVOSHOT_RETRIEVAL_K"] = str(retrieval_k)
-        rows_test_random = run_images(seed=s, pipeline=trained, phase="test_after_train_random", prefix="test", image_paths=test_imgs, post_text=post_text)
+        rows_test_random = run_images(
+            seed=s,
+            pipeline=trained,
+            phase="test_after_train_random",
+            prefix="test",
+            image_paths=test_imgs,
+            post_text=post_text,
+        )
+        random_summary = summarize(rows_test_random)
 
-        os.environ["EVOSHOT_RETRIEVAL_STRATEGY"] = "topk"
-        os.environ["EVOSHOT_RETRIEVAL_K"] = "0"
-        rows_test_k0 = run_images(seed=s, pipeline=trained, phase="test_after_train_k0", prefix="test", image_paths=test_imgs, post_text=post_text)
+        if eval_deterministic_once and rows_k0_once is not None and k0_summary_once is not None:
+            rows_test_k0 = None
+            k0_summary = k0_summary_once
+        else:
+            os.environ["EVOSHOT_RETRIEVAL_STRATEGY"] = "topk"
+            os.environ["EVOSHOT_RETRIEVAL_K"] = "0"
+            rows_test_k0 = run_images(
+                seed=s,
+                pipeline=trained,
+                phase="test_after_train_k0",
+                prefix="test",
+                image_paths=test_imgs,
+                post_text=post_text,
+            )
+            k0_summary = summarize(rows_test_k0)
 
         seed_summary = {
             "seed": s,
             "baseline_seeds_only_test": baseline_summary,
             "train_updates_on": train_summary,
-            "test_after_train_sim_topk": summarize(rows_test_sim),
-            "test_after_train_random": summarize(rows_test_random),
-            "test_after_train_k0": summarize(rows_test_k0),
+            "test_after_train_sim_topk": sim_summary,
+            "test_after_train_random": random_summary,
+            "test_after_train_k0": k0_summary,
         }
         print(f"[SEED {s}] sim_topk={seed_summary['test_after_train_sim_topk']} | random={seed_summary['test_after_train_random']} | k0={seed_summary['test_after_train_k0']}")
 
         seed_payloads.append(seed_summary)
-        all_rows.extend(rows_test_sim)
+        if rows_test_sim is not None:
+            all_rows.extend(rows_test_sim)
         all_rows.extend(rows_test_random)
-        all_rows.extend(rows_test_k0)
+        if rows_test_k0 is not None:
+            all_rows.extend(rows_test_k0)
 
     aggregated = {
         "baseline_seeds_only_test": _aggregate(seed_payloads, "baseline_seeds_only_test"),

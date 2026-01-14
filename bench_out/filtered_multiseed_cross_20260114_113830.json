@@ -1,0 +1,284 @@
+{
+  "train_n": 2,
+  "test_n": 2,
+  "batch_seed": 42,
+  "eval_seeds": [
+    0,
+    1
+  ],
+  "filter_stats": {
+    "train_n": 2,
+    "selected": 2,
+    "pool_factor_start": 8,
+    "pool_factor_used": 8,
+    "attempts": 1,
+    "min_conf": 0.55
+  },
+  "train_images": [
+    "H:\\微博数据 - 副本\\images\\0064eo6Sgy1guiqglarmoj63342bku0y02.jpg",
+    "H:\\微博数据 - 副本\\images\\008rsxeGgy1hz1s2r2jadj32c0340e82.jpg"
+  ],
+  "test_images": [
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_027481_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000091_000019_leftImg8bit.png"
+  ],
+  "seed_summaries": [
+    {
+      "seed": 0,
+      "baseline_seeds_only_test": {
+        "n": 2,
+        "avg_teacher_score": 0.675,
+        "pass_rate_ge_0_8": 0.0,
+        "add_rate_should_add": 1.0
+      },
+      "train_updates_on": {
+        "n": 2,
+        "avg_teacher_score": 0.6499999999999999,
+        "pass_rate_ge_0_8": 0.0,
+        "add_rate_should_add": 1.0
+      },
+      "test_after_train_sim_topk": {
+        "n": 2,
+        "avg_teacher_score": 0.725,
+        "pass_rate_ge_0_8": 0.0,
+        "add_rate_should_add": 1.0
+      },
+      "test_after_train_random": {
+        "n": 2,
+        "avg_teacher_score": 0.55,
+        "pass_rate_ge_0_8": 0.0,
+        "add_rate_should_add": 1.0
+      },
+      "test_after_train_k0": {
+        "n": 2,
+        "avg_teacher_score": 0.55,
+        "pass_rate_ge_0_8": 0.0,
+        "add_rate_should_add": 1.0
+      }
+    },
+    {
+      "seed": 1,
+      "baseline_seeds_only_test": {
+        "n": 2,
+        "avg_teacher_score": 0.675,
+        "pass_rate_ge_0_8": 0.0,
+        "add_rate_should_add": 1.0
+      },
+      "train_updates_on": {
+        "n": 2,
+        "avg_teacher_score": 0.6499999999999999,
+        "pass_rate_ge_0_8": 0.0,
+        "add_rate_should_add": 1.0
+      },
+      "test_after_train_sim_topk": {
+        "n": 2,
+        "avg_teacher_score": 0.725,
+        "pass_rate_ge_0_8": 0.0,
+        "add_rate_should_add": 1.0
+      },
+      "test_after_train_random": {
+        "n": 2,
+        "avg_teacher_score": 0.75,
+        "pass_rate_ge_0_8": 0.5,
+        "add_rate_should_add": 0.5
+      },
+      "test_after_train_k0": {
+        "n": 2,
+        "avg_teacher_score": 0.55,
+        "pass_rate_ge_0_8": 0.0,
+        "add_rate_should_add": 1.0
+      }
+    }
+  ],
+  "aggregated": {
+    "baseline_seeds_only_test": {
+      "n_seeds": 2,
+      "avg_teacher_score_mean": 0.675,
+      "avg_teacher_score_stdev": 0.0
+    },
+    "train_updates_on": {
+      "n_seeds": 2,
+      "avg_teacher_score_mean": 0.6499999999999999,
+      "avg_teacher_score_stdev": 0.0
+    },
+    "test_after_train_sim_topk": {
+      "n_seeds": 2,
+      "avg_teacher_score_mean": 0.725,
+      "avg_teacher_score_stdev": 0.0
+    },
+    "test_after_train_random": {
+      "n_seeds": 2,
+      "avg_teacher_score_mean": 0.65,
+      "avg_teacher_score_stdev": 0.09999999999999998
+    },
+    "test_after_train_k0": {
+      "n_seeds": 2,
+      "avg_teacher_score_mean": 0.55,
+      "avg_teacher_score_stdev": 0.0
+    }
+  },
+  "rows": [
+    {
+      "seed": -1,
+      "phase": "baseline_seeds_only_test",
+      "sample_id": "test_1",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_027481_leftImg8bit.png",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "vault_added_id": null,
+      "error": null
+    },
+    {
+      "seed": -1,
+      "phase": "baseline_seeds_only_test",
+      "sample_id": "test_2",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000091_000019_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "vault_added_id": null,
+      "error": null
+    },
+    {
+      "seed": -1,
+      "phase": "train_updates_on",
+      "sample_id": "train_1",
+      "image_path": "H:\\微博数据 - 副本\\images\\0064eo6Sgy1guiqglarmoj63342bku0y02.jpg",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "vault_added_id": "train_1",
+      "error": null
+    },
+    {
+      "seed": -1,
+      "phase": "train_updates_on",
+      "sample_id": "train_2",
+      "image_path": "H:\\微博数据 - 副本\\images\\008rsxeGgy1hz1s2r2jadj32c0340e82.jpg",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_1",
+        "seed_001"
+      ],
+      "vault_added_id": "train_2",
+      "error": null
+    },
+    {
+      "seed": 0,
+      "phase": "test_after_train_sim_topk",
+      "sample_id": "test_1",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_027481_leftImg8bit.png",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_1",
+        "train_2"
+      ],
+      "vault_added_id": null,
+      "error": null
+    },
+    {
+      "seed": 0,
+      "phase": "test_after_train_sim_topk",
+      "sample_id": "test_2",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000091_000019_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_1",
+        "train_2"
+      ],
+      "vault_added_id": null,
+      "error": null
+    },
+    {
+      "seed": 0,
+      "phase": "test_after_train_k0",
+      "sample_id": "test_1",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_027481_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [],
+      "vault_added_id": null,
+      "error": null
+    },
+    {
+      "seed": 0,
+      "phase": "test_after_train_k0",
+      "sample_id": "test_2",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000091_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [],
+      "vault_added_id": null,
+      "error": null
+    },
+    {
+      "seed": 0,
+      "phase": "test_after_train_random",
+      "sample_id": "test_1",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_027481_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_003",
+        "seed_002"
+      ],
+      "vault_added_id": null,
+      "error": null
+    },
+    {
+      "seed": 0,
+      "phase": "test_after_train_random",
+      "sample_id": "test_2",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000091_000019_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_1",
+        "seed_001"
+      ],
+      "vault_added_id": null,
+      "error": null
+    },
+    {
+      "seed": 1,
+      "phase": "test_after_train_random",
+      "sample_id": "test_1",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_027481_leftImg8bit.png",
+      "teacher_score": 0.85,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "train_2",
+        "seed_002"
+      ],
+      "vault_added_id": null,
+      "error": null
+    },
+    {
+      "seed": 1,
+      "phase": "test_after_train_random",
+      "sample_id": "test_2",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000091_000019_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_2",
+        "seed_001"
+      ],
+      "vault_added_id": null,
+      "error": null
+    }
+  ]
+}
