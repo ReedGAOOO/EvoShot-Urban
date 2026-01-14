@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "D:\文档\Evo-shot Urban\EvoShot-Urban\run_rulebank_ablation_cross_dataset.py", line 10, in <module>
+    from models.filter import StudentUrbanFilter
+  File "D:\文档\Evo-shot Urban\EvoShot-Urban\models\filter.py", line 13, in <module>
+    from .student import robust_json_parser
+  File "D:\文档\Evo-shot Urban\EvoShot-Urban\models\student.py", line 182
+    "Reference Examples:\n"
+    ^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax
+
+ERROR conda.cli.main_run:execute(125): `conda run python -u run_rulebank_ablation_cross_dataset.py` failed. (See above for error)

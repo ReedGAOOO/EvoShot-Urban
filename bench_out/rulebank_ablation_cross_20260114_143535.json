@@ -1,0 +1,864 @@
+{
+  "train_n": 10,
+  "test_n": 10,
+  "batch_seed": 42,
+  "retrieval_k": 2,
+  "rules_k": 4,
+  "filter_stats": {
+    "train_n": 10,
+    "selected": 10,
+    "pool_factor_start": 8,
+    "pool_factor_used": 8,
+    "attempts": 1,
+    "min_conf": 0.55
+  },
+  "train_images": [
+    "H:\\微博数据 - 副本\\images\\002m0LqXgy1gunbhbq5psj60u0155wt402.jpg",
+    "H:\\微博数据 - 副本\\images\\005YfvRhgy1hz2q9ow6idj33402c0u0x.jpg",
+    "H:\\微博数据 - 副本\\images\\0064b1dhgy1h7mlkhoepcj33402c01ky.jpg",
+    "H:\\微博数据 - 副本\\images\\0064D5Rogy1i00iin6mgmj33402c0b2c.jpg",
+    "H:\\微博数据 - 副本\\images\\006oyDMegy1hb9079xuvdj32072pau0y.jpg",
+    "H:\\微博数据 - 副本\\images\\006y0Evqgy1gt867rqjs4j33402c0b2b.jpg",
+    "H:\\微博数据 - 副本\\images\\007KGPnbgy1hctxyhoxxuj32c0340kjl.jpg",
+    "H:\\微博数据 - 副本\\images\\008fpNGVgy1i02ir3qiozj31xs2xznpg.jpg",
+    "H:\\微博数据 - 副本\\images\\560e3fe5gy1hd33c6lewrj22o03k01l0.jpg",
+    "H:\\微博数据 - 副本\\images\\560e3fe5gy1hxzqrqpamnj235s2dcb2b.jpg"
+  ],
+  "test_images": [
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_024441_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_029043_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_045004_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_047629_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_056361_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000012_000019_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000081_000019_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000093_000019_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000099_000019_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000107_000019_leftImg8bit.png"
+  ],
+  "rulebank_size_after_train": 8,
+  "summaries": {
+    "train_updates_on": {
+      "n": 10,
+      "avg_teacher_score": 0.6950000000000001,
+      "pass_rate_ge_0_8": 0.2,
+      "add_rate_should_add": 0.8
+    },
+    "k0_no_rules": {
+      "n": 10,
+      "avg_teacher_score": 0.49000000000000005,
+      "pass_rate_ge_0_8": 0.0,
+      "add_rate_should_add": 0.9
+    },
+    "k0_with_rules": {
+      "n": 10,
+      "avg_teacher_score": 0.645,
+      "pass_rate_ge_0_8": 0.0,
+      "add_rate_should_add": 1.0
+    },
+    "sim_topk_no_rules": {
+      "n": 10,
+      "avg_teacher_score": 0.6479999999999999,
+      "pass_rate_ge_0_8": 0.1,
+      "add_rate_should_add": 0.9
+    },
+    "sim_topk_with_rules": {
+      "n": 10,
+      "avg_teacher_score": 0.6799999999999999,
+      "pass_rate_ge_0_8": 0.1,
+      "add_rate_should_add": 0.9
+    }
+  },
+  "rows": [
+    {
+      "phase": "train_updates_on",
+      "sample_id": "train_1",
+      "image_path": "H:\\微博数据 - 副本\\images\\002m0LqXgy1gunbhbq5psj60u0155wt402.jpg",
+      "teacher_score": 0.9,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "rule_ids": [],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "train_updates_on",
+      "sample_id": "train_2",
+      "image_path": "H:\\微博数据 - 副本\\images\\005YfvRhgy1hz2q9ow6idj33402c0u0x.jpg",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "rule_ids": [],
+      "vault_added_id": "train_2",
+      "rule_added_id": "rule_bc77e016a9",
+      "error": null
+    },
+    {
+      "phase": "train_updates_on",
+      "sample_id": "train_3",
+      "image_path": "H:\\微博数据 - 副本\\images\\0064b1dhgy1h7mlkhoepcj33402c01ky.jpg",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_2",
+        "seed_001"
+      ],
+      "rule_ids": [],
+      "vault_added_id": "train_3",
+      "rule_added_id": "rule_c78fdf0e4f",
+      "error": null
+    },
+    {
+      "phase": "train_updates_on",
+      "sample_id": "train_4",
+      "image_path": "H:\\微博数据 - 副本\\images\\0064D5Rogy1i00iin6mgmj33402c0b2c.jpg",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_3",
+        "train_2"
+      ],
+      "rule_ids": [],
+      "vault_added_id": "train_4",
+      "rule_added_id": "rule_2bab10d889",
+      "error": null
+    },
+    {
+      "phase": "train_updates_on",
+      "sample_id": "train_5",
+      "image_path": "H:\\微博数据 - 副本\\images\\006oyDMegy1hb9079xuvdj32072pau0y.jpg",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_4",
+        "train_3"
+      ],
+      "rule_ids": [],
+      "vault_added_id": "train_5",
+      "rule_added_id": "rule_cac84aad22",
+      "error": null
+    },
+    {
+      "phase": "train_updates_on",
+      "sample_id": "train_6",
+      "image_path": "H:\\微博数据 - 副本\\images\\006y0Evqgy1gt867rqjs4j33402c0b2b.jpg",
+      "teacher_score": 0.85,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "train_3",
+        "train_4"
+      ],
+      "rule_ids": [],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "train_updates_on",
+      "sample_id": "train_7",
+      "image_path": "H:\\微博数据 - 副本\\images\\007KGPnbgy1hctxyhoxxuj32c0340kjl.jpg",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_4",
+        "train_3"
+      ],
+      "rule_ids": [],
+      "vault_added_id": "train_7",
+      "rule_added_id": "rule_35f4520c4f",
+      "error": null
+    },
+    {
+      "phase": "train_updates_on",
+      "sample_id": "train_8",
+      "image_path": "H:\\微博数据 - 副本\\images\\008fpNGVgy1i02ir3qiozj31xs2xznpg.jpg",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_3",
+        "train_4"
+      ],
+      "rule_ids": [],
+      "vault_added_id": "train_8",
+      "rule_added_id": "rule_90551d043c",
+      "error": null
+    },
+    {
+      "phase": "train_updates_on",
+      "sample_id": "train_9",
+      "image_path": "H:\\微博数据 - 副本\\images\\560e3fe5gy1hd33c6lewrj22o03k01l0.jpg",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_4",
+        "train_3"
+      ],
+      "rule_ids": [],
+      "vault_added_id": "train_9",
+      "rule_added_id": "rule_376480b4bf",
+      "error": null
+    },
+    {
+      "phase": "train_updates_on",
+      "sample_id": "train_10",
+      "image_path": "H:\\微博数据 - 副本\\images\\560e3fe5gy1hxzqrqpamnj235s2dcb2b.jpg",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_3",
+        "train_7"
+      ],
+      "rule_ids": [],
+      "vault_added_id": "train_10",
+      "rule_added_id": "rule_c2a005a8ca",
+      "error": null
+    },
+    {
+      "phase": "k0_no_rules",
+      "sample_id": "k0_no_rules_1",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_024441_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [],
+      "rule_ids": [],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "k0_no_rules",
+      "sample_id": "k0_no_rules_2",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_029043_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [],
+      "rule_ids": [],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "k0_no_rules",
+      "sample_id": "k0_no_rules_3",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_045004_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieved_ids": [],
+      "rule_ids": [],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "k0_no_rules",
+      "sample_id": "k0_no_rules_4",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_047629_leftImg8bit.png",
+      "teacher_score": 0.5,
+      "teacher_should_add": true,
+      "retrieved_ids": [],
+      "rule_ids": [],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "k0_no_rules",
+      "sample_id": "k0_no_rules_5",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_056361_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [],
+      "rule_ids": [],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "k0_no_rules",
+      "sample_id": "k0_no_rules_6",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000012_000019_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [],
+      "rule_ids": [],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "k0_no_rules",
+      "sample_id": "k0_no_rules_7",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000081_000019_leftImg8bit.png",
+      "teacher_score": 0.5,
+      "teacher_should_add": true,
+      "retrieved_ids": [],
+      "rule_ids": [],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "k0_no_rules",
+      "sample_id": "k0_no_rules_8",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000093_000019_leftImg8bit.png",
+      "teacher_score": 0.5,
+      "teacher_should_add": true,
+      "retrieved_ids": [],
+      "rule_ids": [],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "k0_no_rules",
+      "sample_id": "k0_no_rules_9",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000099_000019_leftImg8bit.png",
+      "teacher_score": 0.0,
+      "teacher_should_add": false,
+      "retrieved_ids": [],
+      "rule_ids": [],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "k0_no_rules",
+      "sample_id": "k0_no_rules_10",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000107_000019_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [],
+      "rule_ids": [],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "k0_with_rules",
+      "sample_id": "k0_with_rules_1",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_024441_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [],
+      "rule_ids": [
+        "rule_2bab10d889",
+        "rule_cac84aad22",
+        "rule_c2a005a8ca",
+        "rule_bc77e016a9"
+      ],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "k0_with_rules",
+      "sample_id": "k0_with_rules_2",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_029043_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [],
+      "rule_ids": [
+        "rule_2bab10d889",
+        "rule_cac84aad22",
+        "rule_c2a005a8ca",
+        "rule_bc77e016a9"
+      ],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "k0_with_rules",
+      "sample_id": "k0_with_rules_3",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_045004_leftImg8bit.png",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieved_ids": [],
+      "rule_ids": [
+        "rule_2bab10d889",
+        "rule_cac84aad22",
+        "rule_bc77e016a9",
+        "rule_c2a005a8ca"
+      ],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "k0_with_rules",
+      "sample_id": "k0_with_rules_4",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_047629_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [],
+      "rule_ids": [
+        "rule_2bab10d889",
+        "rule_cac84aad22",
+        "rule_c2a005a8ca",
+        "rule_bc77e016a9"
+      ],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "k0_with_rules",
+      "sample_id": "k0_with_rules_5",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_056361_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [],
+      "rule_ids": [
+        "rule_2bab10d889",
+        "rule_cac84aad22",
+        "rule_c2a005a8ca",
+        "rule_bc77e016a9"
+      ],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "k0_with_rules",
+      "sample_id": "k0_with_rules_6",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000012_000019_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [],
+      "rule_ids": [
+        "rule_2bab10d889",
+        "rule_cac84aad22",
+        "rule_c2a005a8ca",
+        "rule_bc77e016a9"
+      ],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "k0_with_rules",
+      "sample_id": "k0_with_rules_7",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000081_000019_leftImg8bit.png",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieved_ids": [],
+      "rule_ids": [
+        "rule_2bab10d889",
+        "rule_c2a005a8ca",
+        "rule_cac84aad22",
+        "rule_bc77e016a9"
+      ],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "k0_with_rules",
+      "sample_id": "k0_with_rules_8",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000093_000019_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [],
+      "rule_ids": [
+        "rule_2bab10d889",
+        "rule_cac84aad22",
+        "rule_c2a005a8ca",
+        "rule_bc77e016a9"
+      ],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "k0_with_rules",
+      "sample_id": "k0_with_rules_9",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000099_000019_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [],
+      "rule_ids": [
+        "rule_2bab10d889",
+        "rule_cac84aad22",
+        "rule_c2a005a8ca",
+        "rule_bc77e016a9"
+      ],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "k0_with_rules",
+      "sample_id": "k0_with_rules_10",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000107_000019_leftImg8bit.png",
+      "teacher_score": 0.55,
+      "teacher_should_add": true,
+      "retrieved_ids": [],
+      "rule_ids": [
+        "rule_2bab10d889",
+        "rule_cac84aad22",
+        "rule_c2a005a8ca",
+        "rule_bc77e016a9"
+      ],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "sim_topk_no_rules",
+      "sample_id": "sim_topk_no_rules_1",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_024441_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_4",
+        "train_9"
+      ],
+      "rule_ids": [],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "sim_topk_no_rules",
+      "sample_id": "sim_topk_no_rules_2",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_029043_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_9",
+        "train_4"
+      ],
+      "rule_ids": [],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "sim_topk_no_rules",
+      "sample_id": "sim_topk_no_rules_3",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_045004_leftImg8bit.png",
+      "teacher_score": 0.3,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_4",
+        "train_3"
+      ],
+      "rule_ids": [],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "sim_topk_no_rules",
+      "sample_id": "sim_topk_no_rules_4",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_047629_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_4",
+        "train_9"
+      ],
+      "rule_ids": [],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "sim_topk_no_rules",
+      "sample_id": "sim_topk_no_rules_5",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_056361_leftImg8bit.png",
+      "teacher_score": 0.88,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "train_4",
+        "train_9"
+      ],
+      "rule_ids": [],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "sim_topk_no_rules",
+      "sample_id": "sim_topk_no_rules_6",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000012_000019_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_4",
+        "train_9"
+      ],
+      "rule_ids": [],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "sim_topk_no_rules",
+      "sample_id": "sim_topk_no_rules_7",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000081_000019_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_7",
+        "train_10"
+      ],
+      "rule_ids": [],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "sim_topk_no_rules",
+      "sample_id": "sim_topk_no_rules_8",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000093_000019_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_9",
+        "train_5"
+      ],
+      "rule_ids": [],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "sim_topk_no_rules",
+      "sample_id": "sim_topk_no_rules_9",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000099_000019_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_10",
+        "train_9"
+      ],
+      "rule_ids": [],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "sim_topk_no_rules",
+      "sample_id": "sim_topk_no_rules_10",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000107_000019_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_9",
+        "train_4"
+      ],
+      "rule_ids": [],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "sim_topk_with_rules",
+      "sample_id": "sim_topk_with_rules_1",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_024441_leftImg8bit.png",
+      "teacher_score": 0.85,
+      "teacher_should_add": false,
+      "retrieved_ids": [
+        "train_4",
+        "train_9"
+      ],
+      "rule_ids": [
+        "rule_2bab10d889",
+        "rule_cac84aad22",
+        "rule_c2a005a8ca",
+        "rule_bc77e016a9"
+      ],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "sim_topk_with_rules",
+      "sample_id": "sim_topk_with_rules_2",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_029043_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_9",
+        "train_4"
+      ],
+      "rule_ids": [
+        "rule_2bab10d889",
+        "rule_cac84aad22",
+        "rule_c2a005a8ca",
+        "rule_bc77e016a9"
+      ],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "sim_topk_with_rules",
+      "sample_id": "sim_topk_with_rules_3",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_045004_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_4",
+        "train_3"
+      ],
+      "rule_ids": [
+        "rule_2bab10d889",
+        "rule_cac84aad22",
+        "rule_bc77e016a9",
+        "rule_c2a005a8ca"
+      ],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "sim_topk_with_rules",
+      "sample_id": "sim_topk_with_rules_4",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_047629_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_4",
+        "train_9"
+      ],
+      "rule_ids": [
+        "rule_2bab10d889",
+        "rule_cac84aad22",
+        "rule_c2a005a8ca",
+        "rule_bc77e016a9"
+      ],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "sim_topk_with_rules",
+      "sample_id": "sim_topk_with_rules_5",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_056361_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_4",
+        "train_9"
+      ],
+      "rule_ids": [
+        "rule_2bab10d889",
+        "rule_cac84aad22",
+        "rule_c2a005a8ca",
+        "rule_bc77e016a9"
+      ],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "sim_topk_with_rules",
+      "sample_id": "sim_topk_with_rules_6",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000012_000019_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_4",
+        "train_9"
+      ],
+      "rule_ids": [
+        "rule_2bab10d889",
+        "rule_cac84aad22",
+        "rule_c2a005a8ca",
+        "rule_bc77e016a9"
+      ],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "sim_topk_with_rules",
+      "sample_id": "sim_topk_with_rules_7",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000081_000019_leftImg8bit.png",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_7",
+        "train_10"
+      ],
+      "rule_ids": [
+        "rule_2bab10d889",
+        "rule_c2a005a8ca",
+        "rule_cac84aad22",
+        "rule_bc77e016a9"
+      ],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "sim_topk_with_rules",
+      "sample_id": "sim_topk_with_rules_8",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000093_000019_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_9",
+        "train_5"
+      ],
+      "rule_ids": [
+        "rule_2bab10d889",
+        "rule_cac84aad22",
+        "rule_c2a005a8ca",
+        "rule_bc77e016a9"
+      ],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "sim_topk_with_rules",
+      "sample_id": "sim_topk_with_rules_9",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000099_000019_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_10",
+        "train_9"
+      ],
+      "rule_ids": [
+        "rule_2bab10d889",
+        "rule_cac84aad22",
+        "rule_c2a005a8ca",
+        "rule_bc77e016a9"
+      ],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    },
+    {
+      "phase": "sim_topk_with_rules",
+      "sample_id": "sim_topk_with_rules_10",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000107_000019_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieved_ids": [
+        "train_9",
+        "train_4"
+      ],
+      "rule_ids": [
+        "rule_2bab10d889",
+        "rule_cac84aad22",
+        "rule_c2a005a8ca",
+        "rule_bc77e016a9"
+      ],
+      "vault_added_id": null,
+      "rule_added_id": null,
+      "error": null
+    }
+  ]
+}

@@ -15,6 +15,7 @@ from models.student import HTTPStudentModel
 from embedding.embedder import EmbeddingTestHTTPEmbedder
 from models.teacher import OpenAITeacher, TeacherFeedback
 from models.captioner import LocalVisionCaptioner
+from models.rules import RuleBank
 
 # 初始化
 init(autoreset=True)
@@ -282,7 +283,7 @@ class MockVault:
 class MockStudentModel:
     """模拟本地小模型 (Ollama/LLaVA)"""
 
-    def predict(self, sample: Sample, shots: List[UrbanExample]) -> StudentOutput:
+    def predict(self, sample: Sample, shots: List[UrbanExample], *, rules_text: str = "") -> StudentOutput:
         # 模拟：如果 shots 足够多，表现会变好 (这里用随机模拟)
         # 实际项目中：调用 HTTP API 传入 Prompt
 
@@ -344,6 +345,7 @@ class UrbanPipeline:
 
         use_real_embedder = (os.getenv("EVOSHOT_EMBED_BACKEND") or "mock").strip().lower() == "real"
         self.vault = MockVault(use_real_embedder=use_real_embedder)
+        self.rulebank = RuleBank(embedder=self.vault.embedder if use_real_embedder else None)
 
         student_backend = (os.getenv("EVOSHOT_STUDENT_BACKEND") or "mock").strip().lower()
         if student_backend == "real":
@@ -435,10 +437,21 @@ class UrbanPipeline:
         logger.info(f"Retrieved {len(shots)} few-shot examples: {[f'{ex.id}(t{ex.tier})' for ex in shots]}")
         trace["retrieved_ids"] = [ex.id for ex in shots]
 
+        # 1.5 规则检索 (Semantic Memory / RuleBank)
+        rules_text = ""
+        enable_rulebank = (os.getenv("EVOSHOT_RULEBANK_ENABLED") or "").strip().lower() in {"1", "true", "yes", "on"}
+        rules_k = int(os.getenv("EVOSHOT_RULES_K", "4"))
+        rules_k = max(0, rules_k)
+        if enable_rulebank and rules_k > 0:
+            query_text = sample.retrieval_text or sample.post_text
+            selected_rules = self.rulebank.select(query_text=query_text, k=rules_k)
+            rules_text = RuleBank.to_prompt_block(selected_rules)
+            trace["rule_ids"] = [r.id for r in selected_rules]
+
         # 2. 学生推理 (Student Inference)
         # 实际 Prompt 组装在这里发生
         try:
-            student_out = self.student.predict(sample, shots)
+            student_out = self.student.predict(sample, shots, rules_text=rules_text)
 
             # 核心防坑：计算 Overall，而不是信模型的
             overall = self.cfg.compute_overall(student_out.scores)
@@ -478,6 +491,15 @@ class UrbanPipeline:
                     logger.info("Vault update disabled; skipping add.")
                     trace["vault_added_id"] = None
                     return trace
+
+                # Add a reusable "lesson" to the semantic RuleBank (frozen when vault updates are frozen).
+                lesson = getattr(feedback, "lesson", None)
+                if isinstance(lesson, str) and lesson.strip():
+                    added_rule = self.rulebank.add(lesson, source_id=sample.id)
+                    if added_rule is not None:
+                        trace["rule_added_id"] = added_rule.id
+                        trace["rule_added_text"] = added_rule.text
+
                 # 核心防坑：入库的是 Teacher 的修正版，不是学生版
                 caption_backend = (os.getenv("EVOSHOT_VAULT_CAPTION_BACKEND") or "teacher").strip().lower()
                 caption = ""

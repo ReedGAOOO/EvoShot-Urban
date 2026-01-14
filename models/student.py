@@ -173,20 +173,27 @@ class HTTPStudentModel:
             }
         ]
 
-    def _build_user_text(self, *, image_path: str, post_text: str, shots_text: str) -> str:
+    def _build_user_text(self, *, image_path: str, post_text: str, shots_text: str, rules_text: str) -> str:
         dims = ", ".join(self._score_dims)
+        rules_block = (rules_text or "").strip()
+        rules_prefix = f"General Rules (follow these strictly):\n{rules_block}\n\n" if rules_block else ""
         return (
-            "Reference Examples:\n"
-            f"{shots_text}\n"
-            "Now analyze this NEW target:\n"
-            f"Text: {post_text}\n"
-            "[Image Attached]\n"
-            f"(Reminder: scores keys = {dims}; return ONLY JSON.)\n"
+            rules_prefix
+            + "Reference Examples:\n"
+            + f"{shots_text}\n"
+            + "Now analyze this NEW target:\n"
+            + f"Text: {post_text}\n"
+            + "[Image Attached]\n"
+            + f"(Reminder: scores keys = {dims}; return ONLY JSON.)\n"
         )
 
-    def _build_multimodal_messages(self, *, sample: Any, shots: Any) -> list[Dict[str, Any]]:
+    def _build_multimodal_messages(self, *, sample: Any, shots: Any, rules_text: str) -> list[Dict[str, Any]]:
         dims = ", ".join(self._score_dims)
         messages: list[Dict[str, Any]] = [{"role": "system", "content": self._system_prompt()}]
+
+        rules_block = (rules_text or "").strip()
+        if rules_block:
+            messages.append({"role": "system", "content": f"General Rules (follow strictly):\n{rules_block}"})
 
         for idx, ex in enumerate(shots or [], start=1):
             ex_text = (
@@ -390,7 +397,7 @@ class HTTPStudentModel:
             print(f"\n[DEBUG RAW LLM REPAIR RESPONSE]:\n{content}\n")
         return robust_json_parser(content)
 
-    def predict(self, sample: Any, shots: Any) -> Any:
+    def predict(self, sample: Any, shots: Any, *, rules_text: str = "") -> Any:
         use_tools = self._use_tools in {"1", "true", "yes", "on", "required"}
         if self._use_tools == "auto":
             use_tools = True
@@ -398,11 +405,16 @@ class HTTPStudentModel:
         if self._fewshot_mode in {"multimodal", "image", "image+text"} and self._should_include_image(
             getattr(sample, "image_path", "")
         ):
-            messages = self._build_multimodal_messages(sample=sample, shots=shots)
+            messages = self._build_multimodal_messages(sample=sample, shots=shots, rules_text=rules_text)
             payload = self._build_payload_from_messages(messages=messages, use_tools=use_tools)
         else:
             shots_text = "".join(ex.to_prompt_str() for ex in shots) if shots else ""
-            user_text = self._build_user_text(image_path=sample.image_path, post_text=sample.post_text, shots_text=shots_text)
+            user_text = self._build_user_text(
+                image_path=sample.image_path,
+                post_text=sample.post_text,
+                shots_text=shots_text,
+                rules_text=rules_text,
+            )
             payload = self._build_payload(user_text=user_text, image_path=sample.image_path, use_tools=use_tools)
 
         try:

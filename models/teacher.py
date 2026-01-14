@@ -28,6 +28,7 @@ class TeacherFeedback(BaseModel):
     better_rationale: str
     better_scores: Dict[str, float]
     should_add_to_vault: bool
+    lesson: Optional[str] = None
 
 
 class OpenAITeacher:
@@ -139,7 +140,8 @@ Output JSON:
   "critique": "<short criticism>",
   "better_rationale": "<write a perfect rationale grounded in the image>",
   "better_scores": {{"safety": <float 1-5>, "vibrancy": <float 1-5>, "cleanliness": <float 1-5>}},
-  "should_add_to_vault": <bool, true only if student failed (score < 0.8)>
+  "should_add_to_vault": <bool, true only if student failed (score < 0.8)>,
+  "lesson": "<ONE generalizable rule to prevent this failure next time. <=25 words. No sample-specific details. Empty string if none.>"
 }}
 """.strip(),
             },
@@ -185,6 +187,11 @@ Output JSON:
                         fixed[k] = 1.0
                 data["better_scores"] = fixed
 
+            lesson = data.get("lesson")
+            if lesson is not None:
+                lesson_s = str(lesson).strip()
+                data["lesson"] = lesson_s if lesson_s else None
+
             return TeacherFeedback(**data)
         except Exception as exc:
             logger.error(f"Teacher Judge Failed: {exc}")
@@ -194,6 +201,7 @@ Output JSON:
                 better_rationale="",
                 better_scores={},
                 should_add_to_vault=False,
+                lesson=None,
             )
 
     def generate_caption(self, sample: Any) -> str:
