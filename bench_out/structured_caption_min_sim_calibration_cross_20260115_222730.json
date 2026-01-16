@@ -1,0 +1,1489 @@
+{
+  "train_n": 8,
+  "test_n": 16,
+  "batch_seed": 43,
+  "retrieval_k": 2,
+  "rules_k": 4,
+  "baseline_min_sim": 0.68,
+  "baseline_summary": {
+    "n": 16,
+    "avg_teacher_score": 0.65625,
+    "pass_rate_ge_0_8": 0.125,
+    "avg_retrieval_max_sim": 0.6899554058909416,
+    "avg_evidence_facts": 2.0625,
+    "evidence_use_rate": 0.375,
+    "avg_seconds": 34.62823635339737
+  },
+  "structured_base_summary": {
+    "n": 16,
+    "avg_teacher_score": 0.626875,
+    "pass_rate_ge_0_8": 0.125,
+    "avg_retrieval_max_sim": 0.5599959176033735,
+    "avg_evidence_facts": 0.0,
+    "evidence_use_rate": 0.0,
+    "avg_seconds": 35.83880418539047
+  },
+  "structured_evidence_always_summary": {
+    "n": 16,
+    "avg_teacher_score": 0.795,
+    "pass_rate_ge_0_8": 0.5,
+    "avg_retrieval_max_sim": 0.5599959176033735,
+    "avg_evidence_facts": 6.4375,
+    "evidence_use_rate": 1.0,
+    "avg_seconds": 30.941824734210968
+  },
+  "target_evidence_use_rate": 0.375,
+  "calibration_grid_n": 34,
+  "sweep_sorted": [
+    {
+      "min_sim": 0.5518550143966675,
+      "n_used": 16,
+      "avg_teacher_score": 0.654375,
+      "pass_rate_ge_0_8": 0.1875,
+      "evidence_use_rate": 0.375,
+      "avg_seconds": 33.001905024051666,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.0
+    },
+    {
+      "min_sim": 0.554689884185791,
+      "n_used": 16,
+      "avg_teacher_score": 0.654375,
+      "pass_rate_ge_0_8": 0.1875,
+      "evidence_use_rate": 0.375,
+      "avg_seconds": 33.001905024051666,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.0
+    },
+    {
+      "min_sim": 0.5497735605964661,
+      "n_used": 16,
+      "avg_teacher_score": 0.654375,
+      "pass_rate_ge_0_8": 0.1875,
+      "evidence_use_rate": 0.3125,
+      "avg_seconds": 33.85407952964306,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.0625
+    },
+    {
+      "min_sim": 0.5518540143966675,
+      "n_used": 16,
+      "avg_teacher_score": 0.654375,
+      "pass_rate_ge_0_8": 0.1875,
+      "evidence_use_rate": 0.3125,
+      "avg_seconds": 33.85407952964306,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.0625
+    },
+    {
+      "min_sim": 0.554690884185791,
+      "n_used": 16,
+      "avg_teacher_score": 0.6525,
+      "pass_rate_ge_0_8": 0.1875,
+      "evidence_use_rate": 0.4375,
+      "avg_seconds": 33.42094498872757,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.0625
+    },
+    {
+      "min_sim": 0.555749773979187,
+      "n_used": 16,
+      "avg_teacher_score": 0.6525,
+      "pass_rate_ge_0_8": 0.1875,
+      "evidence_use_rate": 0.4375,
+      "avg_seconds": 33.42094498872757,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.0625
+    },
+    {
+      "min_sim": 0.555750773979187,
+      "n_used": 16,
+      "avg_teacher_score": 0.649375,
+      "pass_rate_ge_0_8": 0.1875,
+      "evidence_use_rate": 0.5,
+      "avg_seconds": 32.497646510601044,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.125
+    },
+    {
+      "min_sim": 0.5663150548934937,
+      "n_used": 16,
+      "avg_teacher_score": 0.649375,
+      "pass_rate_ge_0_8": 0.1875,
+      "evidence_use_rate": 0.5,
+      "avg_seconds": 32.497646510601044,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.125
+    },
+    {
+      "min_sim": 0.5493048892745972,
+      "n_used": 16,
+      "avg_teacher_score": 0.648125,
+      "pass_rate_ge_0_8": 0.1875,
+      "evidence_use_rate": 0.25,
+      "avg_seconds": 33.832173988223076,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.125
+    },
+    {
+      "min_sim": 0.5497725605964661,
+      "n_used": 16,
+      "avg_teacher_score": 0.648125,
+      "pass_rate_ge_0_8": 0.1875,
+      "evidence_use_rate": 0.25,
+      "avg_seconds": 33.832173988223076,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.125
+    },
+    {
+      "min_sim": 0.5663160548934937,
+      "n_used": 16,
+      "avg_teacher_score": 0.654375,
+      "pass_rate_ge_0_8": 0.1875,
+      "evidence_use_rate": 0.5625,
+      "avg_seconds": 32.56868474185467,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.1875
+    },
+    {
+      "min_sim": 0.572416365146637,
+      "n_used": 16,
+      "avg_teacher_score": 0.654375,
+      "pass_rate_ge_0_8": 0.1875,
+      "evidence_use_rate": 0.5625,
+      "avg_seconds": 32.56868474185467,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.1875
+    },
+    {
+      "min_sim": 0.5381573901901245,
+      "n_used": 16,
+      "avg_teacher_score": 0.645625,
+      "pass_rate_ge_0_8": 0.1875,
+      "evidence_use_rate": 0.1875,
+      "avg_seconds": 34.753848657011986,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.1875
+    },
+    {
+      "min_sim": 0.5493038892745972,
+      "n_used": 16,
+      "avg_teacher_score": 0.645625,
+      "pass_rate_ge_0_8": 0.1875,
+      "evidence_use_rate": 0.1875,
+      "avg_seconds": 34.753848657011986,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.1875
+    },
+    {
+      "min_sim": 0.572417365146637,
+      "n_used": 16,
+      "avg_teacher_score": 0.695,
+      "pass_rate_ge_0_8": 0.1875,
+      "evidence_use_rate": 0.625,
+      "avg_seconds": 31.65219171345234,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.25
+    },
+    {
+      "min_sim": 0.5724978446960449,
+      "n_used": 16,
+      "avg_teacher_score": 0.695,
+      "pass_rate_ge_0_8": 0.1875,
+      "evidence_use_rate": 0.625,
+      "avg_seconds": 31.65219171345234,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.25
+    },
+    {
+      "min_sim": 0.4949960575828552,
+      "n_used": 16,
+      "avg_teacher_score": 0.639375,
+      "pass_rate_ge_0_8": 0.1875,
+      "evidence_use_rate": 0.125,
+      "avg_seconds": 35.65884259343147,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.25
+    },
+    {
+      "min_sim": 0.5381563901901245,
+      "n_used": 16,
+      "avg_teacher_score": 0.639375,
+      "pass_rate_ge_0_8": 0.1875,
+      "evidence_use_rate": 0.125,
+      "avg_seconds": 35.65884259343147,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.25
+    },
+    {
+      "min_sim": 0.572498844696045,
+      "n_used": 16,
+      "avg_teacher_score": 0.704375,
+      "pass_rate_ge_0_8": 0.25,
+      "evidence_use_rate": 0.6875,
+      "avg_seconds": 31.79043811559677,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.3125
+    },
+    {
+      "min_sim": 0.584140419960022,
+      "n_used": 16,
+      "avg_teacher_score": 0.704375,
+      "pass_rate_ge_0_8": 0.25,
+      "evidence_use_rate": 0.6875,
+      "avg_seconds": 31.79043811559677,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.3125
+    },
+    {
+      "min_sim": 0.4321293996105194,
+      "n_used": 16,
+      "avg_teacher_score": 0.626875,
+      "pass_rate_ge_0_8": 0.125,
+      "evidence_use_rate": 0.0625,
+      "avg_seconds": 35.59691233932972,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.3125
+    },
+    {
+      "min_sim": 0.4949950575828552,
+      "n_used": 16,
+      "avg_teacher_score": 0.626875,
+      "pass_rate_ge_0_8": 0.125,
+      "evidence_use_rate": 0.0625,
+      "avg_seconds": 35.59691233932972,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.3125
+    },
+    {
+      "min_sim": 0.584141419960022,
+      "n_used": 16,
+      "avg_teacher_score": 0.72625,
+      "pass_rate_ge_0_8": 0.25,
+      "evidence_use_rate": 0.75,
+      "avg_seconds": 31.758471369743347,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.375
+    },
+    {
+      "min_sim": 0.5975457429885864,
+      "n_used": 16,
+      "avg_teacher_score": 0.72625,
+      "pass_rate_ge_0_8": 0.25,
+      "evidence_use_rate": 0.75,
+      "avg_seconds": 31.758471369743347,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.375
+    },
+    {
+      "min_sim": 0.0,
+      "n_used": 16,
+      "avg_teacher_score": 0.626875,
+      "pass_rate_ge_0_8": 0.125,
+      "evidence_use_rate": 0.0,
+      "avg_seconds": 35.83880418539047,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.375
+    },
+    {
+      "min_sim": 0.4321283996105194,
+      "n_used": 16,
+      "avg_teacher_score": 0.626875,
+      "pass_rate_ge_0_8": 0.125,
+      "evidence_use_rate": 0.0,
+      "avg_seconds": 35.83880418539047,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.375
+    },
+    {
+      "min_sim": 0.5975467429885865,
+      "n_used": 16,
+      "avg_teacher_score": 0.73875,
+      "pass_rate_ge_0_8": 0.3125,
+      "evidence_use_rate": 0.8125,
+      "avg_seconds": 32.18503029644489,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.4375
+    },
+    {
+      "min_sim": 0.6024000644683838,
+      "n_used": 16,
+      "avg_teacher_score": 0.73875,
+      "pass_rate_ge_0_8": 0.3125,
+      "evidence_use_rate": 0.8125,
+      "avg_seconds": 32.18503029644489,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.4375
+    },
+    {
+      "min_sim": 0.6024010644683838,
+      "n_used": 16,
+      "avg_teacher_score": 0.76875,
+      "pass_rate_ge_0_8": 0.375,
+      "evidence_use_rate": 0.875,
+      "avg_seconds": 31.905012145638466,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.5
+    },
+    {
+      "min_sim": 0.613114595413208,
+      "n_used": 16,
+      "avg_teacher_score": 0.76875,
+      "pass_rate_ge_0_8": 0.375,
+      "evidence_use_rate": 0.875,
+      "avg_seconds": 31.905012145638466,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.5
+    },
+    {
+      "min_sim": 0.613115595413208,
+      "n_used": 16,
+      "avg_teacher_score": 0.778125,
+      "pass_rate_ge_0_8": 0.4375,
+      "evidence_use_rate": 0.9375,
+      "avg_seconds": 31.17833562195301,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.5625
+    },
+    {
+      "min_sim": 0.6248546242713928,
+      "n_used": 16,
+      "avg_teacher_score": 0.778125,
+      "pass_rate_ge_0_8": 0.4375,
+      "evidence_use_rate": 0.9375,
+      "avg_seconds": 31.17833562195301,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.5625
+    },
+    {
+      "min_sim": 0.6248556242713929,
+      "n_used": 16,
+      "avg_teacher_score": 0.795,
+      "pass_rate_ge_0_8": 0.5,
+      "evidence_use_rate": 1.0,
+      "avg_seconds": 30.941824734210968,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.625
+    },
+    {
+      "min_sim": 1.0,
+      "n_used": 16,
+      "avg_teacher_score": 0.795,
+      "pass_rate_ge_0_8": 0.5,
+      "evidence_use_rate": 1.0,
+      "avg_seconds": 30.941824734210968,
+      "abs_diff_evidence_use_rate_vs_baseline": 0.625
+    }
+  ],
+  "best": {
+    "min_sim": 0.5518550143966675,
+    "n_used": 16,
+    "avg_teacher_score": 0.654375,
+    "pass_rate_ge_0_8": 0.1875,
+    "evidence_use_rate": 0.375,
+    "avg_seconds": 33.001905024051666,
+    "abs_diff_evidence_use_rate_vs_baseline": 0.0
+  },
+  "validate_tuned_summary": {
+    "n": 16,
+    "avg_teacher_score": 0.660625,
+    "pass_rate_ge_0_8": 0.1875,
+    "avg_retrieval_max_sim": 0.5599959176033735,
+    "avg_evidence_facts": 2.3125,
+    "evidence_use_rate": 0.375,
+    "avg_seconds": 25.94118958711624
+  },
+  "filter_stats": {
+    "train_n": 8,
+    "selected": 8,
+    "pool_factor_start": 8,
+    "pool_factor_used": 8,
+    "attempts": 1,
+    "min_conf": 0.55
+  },
+  "train_images": [
+    "H:\\微博数据 - 副本\\images\\005E1ESJgy1hibbk23p26j31400u0n3t.jpg",
+    "H:\\微博数据 - 副本\\images\\006Bj3Jfgy1hzaogmuuivj335s2dcu0y.jpg",
+    "H:\\微博数据 - 副本\\images\\006CTSmhgy1h05vqu46sfj32c0340u0y.jpg",
+    "H:\\微博数据 - 副本\\images\\007aq5bKly1hl86n0g54uj30u0140af4.jpg",
+    "H:\\微博数据 - 副本\\images\\007lkv5ogy1gt7dk4jem8j33402c0e83.jpg",
+    "H:\\微博数据 - 副本\\images\\007SfwZKgy1hfqfliujnqj31360te0y7.jpg",
+    "H:\\微博数据 - 副本\\images\\007TzbJRgy1hcr10ozzf6j335s2dchdv.jpg",
+    "H:\\微博数据 - 副本\\images\\008rrfsagy1h4o1hzc18fj30zk0qo10a.jpg"
+  ],
+  "test_images": [
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_002357_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_005175_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_011170_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_027650_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_030546_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_032351_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034720_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_057532_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000023_000019_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000028_000019_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000034_000019_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000059_000019_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000072_000019_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000098_000019_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000119_000019_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000153_000019_leftImg8bit.png"
+  ],
+  "rows_train": [
+    {
+      "phase": "train_updates_on",
+      "sample_id": "train_1",
+      "image_path": "H:\\微博数据 - 副本\\images\\005E1ESJgy1hibbk23p26j31400u0n3t.jpg",
+      "retrieval_max_sim": 0.2163533866405487,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "teacher_score": 0.85,
+      "pass_ge_0_8": true,
+      "evidence_facts": 0,
+      "seconds": 26.65430188179016,
+      "error": null
+    },
+    {
+      "phase": "train_updates_on",
+      "sample_id": "train_2",
+      "image_path": "H:\\微博数据 - 副本\\images\\006Bj3Jfgy1hzaogmuuivj335s2dcu0y.jpg",
+      "retrieval_max_sim": 0.4513435959815979,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_002"
+      ],
+      "teacher_score": 0.7,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 38.563709020614624,
+      "error": null
+    },
+    {
+      "phase": "train_updates_on",
+      "sample_id": "train_3",
+      "image_path": "H:\\微博数据 - 副本\\images\\006CTSmhgy1h05vqu46sfj32c0340u0y.jpg",
+      "retrieval_max_sim": 0.5147939324378967,
+      "retrieved_ids": [
+        "train_2",
+        "seed_001"
+      ],
+      "teacher_score": 0.7,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 41.44407081604004,
+      "error": null
+    },
+    {
+      "phase": "train_updates_on",
+      "sample_id": "train_4",
+      "image_path": "H:\\微博数据 - 副本\\images\\007aq5bKly1hl86n0g54uj30u0140af4.jpg",
+      "retrieval_max_sim": 0.5689549446105957,
+      "retrieved_ids": [
+        "train_3",
+        "train_2"
+      ],
+      "teacher_score": 0.7,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 26.34837245941162,
+      "error": null
+    },
+    {
+      "phase": "train_updates_on",
+      "sample_id": "train_5",
+      "image_path": "H:\\微博数据 - 副本\\images\\007lkv5ogy1gt7dk4jem8j33402c0e83.jpg",
+      "retrieval_max_sim": 0.5961954593658447,
+      "retrieved_ids": [
+        "train_3",
+        "train_4"
+      ],
+      "teacher_score": 0.6,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 29.58705163002014,
+      "error": null
+    },
+    {
+      "phase": "train_updates_on",
+      "sample_id": "train_6",
+      "image_path": "H:\\微博数据 - 副本\\images\\007SfwZKgy1hfqfliujnqj31360te0y7.jpg",
+      "retrieval_max_sim": 0.7630564570426941,
+      "retrieved_ids": [
+        "train_5",
+        "train_4"
+      ],
+      "teacher_score": 0.75,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 30.355140209197998,
+      "error": null
+    },
+    {
+      "phase": "train_updates_on",
+      "sample_id": "train_7",
+      "image_path": "H:\\微博数据 - 副本\\images\\007TzbJRgy1hcr10ozzf6j335s2dchdv.jpg",
+      "retrieval_max_sim": 0.6815499663352966,
+      "retrieved_ids": [
+        "train_4",
+        "train_5"
+      ],
+      "teacher_score": 0.72,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 42.98874855041504,
+      "error": null
+    },
+    {
+      "phase": "train_updates_on",
+      "sample_id": "train_8",
+      "image_path": "H:\\微博数据 - 副本\\images\\008rrfsagy1h4o1hzc18fj30zk0qo10a.jpg",
+      "retrieval_max_sim": 0.6073760390281677,
+      "retrieved_ids": [
+        "train_5",
+        "train_6"
+      ],
+      "teacher_score": 0.7,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 36.42741370201111,
+      "error": null
+    }
+  ],
+  "rows_baseline": [
+    {
+      "phase": "baseline_sentence_gate",
+      "sample_id": "test_1",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_002357_leftImg8bit.png",
+      "retrieval_max_sim": 0.8298988938331604,
+      "retrieved_ids": [
+        "train_5",
+        "train_3"
+      ],
+      "teacher_score": 0.85,
+      "pass_ge_0_8": true,
+      "evidence_facts": 0,
+      "seconds": 45.85720443725586,
+      "error": null
+    },
+    {
+      "phase": "baseline_sentence_gate",
+      "sample_id": "test_2",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_005175_leftImg8bit.png",
+      "retrieval_max_sim": 0.7176169157028198,
+      "retrieved_ids": [
+        "train_5",
+        "train_3"
+      ],
+      "teacher_score": 0.4,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 27.905487537384033,
+      "error": null
+    },
+    {
+      "phase": "baseline_sentence_gate",
+      "sample_id": "test_3",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_011170_leftImg8bit.png",
+      "retrieval_max_sim": 0.6833768486976624,
+      "retrieved_ids": [
+        "train_5",
+        "train_6"
+      ],
+      "teacher_score": 0.4,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 31.040178060531616,
+      "error": null
+    },
+    {
+      "phase": "baseline_sentence_gate",
+      "sample_id": "test_4",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_027650_leftImg8bit.png",
+      "retrieval_max_sim": 0.7485520243644714,
+      "retrieved_ids": [
+        "train_5",
+        "train_3"
+      ],
+      "teacher_score": 0.65,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 30.588700771331787,
+      "error": null
+    },
+    {
+      "phase": "baseline_sentence_gate",
+      "sample_id": "test_5",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_030546_leftImg8bit.png",
+      "retrieval_max_sim": 0.6972211599349976,
+      "retrieved_ids": [
+        "train_5",
+        "train_3"
+      ],
+      "teacher_score": 0.7,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 47.88522291183472,
+      "error": null
+    },
+    {
+      "phase": "baseline_sentence_gate",
+      "sample_id": "test_6",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_032351_leftImg8bit.png",
+      "retrieval_max_sim": 0.7362587451934814,
+      "retrieved_ids": [
+        "train_5",
+        "train_3"
+      ],
+      "teacher_score": 0.65,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 33.69927453994751,
+      "error": null
+    },
+    {
+      "phase": "baseline_sentence_gate",
+      "sample_id": "test_7",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034720_leftImg8bit.png",
+      "retrieval_max_sim": 0.7094243764877319,
+      "retrieved_ids": [
+        "train_5",
+        "train_3"
+      ],
+      "teacher_score": 0.88,
+      "pass_ge_0_8": true,
+      "evidence_facts": 0,
+      "seconds": 29.61107850074768,
+      "error": null
+    },
+    {
+      "phase": "baseline_sentence_gate",
+      "sample_id": "test_8",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_057532_leftImg8bit.png",
+      "retrieval_max_sim": 0.7065402269363403,
+      "retrieved_ids": [
+        "train_3",
+        "train_5"
+      ],
+      "teacher_score": 0.7,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 37.72386980056763,
+      "error": null
+    },
+    {
+      "phase": "baseline_sentence_gate",
+      "sample_id": "test_9",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000023_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.6226871609687805,
+      "retrieved_ids": [
+        "train_5",
+        "train_8"
+      ],
+      "teacher_score": 0.75,
+      "pass_ge_0_8": false,
+      "evidence_facts": 6,
+      "seconds": 33.0928156375885,
+      "error": null
+    },
+    {
+      "phase": "baseline_sentence_gate",
+      "sample_id": "test_10",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000028_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.6323172450065613,
+      "retrieved_ids": [
+        "train_3",
+        "train_6"
+      ],
+      "teacher_score": 0.75,
+      "pass_ge_0_8": false,
+      "evidence_facts": 5,
+      "seconds": 36.50198578834534,
+      "error": null
+    },
+    {
+      "phase": "baseline_sentence_gate",
+      "sample_id": "test_11",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000034_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.6241018772125244,
+      "retrieved_ids": [
+        "train_5",
+        "train_3"
+      ],
+      "teacher_score": 0.72,
+      "pass_ge_0_8": false,
+      "evidence_facts": 6,
+      "seconds": 37.157143115997314,
+      "error": null
+    },
+    {
+      "phase": "baseline_sentence_gate",
+      "sample_id": "test_12",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000059_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.6630350351333618,
+      "retrieved_ids": [
+        "train_3",
+        "train_5"
+      ],
+      "teacher_score": 0.75,
+      "pass_ge_0_8": false,
+      "evidence_facts": 5,
+      "seconds": 38.014946937561035,
+      "error": null
+    },
+    {
+      "phase": "baseline_sentence_gate",
+      "sample_id": "test_13",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000072_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.6808069944381714,
+      "retrieved_ids": [
+        "train_5",
+        "train_3"
+      ],
+      "teacher_score": 0.65,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 31.31106948852539,
+      "error": null
+    },
+    {
+      "phase": "baseline_sentence_gate",
+      "sample_id": "test_14",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000098_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.5991870164871216,
+      "retrieved_ids": [
+        "train_5",
+        "train_8"
+      ],
+      "teacher_score": 0.75,
+      "pass_ge_0_8": false,
+      "evidence_facts": 6,
+      "seconds": 40.23492503166199,
+      "error": null
+    },
+    {
+      "phase": "baseline_sentence_gate",
+      "sample_id": "test_15",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000119_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.7269755601882935,
+      "retrieved_ids": [
+        "train_5",
+        "train_3"
+      ],
+      "teacher_score": 0.5,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 24.824585676193237,
+      "error": null
+    },
+    {
+      "phase": "baseline_sentence_gate",
+      "sample_id": "test_16",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000153_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.6612864136695862,
+      "retrieved_ids": [
+        "train_5",
+        "train_6"
+      ],
+      "teacher_score": 0.4,
+      "pass_ge_0_8": false,
+      "evidence_facts": 5,
+      "seconds": 28.603293418884277,
+      "error": null
+    }
+  ],
+  "rows_struct_base": [
+    {
+      "phase": "structured_no_evidence",
+      "sample_id": "test_1",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_002357_leftImg8bit.png",
+      "retrieval_max_sim": 0.572416365146637,
+      "retrieved_ids": [
+        "train_5",
+        "train_7"
+      ],
+      "teacher_score": 0.0,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 45.0553879737854,
+      "error": null
+    },
+    {
+      "phase": "structured_no_evidence",
+      "sample_id": "test_2",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_005175_leftImg8bit.png",
+      "retrieval_max_sim": 0.6024000644683838,
+      "retrieved_ids": [
+        "train_5",
+        "train_7"
+      ],
+      "teacher_score": 0.4,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 31.372339963912964,
+      "error": null
+    },
+    {
+      "phase": "structured_no_evidence",
+      "sample_id": "test_3",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_011170_leftImg8bit.png",
+      "retrieval_max_sim": 0.584140419960022,
+      "retrieved_ids": [
+        "train_5",
+        "train_7"
+      ],
+      "teacher_score": 0.3,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 24.657307863235474,
+      "error": null
+    },
+    {
+      "phase": "structured_no_evidence",
+      "sample_id": "test_4",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_027650_leftImg8bit.png",
+      "retrieval_max_sim": 0.613114595413208,
+      "retrieved_ids": [
+        "train_5",
+        "train_7"
+      ],
+      "teacher_score": 0.7,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 39.32141637802124,
+      "error": null
+    },
+    {
+      "phase": "structured_no_evidence",
+      "sample_id": "test_5",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_030546_leftImg8bit.png",
+      "retrieval_max_sim": 0.6248546242713928,
+      "retrieved_ids": [
+        "train_5",
+        "train_7"
+      ],
+      "teacher_score": 0.65,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 33.667911529541016,
+      "error": null
+    },
+    {
+      "phase": "structured_no_evidence",
+      "sample_id": "test_6",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_032351_leftImg8bit.png",
+      "retrieval_max_sim": 0.555749773979187,
+      "retrieved_ids": [
+        "train_5",
+        "train_7"
+      ],
+      "teacher_score": 0.75,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 42.85756158828735,
+      "error": null
+    },
+    {
+      "phase": "structured_no_evidence",
+      "sample_id": "test_7",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034720_leftImg8bit.png",
+      "retrieval_max_sim": 0.5497725605964661,
+      "retrieved_ids": [
+        "train_5",
+        "train_7"
+      ],
+      "teacher_score": 0.65,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 33.49967861175537,
+      "error": null
+    },
+    {
+      "phase": "structured_no_evidence",
+      "sample_id": "test_8",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_057532_leftImg8bit.png",
+      "retrieval_max_sim": 0.4949950575828552,
+      "retrieved_ids": [
+        "train_5",
+        "train_7"
+      ],
+      "teacher_score": 0.65,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 33.6462025642395,
+      "error": null
+    },
+    {
+      "phase": "structured_no_evidence",
+      "sample_id": "test_9",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000023_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.5493038892745972,
+      "retrieved_ids": [
+        "train_5",
+        "train_8"
+      ],
+      "teacher_score": 0.88,
+      "pass_ge_0_8": true,
+      "evidence_facts": 0,
+      "seconds": 40.938151359558105,
+      "error": null
+    },
+    {
+      "phase": "structured_no_evidence",
+      "sample_id": "test_10",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000028_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.554689884185791,
+      "retrieved_ids": [
+        "train_5",
+        "train_6"
+      ],
+      "teacher_score": 0.75,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 30.559016704559326,
+      "error": null
+    },
+    {
+      "phase": "structured_no_evidence",
+      "sample_id": "test_11",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000034_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.5518540143966675,
+      "retrieved_ids": [
+        "train_5",
+        "train_8"
+      ],
+      "teacher_score": 0.88,
+      "pass_ge_0_8": true,
+      "evidence_facts": 0,
+      "seconds": 43.73722791671753,
+      "error": null
+    },
+    {
+      "phase": "structured_no_evidence",
+      "sample_id": "test_12",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000059_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.5663150548934937,
+      "retrieved_ids": [
+        "train_7",
+        "train_5"
+      ],
+      "teacher_score": 0.7,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 35.92339611053467,
+      "error": null
+    },
+    {
+      "phase": "structured_no_evidence",
+      "sample_id": "test_13",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000072_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.5724978446960449,
+      "retrieved_ids": [
+        "train_5",
+        "train_6"
+      ],
+      "teacher_score": 0.7,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 36.34173226356506,
+      "error": null
+    },
+    {
+      "phase": "structured_no_evidence",
+      "sample_id": "test_14",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000098_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.5381563901901245,
+      "retrieved_ids": [
+        "train_5",
+        "train_8"
+      ],
+      "teacher_score": 0.65,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 40.54678797721863,
+      "error": null
+    },
+    {
+      "phase": "structured_no_evidence",
+      "sample_id": "test_15",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000119_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.5975457429885864,
+      "retrieved_ids": [
+        "train_5",
+        "train_6"
+      ],
+      "teacher_score": 0.72,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 29.545634984970093,
+      "error": null
+    },
+    {
+      "phase": "structured_no_evidence",
+      "sample_id": "test_16",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000153_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.4321283996105194,
+      "retrieved_ids": [
+        "train_5",
+        "train_6"
+      ],
+      "teacher_score": 0.65,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 31.751113176345825,
+      "error": null
+    }
+  ],
+  "rows_struct_evidence_always": [
+    {
+      "phase": "structured_evidence_always",
+      "sample_id": "test_1",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_002357_leftImg8bit.png",
+      "retrieval_max_sim": 0.572416365146637,
+      "retrieved_ids": [
+        "train_5",
+        "train_7"
+      ],
+      "teacher_score": 0.65,
+      "pass_ge_0_8": false,
+      "evidence_facts": 7,
+      "seconds": 30.391499519348145,
+      "error": null
+    },
+    {
+      "phase": "structured_evidence_always",
+      "sample_id": "test_2",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_005175_leftImg8bit.png",
+      "retrieval_max_sim": 0.6024000644683838,
+      "retrieved_ids": [
+        "train_5",
+        "train_7"
+      ],
+      "teacher_score": 0.88,
+      "pass_ge_0_8": true,
+      "evidence_facts": 7,
+      "seconds": 26.892049551010132,
+      "error": null
+    },
+    {
+      "phase": "structured_evidence_always",
+      "sample_id": "test_3",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_011170_leftImg8bit.png",
+      "retrieval_max_sim": 0.584140419960022,
+      "retrieved_ids": [
+        "train_5",
+        "train_7"
+      ],
+      "teacher_score": 0.65,
+      "pass_ge_0_8": false,
+      "evidence_facts": 7,
+      "seconds": 24.14583992958069,
+      "error": null
+    },
+    {
+      "phase": "structured_evidence_always",
+      "sample_id": "test_4",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_027650_leftImg8bit.png",
+      "retrieval_max_sim": 0.613114595413208,
+      "retrieved_ids": [
+        "train_5",
+        "train_7"
+      ],
+      "teacher_score": 0.85,
+      "pass_ge_0_8": true,
+      "evidence_facts": 8,
+      "seconds": 27.694591999053955,
+      "error": null
+    },
+    {
+      "phase": "structured_evidence_always",
+      "sample_id": "test_5",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_030546_leftImg8bit.png",
+      "retrieval_max_sim": 0.6248546242713928,
+      "retrieved_ids": [
+        "train_5",
+        "train_7"
+      ],
+      "teacher_score": 0.92,
+      "pass_ge_0_8": true,
+      "evidence_facts": 7,
+      "seconds": 29.883737325668335,
+      "error": null
+    },
+    {
+      "phase": "structured_evidence_always",
+      "sample_id": "test_6",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_032351_leftImg8bit.png",
+      "retrieval_max_sim": 0.555749773979187,
+      "retrieved_ids": [
+        "train_5",
+        "train_7"
+      ],
+      "teacher_score": 0.7,
+      "pass_ge_0_8": false,
+      "evidence_facts": 7,
+      "seconds": 28.08478593826294,
+      "error": null
+    },
+    {
+      "phase": "structured_evidence_always",
+      "sample_id": "test_7",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034720_leftImg8bit.png",
+      "retrieval_max_sim": 0.5497725605964661,
+      "retrieved_ids": [
+        "train_5",
+        "train_7"
+      ],
+      "teacher_score": 0.75,
+      "pass_ge_0_8": false,
+      "evidence_facts": 7,
+      "seconds": 33.8501672744751,
+      "error": null
+    },
+    {
+      "phase": "structured_evidence_always",
+      "sample_id": "test_8",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_057532_leftImg8bit.png",
+      "retrieval_max_sim": 0.4949950575828552,
+      "retrieved_ids": [
+        "train_5",
+        "train_7"
+      ],
+      "teacher_score": 0.85,
+      "pass_ge_0_8": true,
+      "evidence_facts": 7,
+      "seconds": 34.637086629867554,
+      "error": null
+    },
+    {
+      "phase": "structured_evidence_always",
+      "sample_id": "test_9",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000023_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.5493038892745972,
+      "retrieved_ids": [
+        "train_5",
+        "train_8"
+      ],
+      "teacher_score": 0.92,
+      "pass_ge_0_8": true,
+      "evidence_facts": 6,
+      "seconds": 26.191356658935547,
+      "error": null
+    },
+    {
+      "phase": "structured_evidence_always",
+      "sample_id": "test_10",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000028_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.554689884185791,
+      "retrieved_ids": [
+        "train_5",
+        "train_6"
+      ],
+      "teacher_score": 0.72,
+      "pass_ge_0_8": false,
+      "evidence_facts": 5,
+      "seconds": 37.26365613937378,
+      "error": null
+    },
+    {
+      "phase": "structured_evidence_always",
+      "sample_id": "test_11",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000034_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.5518540143966675,
+      "retrieved_ids": [
+        "train_5",
+        "train_8"
+      ],
+      "teacher_score": 0.88,
+      "pass_ge_0_8": true,
+      "evidence_facts": 6,
+      "seconds": 30.10243582725525,
+      "error": null
+    },
+    {
+      "phase": "structured_evidence_always",
+      "sample_id": "test_12",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000059_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.5663150548934937,
+      "retrieved_ids": [
+        "train_7",
+        "train_5"
+      ],
+      "teacher_score": 0.78,
+      "pass_ge_0_8": false,
+      "evidence_facts": 5,
+      "seconds": 37.06000781059265,
+      "error": null
+    },
+    {
+      "phase": "structured_evidence_always",
+      "sample_id": "test_13",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000072_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.5724978446960449,
+      "retrieved_ids": [
+        "train_5",
+        "train_6"
+      ],
+      "teacher_score": 0.85,
+      "pass_ge_0_8": true,
+      "evidence_facts": 6,
+      "seconds": 38.55367469787598,
+      "error": null
+    },
+    {
+      "phase": "structured_evidence_always",
+      "sample_id": "test_14",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000098_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.5381563901901245,
+      "retrieved_ids": [
+        "train_5",
+        "train_8"
+      ],
+      "teacher_score": 0.75,
+      "pass_ge_0_8": false,
+      "evidence_facts": 6,
+      "seconds": 26.066884994506836,
+      "error": null
+    },
+    {
+      "phase": "structured_evidence_always",
+      "sample_id": "test_15",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000119_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.5975457429885864,
+      "retrieved_ids": [
+        "train_5",
+        "train_6"
+      ],
+      "teacher_score": 0.92,
+      "pass_ge_0_8": true,
+      "evidence_facts": 7,
+      "seconds": 36.370577812194824,
+      "error": null
+    },
+    {
+      "phase": "structured_evidence_always",
+      "sample_id": "test_16",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000153_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.4321283996105194,
+      "retrieved_ids": [
+        "train_5",
+        "train_6"
+      ],
+      "teacher_score": 0.65,
+      "pass_ge_0_8": false,
+      "evidence_facts": 5,
+      "seconds": 27.88084363937378,
+      "error": null
+    }
+  ],
+  "rows_struct_tuned": [
+    {
+      "phase": "structured_gate_tuned_0.5518550143966675",
+      "sample_id": "test_1",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_002357_leftImg8bit.png",
+      "retrieval_max_sim": 0.572416365146637,
+      "retrieved_ids": [
+        "train_5",
+        "train_7"
+      ],
+      "teacher_score": 0.7,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 23.093278408050537,
+      "error": null
+    },
+    {
+      "phase": "structured_gate_tuned_0.5518550143966675",
+      "sample_id": "test_2",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_005175_leftImg8bit.png",
+      "retrieval_max_sim": 0.6024000644683838,
+      "retrieved_ids": [
+        "train_5",
+        "train_7"
+      ],
+      "teacher_score": 0.72,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 24.34353542327881,
+      "error": null
+    },
+    {
+      "phase": "structured_gate_tuned_0.5518550143966675",
+      "sample_id": "test_3",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_011170_leftImg8bit.png",
+      "retrieval_max_sim": 0.584140419960022,
+      "retrieved_ids": [
+        "train_5",
+        "train_7"
+      ],
+      "teacher_score": 0.3,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 23.91073226928711,
+      "error": null
+    },
+    {
+      "phase": "structured_gate_tuned_0.5518550143966675",
+      "sample_id": "test_4",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_027650_leftImg8bit.png",
+      "retrieval_max_sim": 0.613114595413208,
+      "retrieved_ids": [
+        "train_5",
+        "train_7"
+      ],
+      "teacher_score": 0.7,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 30.88314986228943,
+      "error": null
+    },
+    {
+      "phase": "structured_gate_tuned_0.5518550143966675",
+      "sample_id": "test_5",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_030546_leftImg8bit.png",
+      "retrieval_max_sim": 0.6248546242713928,
+      "retrieved_ids": [
+        "train_5",
+        "train_7"
+      ],
+      "teacher_score": 0.4,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 24.44635534286499,
+      "error": null
+    },
+    {
+      "phase": "structured_gate_tuned_0.5518550143966675",
+      "sample_id": "test_6",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_032351_leftImg8bit.png",
+      "retrieval_max_sim": 0.555749773979187,
+      "retrieved_ids": [
+        "train_5",
+        "train_7"
+      ],
+      "teacher_score": 0.4,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 20.70073413848877,
+      "error": null
+    },
+    {
+      "phase": "structured_gate_tuned_0.5518550143966675",
+      "sample_id": "test_7",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_034720_leftImg8bit.png",
+      "retrieval_max_sim": 0.5497725605964661,
+      "retrieved_ids": [
+        "train_5",
+        "train_7"
+      ],
+      "teacher_score": 0.88,
+      "pass_ge_0_8": true,
+      "evidence_facts": 7,
+      "seconds": 28.04486656188965,
+      "error": null
+    },
+    {
+      "phase": "structured_gate_tuned_0.5518550143966675",
+      "sample_id": "test_8",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_057532_leftImg8bit.png",
+      "retrieval_max_sim": 0.4949950575828552,
+      "retrieved_ids": [
+        "train_5",
+        "train_7"
+      ],
+      "teacher_score": 0.72,
+      "pass_ge_0_8": false,
+      "evidence_facts": 7,
+      "seconds": 31.815440893173218,
+      "error": null
+    },
+    {
+      "phase": "structured_gate_tuned_0.5518550143966675",
+      "sample_id": "test_9",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000023_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.5493038892745972,
+      "retrieved_ids": [
+        "train_5",
+        "train_8"
+      ],
+      "teacher_score": 0.88,
+      "pass_ge_0_8": true,
+      "evidence_facts": 6,
+      "seconds": 29.458584785461426,
+      "error": null
+    },
+    {
+      "phase": "structured_gate_tuned_0.5518550143966675",
+      "sample_id": "test_10",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000028_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.554689884185791,
+      "retrieved_ids": [
+        "train_5",
+        "train_6"
+      ],
+      "teacher_score": 0.72,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 21.738731861114502,
+      "error": null
+    },
+    {
+      "phase": "structured_gate_tuned_0.5518550143966675",
+      "sample_id": "test_11",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000034_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.5518540143966675,
+      "retrieved_ids": [
+        "train_5",
+        "train_8"
+      ],
+      "teacher_score": 0.85,
+      "pass_ge_0_8": true,
+      "evidence_facts": 6,
+      "seconds": 27.00806713104248,
+      "error": null
+    },
+    {
+      "phase": "structured_gate_tuned_0.5518550143966675",
+      "sample_id": "test_12",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000059_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.5663150548934937,
+      "retrieved_ids": [
+        "train_7",
+        "train_5"
+      ],
+      "teacher_score": 0.7,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 25.101603269577026,
+      "error": null
+    },
+    {
+      "phase": "structured_gate_tuned_0.5518550143966675",
+      "sample_id": "test_13",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000072_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.5724978446960449,
+      "retrieved_ids": [
+        "train_5",
+        "train_6"
+      ],
+      "teacher_score": 0.65,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 21.205095291137695,
+      "error": null
+    },
+    {
+      "phase": "structured_gate_tuned_0.5518550143966675",
+      "sample_id": "test_14",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000098_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.5381563901901245,
+      "retrieved_ids": [
+        "train_5",
+        "train_8"
+      ],
+      "teacher_score": 0.7,
+      "pass_ge_0_8": false,
+      "evidence_facts": 6,
+      "seconds": 28.579896926879883,
+      "error": null
+    },
+    {
+      "phase": "structured_gate_tuned_0.5518550143966675",
+      "sample_id": "test_15",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000119_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.5975457429885864,
+      "retrieved_ids": [
+        "train_5",
+        "train_6"
+      ],
+      "teacher_score": 0.65,
+      "pass_ge_0_8": false,
+      "evidence_facts": 0,
+      "seconds": 33.11788511276245,
+      "error": null
+    },
+    {
+      "phase": "structured_gate_tuned_0.5518550143966675",
+      "sample_id": "test_16",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000153_000019_leftImg8bit.png",
+      "retrieval_max_sim": 0.4321283996105194,
+      "retrieved_ids": [
+        "train_5",
+        "train_6"
+      ],
+      "teacher_score": 0.6,
+      "pass_ge_0_8": false,
+      "evidence_facts": 5,
+      "seconds": 21.61107611656189,
+      "error": null
+    }
+  ]
+}

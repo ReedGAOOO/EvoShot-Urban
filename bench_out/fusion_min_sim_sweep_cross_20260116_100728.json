@@ -1,0 +1,21 @@
+{
+  "train_n": 8,
+  "test_n": 16,
+  "retrieval_k": 2,
+  "rules_k": 4,
+  "evidence_min_sim": 0.68,
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "fusion_min_sim_values": [
+    0.6,
+    0.62,
+    0.64,
+    0.66,
+    0.68
+  ],
+  "runs": [],
+  "rows": []
+}

@@ -156,7 +156,14 @@ class MockVault:
                 f"  id={ex.id} | tier={ex.tier} | usage_count={ex.usage_count} | scores={ex.scores}"
             )
 
-    def retrieve(self, query: Sample, k: int = 3) -> List[UrbanExample]:
+    def retrieve(
+        self,
+        query: Sample,
+        k: int = 3,
+        *,
+        query_text_override: Optional[str] = None,
+        query_texts: Optional[List[str]] = None,
+    ) -> List[UrbanExample]:
         """
         核心防坑点：检索策略
         这里模拟：优先返回 Tier 0 (专家)，然后是 Tier 1
@@ -186,15 +193,37 @@ class MockVault:
             mmr_candidates = int(os.getenv("EVOSHOT_MMR_CANDIDATES", str(max(20, k * 5))))
             vault_embed_mode = (os.getenv("EVOSHOT_VAULT_EMBED_MODE") or "text").strip().lower()
 
-            query_text_base = query.retrieval_text if getattr(query, "retrieval_text", None) else query.post_text
+            query_text_base = (
+                str(query_text_override)
+                if query_text_override is not None
+                else (query.retrieval_text if getattr(query, "retrieval_text", None) else query.post_text)
+            )
             query_mode = (os.getenv("EVOSHOT_QUERY_EMBED_MODE") or "text").strip().lower()
-            if query_mode == "image" and getattr(query, "image_path", None):
-                q = np.array(self.embedder.encode_image_path(str(query.image_path)), dtype=np.float32)
-            elif query_mode in {"image+text", "image_text", "image-text"} and getattr(query, "image_path", None):
-                q = np.array(self.embedder.encode_image_text(str(query.image_path), str(query_text_base)), dtype=np.float32)
-            else:
-                query_text = f"Text: {query_text_base}"
-                q = np.array(self.embedder.encode(query_text), dtype=np.float32)
+
+            multi_query = [str(x) for x in (query_texts or []) if str(x).strip()]
+            q_norms = None
+            q = None
+            per_query_max: Optional[List[float]] = None
+            if multi_query:
+                texts = [f"Text: {t}" for t in multi_query]
+                try:
+                    q_vecs = self.embedder.encode_many(texts) if hasattr(self.embedder, "encode_many") else [self.embedder.encode(t) for t in texts]
+                    q_mat = np.asarray(q_vecs, dtype=np.float32)
+                    if q_mat.ndim == 1:
+                        q_mat = q_mat.reshape(1, -1)
+                    qn = np.linalg.norm(q_mat, axis=1)
+                    qn[qn == 0] = 1e-9
+                    q_norms = q_mat / qn[:, None]
+                except Exception:
+                    q_norms = None
+            if q_norms is None:
+                if query_mode == "image" and getattr(query, "image_path", None):
+                    q = np.array(self.embedder.encode_image_path(str(query.image_path)), dtype=np.float32)
+                elif query_mode in {"image+text", "image_text", "image-text"} and getattr(query, "image_path", None):
+                    q = np.array(self.embedder.encode_image_text(str(query.image_path), str(query_text_base)), dtype=np.float32)
+                else:
+                    query_text = f"Text: {query_text_base}"
+                    q = np.array(self.embedder.encode(query_text), dtype=np.float32)
 
             missing_inputs: List[Dict[str, object]] = []
             missing_examples: List[UrbanExample] = []
@@ -220,20 +249,94 @@ class MockVault:
                 vecs = [ex.embedding for ex in candidates]
 
             mat = np.array(vecs, dtype=np.float32)
-            qn = float(np.linalg.norm(q)) or 1e-9
             vn = np.linalg.norm(mat, axis=1)
             vn[vn == 0] = 1e-9
             mat_norm = mat / vn[:, None]
-            q_norm = q / qn
-            sims_to_query = mat_norm.dot(q_norm)
 
-            max_sim = float(np.max(sims_to_query)) if sims_to_query.size else None
+            # Multi-query fusion options (retrieval only; no model fine-tuning).
+            pool_indices = list(range(len(candidates)))
+            fusion_mode: Optional[str] = None
+            fusion_set: Optional[str] = None
+            fusion_weights: Optional[List[float]] = None
+            union_top_m_used: Optional[int] = None
+
+            if q_norms is not None:
+                sims_mat = mat_norm.dot(q_norms.T)
+                try:
+                    per_query_max = [float(x) for x in np.max(sims_mat, axis=0).tolist()]
+                except Exception:
+                    per_query_max = None
+
+                fusion_mode = (os.getenv("EVOSHOT_RETRIEVAL_QUERY_FUSION_MODE") or "max").strip().lower()
+                fusion_set = (os.getenv("EVOSHOT_RETRIEVAL_QUERY_FUSION_SET") or "all").strip().lower()
+
+                def _parse_weights(text: str) -> List[float]:
+                    out: List[float] = []
+                    for part in (text or "").replace(";", ",").split(","):
+                        part = part.strip()
+                        if not part:
+                            continue
+                        try:
+                            out.append(float(part))
+                        except Exception:
+                            continue
+                    return out
+
+                if fusion_mode in {"weighted", "weight", "w", "avg", "average", "mean"}:
+                    w = _parse_weights(os.getenv("EVOSHOT_RETRIEVAL_QUERY_WEIGHTS", ""))
+                    if len(w) != int(sims_mat.shape[1]):
+                        w = [1.0] * int(sims_mat.shape[1])
+                    sw = float(sum(w))
+                    if sw <= 0:
+                        w = [1.0] * int(sims_mat.shape[1])
+                        sw = float(sum(w))
+                    w_norm = np.asarray([float(x) / sw for x in w], dtype=np.float32)
+                    sims_to_query = sims_mat.dot(w_norm)
+                    fusion_mode = "weighted"
+                    fusion_weights = [float(x) for x in w_norm.tolist()]
+                else:
+                    sims_to_query = np.max(sims_mat, axis=1)
+                    fusion_mode = "max"
+
+                if fusion_set in {"union", "union_topm", "union-topm", "union_rerank", "union+rerank"}:
+                    union_top_m = int(os.getenv("EVOSHOT_RETRIEVAL_QUERY_UNION_TOP_M", str(max(30, k * 10))))
+                    union_top_m_used = max(k, min(union_top_m, len(candidates)))
+                    union: set[int] = set()
+                    for j in range(int(sims_mat.shape[1])):
+                        idxs = np.argsort(sims_mat[:, j])[::-1][:union_top_m_used]
+                        for i in idxs:
+                            union.add(int(i))
+                    if union:
+                        pool_indices = sorted(union)
+                    fusion_set = "union_topm"
+                else:
+                    fusion_set = "all"
+            else:
+                qn = float(np.linalg.norm(q)) or 1e-9
+                q_norm = q / qn
+                sims_to_query = mat_norm.dot(q_norm)
+
+            pool_arr = np.asarray(pool_indices, dtype=int)
+            sims_pool = sims_to_query[pool_arr] if pool_arr.size else sims_to_query
+
+            max_sim = float(np.max(sims_pool)) if sims_pool.size else None
             self.last_retrieval_meta = {
                 "k": int(k),
                 "strategy": retrieval_strategy,
                 "n_candidates": int(len(candidates)),
+                "pool_size": int(len(pool_indices)),
                 "max_sim": max_sim,
             }
+            if q_norms is not None and multi_query:
+                self.last_retrieval_meta["query_fusion"] = fusion_mode or "max"
+                self.last_retrieval_meta["query_fusion_set"] = fusion_set or "all"
+                self.last_retrieval_meta["n_queries"] = int(len(multi_query))
+                if fusion_weights is not None:
+                    self.last_retrieval_meta["query_fusion_weights"] = list(fusion_weights)
+                if union_top_m_used is not None:
+                    self.last_retrieval_meta["union_top_m"] = int(union_top_m_used)
+            if per_query_max is not None:
+                self.last_retrieval_meta["per_query_max_sim"] = per_query_max
 
             if retrieval_strategy == "random":
                 import hashlib
@@ -243,22 +346,24 @@ class MockVault:
                 h = hashlib.md5(qid.encode("utf-8")).hexdigest()[:8]
                 seed = global_seed + int(h, 16)
                 rng = random.Random(seed)
-                n_pick = min(k, len(candidates))
-                idxs = rng.sample(list(range(len(candidates))), k=n_pick)
+                n_pick = min(k, len(pool_indices))
+                idxs = rng.sample(pool_indices, k=n_pick)
                 selected = [candidates[i] for i in idxs]
                 self.last_retrieval_meta["selected_sims"] = [float(sims_to_query[i]) for i in idxs]
-            elif len(candidates) <= k:
-                idxs = np.argsort(sims_to_query)[::-1]
-                selected = [candidates[int(i)] for i in idxs]
+            elif len(pool_indices) <= k:
+                ranked = np.argsort(sims_pool)[::-1]
+                idxs = [int(pool_arr[int(i)]) for i in ranked]
+                selected = [candidates[i] for i in idxs]
                 self.last_retrieval_meta["selected_sims"] = [float(sims_to_query[int(i)]) for i in idxs]
             elif retrieval_strategy == "topk":
-                idxs = np.argsort(sims_to_query)[::-1][:k]
-                selected = [candidates[int(i)] for i in idxs]
+                ranked = np.argsort(sims_pool)[::-1][:k]
+                idxs = [int(pool_arr[int(i)]) for i in ranked]
+                selected = [candidates[i] for i in idxs]
                 self.last_retrieval_meta["selected_sims"] = [float(sims_to_query[int(i)]) for i in idxs]
             else:
                 selected_indices: List[int] = []
-                ranked = np.argsort(sims_to_query)[::-1]
-                candidate_indices = [int(i) for i in ranked[: min(len(ranked), mmr_candidates)]]
+                ranked = np.argsort(sims_pool)[::-1]
+                candidate_indices = [int(pool_arr[int(i)]) for i in ranked[: min(len(ranked), mmr_candidates)]]
 
                 for _ in range(k):
                     best_idx = -1
@@ -442,16 +547,27 @@ class UrbanPipeline:
         trace: dict = {"sample_id": sample.id}
 
         retrieval_query_mode = (os.getenv("EVOSHOT_QUERY_EMBED_MODE") or "text").strip().lower()
-        if retrieval_query_mode in {"caption", "caption+text"}:
+        fusion_enabled = (os.getenv("EVOSHOT_RETRIEVAL_QUERY_FUSION") or "").strip().lower() in {"1", "true", "yes", "on"}
+        caption_style = (os.getenv("EVOSHOT_RETRIEVAL_CAPTION_STYLE") or "sentence").strip().lower()
+        caption: str | None = None
+
+        if retrieval_query_mode in {"caption", "caption+text"} or fusion_enabled:
             if self._captioner is None:
                 self._captioner = LocalVisionCaptioner()
             try:
-                caption = self._captioner.caption(sample.image_path)
-                if retrieval_query_mode == "caption":
-                    sample.retrieval_text = caption
+                if caption_style in {"structured", "attr", "attrs", "attributes"}:
+                    caption = self._captioner.structured_summary(sample.image_path)
                 else:
-                    sample.retrieval_text = f"{caption}\n{sample.post_text}"
+                    caption = self._captioner.caption(sample.image_path)
+                if retrieval_query_mode == "caption":
+                    sample.retrieval_text = caption or sample.post_text
+                else:
+                    if caption:
+                        sample.retrieval_text = f"{caption}\n{sample.post_text}"
+                    else:
+                        sample.retrieval_text = sample.post_text
                 trace["query_caption"] = caption
+                trace["query_caption_style"] = caption_style
             except Exception as e:
                 trace["query_caption_error"] = str(e)
                 sample.retrieval_text = sample.post_text
@@ -461,7 +577,68 @@ class UrbanPipeline:
         # 1. 检索 (Retrieval)
         retrieval_k = int(os.getenv("EVOSHOT_RETRIEVAL_K", "2"))
         retrieval_k = max(0, retrieval_k)
-        shots = self.vault.retrieve(sample, k=retrieval_k)
+        query_texts: Optional[List[str]] = None
+        if fusion_enabled:
+            parts: List[str] = []
+            if caption:
+                parts.append(caption)
+            if sample.post_text:
+                parts.append(sample.post_text)
+            if caption and sample.post_text:
+                parts.append(f"{caption}\n{sample.post_text}")
+            query_texts = parts or None
+            trace["retrieval_query_texts"] = parts
+
+        fusion_gate = (os.getenv("EVOSHOT_RETRIEVAL_QUERY_FUSION_GATE") or "always").strip().lower()
+        try:
+            fusion_min_sim = float(
+                os.getenv(
+                    "EVOSHOT_RETRIEVAL_QUERY_FUSION_MIN_SIM",
+                    os.getenv("EVOSHOT_EVIDENCE_MIN_SIM", "0.68"),
+                )
+            )
+        except Exception:
+            fusion_min_sim = 0.68
+
+        if fusion_enabled and fusion_gate not in {"always", "on"}:
+            # First run baseline retrieval; only fall back to fusion when retrieval "fails" (e.g., low sim).
+            shots_base = self.vault.retrieve(sample, k=retrieval_k)
+            trace["retrieved_ids_base"] = [ex.id for ex in shots_base]
+            meta_base = dict(getattr(self.vault, "last_retrieval_meta", {}) or {})
+            trace["retrieval_meta_base"] = meta_base
+
+            base_max_sim = meta_base.get("max_sim")
+            try:
+                base_max_sim_f = float(base_max_sim) if base_max_sim is not None else None
+            except Exception:
+                base_max_sim_f = None
+
+            retrieval_failed = retrieval_k <= 0 or len(shots_base) == 0
+            low_sim = (base_max_sim_f is None) or (base_max_sim_f < fusion_min_sim)
+
+            if fusion_gate in {"fail", "retrieval_fail", "on_retrieval_fail"}:
+                should_fuse = retrieval_failed
+            elif fusion_gate in {"low_sim"}:
+                should_fuse = low_sim
+            else:
+                # fail_or_low_sim (default for gates)
+                should_fuse = retrieval_failed or low_sim
+
+            trace["retrieval_fusion_gate"] = fusion_gate
+            trace["retrieval_fusion_min_sim"] = fusion_min_sim
+            trace["retrieval_fusion_triggered"] = bool(should_fuse)
+
+            if should_fuse and query_texts:
+                shots_fused = self.vault.retrieve(sample, k=retrieval_k, query_texts=query_texts)
+                trace["retrieved_ids_fused"] = [ex.id for ex in shots_fused]
+                trace["retrieval_meta_fused"] = dict(getattr(self.vault, "last_retrieval_meta", {}) or {})
+                shots = shots_fused
+            else:
+                shots = shots_base
+                # Ensure downstream uses the baseline meta when fusion is skipped.
+                self.vault.last_retrieval_meta = meta_base
+        else:
+            shots = self.vault.retrieve(sample, k=retrieval_k, query_texts=query_texts)
         logger.info(f"Retrieved {len(shots)} few-shot examples: {[f'{ex.id}(t{ex.tier})' for ex in shots]}")
         trace["retrieved_ids"] = [ex.id for ex in shots]
         if getattr(self.vault, "last_retrieval_meta", None) is not None:
@@ -511,6 +688,31 @@ class UrbanPipeline:
                 trace["evidence_error"] = str(e)
                 evidence_text = ""
 
+        # Optional: low-sim query expansion (when evidence is available) to improve retrieval hit rate.
+        expansion_enabled = (os.getenv("EVOSHOT_RETRIEVAL_QUERY_EXPANSION") or "").strip().lower() in {"1", "true", "yes", "on"}
+        if expansion_enabled and evidence_text.strip() and retrieval_k > 0:
+            facts = trace.get("evidence_facts") or []
+            if isinstance(facts, list) and facts:
+                facts_text = "; ".join(str(x).strip() for x in facts if str(x).strip())
+            else:
+                facts_text = evidence_text
+            base_q = sample.retrieval_text or sample.post_text
+            expanded_q = f"{base_q}\nObserved evidence: {facts_text}".strip()
+
+            trace["retrieved_ids_initial"] = list(trace.get("retrieved_ids") or [])
+            trace["retrieval_meta_initial"] = dict(trace.get("retrieval_meta") or {})
+            trace["query_expanded"] = expanded_q[:400]
+
+            expanded_shots = self.vault.retrieve(sample, k=retrieval_k, query_text_override=expanded_q)
+            if expanded_shots:
+                shots = expanded_shots
+                logger.info(
+                    f"Retrieved {len(shots)} few-shot examples after query expansion: {[f'{ex.id}(t{ex.tier})' for ex in shots]}"
+                )
+                trace["retrieved_ids"] = [ex.id for ex in shots]
+                if getattr(self.vault, "last_retrieval_meta", None) is not None:
+                    trace["retrieval_meta"] = dict(getattr(self.vault, "last_retrieval_meta", {}) or {})
+
         # 2. 学生推理 (Student Inference)
         # 实际 Prompt 组装在这里发生
         try:
@@ -525,7 +727,7 @@ class UrbanPipeline:
             trace["student_scores"] = dict(student_out.scores)
             trace["student_confidence"] = float(student_out.model_confidence)
 
-        except (ValidationError, ValueError, RuntimeError, FileNotFoundError) as e:
+        except (ValidationError, ValueError, RuntimeError, FileNotFoundError, TimeoutError, OSError) as e:
             logger.error(f"Student Inference/Parsing Failed: {e}")
             trace["error"] = f"student_failed: {e}"
             return trace  # 实际项目中这里要 retry

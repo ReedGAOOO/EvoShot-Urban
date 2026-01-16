@@ -7,7 +7,9 @@ import urllib.error
 import urllib.request
 from io import BytesIO
 from pathlib import Path
-from typing import Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
+
+from .student import robust_json_parser
 
 
 def _encode_image_data_url(image_path: str) -> Tuple[str, str]:
@@ -98,6 +100,17 @@ class LocalVisionCaptioner:
         self._cache: dict[str, str] = {}
         self._load_cache()
 
+        # Retrieval-oriented structured summaries (more stable for embedding than free-form captions).
+        # NOTE: bumped default version to invalidate earlier cached "unknown-only" summaries.
+        self.summary_version = (os.getenv("EVOSHOT_RETRIEVAL_SUMMARY_VERSION") or "v2").strip()
+        default_summary_cache = data_dir / "cache" / "retrieval_summary_cache.jsonl"
+        self.summary_cache_path = Path(
+            os.getenv("EVOSHOT_RETRIEVAL_SUMMARY_CACHE_PATH", str(default_summary_cache))
+        ).resolve()
+        self.summary_cache_path.parent.mkdir(parents=True, exist_ok=True)
+        self._summary_cache: dict[str, str] = {}
+        self._load_summary_cache()
+
     def _cache_key(self, image_path: str) -> str:
         try:
             p = Path(image_path)
@@ -125,6 +138,206 @@ class LocalVisionCaptioner:
                     self._cache[key] = caption
         except Exception:
             return
+
+    def _summary_cache_key(self, image_path: str) -> str:
+        try:
+            p = Path(image_path)
+            if p.exists():
+                return f"{self.summary_version}::{self.model}::{p.resolve()}"
+        except Exception:
+            pass
+        return f"{self.summary_version}::{self.model}::{image_path}"
+
+    def _load_summary_cache(self) -> None:
+        if not self.summary_cache_path.exists():
+            return
+        try:
+            for line in self.summary_cache_path.read_text(encoding="utf-8").splitlines():
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    obj = json.loads(line)
+                except Exception:
+                    continue
+                key = str(obj.get("key") or "")
+                summary = str(obj.get("summary") or "")
+                if key and summary:
+                    self._summary_cache[key] = summary
+        except Exception:
+            return
+
+    def _save_summary_cache_row(self, *, key: str, summary: str, raw: str) -> None:
+        try:
+            with self.summary_cache_path.open("a", encoding="utf-8") as f:
+                f.write(
+                    json.dumps(
+                        {"key": key, "summary": summary, "raw": raw, "model": self.model, "version": self.summary_version},
+                        ensure_ascii=False,
+                    )
+                    + "\n"
+                )
+        except Exception:
+            return
+
+    @staticmethod
+    def _canonicalize_summary(data: Dict[str, Any]) -> str:
+        def pick_str(key: str, default: str = "unknown") -> str:
+            v = data.get(key, default)
+            s = str(v).strip().lower()
+            return s or default
+
+        scene = pick_str("scene")
+        lighting = pick_str("lighting")
+        crowd = pick_str("crowd")
+        traffic = pick_str("traffic")
+        trash = pick_str("trash")
+        graffiti = pick_str("graffiti")
+        sidewalk = pick_str("sidewalk")
+
+        objects: List[str] = []
+        raw_obj = data.get("objects")
+        if isinstance(raw_obj, list):
+            for x in raw_obj[:8]:
+                s = str(x).strip().lower()
+                if s:
+                    objects.append(s)
+
+        parts = [
+            f"scene={scene}",
+            f"lighting={lighting}",
+            f"crowd={crowd}",
+            f"traffic={traffic}",
+            f"trash={trash}",
+            f"graffiti={graffiti}",
+            f"sidewalk={sidewalk}",
+        ]
+        if objects:
+            parts.append("objects=" + "|".join(objects))
+        return "; ".join(parts)
+
+    @staticmethod
+    def _summary_tools_spec() -> List[Dict[str, Any]]:
+        enums = {
+            "scene": ["street", "alley", "intersection", "plaza", "parking", "indoor", "other", "unknown"],
+            "lighting": ["day_bright", "night_well_lit", "night_dim", "indoor", "unknown"],
+            "crowd": ["none", "low", "medium", "high", "unknown"],
+            "traffic": ["none", "low", "medium", "high", "unknown"],
+            "trash": ["none", "low", "medium", "high", "unknown"],
+            "graffiti": ["none", "low", "medium", "high", "unknown"],
+            "sidewalk": ["none", "good", "cracked", "broken", "dirty", "unknown"],
+        }
+        return [
+            {
+                "type": "function",
+                "function": {
+                    "name": "submit_retrieval_summary",
+                    "description": "Submit a structured attribute summary for retrieval embedding.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "scene": {"type": "string", "enum": enums["scene"]},
+                            "lighting": {"type": "string", "enum": enums["lighting"]},
+                            "crowd": {"type": "string", "enum": enums["crowd"]},
+                            "traffic": {"type": "string", "enum": enums["traffic"]},
+                            "trash": {"type": "string", "enum": enums["trash"]},
+                            "graffiti": {"type": "string", "enum": enums["graffiti"]},
+                            "sidewalk": {"type": "string", "enum": enums["sidewalk"]},
+                            "objects": {"type": "array", "items": {"type": "string"}},
+                        },
+                        "required": ["scene", "lighting", "crowd", "traffic", "trash", "graffiti", "sidewalk", "objects"],
+                    },
+                },
+            }
+        ]
+
+    @staticmethod
+    def _extract_tool_arguments(resp_json: dict) -> Optional[str]:
+        try:
+            msg = (resp_json.get("choices") or [])[0].get("message") or {}
+            tool_calls = msg.get("tool_calls") or []
+            if not tool_calls:
+                return None
+            return tool_calls[0]["function"]["arguments"]
+        except Exception:
+            return None
+
+    def structured_summary(self, image_path: str) -> str:
+        """
+        Return a structured attribute summary for retrieval embedding.
+
+        This is used ONLY for building retrieval queries; do NOT store it as the vault's `image_desc`.
+        """
+        key = self._summary_cache_key(image_path)
+        cached = self._summary_cache.get(key)
+        if cached is not None:
+            return cached
+
+        data_url, _mime = _encode_image_data_url(image_path)
+        prompt = (
+            "Extract a compact attribute summary of this scene for similarity search.\n"
+            "Use the function tool to submit the fields.\n\n"
+            "Guidelines:\n"
+            "- Choose the closest label from each enum.\n"
+            "- objects: up to 8 short nouns (e.g., \"car\", \"shop_sign\", \"trash_bin\").\n"
+        )
+        use_tools = (os.getenv("EVOSHOT_RETRIEVAL_SUMMARY_USE_TOOLS") or "auto").strip().lower()
+        tool_choice = (os.getenv("EVOSHOT_RETRIEVAL_SUMMARY_TOOL_CHOICE") or "required").strip().lower()
+        enable_tools = use_tools in {"1", "true", "yes", "on", "required"}
+        if use_tools == "auto":
+            enable_tools = True
+
+        payload = {
+            "model": self.model,
+            "messages": [
+                {
+                    "role": "system",
+                    "content": (
+                        "You extract attributes for similarity search.\n"
+                        "Be grounded in the image. Avoid hallucinations.\n"
+                        "Submit results via the provided function tool.\n"
+                    ),
+                },
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": prompt},
+                        {"type": "image_url", "image_url": {"url": data_url}},
+                    ],
+                },
+            ],
+            "temperature": 0.0,
+            "max_tokens": 220,
+            "stream": False,
+        }
+        if enable_tools:
+            payload["tools"] = self._summary_tools_spec()
+            payload["tool_choice"] = tool_choice
+
+        data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+        req = urllib.request.Request(self.url, data=data, headers={"Content-Type": "application/json"}, method="POST")
+        try:
+            with urllib.request.urlopen(req, timeout=self.timeout_s) as resp:
+                raw = resp.read().decode("utf-8", errors="replace")
+        except urllib.error.HTTPError as exc:
+            body = exc.read().decode("utf-8", errors="replace")
+            raise RuntimeError(f"HTTP {exc.code} from retrieval summary: {body}") from exc
+
+        resp_json = json.loads(raw)
+        tool_args = self._extract_tool_arguments(resp_json)
+        content = tool_args if tool_args is not None else (resp_json["choices"][0]["message"].get("content") or "").strip()
+        cleaned = _strip_think(content or "")
+        try:
+            parsed = robust_json_parser(cleaned)
+            summary = self._canonicalize_summary(parsed if isinstance(parsed, dict) else {})
+        except Exception:
+            summary = ""
+
+        if summary:
+            self._summary_cache[key] = summary
+            self._save_summary_cache_row(key=key, summary=summary, raw=cleaned)
+
+        return summary
 
     def caption(self, image_path: str) -> str:
         key = self._cache_key(image_path)
