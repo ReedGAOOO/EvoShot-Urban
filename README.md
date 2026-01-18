@@ -30,6 +30,15 @@ Cost (back-of-envelope, set per-item cloud-teacher cost to `x`):
   - Source: `bench_out/evidence_gate_sweep_cross_20260115_101213.json`, `bench_out/evidence_gate_sweep_cross_20260115_103644.json`, `bench_out/evidence_gate_sweep_cross_20260115_111504.json`.
   - Practical note: evaluation runners call Teacher to compute `avg_teacher_score`; for cheap deployment inference, run Student-only with retrieval/memory (and reserve Teacher for active learning or audits).
 
+## Models used in the reported experiments
+
+The reported `bench_out/*` results were produced with:
+
+- Teacher (cloud): `x-ai/grok-4.1-fast` (aka `grok4.1fast`, OpenRouter), `EVOSHOT_TEACHER_TEMPERATURE=0`
+- Student (local via LM Studio): `unsloth/Qwen3-VL-30B-A3B-Thinking-GGUF-Q8_k_xl`, `EVOSHOT_LLM_TEMPERATURE=0`
+
+All models are configurable via `.env` / environment variables.
+
 ### Case study in this repo: Urban perception scoring
 
 Given an image (+ optional post text), the Student VLM outputs:
@@ -45,6 +54,42 @@ Given an image (+ optional post text), the Student VLM outputs:
 - **Evidence** (`models/evidence.py`): extracts "visible facts" as scaffolding to reduce hallucination.
 - **RuleBank** (`models/rules.py`): stores short reusable lessons (semantic memory), injected into prompts.
 - **Gates** (`urban_experiment.py`): evidence gate, rule injection gate, query-fusion gate, shot drop gate, etc.
+
+### Best-practice flow (with gates)
+
+```mermaid
+flowchart TD
+  A[Input: image + post_text] --> B[Captioner (local)]
+  B --> C[Embed query (caption+text)]
+  C --> D[Vault retrieve shots (top-k=2)]
+  D --> E{Shot gate: max_sim < EVOSHOT_SHOTS_MIN_SIM?}
+  E -- yes --> F[Drop shots (k=0)]
+  E -- no --> G[Keep shots]
+  F --> H{Evidence gate: retrieval_failed OR max_sim < EVOSHOT_EVIDENCE_MIN_SIM?}
+  G --> H
+  H -- yes --> I[Evidence extractor (local)]
+  H -- no --> J[Skip evidence]
+  I --> K{RuleBank gate: inject rules?}
+  J --> K
+  K -- yes --> L[Select rules (k=4)]
+  K -- no --> M[No rules]
+  L --> N[Assemble prompt: shots + rules + evidence]
+  M --> N
+  N --> O[Student VLM (local, JSON)]
+  O --> P[Teacher judge (cloud)]
+  P --> Q{should_add_to_vault?}
+  Q -- yes --> R[Add Tier-1 example to Vault + add lesson to RuleBank]
+  Q -- no --> S[No update]
+```
+
+Main gates (all in `urban_experiment.py`):
+
+- Evidence gate: `EVOSHOT_EVIDENCE_ENABLED`, `EVOSHOT_EVIDENCE_GATE`, `EVOSHOT_EVIDENCE_MIN_SIM`
+- Rule injection gate: `EVOSHOT_RULEBANK_ENABLED`, `EVOSHOT_RULEBANK_GATE`, `EVOSHOT_RULEBANK_MIN_SIM`
+- Shot drop (negative transfer prevention): `EVOSHOT_SHOTS_MIN_SIM`
+- Query expansion / fusion (optional): `EVOSHOT_RETRIEVAL_QUERY_EXPANSION`, `EVOSHOT_RETRIEVAL_QUERY_FUSION`, `EVOSHOT_RETRIEVAL_QUERY_FUSION_*`
+- Self-revision (optional 2nd pass): `EVOSHOT_SELF_REVISION_ENABLED`, `EVOSHOT_SELF_REVISION_*`
+- Memory update gates: `EVOSHOT_DISABLE_VAULT_UPDATE`, `EVOSHOT_VAULT_REQUIRE_LESSON`
 
 ## Design highlights (why it's built this way)
 
@@ -74,6 +119,40 @@ python urban_experiment.py
 ## Best-practice run (urban case, folder-based)
 
 Prereqs: configure real backends via `.env` (or env vars). See `.env.example`.
+
+Minimal `.env` (do NOT commit keys):
+
+```env
+# Teacher (cloud)
+EVOSHOT_TEACHER_BACKEND=real
+EVOSHOT_TEACHER_API_URL=https://openrouter.ai/api/v1/chat/completions
+EVOSHOT_TEACHER_MODEL=x-ai/grok-4.1-fast
+OPENROUTER_API_KEY=sk-...
+
+# Student (local, LM Studio OpenAI-compatible server)
+EVOSHOT_STUDENT_BACKEND=real
+EVOSHOT_LLM_URL=http://localhost:1234/v1/chat/completions
+EVOSHOT_LLM_MODEL=unsloth/Qwen3-VL-30B-A3B-Thinking-GGUF-Q8_k_xl
+EVOSHOT_LLM_SEND_IMAGE=1
+
+# Embeddings (must match embedding_test.py contract)
+EVOSHOT_EMBED_BACKEND=real
+EVOSHOT_EMBED_API=http://localhost:8000/embed
+```
+
+Where to set inputs:
+
+- Image folder(s): `run_best_practice_folder.py --image_dir ...` (or `--train_dir/--test_dir`)
+- Post text: `run_best_practice_folder.py --post_text "..."` (or set `EVOSHOT_DEFAULT_POST_TEXT`)
+
+LM Studio quick check:
+
+- Server up: `curl http://localhost:1234/v1/models`
+- Vision input: this repo sends images as `image_url` data URLs (see `models/student.py`)
+
+Embedding quick check:
+
+- `python embedding_test.py` (expects `EVOSHOT_EMBED_API` to be reachable)
 
 Recommended trunk config baked into the runner:
 

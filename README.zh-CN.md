@@ -30,6 +30,15 @@ EvoShot 是一种“非参数学习闭环”：本地/便宜的 **Student** 负�
   - 来源：`bench_out/evidence_gate_sweep_cross_20260115_101213.json`、`bench_out/evidence_gate_sweep_cross_20260115_103644.json`、`bench_out/evidence_gate_sweep_cross_20260115_111504.json`。
   - 实用提示：评测脚本为了算 `avg_teacher_score` 会调用 Teacher；真实低成本部署时可主要运行 Student+检索/记忆，把 Teacher 留给主动学习或抽检。
 
+## 实验中使用的模型
+
+目前 `bench_out/*` 中引用的实验结果所用模型为：
+
+- Teacher（云端）：`x-ai/grok-4.1-fast`（也可简称 `grok4.1fast`，OpenRouter），`EVOSHOT_TEACHER_TEMPERATURE=0`
+- Student（本地 LM Studio）：`unsloth/Qwen3-VL-30B-A3B-Thinking-GGUF-Q8_k_xl`，`EVOSHOT_LLM_TEMPERATURE=0`
+
+模型均可通过 `.env` / 环境变量替换。
+
 ### 本仓库的首个案例：城市环境感知打分
 
 输入图片（可附带 post 文本），Student 输出结构化分数：
@@ -45,6 +54,42 @@ EvoShot 是一种“非参数学习闭环”：本地/便宜的 **Student** 负�
 - **Evidence**：`models/evidence.py` 抽取“可见事实”降低幻觉。
 - **RuleBank**：`models/rules.py` 存储短 lesson，在检索弱时提供通用提示。
 - **门控机制**：在 `urban_experiment.py` 内对 evidence / rule 注入 / query fusion / shots drop 等做门控，控制成本并减少负迁移。
+
+### 最佳主干结构图（含门控）
+
+```mermaid
+flowchart TD
+  A[输入: 图片 + post_text] --> B[Captioner (本地)]
+  B --> C[Query embedding (caption+text)]
+  C --> D[Vault 检索 shots (top-k=2)]
+  D --> E{Shot gate: max_sim < EVOSHOT_SHOTS_MIN_SIM?}
+  E -- 是 --> F[丢弃 shots (k=0)]
+  E -- 否 --> G[保留 shots]
+  F --> H{Evidence gate: 检索失败 OR max_sim < EVOSHOT_EVIDENCE_MIN_SIM?}
+  G --> H
+  H -- 是 --> I[Evidence 抽取器 (本地)]
+  H -- 否 --> J[跳过 evidence]
+  I --> K{RuleBank gate: 注入 rules?}
+  J --> K
+  K -- 是 --> L[选择 rules (k=4)]
+  K -- 否 --> M[不注入 rules]
+  L --> N[组装 prompt: shots + rules + evidence]
+  M --> N
+  N --> O[Student VLM (本地, JSON)]
+  O --> P[Teacher 判卷 (云端)]
+  P --> Q{should_add_to_vault?}
+  Q -- 是 --> R[写入 Vault(Tier1) + 写入 RuleBank(lesson)]
+  Q -- 否 --> S[不更新]
+```
+
+主要门控（均在 `urban_experiment.py`）：
+
+- Evidence gate：`EVOSHOT_EVIDENCE_ENABLED`、`EVOSHOT_EVIDENCE_GATE`、`EVOSHOT_EVIDENCE_MIN_SIM`
+- Rule 注入 gate：`EVOSHOT_RULEBANK_ENABLED`、`EVOSHOT_RULEBANK_GATE`、`EVOSHOT_RULEBANK_MIN_SIM`
+- Shot gate（防负迁移）：`EVOSHOT_SHOTS_MIN_SIM`
+- Query expansion / fusion（可选）：`EVOSHOT_RETRIEVAL_QUERY_EXPANSION`、`EVOSHOT_RETRIEVAL_QUERY_FUSION`、`EVOSHOT_RETRIEVAL_QUERY_FUSION_*`
+- Self-revision（二阶段可选）：`EVOSHOT_SELF_REVISION_ENABLED`、`EVOSHOT_SELF_REVISION_*`
+- 记忆更新门控：`EVOSHOT_DISABLE_VAULT_UPDATE`、`EVOSHOT_VAULT_REQUIRE_LESSON`
 
 ## 安装
 
@@ -80,6 +125,40 @@ conda run -n Evoshot python run_best_practice_folder.py --image_dir PIC_DATA --t
 小贴士：
 - 需要分开训练/测试目录：用 `--train_dir` / `--test_dir`。
 - 训练集很干净（全是街景）：可加 `--no_filter_train` 跳过过滤加速。
+
+最小 `.env`（不要提交密钥到仓库）：
+
+```env
+# Teacher（云端）
+EVOSHOT_TEACHER_BACKEND=real
+EVOSHOT_TEACHER_API_URL=https://openrouter.ai/api/v1/chat/completions
+EVOSHOT_TEACHER_MODEL=x-ai/grok-4.1-fast
+OPENROUTER_API_KEY=sk-...
+
+# Student（本地，LM Studio 的 OpenAI-compatible server）
+EVOSHOT_STUDENT_BACKEND=real
+EVOSHOT_LLM_URL=http://localhost:1234/v1/chat/completions
+EVOSHOT_LLM_MODEL=unsloth/Qwen3-VL-30B-A3B-Thinking-GGUF-Q8_k_xl
+EVOSHOT_LLM_SEND_IMAGE=1
+
+# Embedding（需满足 embedding_test.py 契约）
+EVOSHOT_EMBED_BACKEND=real
+EVOSHOT_EMBED_API=http://localhost:8000/embed
+```
+
+输入怎么配：
+
+- 图片目录：`run_best_practice_folder.py --image_dir ...`（或 `--train_dir/--test_dir`）
+- post 文本：`run_best_practice_folder.py --post_text "..."`（或设置 `EVOSHOT_DEFAULT_POST_TEXT`）
+
+LM Studio 快速自检：
+
+- 服务是否启动：`curl http://localhost:1234/v1/models`
+- 视觉输入：本项目会把图片编码为 `image_url` 的 data URL（见 `models/student.py`）
+
+Embedding 快速自检：
+
+- `python embedding_test.py`（要求 `EVOSHOT_EMBED_API` 可访问）
 
 ## 实验结论（城市案例，用实验解释“为什么这样设计”）
 
