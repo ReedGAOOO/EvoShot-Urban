@@ -59,27 +59,27 @@ Given an image (+ optional post text), the Student VLM outputs:
 
 ```mermaid
 flowchart TD
-  A[Input: image + post_text] --> B[Captioner (local)]
-  B --> C[Embed query (caption+text)]
-  C --> D[Vault retrieve shots (top-k=2)]
-  D --> E{Shot gate: max_sim < EVOSHOT_SHOTS_MIN_SIM?}
-  E -- yes --> F[Drop shots (k=0)]
-  E -- no --> G[Keep shots]
-  F --> H{Evidence gate: retrieval_failed OR max_sim < EVOSHOT_EVIDENCE_MIN_SIM?}
+  A["Input: image + post_text"] --> B["Captioner (local)"]
+  B --> C["Embed query (caption+text)"]
+  C --> D["Vault retrieve shots (top-k=2)"]
+  D --> E{"Shot gate: max_sim < EVOSHOT_SHOTS_MIN_SIM?"}
+  E -->|yes| F["Drop shots (k=0)"]
+  E -->|no|  G["Keep shots"]
+  F --> H{"Evidence gate: retrieval_failed OR max_sim < EVOSHOT_EVIDENCE_MIN_SIM?"}
   G --> H
-  H -- yes --> I[Evidence extractor (local)]
-  H -- no --> J[Skip evidence]
-  I --> K{RuleBank gate: inject rules?}
+  H -->|yes| I["Evidence extractor (local)"]
+  H -->|no|  J["Skip evidence"]
+  I --> K{"RuleBank gate: inject rules?"}
   J --> K
-  K -- yes --> L[Select rules (k=4)]
-  K -- no --> M[No rules]
-  L --> N[Assemble prompt: shots + rules + evidence]
+  K -->|yes| L["Select rules (k=4)"]
+  K -->|no|  M["No rules"]
+  L --> N["Assemble prompt: shots + rules + evidence"]
   M --> N
-  N --> O[Student VLM (local, JSON)]
-  O --> P[Teacher judge (cloud)]
-  P --> Q{should_add_to_vault?}
-  Q -- yes --> R[Add Tier-1 example to Vault + add lesson to RuleBank]
-  Q -- no --> S[No update]
+  N --> O["Student VLM (local, JSON)"]
+  O --> P["Teacher judge (cloud)"]
+  P --> Q{"should_add_to_vault?"}
+  Q -->|yes| R["Add Tier-1 example to Vault + add lesson to RuleBank"]
+  Q -->|no|  S["No update"]
 ```
 
 Main gates (all in `urban_experiment.py`):
