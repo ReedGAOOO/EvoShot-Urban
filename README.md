@@ -1,131 +1,133 @@
 # EvoShot-Urban
 
-Evolving Few‑Shot Memory for Urban Perception Learning.
+EvoShot (Evolutionary Few-Shot System): a Teacher-Student, retrieval-augmented in-context learning framework (**no fine-tuning**).
+
+This repository ships the first case study: **urban environment perception** from images (to demonstrate cost-effective cloud-teacher guidance for a local mid/small student model; see the cost sketch below).
 
 Chinese README: `README.zh-CN.md`.
 
-## Overview
+## EvoShot in one paragraph
 
-This project implements an EvoShot-style experimental pipeline for **urban perception scoring**. Given an image (optionally with a short “post text”), the Student (a VLM) predicts:
+EvoShot is a non-parametric learning loop: a cheap/local **Student** handles most inputs; a stronger (cloud) **Teacher** grades and corrects only when needed; the system then stores the correction as an evolving few-shot memory (Vault + RuleBank). Future queries retrieve relevant items and inject them into the Student prompt (ICL only), improving quality while reducing total teacher calls/cost. The loop is task-agnostic: swap the output schema, teacher rubric, and memory formatting to apply it to other domains.
 
-- `safety`
-- `vibrancy`
-- `cleanliness`
+## At a glance (urban case)
 
-Then a Teacher model grades the Student output strictly and, when needed, writes an improved example into a Vault (few-shot memory). This enables iterative correction/learning **without fine-tuning**.
+Quality (Teacher reward in `[0,1]`, higher is better):
 
-## Key components
+- Student-only (no retrieval / no RuleBank / no Evidence): `avg_teacher_score=0.54`, `pass_rate>=0.8=0%`
+- EvoShot best-practice trunk: `avg_teacher_score=0.762` (**+0.222**, ~`+41%` vs Student-only; ~`76%` of full marks), `pass_rate>=0.8=30%`
 
-- Student: `models/student.py` (`mock` or OpenAI-compatible HTTP VLM via `/v1/chat/completions`)
-- Teacher: `models/teacher.py` (`mock` or OpenRouter/OpenAI chat-completions; **costs money** when real)
-- Vault + retrieval: `urban_experiment.py` (`topk` / `mmr`; mock embeddings or a local embedding service via `embedding/embedder.py`)
-- Captioner (optional): `models/captioner.py` for stronger retrieval query text (`EVOSHOT_QUERY_EMBED_MODE=caption+text`)
-- Evidence extraction (optional): `models/evidence.py` for grounded “visible facts” to reduce hallucinations
-- RuleBank (optional): `models/rules.py` stores reusable lessons from Teacher feedback and injects them into prompts
+Source (same protocol, same batch): `bench_out/rulebank_evidence_ablation_cross_20260114_201832.json`.
 
-## Requirements
+Stability note: under the cross-dataset 3-batch sweep, the tuned trunk config (`EVOSHOT_EVIDENCE_GATE=fail_or_low_sim`, `EVOSHOT_EVIDENCE_MIN_SIM=0.68`) reached mean `avg_teacher_score~0.7296` (sources below).
 
-- Python 3.9+
+Cost (back-of-envelope, set per-item cloud-teacher cost to `x`):
+
+- Teacher-only baseline on `N` images: cost ~ `N * x`
+- EvoShot: Student runs locally for all `N`; Teacher can be gated to only intervene on a fraction `p` of inputs (e.g., low-sim / low-confidence / audit). Cost ~ `p * N * x`
+  - In our cross-dataset protocol, the "retrieval weak -> trigger scaffolding" rate at `EVOSHOT_EVIDENCE_MIN_SIM=0.68` was ~`0.40`, implying ~`60%` fewer teacher calls if you gate teacher on the same signal (evaluation scripts still call Teacher to score).
+  - Example: `N=10,000` images -> Teacher-only ~ `10,000*x`; EvoShot with `p=0.40` ~ `4,000*x` (~`2.5x` cheaper).
+  - Source: `bench_out/evidence_gate_sweep_cross_20260115_101213.json`, `bench_out/evidence_gate_sweep_cross_20260115_103644.json`, `bench_out/evidence_gate_sweep_cross_20260115_111504.json`.
+  - Practical note: evaluation runners call Teacher to compute `avg_teacher_score`; for cheap deployment inference, run Student-only with retrieval/memory (and reserve Teacher for active learning or audits).
+
+### Case study in this repo: Urban perception scoring
+
+Given an image (+ optional post text), the Student VLM outputs:
+
+- `safety`, `vibrancy`, `cleanliness` (1.0-5.0)
+
+## Architecture (Teacher-Student + Memory)
+
+- **Student** (`models/student.py`): OpenAI-compatible `/v1/chat/completions` VLM + `robust_json_parser()` (handles messy JSON).
+- **Teacher** (`models/teacher.py`): strict grader + improved rationale/scores (+ optional caption). Real teacher **costs money**.
+- **Vault** (`urban_experiment.py`): stores Tier-0 seeds + Tier-1 teacher-corrected examples; retrieves top-k / MMR.
+- **Embeddings** (`embedding_test.py` contract): text embeddings for retrieval via an embedding service (`EVOSHOT_EMBED_BACKEND=real`).
+- **Evidence** (`models/evidence.py`): extracts "visible facts" as scaffolding to reduce hallucination.
+- **RuleBank** (`models/rules.py`): stores short reusable lessons (semantic memory), injected into prompts.
+- **Gates** (`urban_experiment.py`): evidence gate, rule injection gate, query-fusion gate, shot drop gate, etc.
+
+## Design highlights (why it's built this way)
+
+- **Non-parametric "learning"**: no fine-tuning; improvements come from better retrieval + better prompt scaffolding.
+- **Two memories, two roles**:
+  - Vault = instance-level few-shot (grounded examples).
+  - RuleBank = general lessons (helpful when retrieval is weak).
+- **Cost/stability gates**: only use expensive scaffolding when retrieval is weak (fail/low-sim), preventing "over-guidance" and negative transfer.
+- **Robust structured output**: real VLM outputs are messy; parsing must be defensive.
 
 ## Install
 
 ```bash
-python -m venv .venv
-.\.venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-Optional (faster image downscaling/encoding): `pip install pillow`.
+Optional (faster image handling + urban filtering): `pip install pillow`.
 
-## Quickstart (offline / no API)
+## Quickstart (offline / mock)
 
-By default everything runs in `mock` mode (no network), which is useful to validate the pipeline end-to-end.
-
-1) Put a few images into `PIC_DATA/` (`jpg/png/webp`).
-2) Run the demo:
+Put a few images into `PIC_DATA/` and run:
 
 ```bash
 python urban_experiment.py
 ```
 
-Or run a minimal loop with explicit images:
+## Best-practice run (urban case, folder-based)
+
+Prereqs: configure real backends via `.env` (or env vars). See `.env.example`.
+
+Recommended trunk config baked into the runner:
+
+- `sim_topk(k=2) + RuleBank(k=4) + Evidence gate(fail_or_low_sim, min_sim=0.68)`
+- text-only few-shot (`caption+text` query embedding, vault embeds `text`)
+
+Run on any folder:
 
 ```bash
-python run_full_loop.py --train PIC_DATA\xxx.jpg --test PIC_DATA\yyy.jpg
+conda run -n Evoshot python run_best_practice_folder.py --image_dir PIC_DATA --train_n 8 --test_n 16 --seed 42 --recurse
 ```
 
-## Real backends (costs money)
+Output: `bench_out/best_practice_folder_*.json` (selected files, per-image traces, summaries).
 
-Use `.env` (or system env vars). Env vars take precedence; see `.env.example`.
+Tips:
+- Use `--train_dir` / `--test_dir` to split train/test folders.
+- Dataset is noisy? Keep default train filtering; clean street-only data? add `--no_filter_train`.
 
-### Teacher (OpenRouter / OpenAI)
+## Experimental findings (urban case)
 
-- Set `EVOSHOT_TEACHER_BACKEND=real`
-- Prefer OpenRouter: set `OPENROUTER_API_KEY`
-- Or OpenAI: set `OPENAI_API_KEY`
+Note: absolute scores drift with teacher model + sampled images; compare configs **within the same protocol**.
 
-### Student (OpenAI-compatible VLM)
+- **Evidence gating matters** (cross-dataset, seeds 42/43/44):
+  - `EVOSHOT_EVIDENCE_GATE=fail_or_low_sim` with `EVOSHOT_EVIDENCE_MIN_SIM=0.68` -> mean `avg_teacher_score~0.7296`.
+  - Files: `bench_out/evidence_gate_sweep_cross_20260115_101213.json`, `bench_out/evidence_gate_sweep_cross_20260115_103644.json`, `bench_out/evidence_gate_sweep_cross_20260115_111504.json`.
+- **Image-embedding + multimodal few-shot was worse & slower**, so we keep text-only context:
+  - Files: `bench_out/image_text_fewshot_ablation_20260113_160957.json` (compare A/B vs C/D).
+- **RuleBank gating yields tiny, unstable gains**:
+  - Best grid point `EVOSHOT_RULEBANK_MIN_SIM=0.76` gave only ~`+0.0065` overall and flips per-seed.
+  - File: `bench_out/rulebank_min_sim_sweep_cross_20260117_223044.json`.
+- **Query fusion/expansion didn't give stable wins**:
+  - Files: `bench_out/fusion_min_sim_sweep_cross_20260116_212648.json`, `bench_out/query_fusion_v2_ablation_cross_20260116_005245.json` (and siblings).
+- **Some "stronger prompting" hurt** (over-constraints / extra fields / aggressive shot gates):
+  - File: `bench_out/icling_improvements_ablation_cross_20260117_135420.json`.
 
-- Set `EVOSHOT_STUDENT_BACKEND=real`
-- Configure:
-  - `EVOSHOT_LLM_URL` (default `http://100.76.172.42:1234/v1/chat/completions`)
-  - `EVOSHOT_LLM_MODEL` (default `qwen3-vl-30b-a3b-thinking`)
+## Repo map (what each file is for)
 
-The endpoint must support OpenAI chat-completions and image inputs (this project sends images as data URLs, or passes through image URLs/data URLs).
+- `urban_experiment.py`: core pipeline, retrieval, gating, vault/rulebank updates.
+- `models/student.py`: student prompting + robust parsing.
+- `models/teacher.py`: teacher judge/caption (OpenAI/OpenRouter-compatible).
+- `models/filter.py`: `StudentUrbanFilter` (filters noisy datasets cheaply via downscaled images + cache).
+- `models/evidence.py`: local evidence extractor (facts/uncertainties).
+- `models/rules.py`: RuleBank (semantic lessons).
+- `embedding_test.py`: embedding API contract + quick smoke test.
+- `run_best_practice_folder.py`: one-click best-practice runner for any image folder.
+- `bench_out/`: JSON outputs for experiments and sweeps.
 
-### Embedding service (optional)
+## Minimal real-backend config
 
-To enable real embeddings for retrieval (text / image / image+text):
+Put secrets in `.env` (git-ignored) or set environment variables:
 
-- Set `EVOSHOT_EMBED_BACKEND=real`
-- Set `EVOSHOT_EMBED_API=http://localhost:8000/embed`
-- Validate the contract with `python embedding_test.py` (request/response format is in `embedding_test.py`).
-
-If the embedding service runs in WSL/container and can’t read `D:\...` paths:
-
-- Set `EVOSHOT_EMBED_IMAGE_PATH_STYLE=wsl` (converts to `/mnt/<drive>/...`)
-
-## Common environment variables
-
-| Variable | Meaning | Default / Example |
-|---|---|---|
-| `EVOSHOT_STUDENT_BACKEND` | `mock` / `real` | `mock` |
-| `EVOSHOT_TEACHER_BACKEND` | `mock` / `real` (real costs money) | `mock` |
-| `EVOSHOT_EMBED_BACKEND` | `mock` / `real` | `mock` |
-| `EVOSHOT_LLM_URL` | Student chat-completions URL | `http://.../v1/chat/completions` |
-| `EVOSHOT_LLM_MODEL` | Student model name | `qwen3-vl-30b-a3b-thinking` |
-| `EVOSHOT_RETRIEVAL_K` | few-shot examples to retrieve | `2` |
-| `EVOSHOT_RETRIEVAL_STRATEGY` | `topk` / `mmr` | `mmr` |
-| `EVOSHOT_QUERY_EMBED_MODE` | query embedding mode: `text` / `caption+text` / `image+text` | `text` |
-| `EVOSHOT_VAULT_EMBED_MODE` | vault embedding mode: `text` / `image` / `image+text` | `text` |
-| `EVOSHOT_STUDENT_FEWSHOT_MODE` | few-shot injection: `text` / `multimodal` | `text` |
-| `EVOSHOT_DISABLE_VAULT_UPDATE` | freeze learning when `1` | `0` |
-| `EVOSHOT_RULEBANK_ENABLED` | enable RuleBank | `0` |
-| `EVOSHOT_EVIDENCE_ENABLED` | enable evidence extraction | `0` |
-
-## Experiment scripts
-
-- `urban_experiment.py`: main pipeline + demo
-- `run_full_loop.py`: minimal CLI loop
-- `run_3_control_experiments.py`: controlled experiments across configs, outputs JSON
-- `run_image_text_fewshot_comparison.py`: compares text few-shot vs multimodal few-shot (writes to `bench_out/`)
-- `analyze_bench_results.py` / `compare_retrieval_query_modes.py`: summarize/compare bench outputs
-
-Some scripts contain machine-specific dataset paths (e.g. `H:\\...`) and need local edits before running.
-
-## Data & outputs
-
-Default directories under `data/` (overridable; see `evoshot_env.py`):
-
-- `data/cache/`: caption/evidence/filter caches (`.jsonl`)
-- `data/logs/`: logs
-- `data/vault/`: reserved for vault persistence (current implementation is mostly in-memory + outputs)
-- `bench_out/`: experiment JSON outputs
-
-## Local secrets
-
-- Put secrets (e.g. `OPENROUTER_API_KEY` / `OPENAI_API_KEY`) in a local `.env` (see `.env.example`) or as environment variables.
-- `.env` / `.env.*` are git-ignored; if a key was ever committed to git history, revoke & rotate it immediately.
+- Teacher: `EVOSHOT_TEACHER_BACKEND=real` + `OPENROUTER_API_KEY` (recommended) or `OPENAI_API_KEY`
+- Student VLM: `EVOSHOT_STUDENT_BACKEND=real`, `EVOSHOT_LLM_URL`, `EVOSHOT_LLM_MODEL`
+- Embeddings: `EVOSHOT_EMBED_BACKEND=real`, `EVOSHOT_EMBED_API`
 
 ## License
 

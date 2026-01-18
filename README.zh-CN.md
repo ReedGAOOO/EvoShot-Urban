@@ -1,123 +1,121 @@
 # EvoShot-Urban
 
-Evolving Few‑Shot Memory for Urban Perception Learning.
+EvoShot（Evolutionary Few‑Shot System）：Teacher–Student + 检索增强的 in-context 学习框架（**不做 fine-tune**）。
 
-English README: `README.md`.
+本仓库提供首个案例应用：**城市环境感知**（展示“低成本云端 Teacher 稀疏指导本地中小 Student”的降本增效思路；成本估算见下文）。
 
-本项目实现了一个用于“城市感知打分”的 EvoShot 实验管线：给定街景图片（可附带一段 post 文本），让 Student（视觉语言模型）输出 `safety / vibrancy / cleanliness` 三个维度的分数与理由；再由 Teacher（更强的模型）进行严格评分与批改，并在需要时把“更好的示例”写入 Vault（few-shot 记忆库），从而实现一种不做微调的迭代式学习/纠错。
+English README：`README.md`。
 
-## 核心组件
+## EvoShot 框架（一段话讲清楚）
 
-- Student：`models/student.py`，支持 `mock` 或通过 OpenAI-compatible HTTP 接口调用本地/远端 VLM（`/v1/chat/completions`）。
-- Teacher：`models/teacher.py`，支持 `mock` 或通过 OpenRouter / OpenAI 的 chat-completions 接口进行评分与给出改进答案（需要 API Key，**会产生费用**）。
-- Vault（记忆库 + 检索）：`urban_experiment.py:MockVault`，支持 `topk` / `mmr` 检索策略；可使用 `mock` embedding 或对接本地 embedding 服务（见 `embedding/embedder.py`）。
-- Captioner（可选）：`models/captioner.py`，为检索构造更强的 query（`EVOSHOT_QUERY_EMBED_MODE=caption+text`）。
-- Evidence extractor（可选）：`models/evidence.py`，先抽取“可见事实”以降低幻觉，再注入 Student 提示词。
-- RuleBank（可选）：`models/rules.py`，把 Teacher 给出的通用 lesson 作为“语义规则记忆”注入提示词（即使 `k=0` 也可生效）。
+EvoShot 是一种“非参数学习闭环”：本地/便宜的 **Student** 负责大多数推理；更强的（云端）**Teacher** 只在必要时介入判卷与纠错；系统把纠错结果写入可检索的 few-shot 记忆（Vault + RuleBank），下次遇到相似输入时通过检索注入 prompt 来提升质量，从而减少 Teacher 调用次数与总成本。框架本身是通用的：只需替换输出 schema、Teacher rubric（判卷标准）与记忆格式，即可迁移到其它任务。
 
-## 环境要求
+## 一眼看懂（城市案例）
 
-- Python 3.9+（代码使用了 `list[str]` 等类型标注语法）
+效果（Teacher reward 记为 `[0,1]`，越高越好）：
+
+- 纯 Student（无检索 / 无 RuleBank / 无 Evidence）：`avg_teacher_score=0.54`，`pass_rate>=0.8=0%`
+- EvoShot 最佳主干：`avg_teacher_score=0.762`（**+0.222**，约 `+41%`；约等于“满分”的 `76%`），`pass_rate>=0.8=30%`
+
+来源（同一协议、同一批次）：`bench_out/rulebank_evidence_ablation_cross_20260114_201832.json`。
+
+稳定性补充：在 cross-dataset 的 3 批次 sweep 中，采用当前主干阈值（`EVOSHOT_EVIDENCE_GATE=fail_or_low_sim`、`EVOSHOT_EVIDENCE_MIN_SIM=0.68`）可达到均值 `avg_teacher_score≈0.7296`（来源见下）。
+
+成本（粗略估算，把“每张图一次云端 Teacher 调用”的成本记为 `x`）：
+
+- 纯云端 Teacher（`N` 张图）：成本 ≈ `N * x`
+- EvoShot：所有 `N` 张图都走本地 Student；Teacher 只对一部分输入 `p` 介入（低相似度/低置信度/抽检），成本 ≈ `p * N * x`
+  - 在 cross-dataset 协议里，`EVOSHOT_EVIDENCE_MIN_SIM=0.68` 下“检索偏弱→触发 scaffolding”的比例约 `0.40`，如果按同一信号门控 Teacher，则可减少约 `60%` 的 Teacher 调用（评测脚本为了打分仍会调用 Teacher）。
+  - 例子：`N=10,000` 张图 → 纯 Teacher ≈ `10,000*x`；EvoShot 若 `p=0.40` ≈ `4,000*x`（约 `2.5×` 更省）。
+  - 来源：`bench_out/evidence_gate_sweep_cross_20260115_101213.json`、`bench_out/evidence_gate_sweep_cross_20260115_103644.json`、`bench_out/evidence_gate_sweep_cross_20260115_111504.json`。
+  - 实用提示：评测脚本为了算 `avg_teacher_score` 会调用 Teacher；真实低成本部署时可主要运行 Student+检索/记忆，把 Teacher 留给主动学习或抽检。
+
+### 本仓库的首个案例：城市环境感知打分
+
+输入图片（可附带 post 文本），Student 输出结构化分数：
+
+- `safety / vibrancy / cleanliness`（1.0–5.0）
+
+## 架构与亮点（Teacher–Student + Memory）
+
+- **Student**：`models/student.py`（OpenAI-compatible `/v1/chat/completions` + `robust_json_parser()` 防脏 JSON）。
+- **Teacher**：`models/teacher.py`（严厉打分 + 改进 rationale/scores + 可选 caption；真实 Teacher **会产生费用**）。
+- **Vault**：`urban_experiment.py`（Tier-0 seeds + Tier-1 teacher-corrected；`topk/mmr` 检索）。
+- **Embedding**：按 `embedding_test.py` 的契约对接 embedding 服务（当前最佳实践主要用 text embedding 做检索）。
+- **Evidence**：`models/evidence.py` 抽取“可见事实”降低幻觉。
+- **RuleBank**：`models/rules.py` 存储短 lesson，在检索弱时提供通用提示。
+- **门控机制**：在 `urban_experiment.py` 内对 evidence / rule 注入 / query fusion / shots drop 等做门控，控制成本并减少负迁移。
 
 ## 安装
 
 ```bash
-python -m venv .venv
-.\.venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-可选依赖（更快的图片降采样与编码）：`pip install pillow`（未安装也能运行，会自动回退到原图 base64 编码，但可能更慢）。
+可选（更快的图片处理 + urban filter）：`pip install pillow`。
 
-## 快速开始（不需要 API / 离线）
+## 快速开始（离线 / mock）
 
-默认后端是 `mock`（Student/Teacher/Embedding 都不联网），适合先跑通流程：
-
-1) 在 `PIC_DATA/` 放入若干张图片（`jpg/png/webp`）。
-2) 运行 demo：
+把几张图片放到 `PIC_DATA/`，然后运行：
 
 ```bash
 python urban_experiment.py
 ```
 
-也可以用一个更“脚本化”的最小例子（单张/两张图）：
+## 当前最佳实践（城市案例，可一键跑）
+
+推荐主干配置（脚本内已固化）：
+
+- `sim_topk(k=2) + RuleBank(k=4) + Evidence gate(fail_or_low_sim, min_sim=0.68)`
+- text-only few-shot（`caption+text` 做 query embedding，Vault embed `text`）
+
+对任意图片文件夹一键运行：
 
 ```bash
-python run_full_loop.py --train PIC_DATA\xxx.jpg --test PIC_DATA\yyy.jpg
+conda run -n Evoshot python run_best_practice_folder.py --image_dir PIC_DATA --train_n 8 --test_n 16 --seed 42 --recurse
 ```
 
-## 使用真实后端（会产生费用）
+输出：`bench_out/best_practice_folder_*.json`（包含采样到的图片、每张图的 trace、汇总指标）。
 
-建议用 `.env`（或系统环境变量）配置。环境变量优先生效；`.env` 的示例在 `.env.example`。
+小贴士：
+- 需要分开训练/测试目录：用 `--train_dir` / `--test_dir`。
+- 训练集很干净（全是街景）：可加 `--no_filter_train` 跳过过滤加速。
 
-### Teacher（OpenRouter / OpenAI）
+## 实验结论（城市案例，用实验解释“为什么这样设计”）
 
-- 设置 `EVOSHOT_TEACHER_BACKEND=real`
-- 推荐 OpenRouter：设置 `OPENROUTER_API_KEY`
-- 或使用 OpenAI：设置 `OPENAI_API_KEY`
+注意：Teacher 模型/图片采样变化会导致绝对分数漂移；请在同一协议内看相对差异。
 
-### Student（OpenAI-compatible VLM）
+- **Evidence 的门控是关键收益来源**（跨数据集 + 多 seed）  
+  `EVOSHOT_EVIDENCE_GATE=fail_or_low_sim` 且 `EVOSHOT_EVIDENCE_MIN_SIM=0.68` 在 seeds(42/43/44) 上 `avg_teacher_score` 均值约 **0.7296**。  
+  文件：`bench_out/evidence_gate_sweep_cross_20260115_101213.json`、`bench_out/evidence_gate_sweep_cross_20260115_103644.json`、`bench_out/evidence_gate_sweep_cross_20260115_111504.json`。
+- **图像 embedding + multimodal few-shot 更慢且更差**，因此最佳实践回到原始 text context 形态：  
+  文件：`bench_out/image_text_fewshot_ablation_20260113_160957.json`（A/B 明显优于 C/D）。
+- **RuleBank 做门控收益很小且不稳定**（不同 seed 可能正负翻转），所以默认常开更稳：  
+  文件：`bench_out/rulebank_min_sim_sweep_cross_20260117_223044.json`。
+- **query fusion / query expansion 没有稳定正收益**，默认关闭：  
+  文件：`bench_out/fusion_min_sim_sweep_cross_20260116_212648.json`、`bench_out/query_fusion_v2_ablation_cross_20260116_005245.json`（及同系列）。
+- **过强的 prompt 约束/额外字段/激进 shot gate 可能伤害性能**：  
+  文件：`bench_out/icling_improvements_ablation_cross_20260117_135420.json`。
 
-- 设置 `EVOSHOT_STUDENT_BACKEND=real`
-- 配置 Student 端点与模型：
-  - `EVOSHOT_LLM_URL`（默认 `http://100.76.172.42:1234/v1/chat/completions`）
-  - `EVOSHOT_LLM_MODEL`（默认 `qwen3-vl-30b-a3b-thinking`）
+## 代码地图（每个文件干什么）
 
-该端点需要兼容 OpenAI chat-completions，并支持图像输入（本项目会把图片编码为 data URL，或直接传 URL/data URL）。
+- `urban_experiment.py`：核心流水线、检索、门控、Vault/RuleBank 动态更新。
+- `models/student.py`：Student 调用与结构化输出解析。
+- `models/teacher.py`：Teacher 判卷/生成改进答案与 caption。
+- `models/filter.py`：`StudentUrbanFilter`（大数据集先过滤噪声，含降采样与缓存）。
+- `models/evidence.py`：evidence 抽取器（facts/uncertainties）。
+- `models/rules.py`：RuleBank（lesson 语义记忆）。
+- `embedding_test.py`：embedding 服务契约与快速自检。
+- `run_best_practice_folder.py`：一键跑最佳实践（可指定任意图片文件夹）。
+- `bench_out/`：实验输出 JSON（各种 sweep/ablation 的结果）。
 
-### Embedding 服务（可选）
+## 最小真实后端配置
 
-若要启用真实检索 embedding（支持 text / image / image+text）：
+把密钥写在本地 `.env`（已 gitignore，见 `.env.example`）或系统环境变量：
 
-- 设置 `EVOSHOT_EMBED_BACKEND=real`
-- 设置 `EVOSHOT_EMBED_API=http://localhost:8000/embed`
-- 你可以用 `python embedding_test.py` 验证服务契约（请求/返回格式见 `embedding_test.py` 注释）。
-
-当 embedding 服务跑在 WSL / 容器中时，可能无法读取 Windows 路径 `D:\...`；可设置：
-
-- `EVOSHOT_EMBED_IMAGE_PATH_STYLE=wsl`（会把 `D:\a\b.jpg` 转换为 `/mnt/d/a/b.jpg`）
-
-## 常用环境变量
-
-| 变量 | 作用 | 默认值/示例 |
-|---|---|---|
-| `EVOSHOT_STUDENT_BACKEND` | `mock`/`real` | `mock` |
-| `EVOSHOT_TEACHER_BACKEND` | `mock`/`real`（real 会收费） | `mock` |
-| `EVOSHOT_EMBED_BACKEND` | `mock`/`real` | `mock` |
-| `EVOSHOT_LLM_URL` | Student VLM chat-completions URL | `http://.../v1/chat/completions` |
-| `EVOSHOT_LLM_MODEL` | Student VLM 模型名 | `qwen3-vl-30b-a3b-thinking` |
-| `EVOSHOT_RETRIEVAL_K` | few-shot 检索条数 | `2` |
-| `EVOSHOT_RETRIEVAL_STRATEGY` | `topk`/`mmr` | `mmr` |
-| `EVOSHOT_QUERY_EMBED_MODE` | query 侧 embedding 输入：`text`/`caption+text`/`image+text` 等 | `text` |
-| `EVOSHOT_VAULT_EMBED_MODE` | vault 侧 embedding 输入：`text`/`image`/`image+text` | `text` |
-| `EVOSHOT_STUDENT_FEWSHOT_MODE` | few-shot 注入方式：`text`/`multimodal` | `text` |
-| `EVOSHOT_DISABLE_VAULT_UPDATE` | `1` 冻结学习（只评估不写入 Vault） | `0` |
-| `EVOSHOT_RULEBANK_ENABLED` | 启用 RuleBank（语义规则记忆） | `0` |
-| `EVOSHOT_EVIDENCE_ENABLED` | 启用 Evidence 抽取（减少幻觉） | `0` |
-
-## 实验脚本（bench）
-
-- `urban_experiment.py`：核心管线与 demo。
-- `run_full_loop.py`：单轮/两轮最小闭环示例（带 CLI 参数）。
-- `run_3_control_experiments.py`：对比不同检索策略/配置的控制实验，输出 JSON 结果。
-- `run_image_text_fewshot_comparison.py`：对比 text few-shot vs multimodal few-shot（会写入 `bench_out/`）。
-- `analyze_bench_results.py` / `compare_retrieval_query_modes.py`：对 bench 输出做汇总与对比分析。
-
-部分脚本里包含本地数据集路径（例如 `H:\\...`），需要按你的机器路径修改后再运行。
-
-## 数据与输出
-
-默认会在 `data/` 下创建目录（可通过环境变量覆盖，见 `evoshot_env.py`）：
-
-- `data/cache/`：caption / evidence / filter 的缓存（`.jsonl`）
-- `data/logs/`：日志目录
-- `data/vault/`：预留的 vault 持久化目录（当前实现主要是内存 + 日志/结果）
-- `bench_out/`：各类实验脚本输出的 JSON 结果
-
-## 本地密钥与安全
-
-- 把密钥（如 `OPENROUTER_API_KEY` / `OPENAI_API_KEY`）放在本地 `.env`（参考 `.env.example`），或用系统环境变量注入。
-- `.env` / `.env.*` 已在 `.gitignore` 中忽略；若你曾经把密钥提交到 git 历史中，请立即 **撤销并轮换** 对应 Key。
+- Teacher：`EVOSHOT_TEACHER_BACKEND=real` + `OPENROUTER_API_KEY`（推荐）或 `OPENAI_API_KEY`
+- Student VLM：`EVOSHOT_STUDENT_BACKEND=real`，以及 `EVOSHOT_LLM_URL`、`EVOSHOT_LLM_MODEL`
+- Embedding：`EVOSHOT_EMBED_BACKEND=real`，以及 `EVOSHOT_EMBED_API`
 
 ## License
 
