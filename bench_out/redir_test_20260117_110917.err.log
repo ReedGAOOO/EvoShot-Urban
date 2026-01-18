@@ -1,0 +1,6 @@
+  File "<string>", line 1
+    import
+          ^
+SyntaxError: invalid syntax
+
+ERROR conda.cli.main_run:execute(125): `conda run python -u -c import time; print('hi'); time.sleep(2); print('bye')` failed. (See above for error)

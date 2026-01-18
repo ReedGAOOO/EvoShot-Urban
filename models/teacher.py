@@ -117,6 +117,11 @@ class OpenAITeacher:
             raise ValueError("sample.image_path is required for vision teacher grading.")
         data_url, _mime = _encode_image_data_url(str(image_path))
 
+        ve = getattr(student_out, "visual_evidence", None)
+        ve_block = ""
+        if isinstance(ve, list) and ve:
+            ve_block = f"\nVisual Evidence: {json.dumps(ve, ensure_ascii=False)}"
+
         user_content = [
             {
                 "type": "text",
@@ -127,7 +132,7 @@ Task: Evaluate the Student's analysis of an urban scene. Be strict and grounded 
 
 [Student Output]:
 Scores: {json.dumps(getattr(student_out, "scores", {}), ensure_ascii=False)}
-Rationale: "{getattr(student_out, "rationale", "")}"
+Rationale: "{getattr(student_out, "rationale", "")}"{ve_block}
 
 Evaluation Criteria:
 1. Grounding: Did the student mention specific visual details visible in the image? (Crucial)

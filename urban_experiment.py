@@ -59,15 +59,35 @@ class UrbanExample(BaseModel):
     # 分层管理：tier 0 = 专家/锚点, tier 1 = Teacher生成, tier 2 = 临时
     tier: Literal[0, 1, 2] = 1
     embedding: Optional[List[float]] = Field(default=None, exclude=True)  # 运行时向量
+    evidence_facts: Optional[List[str]] = None
     usage_count: int = 0
 
     def to_prompt_str(self) -> str:
         """生成 Few-shot 文本"""
+        shot_format = (os.getenv("EVOSHOT_SHOTS_FORMAT") or "full").strip().lower()
+        if shot_format in {"grounding_first", "grounding-first", "compressed", "cues"}:
+            cues: List[str] = []
+            if isinstance(self.evidence_facts, list):
+                cues = [str(x).strip() for x in self.evidence_facts if str(x).strip()]
+            if not cues:
+                cues = [x.strip() for x in str(self.image_desc or "").replace(";", ",").split(",") if x.strip()]
+            cues = cues[:5]
+            cues_block = "\n".join(f"{i}) {c}" for i, c in enumerate(cues, start=1)).strip()
+            if not cues_block:
+                cues_block = "1) (no reliable cues)"
+            return (
+                f"Example (Tier {self.tier}):\n"
+                f"Input: [IMG: {self.image_desc}] + Text: '{self.post_text}'\n"
+                f"Visible Cues:\n{cues_block}\n"
+                f"Scores: {json.dumps(self.scores, ensure_ascii=False)}\n"
+                f"---\n"
+            )
+
         return (
             f"Example (Tier {self.tier}):\n"
             f"Input: [IMG: {self.image_desc}] + Text: '{self.post_text}'\n"
             f"Rationale: {self.rationale}\n"
-            f"Scores: {json.dumps(self.scores)}\n"
+            f"Scores: {json.dumps(self.scores, ensure_ascii=False)}\n"
             f"---\n"
         )
 
@@ -78,6 +98,7 @@ class StudentOutput(BaseModel):
     rationale: str
     scores: Dict[str, float]
     model_confidence: float  # 模型自报的置信度
+    visual_evidence: List[str] = Field(default_factory=list)
 
 
 class Sample(BaseModel):
@@ -649,11 +670,48 @@ class UrbanPipeline:
         enable_rulebank = (os.getenv("EVOSHOT_RULEBANK_ENABLED") or "").strip().lower() in {"1", "true", "yes", "on"}
         rules_k = int(os.getenv("EVOSHOT_RULES_K", "4"))
         rules_k = max(0, rules_k)
+        rulebank_gate = (os.getenv("EVOSHOT_RULEBANK_GATE") or "always").strip().lower()
+        try:
+            rulebank_min_sim = float(
+                os.getenv(
+                    "EVOSHOT_RULEBANK_MIN_SIM",
+                    os.getenv("EVOSHOT_EVIDENCE_MIN_SIM", "0.68"),
+                )
+            )
+        except Exception:
+            rulebank_min_sim = 0.68
+
+        meta_for_rules = getattr(self.vault, "last_retrieval_meta", {}) or {}
+        max_sim_for_rules = meta_for_rules.get("max_sim")
+        try:
+            max_sim_for_rules_f = float(max_sim_for_rules) if max_sim_for_rules is not None else None
+        except Exception:
+            max_sim_for_rules_f = None
+        retrieval_failed_for_rules = retrieval_k <= 0 or len(shots) == 0
+        low_sim_for_rules = (max_sim_for_rules_f is None) or (max_sim_for_rules_f < rulebank_min_sim)
+
         if enable_rulebank and rules_k > 0:
-            query_text = sample.retrieval_text or sample.post_text
-            selected_rules = self.rulebank.select(query_text=query_text, k=rules_k)
-            rules_text = RuleBank.to_prompt_block(selected_rules)
-            trace["rule_ids"] = [r.id for r in selected_rules]
+            if rulebank_gate in {"always", "on"}:
+                inject_rules = True
+            elif rulebank_gate in {"retrieval_fail", "on_retrieval_fail", "fail"}:
+                inject_rules = retrieval_failed_for_rules
+            elif rulebank_gate in {"low_sim"}:
+                inject_rules = low_sim_for_rules
+            elif rulebank_gate in {"fail_or_low_sim", "retrieval_fail_or_low_sim"}:
+                inject_rules = retrieval_failed_for_rules or low_sim_for_rules
+            elif rulebank_gate in {"never", "off"}:
+                inject_rules = False
+            else:
+                inject_rules = True
+
+            trace["rulebank_gate"] = rulebank_gate
+            trace["rulebank_min_sim"] = float(rulebank_min_sim)
+            trace["rulebank_injected"] = bool(inject_rules)
+            if inject_rules:
+                query_text = sample.retrieval_text or sample.post_text
+                selected_rules = self.rulebank.select(query_text=query_text, k=rules_k)
+                rules_text = RuleBank.to_prompt_block(selected_rules)
+                trace["rule_ids"] = [r.id for r in selected_rules]
 
         # 1.6 证据抽取（Scaffolding，不改模型参数，仅多一次视觉观察调用）
         evidence_text = ""
@@ -713,6 +771,36 @@ class UrbanPipeline:
                 if getattr(self.vault, "last_retrieval_meta", None) is not None:
                     trace["retrieval_meta"] = dict(getattr(self.vault, "last_retrieval_meta", {}) or {})
 
+        # Optional: drop few-shot examples when retrieval similarity is too low (negative transfer prevention).
+        shots_min_sim_raw = (os.getenv("EVOSHOT_SHOTS_MIN_SIM") or "").strip()
+        if shots_min_sim_raw:
+            try:
+                shots_min_sim = float(shots_min_sim_raw)
+            except Exception:
+                shots_min_sim = None
+
+            if shots_min_sim is not None and retrieval_k > 0 and shots:
+                meta = getattr(self.vault, "last_retrieval_meta", {}) or {}
+                max_sim = meta.get("max_sim")
+                try:
+                    max_sim_f = float(max_sim) if max_sim is not None else None
+                except Exception:
+                    max_sim_f = None
+
+                trace["shots_min_sim"] = float(shots_min_sim)
+                trace["shots_max_sim"] = float(max_sim_f) if max_sim_f is not None else None
+                trace["retrieved_ids_before_shots_gate"] = list(trace.get("retrieved_ids") or [])
+
+                if max_sim_f is None or max_sim_f < shots_min_sim:
+                    logger.info(
+                        f"{Fore.YELLOW}[ShotGate] Dropping shots (max_sim={max_sim_f}) < threshold={shots_min_sim}{Style.RESET_ALL}"
+                    )
+                    trace["shots_dropped"] = True
+                    shots = []
+                    trace["retrieved_ids"] = []
+                else:
+                    trace["shots_dropped"] = False
+
         # 2. 学生推理 (Student Inference)
         # 实际 Prompt 组装在这里发生
         try:
@@ -726,6 +814,7 @@ class UrbanPipeline:
             )
             trace["student_scores"] = dict(student_out.scores)
             trace["student_confidence"] = float(student_out.model_confidence)
+            trace["student_visual_evidence"] = list(getattr(student_out, "visual_evidence", []) or [])
 
         except (ValidationError, ValueError, RuntimeError, FileNotFoundError, TimeoutError, OSError) as e:
             logger.error(f"Student Inference/Parsing Failed: {e}")
@@ -736,6 +825,99 @@ class UrbanPipeline:
         # 策略：如果置信度低，或者随机抽检，则呼叫 Teacher
         # 这里模拟：总是呼叫 Teacher 以便演示 Flow
         call_teacher = True
+
+        # Optional: self-revision (2nd pass) when retrieval similarity is low or confidence is low.
+        self_revision_enabled = (os.getenv("EVOSHOT_SELF_REVISION_ENABLED") or "").strip().lower() in {
+            "1",
+            "true",
+            "yes",
+            "on",
+        }
+        if self_revision_enabled:
+            gate = (os.getenv("EVOSHOT_SELF_REVISION_GATE") or "low_sim_or_low_conf").strip().lower()
+            try:
+                rev_min_sim = float(
+                    os.getenv(
+                        "EVOSHOT_SELF_REVISION_MIN_SIM",
+                        os.getenv("EVOSHOT_EVIDENCE_MIN_SIM", "0.68"),
+                    )
+                )
+            except Exception:
+                rev_min_sim = 0.68
+            try:
+                rev_min_conf = float(os.getenv("EVOSHOT_SELF_REVISION_MIN_CONF", "0.65"))
+            except Exception:
+                rev_min_conf = 0.65
+
+            meta = getattr(self.vault, "last_retrieval_meta", {}) or {}
+            max_sim = meta.get("max_sim")
+            try:
+                max_sim_f = float(max_sim) if max_sim is not None else None
+            except Exception:
+                max_sim_f = None
+
+            retrieval_failed = retrieval_k <= 0 or len(shots) == 0
+            low_sim = (max_sim_f is None) or (max_sim_f < rev_min_sim)
+            low_conf = float(student_out.model_confidence) < rev_min_conf
+
+            if gate in {"always", "on"}:
+                do_rev = True
+                reason = "always"
+            elif gate in {"low_sim"}:
+                do_rev = low_sim
+                reason = "low_sim"
+            elif gate in {"low_conf"}:
+                do_rev = low_conf
+                reason = "low_conf"
+            elif gate in {"fail", "retrieval_fail", "on_retrieval_fail"}:
+                do_rev = retrieval_failed
+                reason = "retrieval_fail"
+            elif gate in {"fail_or_low_sim", "retrieval_fail_or_low_sim"}:
+                do_rev = retrieval_failed or low_sim
+                reason = "fail_or_low_sim"
+            else:
+                do_rev = low_sim or low_conf
+                reason = "low_sim_or_low_conf"
+
+            trace["self_revision_enabled"] = True
+            trace["self_revision_gate"] = gate
+            trace["self_revision_min_sim"] = float(rev_min_sim)
+            trace["self_revision_min_conf"] = float(rev_min_conf)
+            trace["self_revision_triggered"] = bool(do_rev)
+
+            if do_rev:
+                try:
+                    draft = {
+                        "rationale": student_out.rationale,
+                        "scores": dict(student_out.scores),
+                        "model_confidence": float(student_out.model_confidence),
+                    }
+                    ve = getattr(student_out, "visual_evidence", None)
+                    if isinstance(ve, list) and ve:
+                        draft["visual_evidence"] = [str(x) for x in ve]
+                    draft_json = json.dumps(draft, ensure_ascii=False)
+                    revision_instruction = (
+                        "Self-Revision:\n"
+                        "You already produced a draft JSON. Now re-check the TARGET IMAGE carefully.\n"
+                        "Use the Observed Visual Evidence list (if provided). Do not invent facts.\n"
+                        "Fix any inconsistencies and output ONLY the final strict JSON.\n"
+                        f"Draft JSON: {draft_json}\n"
+                    )
+                    rev_rules = (rules_text or "").strip()
+                    if rev_rules:
+                        rev_rules = f"{rev_rules}\n\n{revision_instruction}"
+                    else:
+                        rev_rules = revision_instruction
+                    student_out_rev = self.student.predict(sample, shots, rules_text=rev_rules, evidence_text=evidence_text)
+                    student_out = student_out_rev
+                    trace["self_revision_reason"] = reason
+                    trace["student_scores_after_revision"] = dict(student_out.scores)
+                    trace["student_confidence_after_revision"] = float(student_out.model_confidence)
+                    trace["student_visual_evidence_after_revision"] = list(
+                        getattr(student_out, "visual_evidence", []) or []
+                    )
+                except Exception as e:
+                    trace["self_revision_error"] = str(e)
 
         if call_teacher:
             feedback = self.teacher.judge(sample, student_out)
@@ -755,6 +937,19 @@ class UrbanPipeline:
                 if disable_update:
                     logger.info("Vault update disabled; skipping add.")
                     trace["vault_added_id"] = None
+                    return trace
+
+                require_lesson = (os.getenv("EVOSHOT_VAULT_REQUIRE_LESSON") or "").strip().lower() in {
+                    "1",
+                    "true",
+                    "yes",
+                    "on",
+                }
+                lesson_for_gate = getattr(feedback, "lesson", None)
+                if require_lesson and not (isinstance(lesson_for_gate, str) and lesson_for_gate.strip()):
+                    logger.info("Vault add gated: missing lesson; skipping add.")
+                    trace["vault_added_id"] = None
+                    trace["vault_add_skipped_reason"] = "missing_lesson"
                     return trace
 
                 # Add a reusable "lesson" to the semantic RuleBank (frozen when vault updates are frozen).
@@ -795,6 +990,9 @@ class UrbanPipeline:
                     rationale=feedback.better_rationale,
                     scores=feedback.better_scores,
                     tier=1,  # Teacher 生成级
+                    evidence_facts=list(trace.get("evidence_facts") or [])
+                    if isinstance(trace.get("evidence_facts"), list)
+                    else None,
                 )
                 self.vault.add(new_ex)
                 trace["vault_added_id"] = new_ex.id

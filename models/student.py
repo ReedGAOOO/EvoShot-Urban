@@ -129,9 +129,18 @@ class HTTPStudentModel:
             return {"type": "image_url", "image_url": {"url": data_url}}
         return None
 
+    @staticmethod
+    def _visual_evidence_enabled() -> bool:
+        return (os.getenv("EVOSHOT_STUDENT_VISUAL_EVIDENCE") or "").strip().lower() in {
+            "1",
+            "true",
+            "yes",
+            "on",
+        }
+
     def _system_prompt(self) -> str:
         dims = ", ".join(self._score_dims)
-        return (
+        base = (
             "You are an intelligent urban environment analyzer.\n"
             f"You MUST extract scores from BOTH the image and the text: {dims}.\n"
             "Each score range: 1.0 to 5.0.\n\n"
@@ -140,6 +149,14 @@ class HTTPStudentModel:
             "Example:\n"
             '{"rationale":"...","scores":{"safety":3.5,"vibrancy":4.0,"cleanliness":2.5},"model_confidence":0.8}'
         )
+        if self._visual_evidence_enabled():
+            base += (
+                "\n\nYou MUST also include visual_evidence: an array of 3 short, concrete facts visible in the TARGET IMAGE.\n"
+                "The rationale MUST cite at least 2 items from visual_evidence.\n"
+                "Example:\n"
+                '{"visual_evidence":["...","...","..."],"rationale":"...","scores":{"safety":3.5,"vibrancy":4.0,"cleanliness":2.5},"model_confidence":0.8}'
+            )
+        return base
 
     def _repair_system_prompt(self) -> str:
         return (
@@ -150,6 +167,19 @@ class HTTPStudentModel:
 
     def _tools_spec(self) -> list[Dict[str, Any]]:
         props = {k: {"type": "number"} for k in self._score_dims}
+        required = ["rationale", "scores", "model_confidence"]
+        properties: Dict[str, Any] = {
+            "rationale": {"type": "string"},
+            "scores": {
+                "type": "object",
+                "properties": props,
+                "required": list(self._score_dims),
+            },
+            "model_confidence": {"type": "number"},
+        }
+        if self._visual_evidence_enabled():
+            properties["visual_evidence"] = {"type": "array", "items": {"type": "string"}}
+            required.append("visual_evidence")
         return [
             {
                 "type": "function",
@@ -158,16 +188,8 @@ class HTTPStudentModel:
                     "description": "Submit urban perception scores and rationale.",
                     "parameters": {
                         "type": "object",
-                        "properties": {
-                            "rationale": {"type": "string"},
-                            "scores": {
-                                "type": "object",
-                                "properties": props,
-                                "required": list(self._score_dims),
-                            },
-                            "model_confidence": {"type": "number"},
-                        },
-                        "required": ["rationale", "scores", "model_confidence"],
+                        "properties": properties,
+                        "required": required,
                     },
                 },
             }
@@ -246,6 +268,12 @@ class HTTPStudentModel:
                 "scores": getattr(ex, "scores", {}),
                 "model_confidence": 1.0,
             }
+            if self._visual_evidence_enabled():
+                ve = getattr(ex, "evidence_facts", None)
+                if isinstance(ve, list):
+                    expected["visual_evidence"] = [str(x).strip() for x in ve if str(x).strip()][:3]
+                else:
+                    expected["visual_evidence"] = []
             messages.append({"role": "assistant", "content": json.dumps(expected, ensure_ascii=False)})
 
         target_text = (
@@ -391,15 +419,31 @@ class HTTPStudentModel:
             conf_f = 0.5
         conf_f = max(0.0, min(1.0, conf_f))
 
-        return {"rationale": str(rationale), "scores": fixed_scores, "model_confidence": conf_f}
+        ve_raw = parsed.get("visual_evidence", parsed.get("visual", parsed.get("evidence", [])))
+        ve_list: list[str] = []
+        if isinstance(ve_raw, list):
+            ve_list = [str(x).strip() for x in ve_raw if str(x).strip()]
+        elif isinstance(ve_raw, str):
+            ve_list = [x.strip("- ").strip() for x in ve_raw.splitlines() if x.strip()]
+        ve_list = ve_list[:8]
+
+        return {
+            "rationale": str(rationale),
+            "scores": fixed_scores,
+            "model_confidence": conf_f,
+            "visual_evidence": ve_list,
+        }
 
     def _repair_to_json(self, *, raw_content: str) -> Dict[str, Any]:
-        schema_hint = (
-            "Return a single JSON object with keys:\n"
-            "- rationale: string\n"
-            "- scores: object with numeric keys safety, vibrancy, cleanliness (range 1.0-5.0)\n"
-            "- model_confidence: number in [0,1]\n"
-        )
+        schema_lines = [
+            "Return a single JSON object with keys:",
+            "- rationale: string",
+            "- scores: object with numeric keys safety, vibrancy, cleanliness (range 1.0-5.0)",
+            "- model_confidence: number in [0,1]",
+        ]
+        if self._visual_evidence_enabled():
+            schema_lines.insert(1, "- visual_evidence: array of 3 strings")
+        schema_hint = "\n".join(schema_lines) + "\n"
         repair_payload: Dict[str, Any] = {
             "model": self._repair_model,
             "messages": [

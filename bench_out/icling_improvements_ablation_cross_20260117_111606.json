@@ -1,0 +1,1557 @@
+{
+  "train_n": 8,
+  "test_n": 8,
+  "batch_seed": 42,
+  "seeds": [
+    42
+  ],
+  "filter_stats": {
+    "train_n": 8,
+    "selected": 8,
+    "pool_factor_start": 8,
+    "pool_factor_used": 8,
+    "attempts": 1,
+    "min_conf": 0.55
+  },
+  "train_images": [
+    "H:\\微博数据 - 副本\\images\\005ZH1yYgy1h3g3j2bhrnj33402c0qv5.jpg",
+    "H:\\微博数据 - 副本\\images\\0061MvFqgy1huuafqymdtj34mo334hdx.jpg",
+    "H:\\微博数据 - 副本\\images\\0064b1dhgy1h7mlkir24hj331c2a0kjm.jpg",
+    "H:\\微博数据 - 副本\\images\\006ox4pjgy1hyml8jvahoj32c0340kjm.jpg",
+    "H:\\微博数据 - 副本\\images\\560e3fe5gy1hd33c9fxpqj22o03k04qu.jpg",
+    "H:\\微博数据 - 副本\\images\\6b871f21gy1hzehxfm3vnj222p31n4qq.jpg",
+    "H:\\微博数据 - 副本\\images\\7aa0a0acgy1hc4a8vcsvuj235s2dcnpf.jpg",
+    "H:\\微博数据 - 副本\\images\\a1a45d35gy1hmmg77b66vj20u01400zl.jpg"
+  ],
+  "test_images": [
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_024441_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_029043_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_047629_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_056361_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000010_000019_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000093_000019_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000099_000019_leftImg8bit.png",
+    "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000107_000019_leftImg8bit.png"
+  ],
+  "phases": [
+    "baseline_trunk",
+    "shot_min_sim_0.68",
+    "shots_grounding_first",
+    "student_visual_evidence",
+    "self_revision_low_sim_or_low_conf",
+    "rulebank_gate_fail_or_low_sim",
+    "combo_all"
+  ],
+  "include_strict_vault": false,
+  "seed_payloads": [
+    {
+      "seed": 42,
+      "train_summary": {
+        "n": 8,
+        "avg_teacher_score": 0.7725,
+        "pass_rate_ge_0_8": 0.5,
+        "add_rate_should_add": 0.5,
+        "avg_retrieval_max_sim": 0.6195165030658245,
+        "evidence_use_rate": 0.0,
+        "rulebank_injected_rate": null,
+        "shots_dropped_rate": null,
+        "self_revision_rate": null,
+        "avg_seconds": 38.983489125967026
+      },
+      "summaries_by_phase": {
+        "train_updates_on": {
+          "train": {
+            "n": 8,
+            "avg_teacher_score": 0.7725,
+            "pass_rate_ge_0_8": 0.5,
+            "add_rate_should_add": 0.5,
+            "avg_retrieval_max_sim": 0.6195165030658245,
+            "evidence_use_rate": 0.0,
+            "rulebank_injected_rate": null,
+            "shots_dropped_rate": null,
+            "self_revision_rate": null,
+            "avg_seconds": 38.983489125967026
+          }
+        },
+        "baseline_trunk": {
+          "test": {
+            "n": 8,
+            "avg_teacher_score": 0.75,
+            "pass_rate_ge_0_8": 0.25,
+            "add_rate_should_add": 0.875,
+            "avg_retrieval_max_sim": 0.689121775329113,
+            "evidence_use_rate": 0.375,
+            "rulebank_injected_rate": 1.0,
+            "shots_dropped_rate": null,
+            "self_revision_rate": null,
+            "avg_seconds": 40.363316267728806
+          }
+        },
+        "shot_min_sim_0.68": {
+          "test": {
+            "n": 8,
+            "avg_teacher_score": 0.75875,
+            "pass_rate_ge_0_8": 0.25,
+            "add_rate_should_add": 0.875,
+            "avg_retrieval_max_sim": 0.689121775329113,
+            "evidence_use_rate": 0.375,
+            "rulebank_injected_rate": 1.0,
+            "shots_dropped_rate": 0.375,
+            "self_revision_rate": null,
+            "avg_seconds": 32.5288969874382
+          }
+        },
+        "shots_grounding_first": {
+          "test": {
+            "n": 8,
+            "avg_teacher_score": 0.7071428571428572,
+            "pass_rate_ge_0_8": 0.42857142857142855,
+            "add_rate_should_add": 0.7142857142857143,
+            "avg_retrieval_max_sim": 0.689121775329113,
+            "evidence_use_rate": 0.375,
+            "rulebank_injected_rate": 1.0,
+            "shots_dropped_rate": null,
+            "self_revision_rate": null,
+            "avg_seconds": 41.21839329600334
+          }
+        },
+        "student_visual_evidence": {
+          "test": {
+            "n": 8,
+            "avg_teacher_score": 0.65,
+            "pass_rate_ge_0_8": 0.0,
+            "add_rate_should_add": 1.0,
+            "avg_retrieval_max_sim": 0.689121775329113,
+            "evidence_use_rate": 0.375,
+            "rulebank_injected_rate": 1.0,
+            "shots_dropped_rate": null,
+            "self_revision_rate": null,
+            "avg_seconds": 20.486874848604202
+          }
+        },
+        "self_revision_low_sim_or_low_conf": {
+          "test": {
+            "n": 8,
+            "avg_teacher_score": null,
+            "pass_rate_ge_0_8": null,
+            "add_rate_should_add": null,
+            "avg_retrieval_max_sim": 0.689121775329113,
+            "evidence_use_rate": 0.375,
+            "rulebank_injected_rate": 1.0,
+            "shots_dropped_rate": null,
+            "self_revision_rate": null,
+            "avg_seconds": 21.086909741163254
+          }
+        },
+        "rulebank_gate_fail_or_low_sim": {
+          "test": {
+            "n": 8,
+            "avg_teacher_score": null,
+            "pass_rate_ge_0_8": null,
+            "add_rate_should_add": null,
+            "avg_retrieval_max_sim": 0.689121775329113,
+            "evidence_use_rate": 0.375,
+            "rulebank_injected_rate": 0.375,
+            "shots_dropped_rate": null,
+            "self_revision_rate": null,
+            "avg_seconds": 21.075721085071564
+          }
+        },
+        "combo_all": {
+          "test": {
+            "n": 8,
+            "avg_teacher_score": null,
+            "pass_rate_ge_0_8": null,
+            "add_rate_should_add": null,
+            "avg_retrieval_max_sim": 0.689121775329113,
+            "evidence_use_rate": 0.375,
+            "rulebank_injected_rate": 0.375,
+            "shots_dropped_rate": 0.375,
+            "self_revision_rate": null,
+            "avg_seconds": 21.089361160993576
+          }
+        }
+      },
+      "strict_vault": null
+    }
+  ],
+  "aggregate": {
+    "baseline_trunk_test": {
+      "phase": "baseline_trunk",
+      "split": "test",
+      "n_seeds": 1,
+      "avg_teacher_score_mean": 0.75,
+      "avg_teacher_score_stdev": null
+    },
+    "shot_min_sim_0.68_test": {
+      "phase": "shot_min_sim_0.68",
+      "split": "test",
+      "n_seeds": 1,
+      "avg_teacher_score_mean": 0.75875,
+      "avg_teacher_score_stdev": null
+    },
+    "shots_grounding_first_test": {
+      "phase": "shots_grounding_first",
+      "split": "test",
+      "n_seeds": 1,
+      "avg_teacher_score_mean": 0.7071428571428572,
+      "avg_teacher_score_stdev": null
+    },
+    "student_visual_evidence_test": {
+      "phase": "student_visual_evidence",
+      "split": "test",
+      "n_seeds": 1,
+      "avg_teacher_score_mean": 0.65,
+      "avg_teacher_score_stdev": null
+    },
+    "self_revision_low_sim_or_low_conf_test": {
+      "phase": "self_revision_low_sim_or_low_conf",
+      "split": "test",
+      "n_seeds": 1,
+      "avg_teacher_score_mean": null,
+      "avg_teacher_score_stdev": null
+    },
+    "rulebank_gate_fail_or_low_sim_test": {
+      "phase": "rulebank_gate_fail_or_low_sim",
+      "split": "test",
+      "n_seeds": 1,
+      "avg_teacher_score_mean": null,
+      "avg_teacher_score_stdev": null
+    },
+    "combo_all_test": {
+      "phase": "combo_all",
+      "split": "test",
+      "n_seeds": 1,
+      "avg_teacher_score_mean": null,
+      "avg_teacher_score_stdev": null
+    }
+  },
+  "rows": [
+    {
+      "seed": 42,
+      "phase": "train_updates_on",
+      "split": "train",
+      "sample_id": "train_s42_1",
+      "image_path": "H:\\微博数据 - 副本\\images\\005ZH1yYgy1h3g3j2bhrnj33402c0qv5.jpg",
+      "teacher_score": 0.85,
+      "teacher_should_add": false,
+      "retrieval_max_sim": 0.3766503632068634,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "rules_used": 0,
+      "rulebank_injected": null,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 27.89890742301941,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "train_updates_on",
+      "split": "train",
+      "sample_id": "train_s42_2",
+      "image_path": "H:\\微博数据 - 副本\\images\\0061MvFqgy1huuafqymdtj34mo334hdx.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.4287545084953308,
+      "retrieved_ids": [
+        "seed_001",
+        "seed_003"
+      ],
+      "rules_used": 0,
+      "rulebank_injected": null,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 42.71366310119629,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "train_updates_on",
+      "split": "train",
+      "sample_id": "train_s42_3",
+      "image_path": "H:\\微博数据 - 副本\\images\\0064b1dhgy1h7mlkir24hj331c2a0kjm.jpg",
+      "teacher_score": 0.88,
+      "teacher_should_add": false,
+      "retrieval_max_sim": 0.683051347732544,
+      "retrieved_ids": [
+        "train_s42_2",
+        "seed_001"
+      ],
+      "rules_used": 0,
+      "rulebank_injected": null,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 41.12609028816223,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "train_updates_on",
+      "split": "train",
+      "sample_id": "train_s42_4",
+      "image_path": "H:\\微博数据 - 副本\\images\\006ox4pjgy1hyml8jvahoj32c0340kjm.jpg",
+      "teacher_score": 0.85,
+      "teacher_should_add": false,
+      "retrieval_max_sim": 0.7026706337928772,
+      "retrieved_ids": [
+        "train_s42_2",
+        "seed_003"
+      ],
+      "rules_used": 0,
+      "rulebank_injected": null,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 34.00187587738037,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "train_updates_on",
+      "split": "train",
+      "sample_id": "train_s42_5",
+      "image_path": "H:\\微博数据 - 副本\\images\\560e3fe5gy1hd33c9fxpqj22o03k04qu.jpg",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.5962755680084229,
+      "retrieved_ids": [
+        "train_s42_2",
+        "seed_001"
+      ],
+      "rules_used": 0,
+      "rulebank_injected": null,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 40.62700891494751,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "train_updates_on",
+      "split": "train",
+      "sample_id": "train_s42_6",
+      "image_path": "H:\\微博数据 - 副本\\images\\6b871f21gy1hzehxfm3vnj222p31n4qq.jpg",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.6926908493041992,
+      "retrieved_ids": [
+        "train_s42_2",
+        "train_s42_5"
+      ],
+      "rules_used": 0,
+      "rulebank_injected": null,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 46.81562352180481,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "train_updates_on",
+      "split": "train",
+      "sample_id": "train_s42_7",
+      "image_path": "H:\\微博数据 - 副本\\images\\7aa0a0acgy1hc4a8vcsvuj235s2dcnpf.jpg",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.7679892182350159,
+      "retrieved_ids": [
+        "train_s42_6",
+        "train_s42_2"
+      ],
+      "rules_used": 0,
+      "rulebank_injected": null,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 39.195213317871094,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "train_updates_on",
+      "split": "train",
+      "sample_id": "train_s42_8",
+      "image_path": "H:\\微博数据 - 副本\\images\\a1a45d35gy1hmmg77b66vj20u01400zl.jpg",
+      "teacher_score": 0.85,
+      "teacher_should_add": false,
+      "retrieval_max_sim": 0.7080495357513428,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 0,
+      "rulebank_injected": null,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 39.48953056335449,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "baseline_trunk",
+      "split": "test",
+      "sample_id": "test_baseline_trunk_s42_1",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_024441_leftImg8bit.png",
+      "teacher_score": 0.85,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.7366749048233032,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 51.05205965042114,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "baseline_trunk",
+      "split": "test",
+      "sample_id": "test_baseline_trunk_s42_2",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_029043_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.6897971630096436,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 31.294368743896484,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "baseline_trunk",
+      "split": "test",
+      "sample_id": "test_baseline_trunk_s42_3",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_047629_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.7258102893829346,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 30.66844868659973,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "baseline_trunk",
+      "split": "test",
+      "sample_id": "test_baseline_trunk_s42_4",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_056361_leftImg8bit.png",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.7579293251037598,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 39.7852783203125,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "baseline_trunk",
+      "split": "test",
+      "sample_id": "test_baseline_trunk_s42_5",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000010_000019_leftImg8bit.png",
+      "teacher_score": 0.85,
+      "teacher_should_add": false,
+      "retrieval_max_sim": 0.7426515817642212,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 35.14281249046326,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "baseline_trunk",
+      "split": "test",
+      "sample_id": "test_baseline_trunk_s42_6",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000093_000019_leftImg8bit.png",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.5985414981842041,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 7,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 44.80400276184082,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "baseline_trunk",
+      "split": "test",
+      "sample_id": "test_baseline_trunk_s42_7",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000099_000019_leftImg8bit.png",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.6253872513771057,
+      "retrieved_ids": [
+        "train_s42_6",
+        "train_s42_7"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 7,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 45.484511375427246,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "baseline_trunk",
+      "split": "test",
+      "sample_id": "test_baseline_trunk_s42_8",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000107_000019_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.6361821889877319,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 8,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 44.67504811286926,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "shot_min_sim_0.68",
+      "split": "test",
+      "sample_id": "test_shot_min_sim_0.68_s42_1",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_024441_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.7366749048233032,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": false,
+      "self_revision_triggered": null,
+      "seconds": 39.077226638793945,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "shot_min_sim_0.68",
+      "split": "test",
+      "sample_id": "test_shot_min_sim_0.68_s42_2",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_029043_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.6897971630096436,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": false,
+      "self_revision_triggered": null,
+      "seconds": 26.733655214309692,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "shot_min_sim_0.68",
+      "split": "test",
+      "sample_id": "test_shot_min_sim_0.68_s42_3",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_047629_leftImg8bit.png",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.7258102893829346,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": false,
+      "self_revision_triggered": null,
+      "seconds": 26.506704092025757,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "shot_min_sim_0.68",
+      "split": "test",
+      "sample_id": "test_shot_min_sim_0.68_s42_4",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_056361_leftImg8bit.png",
+      "teacher_score": 0.92,
+      "teacher_should_add": false,
+      "retrieval_max_sim": 0.7579293251037598,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": false,
+      "self_revision_triggered": null,
+      "seconds": 29.38676381111145,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "shot_min_sim_0.68",
+      "split": "test",
+      "sample_id": "test_shot_min_sim_0.68_s42_5",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000010_000019_leftImg8bit.png",
+      "teacher_score": 0.75,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.7426515817642212,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": false,
+      "self_revision_triggered": null,
+      "seconds": 31.63851761817932,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "shot_min_sim_0.68",
+      "split": "test",
+      "sample_id": "test_shot_min_sim_0.68_s42_6",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000093_000019_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.5985414981842041,
+      "retrieved_ids": [],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 7,
+      "shots_dropped": true,
+      "self_revision_triggered": null,
+      "seconds": 39.4000780582428,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "shot_min_sim_0.68",
+      "split": "test",
+      "sample_id": "test_shot_min_sim_0.68_s42_7",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000099_000019_leftImg8bit.png",
+      "teacher_score": 0.85,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.6253872513771057,
+      "retrieved_ids": [],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 7,
+      "shots_dropped": true,
+      "self_revision_triggered": null,
+      "seconds": 29.31325125694275,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "shot_min_sim_0.68",
+      "split": "test",
+      "sample_id": "test_shot_min_sim_0.68_s42_8",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000107_000019_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.6361821889877319,
+      "retrieved_ids": [],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 8,
+      "shots_dropped": true,
+      "self_revision_triggered": null,
+      "seconds": 38.1749792098999,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "shots_grounding_first",
+      "split": "test",
+      "sample_id": "test_shots_grounding_first_s42_1",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_024441_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.7366749048233032,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 22.251771450042725,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "shots_grounding_first",
+      "split": "test",
+      "sample_id": "test_shots_grounding_first_s42_2",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_029043_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.6897971630096436,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 33.12340426445007,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "shots_grounding_first",
+      "split": "test",
+      "sample_id": "test_shots_grounding_first_s42_3",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_047629_leftImg8bit.png",
+      "teacher_score": 0.4,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.7258102893829346,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 22.16646432876587,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "shots_grounding_first",
+      "split": "test",
+      "sample_id": "test_shots_grounding_first_s42_4",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_056361_leftImg8bit.png",
+      "teacher_score": 0.85,
+      "teacher_should_add": false,
+      "retrieval_max_sim": 0.7579293251037598,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 32.5161030292511,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "shots_grounding_first",
+      "split": "test",
+      "sample_id": "test_shots_grounding_first_s42_5",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000010_000019_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.7426515817642212,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 46.932785511016846,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "shots_grounding_first",
+      "split": "test",
+      "sample_id": "test_shots_grounding_first_s42_6",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000093_000019_leftImg8bit.png",
+      "teacher_score": 0.85,
+      "teacher_should_add": false,
+      "retrieval_max_sim": 0.5985414981842041,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 7,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 77.91346144676208,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "shots_grounding_first",
+      "split": "test",
+      "sample_id": "test_shots_grounding_first_s42_7",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000099_000019_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.6253872513771057,
+      "retrieved_ids": [
+        "train_s42_6",
+        "train_s42_7"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 7,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 61.468080043792725,
+      "error": "student_failed: Failed to parse JSON from: <think>\\nOkay, let's tackle this problem step by step. The user wants me to convert the given text into a strict JSON object with specific keys: rationale, scores (safety, vibrancy, cleanliness), and m..."
+    },
+    {
+      "seed": 42,
+      "phase": "shots_grounding_first",
+      "split": "test",
+      "sample_id": "test_shots_grounding_first_s42_8",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000107_000019_leftImg8bit.png",
+      "teacher_score": 0.85,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.6361821889877319,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 8,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 33.37507629394531,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "student_visual_evidence",
+      "split": "test",
+      "sample_id": "test_student_visual_evidence_s42_1",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_024441_leftImg8bit.png",
+      "teacher_score": 0.6,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.7366749048233032,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 17.30178689956665,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "student_visual_evidence",
+      "split": "test",
+      "sample_id": "test_student_visual_evidence_s42_2",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_029043_leftImg8bit.png",
+      "teacher_score": 0.7,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.6897971630096436,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 22.77397608757019,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "student_visual_evidence",
+      "split": "test",
+      "sample_id": "test_student_visual_evidence_s42_3",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_047629_leftImg8bit.png",
+      "teacher_score": 0.65,
+      "teacher_should_add": true,
+      "retrieval_max_sim": 0.7258102893829346,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 18.385602235794067,
+      "error": null
+    },
+    {
+      "seed": 42,
+      "phase": "student_visual_evidence",
+      "split": "test",
+      "sample_id": "test_student_visual_evidence_s42_4",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_056361_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.7579293251037598,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 21.071937799453735,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "student_visual_evidence",
+      "split": "test",
+      "sample_id": "test_student_visual_evidence_s42_5",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000010_000019_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.7426515817642212,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 21.101910829544067,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "student_visual_evidence",
+      "split": "test",
+      "sample_id": "test_student_visual_evidence_s42_6",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000093_000019_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.5985414981842041,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 7,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 21.075012922286987,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "student_visual_evidence",
+      "split": "test",
+      "sample_id": "test_student_visual_evidence_s42_7",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000099_000019_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.6253872513771057,
+      "retrieved_ids": [
+        "train_s42_6",
+        "train_s42_7"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 7,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 21.094640016555786,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "student_visual_evidence",
+      "split": "test",
+      "sample_id": "test_student_visual_evidence_s42_8",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000107_000019_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.6361821889877319,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 8,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 21.090131998062134,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "self_revision_low_sim_or_low_conf",
+      "split": "test",
+      "sample_id": "test_self_revision_low_sim_or_low_conf_s42_1",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_024441_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.7366749048233032,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 21.070135593414307,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "self_revision_low_sim_or_low_conf",
+      "split": "test",
+      "sample_id": "test_self_revision_low_sim_or_low_conf_s42_2",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_029043_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.6897971630096436,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 21.07823348045349,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "self_revision_low_sim_or_low_conf",
+      "split": "test",
+      "sample_id": "test_self_revision_low_sim_or_low_conf_s42_3",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_047629_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.7258102893829346,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 21.073948621749878,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "self_revision_low_sim_or_low_conf",
+      "split": "test",
+      "sample_id": "test_self_revision_low_sim_or_low_conf_s42_4",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_056361_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.7579293251037598,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 21.097309589385986,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "self_revision_low_sim_or_low_conf",
+      "split": "test",
+      "sample_id": "test_self_revision_low_sim_or_low_conf_s42_5",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000010_000019_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.7426515817642212,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 21.09383225440979,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "self_revision_low_sim_or_low_conf",
+      "split": "test",
+      "sample_id": "test_self_revision_low_sim_or_low_conf_s42_6",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000093_000019_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.5985414981842041,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 7,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 21.094677925109863,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "self_revision_low_sim_or_low_conf",
+      "split": "test",
+      "sample_id": "test_self_revision_low_sim_or_low_conf_s42_7",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000099_000019_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.6253872513771057,
+      "retrieved_ids": [
+        "train_s42_6",
+        "train_s42_7"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 7,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 21.103145122528076,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "self_revision_low_sim_or_low_conf",
+      "split": "test",
+      "sample_id": "test_self_revision_low_sim_or_low_conf_s42_8",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000107_000019_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.6361821889877319,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 8,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 21.08399534225464,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "rulebank_gate_fail_or_low_sim",
+      "split": "test",
+      "sample_id": "test_rulebank_gate_fail_or_low_sim_s42_1",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_024441_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.7366749048233032,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 0,
+      "rulebank_injected": false,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 21.07329297065735,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "rulebank_gate_fail_or_low_sim",
+      "split": "test",
+      "sample_id": "test_rulebank_gate_fail_or_low_sim_s42_2",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_029043_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.6897971630096436,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 0,
+      "rulebank_injected": false,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 21.088293075561523,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "rulebank_gate_fail_or_low_sim",
+      "split": "test",
+      "sample_id": "test_rulebank_gate_fail_or_low_sim_s42_3",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_047629_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.7258102893829346,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 0,
+      "rulebank_injected": false,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 21.05524182319641,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "rulebank_gate_fail_or_low_sim",
+      "split": "test",
+      "sample_id": "test_rulebank_gate_fail_or_low_sim_s42_4",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_056361_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.7579293251037598,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 0,
+      "rulebank_injected": false,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 21.085457801818848,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "rulebank_gate_fail_or_low_sim",
+      "split": "test",
+      "sample_id": "test_rulebank_gate_fail_or_low_sim_s42_5",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000010_000019_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.7426515817642212,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 0,
+      "rulebank_injected": false,
+      "evidence_facts": 0,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 21.063236474990845,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "rulebank_gate_fail_or_low_sim",
+      "split": "test",
+      "sample_id": "test_rulebank_gate_fail_or_low_sim_s42_6",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000093_000019_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.5985414981842041,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 7,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 21.059266805648804,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "rulebank_gate_fail_or_low_sim",
+      "split": "test",
+      "sample_id": "test_rulebank_gate_fail_or_low_sim_s42_7",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000099_000019_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.6253872513771057,
+      "retrieved_ids": [
+        "train_s42_6",
+        "train_s42_7"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 7,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 21.078824043273926,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "rulebank_gate_fail_or_low_sim",
+      "split": "test",
+      "sample_id": "test_rulebank_gate_fail_or_low_sim_s42_8",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000107_000019_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.6361821889877319,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 8,
+      "shots_dropped": null,
+      "self_revision_triggered": null,
+      "seconds": 21.102155685424805,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "combo_all",
+      "split": "test",
+      "sample_id": "test_combo_all_s42_1",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_024441_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.7366749048233032,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 0,
+      "rulebank_injected": false,
+      "evidence_facts": 0,
+      "shots_dropped": false,
+      "self_revision_triggered": null,
+      "seconds": 21.10080361366272,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "combo_all",
+      "split": "test",
+      "sample_id": "test_combo_all_s42_2",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_029043_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.6897971630096436,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 0,
+      "rulebank_injected": false,
+      "evidence_facts": 0,
+      "shots_dropped": false,
+      "self_revision_triggered": null,
+      "seconds": 21.094631671905518,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "combo_all",
+      "split": "test",
+      "sample_id": "test_combo_all_s42_3",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_047629_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.7258102893829346,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 0,
+      "rulebank_injected": false,
+      "evidence_facts": 0,
+      "shots_dropped": false,
+      "self_revision_triggered": null,
+      "seconds": 21.0786030292511,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "combo_all",
+      "split": "test",
+      "sample_id": "test_combo_all_s42_4",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\hanover\\hanover_000000_056361_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.7579293251037598,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 0,
+      "rulebank_injected": false,
+      "evidence_facts": 0,
+      "shots_dropped": false,
+      "self_revision_triggered": null,
+      "seconds": 21.08759903907776,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "combo_all",
+      "split": "test",
+      "sample_id": "test_combo_all_s42_5",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000010_000019_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.7426515817642212,
+      "retrieved_ids": [
+        "train_s42_7",
+        "train_s42_6"
+      ],
+      "rules_used": 0,
+      "rulebank_injected": false,
+      "evidence_facts": 0,
+      "shots_dropped": false,
+      "self_revision_triggered": null,
+      "seconds": 21.085676670074463,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "combo_all",
+      "split": "test",
+      "sample_id": "test_combo_all_s42_6",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000093_000019_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.5985414981842041,
+      "retrieved_ids": [],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 7,
+      "shots_dropped": true,
+      "self_revision_triggered": null,
+      "seconds": 21.094270944595337,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "combo_all",
+      "split": "test",
+      "sample_id": "test_combo_all_s42_7",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000099_000019_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.6253872513771057,
+      "retrieved_ids": [],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 7,
+      "shots_dropped": true,
+      "self_revision_triggered": null,
+      "seconds": 21.090373516082764,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    },
+    {
+      "seed": 42,
+      "phase": "combo_all",
+      "split": "test",
+      "sample_id": "test_combo_all_s42_8",
+      "image_path": "H:\\leftImg8bit_trainvaltest\\leftImg8bit\\train\\aachen\\aachen_000107_000019_leftImg8bit.png",
+      "teacher_score": null,
+      "teacher_should_add": null,
+      "retrieval_max_sim": 0.6361821889877319,
+      "retrieved_ids": [],
+      "rules_used": 4,
+      "rulebank_injected": true,
+      "evidence_facts": 8,
+      "shots_dropped": true,
+      "self_revision_triggered": null,
+      "seconds": 21.08293080329895,
+      "error": "student_failed: <urlopen error [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。>"
+    }
+  ]
+}

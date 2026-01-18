@@ -1,0 +1,427 @@
+{
+  "train_n": 8,
+  "test_n": 16,
+  "batch_seed": 42,
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "completed_seeds": [
+    42,
+    43,
+    44
+  ],
+  "filter_stats": {
+    "train_n": 8,
+    "selected": 8,
+    "pool_factor_start": 8,
+    "pool_factor_used": 8,
+    "attempts": 1,
+    "min_conf": 0.55
+  },
+  "phases": [
+    "baseline_trunk",
+    "shot_min_sim_0.68",
+    "shots_grounding_first",
+    "student_visual_evidence",
+    "self_revision_low_sim_or_low_conf",
+    "rulebank_gate_fail_or_low_sim",
+    "combo_all"
+  ],
+  "include_strict_vault": false,
+  "seed_payloads": [
+    {
+      "seed": 42,
+      "train_summary": {
+        "n": 8,
+        "avg_teacher_score": 0.74375,
+        "pass_rate_ge_0_8": 0.375,
+        "add_rate_should_add": 0.625,
+        "avg_retrieval_max_sim": 0.6459975056350231,
+        "evidence_use_rate": 0.0,
+        "rulebank_injected_rate": null,
+        "shots_dropped_rate": null,
+        "self_revision_rate": null,
+        "avg_seconds": 43.09876197576523
+      },
+      "summaries_by_phase": {
+        "train_updates_on": {
+          "train": {
+            "n": 8,
+            "avg_teacher_score": 0.74375,
+            "pass_rate_ge_0_8": 0.375,
+            "add_rate_should_add": 0.625,
+            "avg_retrieval_max_sim": 0.6459975056350231,
+            "evidence_use_rate": 0.0,
+            "rulebank_injected_rate": null,
+            "shots_dropped_rate": null,
+            "self_revision_rate": null,
+            "avg_seconds": 43.09876197576523
+          }
+        },
+        "baseline_trunk": {
+          "test": {
+            "n": 16,
+            "avg_teacher_score": 0.721875,
+            "pass_rate_ge_0_8": 0.3125,
+            "add_rate_should_add": 0.6875,
+            "avg_retrieval_max_sim": 0.6255455948412418,
+            "evidence_use_rate": 0.875,
+            "rulebank_injected_rate": 1.0,
+            "shots_dropped_rate": null,
+            "self_revision_rate": null,
+            "avg_seconds": 49.69348703324795
+          }
+        },
+        "shot_min_sim_0.68": {
+          "test": {
+            "n": 16,
+            "avg_teacher_score": 0.684375,
+            "pass_rate_ge_0_8": 0.1875,
+            "add_rate_should_add": 0.875,
+            "avg_retrieval_max_sim": 0.6255455948412418,
+            "evidence_use_rate": 0.875,
+            "rulebank_injected_rate": 1.0,
+            "shots_dropped_rate": 0.875,
+            "self_revision_rate": null,
+            "avg_seconds": 32.88188260793686
+          }
+        },
+        "shots_grounding_first": {
+          "test": {
+            "n": 16,
+            "avg_teacher_score": 0.665625,
+            "pass_rate_ge_0_8": 0.1875,
+            "add_rate_should_add": 0.8125,
+            "avg_retrieval_max_sim": 0.6255455948412418,
+            "evidence_use_rate": 0.875,
+            "rulebank_injected_rate": 1.0,
+            "shots_dropped_rate": null,
+            "self_revision_rate": null,
+            "avg_seconds": 35.74236112833023
+          }
+        },
+        "student_visual_evidence": {
+          "test": {
+            "n": 16,
+            "avg_teacher_score": 0.608125,
+            "pass_rate_ge_0_8": 0.0625,
+            "add_rate_should_add": 0.875,
+            "avg_retrieval_max_sim": 0.6255455948412418,
+            "evidence_use_rate": 0.875,
+            "rulebank_injected_rate": 1.0,
+            "shots_dropped_rate": null,
+            "self_revision_rate": null,
+            "avg_seconds": 33.861503571271896
+          }
+        },
+        "self_revision_low_sim_or_low_conf": {
+          "test": {
+            "n": 16,
+            "avg_teacher_score": 0.709375,
+            "pass_rate_ge_0_8": 0.1875,
+            "add_rate_should_add": 0.8125,
+            "avg_retrieval_max_sim": 0.6255455948412418,
+            "evidence_use_rate": 0.875,
+            "rulebank_injected_rate": 1.0,
+            "shots_dropped_rate": null,
+            "self_revision_rate": 0.875,
+            "avg_seconds": 43.64903710782528
+          }
+        },
+        "rulebank_gate_fail_or_low_sim": {
+          "test": {
+            "n": 16,
+            "avg_teacher_score": 0.73,
+            "pass_rate_ge_0_8": 0.3125,
+            "add_rate_should_add": 0.6875,
+            "avg_retrieval_max_sim": 0.6255455948412418,
+            "evidence_use_rate": 0.875,
+            "rulebank_injected_rate": 0.875,
+            "shots_dropped_rate": null,
+            "self_revision_rate": null,
+            "avg_seconds": 39.52555099129677
+          }
+        },
+        "combo_all": {
+          "test": {
+            "n": 16,
+            "avg_teacher_score": 0.6125,
+            "pass_rate_ge_0_8": 0.125,
+            "add_rate_should_add": 0.875,
+            "avg_retrieval_max_sim": 0.6255455948412418,
+            "evidence_use_rate": 0.875,
+            "rulebank_injected_rate": 0.875,
+            "shots_dropped_rate": 0.875,
+            "self_revision_rate": 0.875,
+            "avg_seconds": 40.19289906322956
+          }
+        }
+      },
+      "strict_vault": null
+    },
+    {
+      "seed": 43,
+      "train_summary": {
+        "n": 8,
+        "avg_teacher_score": 0.7787499999999999,
+        "pass_rate_ge_0_8": 0.5,
+        "add_rate_should_add": 0.625,
+        "avg_retrieval_max_sim": 0.6483782343566418,
+        "evidence_use_rate": 0.0,
+        "rulebank_injected_rate": null,
+        "shots_dropped_rate": null,
+        "self_revision_rate": null,
+        "avg_seconds": 46.30377924442291
+      },
+      "summaries_by_phase": {
+        "train_updates_on": {
+          "train": {
+            "n": 8,
+            "avg_teacher_score": 0.7787499999999999,
+            "pass_rate_ge_0_8": 0.5,
+            "add_rate_should_add": 0.625,
+            "avg_retrieval_max_sim": 0.6483782343566418,
+            "evidence_use_rate": 0.0,
+            "rulebank_injected_rate": null,
+            "shots_dropped_rate": null,
+            "self_revision_rate": null,
+            "avg_seconds": 46.30377924442291
+          }
+        },
+        "baseline_trunk": {
+          "test": {
+            "n": 16,
+            "avg_teacher_score": 0.714375,
+            "pass_rate_ge_0_8": 0.25,
+            "add_rate_should_add": 0.75,
+            "avg_retrieval_max_sim": 0.6773229762911797,
+            "evidence_use_rate": 0.4375,
+            "rulebank_injected_rate": 1.0,
+            "shots_dropped_rate": null,
+            "self_revision_rate": null,
+            "avg_seconds": 38.95831660926342
+          }
+        },
+        "shot_min_sim_0.68": {
+          "test": {
+            "n": 16,
+            "avg_teacher_score": 0.689375,
+            "pass_rate_ge_0_8": 0.25,
+            "add_rate_should_add": 0.75,
+            "avg_retrieval_max_sim": 0.6773229762911797,
+            "evidence_use_rate": 0.4375,
+            "rulebank_injected_rate": 1.0,
+            "shots_dropped_rate": 0.4375,
+            "self_revision_rate": null,
+            "avg_seconds": 31.767089441418648
+          }
+        },
+        "shots_grounding_first": {
+          "test": {
+            "n": 16,
+            "avg_teacher_score": 0.725,
+            "pass_rate_ge_0_8": 0.0625,
+            "add_rate_should_add": 0.9375,
+            "avg_retrieval_max_sim": 0.6773229762911797,
+            "evidence_use_rate": 0.4375,
+            "rulebank_injected_rate": 1.0,
+            "shots_dropped_rate": null,
+            "self_revision_rate": null,
+            "avg_seconds": 33.886867716908455
+          }
+        },
+        "student_visual_evidence": {
+          "test": {
+            "n": 16,
+            "avg_teacher_score": 0.641875,
+            "pass_rate_ge_0_8": 0.0625,
+            "add_rate_should_add": 0.9375,
+            "avg_retrieval_max_sim": 0.6773229762911797,
+            "evidence_use_rate": 0.4375,
+            "rulebank_injected_rate": 1.0,
+            "shots_dropped_rate": null,
+            "self_revision_rate": null,
+            "avg_seconds": 37.21001982688904
+          }
+        },
+        "self_revision_low_sim_or_low_conf": {
+          "test": {
+            "n": 16,
+            "avg_teacher_score": 0.67375,
+            "pass_rate_ge_0_8": 0.0625,
+            "add_rate_should_add": 1.0,
+            "avg_retrieval_max_sim": 0.6773229762911797,
+            "evidence_use_rate": 0.4375,
+            "rulebank_injected_rate": 1.0,
+            "shots_dropped_rate": null,
+            "self_revision_rate": 0.4375,
+            "avg_seconds": 41.58544020354748
+          }
+        },
+        "rulebank_gate_fail_or_low_sim": {
+          "test": {
+            "n": 16,
+            "avg_teacher_score": 0.67125,
+            "pass_rate_ge_0_8": 0.25,
+            "add_rate_should_add": 0.75,
+            "avg_retrieval_max_sim": 0.6773229762911797,
+            "evidence_use_rate": 0.4375,
+            "rulebank_injected_rate": 0.4375,
+            "shots_dropped_rate": null,
+            "self_revision_rate": null,
+            "avg_seconds": 33.71346874535084
+          }
+        },
+        "combo_all": {
+          "test": {
+            "n": 16,
+            "avg_teacher_score": 0.63125,
+            "pass_rate_ge_0_8": 0.0625,
+            "add_rate_should_add": 0.9375,
+            "avg_retrieval_max_sim": 0.6773229762911797,
+            "evidence_use_rate": 0.4375,
+            "rulebank_injected_rate": 0.4375,
+            "shots_dropped_rate": 0.4375,
+            "self_revision_rate": 0.4375,
+            "avg_seconds": 36.58722458779812
+          }
+        }
+      },
+      "strict_vault": null
+    },
+    {
+      "seed": 44,
+      "train_summary": {
+        "n": 8,
+        "avg_teacher_score": 0.74,
+        "pass_rate_ge_0_8": 0.375,
+        "add_rate_should_add": 0.625,
+        "avg_retrieval_max_sim": 0.6087532006204128,
+        "evidence_use_rate": 0.0,
+        "rulebank_injected_rate": null,
+        "shots_dropped_rate": null,
+        "self_revision_rate": null,
+        "avg_seconds": 42.211390286684036
+      },
+      "summaries_by_phase": {
+        "train_updates_on": {
+          "train": {
+            "n": 8,
+            "avg_teacher_score": 0.74,
+            "pass_rate_ge_0_8": 0.375,
+            "add_rate_should_add": 0.625,
+            "avg_retrieval_max_sim": 0.6087532006204128,
+            "evidence_use_rate": 0.0,
+            "rulebank_injected_rate": null,
+            "shots_dropped_rate": null,
+            "self_revision_rate": null,
+            "avg_seconds": 42.211390286684036
+          }
+        },
+        "baseline_trunk": {
+          "test": {
+            "n": 16,
+            "avg_teacher_score": 0.631875,
+            "pass_rate_ge_0_8": 0.25,
+            "add_rate_should_add": 0.8125,
+            "avg_retrieval_max_sim": 0.6745053119957447,
+            "evidence_use_rate": 0.5,
+            "rulebank_injected_rate": 1.0,
+            "shots_dropped_rate": null,
+            "self_revision_rate": null,
+            "avg_seconds": 37.8133557587862
+          }
+        },
+        "shot_min_sim_0.68": {
+          "test": {
+            "n": 16,
+            "avg_teacher_score": 0.601875,
+            "pass_rate_ge_0_8": 0.1875,
+            "add_rate_should_add": 0.8125,
+            "avg_retrieval_max_sim": 0.6745053119957447,
+            "evidence_use_rate": 0.5,
+            "rulebank_injected_rate": 1.0,
+            "shots_dropped_rate": 0.5,
+            "self_revision_rate": null,
+            "avg_seconds": 27.71475099027157
+          }
+        },
+        "shots_grounding_first": {
+          "test": {
+            "n": 16,
+            "avg_teacher_score": 0.654375,
+            "pass_rate_ge_0_8": 0.0625,
+            "add_rate_should_add": 0.9375,
+            "avg_retrieval_max_sim": 0.6745053119957447,
+            "evidence_use_rate": 0.5,
+            "rulebank_injected_rate": 1.0,
+            "shots_dropped_rate": null,
+            "self_revision_rate": null,
+            "avg_seconds": 29.189758330583572
+          }
+        },
+        "student_visual_evidence": {
+          "test": {
+            "n": 16,
+            "avg_teacher_score": 0.57625,
+            "pass_rate_ge_0_8": 0.125,
+            "add_rate_should_add": 0.875,
+            "avg_retrieval_max_sim": 0.6745053119957447,
+            "evidence_use_rate": 0.5,
+            "rulebank_injected_rate": 1.0,
+            "shots_dropped_rate": null,
+            "self_revision_rate": null,
+            "avg_seconds": 30.984710529446602
+          }
+        },
+        "self_revision_low_sim_or_low_conf": {
+          "test": {
+            "n": 16,
+            "avg_teacher_score": 0.67625,
+            "pass_rate_ge_0_8": 0.25,
+            "add_rate_should_add": 0.75,
+            "avg_retrieval_max_sim": 0.6745053119957447,
+            "evidence_use_rate": 0.5,
+            "rulebank_injected_rate": 1.0,
+            "shots_dropped_rate": null,
+            "self_revision_rate": 0.5,
+            "avg_seconds": 38.16475433111191
+          }
+        },
+        "rulebank_gate_fail_or_low_sim": {
+          "test": {
+            "n": 16,
+            "avg_teacher_score": 0.68375,
+            "pass_rate_ge_0_8": 0.3125,
+            "add_rate_should_add": 0.75,
+            "avg_retrieval_max_sim": 0.6745053119957447,
+            "evidence_use_rate": 0.5,
+            "rulebank_injected_rate": 0.5,
+            "shots_dropped_rate": null,
+            "self_revision_rate": null,
+            "avg_seconds": 33.775589138269424
+          }
+        },
+        "combo_all": {
+          "test": {
+            "n": 16,
+            "avg_teacher_score": 0.5525,
+            "pass_rate_ge_0_8": 0.0625,
+            "add_rate_should_add": 0.9375,
+            "avg_retrieval_max_sim": 0.6745053119957447,
+            "evidence_use_rate": 0.5,
+            "rulebank_injected_rate": 0.5,
+            "shots_dropped_rate": 0.5,
+            "self_revision_rate": 0.5,
+            "avg_seconds": 34.72142133116722
+          }
+        }
+      },
+      "strict_vault": null
+    }
+  ],
+  "rows_n": 360,
+  "last_updated_ts": 1768642522
+}
